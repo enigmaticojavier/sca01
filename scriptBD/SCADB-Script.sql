@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      ORACLE Version 10g                           */
-/* Created on:     02/05/2009 11:52:47 a.m.                     */
+/* Created on:     03/05/2009 10:16:52 p.m.                     */
 /*==============================================================*/
 
 
@@ -105,6 +105,7 @@ CREATE TABLE ACAE  (
    CODDOCUMENTOGER      VARCHAR2(50),
    TXTAPELLIDOSNOMBRES  VARCHAR2(1000),
    TXTCARGO             VARCHAR2(255),
+   TELEFONOGER          VARCHAR2(50),
    CONSTRAINT PK_ACAE PRIMARY KEY (PERSONAID)
 );
 
@@ -316,6 +317,7 @@ COMMENT ON TABLE RESOLUCION IS
 CREATE TABLE SUBSECTOR  (
    CLSSECTOR            CHAR(3)                         NOT NULL,
    CLSSUBSECTOR         CHAR(4)                         NOT NULL,
+   TIPSUBSECTOR         CHAR(3),
    TXTSUBSECTOR         VARCHAR2(255),
    CONSTRAINT PK_SUBSECTOR PRIMARY KEY (CLSSECTOR, CLSSUBSECTOR)
 );
