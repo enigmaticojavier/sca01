@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      ORACLE Version 10g                           */
-/* Created on:     03/05/2009 10:16:52 p.m.                     */
+/* Created on:     04/05/2009 12:49:14 a.m.                     */
 /*==============================================================*/
 
 
@@ -99,9 +99,9 @@ DROP TABLE USUARIO CASCADE CONSTRAINTS;
 /*==============================================================*/
 CREATE TABLE ACAE  (
    PERSONAID            INTEGER                         NOT NULL,
-   CLSSECTOR            CHAR(3)                         NOT NULL,
-   CLSSUBSECTOR         CHAR(4)                         NOT NULL,
-   TIPDOCUMENTOGER      CHAR(3),
+   CLSSECTOR            VARCHAR2(3)                     NOT NULL,
+   CLSSUBSECTOR         VARCHAR2(4)                     NOT NULL,
+   TIPDOCUMENTOGER      VARCHAR2(3),
    CODDOCUMENTOGER      VARCHAR2(50),
    TXTAPELLIDOSNOMBRES  VARCHAR2(1000),
    TXTCARGO             VARCHAR2(255),
@@ -128,7 +128,7 @@ COMMENT ON TABLE CONSULTOR IS
 /*==============================================================*/
 CREATE TABLE DOCUMENTO  (
    DOCID                INTEGER                         NOT NULL,
-   TIPODOCUMENTO        CHAR(3),
+   TIPODOCUMENTO        VARCHAR2(3),
    CODDOCUMENTO         VARCHAR2(50),
    FCHEXPEDICION        DATE,
    FCHPRESENTACION      DATE,
@@ -144,7 +144,7 @@ COMMENT ON TABLE DOCUMENTO IS
 CREATE TABLE DOCUMENTOPERSONA  (
    DOCID                INTEGER                         NOT NULL,
    PERSONAID            INTEGER                         NOT NULL,
-   TIPODOCPERSONA       CHAR(3)                         NOT NULL,
+   TIPODOCPERSONA       VARCHAR2(3)                     NOT NULL,
    CONSTRAINT PK_DOCUMENTOPERSONA PRIMARY KEY (DOCID, PERSONAID, TIPODOCPERSONA)
 );
 
@@ -164,10 +164,10 @@ COMMENT ON TABLE EIA IS
 /* Table: ESTADOSTUPA                                           */
 /*==============================================================*/
 CREATE TABLE ESTADOSTUPA  (
-   TIPTRAMITE           CHAR(3)                         NOT NULL,
+   TIPTRAMITE           VARCHAR2(3)                     NOT NULL,
    NUMSECUENCIA         INTEGER                         NOT NULL,
-   TIPPASO              CHAR(3)                         NOT NULL,
-   TIPESTADOTRAMITE     CHAR(3),
+   TIPPASO              VARCHAR2(3)                     NOT NULL,
+   TIPESTADOTRAMITE     VARCHAR2(3),
    CONSTRAINT PK_ESTADOSTUPA PRIMARY KEY (TIPTRAMITE, NUMSECUENCIA)
 );
 
@@ -183,8 +183,8 @@ CREATE TABLE EXPEDIENTE  (
    PERSONAID            INTEGER                         NOT NULL,
    NUMEXPEDIENTE        VARCHAR2(50),
    FCHEXPEDIENTE        DATE,
-   TIPTRAMITE           CHAR(3),
-   CLSTIPIFICACION      CHAR(4),
+   TIPTRAMITE           VARCHAR2(3),
+   CLSTIPIFICACION      VARCHAR2(4),
    CONSTRAINT PK_EXPEDIENTE PRIMARY KEY (EXPID)
 );
 
@@ -211,7 +211,7 @@ COMMENT ON TABLE EXPEDIENTEDOCUMENTO IS
 CREATE TABLE EXPEDIENTEPASO  (
    EXPID                INTEGER                         NOT NULL,
    NSECUENCIA           INTEGER                         NOT NULL,
-   TIPPASO              CHAR(3),
+   TIPPASO              VARCHAR2(3),
    FCHPASO              DATE,
    CONSTRAINT PK_EXPEDIENTEPASO PRIMARY KEY (EXPID, NSECUENCIA)
 );
@@ -237,8 +237,8 @@ COMMENT ON TABLE IMAGENDOCUMENTO IS
 /*==============================================================*/
 CREATE TABLE PARAMETROS  (
    IDPARAMETRO          INTEGER                         NOT NULL,
-   CODPARAMETRO         CHAR(3)                         NOT NULL,
-   TIPPARAMETRO         CHAR(3),
+   CODPARAMETRO         VARCHAR2(3)                     NOT NULL,
+   TIPPARAMETRO         VARCHAR2(3),
    TXTPARAMETRO         VARCHAR2(255),
    TXTVALOR             VARCHAR2(255),
    CONSTRAINT PK_PARAMETROS PRIMARY KEY (IDPARAMETRO, CODPARAMETRO)
@@ -250,7 +250,9 @@ CREATE TABLE PARAMETROS  (
 CREATE TABLE PERSONA  (
    PERSONAID            INTEGER                         NOT NULL,
    UBIGEOID             VARCHAR2(6),
-   TIPOPERSONA          CHAR(3),
+   TIPDOCUMENTOPER      VARCHAR2(3),
+   NUMDOCUMENTOPER      VARCHAR2(50),
+   TIPOPERSONA          VARCHAR2(3),
    TXTRAZONSOCIAL       VARCHAR2(255),
    TXTDOMICILIO         VARCHAR2(255),
    TELEFONO             VARCHAR2(50),
@@ -267,7 +269,7 @@ COMMENT ON TABLE PERSONA IS
 /*==============================================================*/
 CREATE TABLE PROPONENTE  (
    PERSONAID            INTEGER                         NOT NULL,
-   TIPODOCUMENTORL      CHAR(3),
+   TIPODOCUMENTORL      VARCHAR2(3),
    CODDOCUMENTORL       VARCHAR2(50),
    TXTNOMBRESRL         VARCHAR2(255),
    CONSTRAINT PK_PROPONENTE PRIMARY KEY (PERSONAID)
@@ -284,11 +286,11 @@ CREATE TABLE PROYECTO  (
    UBIGEOID             VARCHAR2(6),
    PERSONAID            INTEGER                         NOT NULL,
    TXTCOORDENADAS       VARCHAR2(1000),
-   CLSTIPIFICACION      CHAR(4),
+   CLSTIPIFICACION      VARCHAR2(4),
    TXTDESCRIPCION       VARCHAR2(1000),
    MNINVERSION          BINARY_DOUBLE,
-   CLSSECTOR            CHAR(4),
-   CLSSUBSECTOR         CHAR(4),
+   CLSSECTOR            VARCHAR2(4),
+   CLSSUBSECTOR         VARCHAR2(4),
    FCHEXPEDIENTE        DATE,
    CONSTRAINT PK_PROYECTO PRIMARY KEY (PRYID)
 );
@@ -301,7 +303,7 @@ COMMENT ON TABLE PROYECTO IS
 /*==============================================================*/
 CREATE TABLE RESOLUCION  (
    DOCID                INTEGER                         NOT NULL,
-   TIPRESOLUCION        CHAR(3),
+   TIPRESOLUCION        VARCHAR2(3),
    FCHPUBLICACION       DATE,
    FCHVIGENCIA          DATE,
    RESUMEN              VARCHAR2(1000),
@@ -315,9 +317,9 @@ COMMENT ON TABLE RESOLUCION IS
 /* Table: SUBSECTOR                                             */
 /*==============================================================*/
 CREATE TABLE SUBSECTOR  (
-   CLSSECTOR            CHAR(3)                         NOT NULL,
-   CLSSUBSECTOR         CHAR(4)                         NOT NULL,
-   TIPSUBSECTOR         CHAR(3),
+   CLSSECTOR            VARCHAR2(3)                     NOT NULL,
+   CLSSUBSECTOR         VARCHAR2(4)                     NOT NULL,
+   TIPSUBSECTOR         VARCHAR2(3),
    TXTSUBSECTOR         VARCHAR2(255),
    CONSTRAINT PK_SUBSECTOR PRIMARY KEY (CLSSECTOR, CLSSUBSECTOR)
 );
@@ -344,7 +346,7 @@ CREATE TABLE USUARIO  (
    USUARIO              VARCHAR2(50)                    NOT NULL,
    PERSONAID            INTEGER                         NOT NULL,
    CODCLAVE             VARCHAR2(50),
-   TIPUSUARIO           CHAR(3),
+   TIPUSUARIO           VARCHAR2(3),
    CONSTRAINT PK_USUARIO PRIMARY KEY (USUARIO)
 );
 
