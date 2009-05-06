@@ -1,0 +1,78 @@
+/***********************************************************************
+ * Module:  Acae.java
+ * Author:  JORGE
+ * Purpose: Defines the Class Acae
+ ***********************************************************************/
+
+import java.util.*;
+
+/** Autoridades sectoriales que expiden las certificaciones ambientales (con resolucion)
+ * 
+ * @pdOid cab80929-c1e9-4b36-9ab8-d86f7f4745be */
+public class Acae extends Persona {
+   /** @pdOid b660a22b-788f-4a39-8173-e4b05499a326 */
+   private Char(3) TipDocumentoGer;
+   /** @pdOid eccca16c-8343-468b-a476-90d8c9717c67 */
+   private String(50) CodDocumentoGer;
+   /** @pdOid 085398c2-b81c-4116-9de0-f829118c1955 */
+   private String(1000) TxtApellidosNombres;
+   /** @pdOid 233919f8-5896-40ee-9a7c-164701ca217d */
+   private String(255) TxtCargo;
+   /** @pdOid 25e9e7e0-6f89-43d6-8cc3-dbc70b11d757 */
+   private String(50) TelefonoGer;
+   
+   /** @pdOid cceb8dc0-bf37-4076-94cd-2ee194c0adb5
+       @pdRoleInfo migr=yes name=Expediente assc=Association12 coll=java.util.Collection impl=java.util.HashSet mult=0..* */
+   public java.util.Collection<Expediente> expediente;
+   
+   
+   /** @pdGenerated default getter */
+   public java.util.Collection<Expediente> getExpediente() {
+      if (expediente == null)
+         expediente = new java.util.HashSet<Expediente>();
+      return expediente;
+   }
+   
+   /** @pdGenerated default iterator getter */
+   public java.util.Iterator getIteratorExpediente() {
+      if (expediente == null)
+         expediente = new java.util.HashSet<Expediente>();
+      return expediente.iterator();
+   }
+   
+   /** @pdGenerated default setter
+     * @param newExpediente */
+   public void setExpediente(java.util.Collection<Expediente> newExpediente) {
+      removeAllExpediente();
+      for (java.util.Iterator iter = newExpediente.iterator(); iter.hasNext();)
+         addExpediente((Expediente)iter.next());
+   }
+   
+   /** @pdGenerated default add
+     * @param newExpediente */
+   public void addExpediente(Expediente newExpediente) {
+      if (newExpediente == null)
+         return;
+      if (this.expediente == null)
+         this.expediente = new java.util.HashSet<Expediente>();
+      if (!this.expediente.contains(newExpediente))
+         this.expediente.add(newExpediente);
+   }
+   
+   /** @pdGenerated default remove
+     * @param oldExpediente */
+   public void removeExpediente(Expediente oldExpediente) {
+      if (oldExpediente == null)
+         return;
+      if (this.expediente != null)
+         if (this.expediente.contains(oldExpediente))
+            this.expediente.remove(oldExpediente);
+   }
+   
+   /** @pdGenerated default removeAll */
+   public void removeAllExpediente() {
+      if (expediente != null)
+         expediente.clear();
+   }
+
+}
