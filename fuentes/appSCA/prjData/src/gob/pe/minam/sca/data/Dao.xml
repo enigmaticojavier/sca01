@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE daoConfig
+    PUBLIC "-//iBATIS.com//DTD DAO Configuration 2.0//EN"
+    "http://www.ibatis.com/dtd/dao-2.dtd">
+
+<daoConfig>
+
+  <context>
+   <transactionManager type="SQLMAP">
+      <property name="SqlMapConfigResource"
+        value="gob/pe/minam/sca/data/ibatis/SqlMapConfig.xml"/>
+   </transactionManager>
+   <dao interface="gob.pe.minam.sca.data.dao.ParametroDao"
+        implementation="gob.pe.minam.sca.data.daosql.ParametroSqlMapDao"/>
+   <dao interface="gob.pe.minam.sca.data.dao.ProyectoDao"
+        implementation="gob.pe.minam.sca.data.daosql.ProyectoSqlMapDao"/>          
+  </context>
+
+</daoConfig>
