@@ -9,3 +9,4 @@ Esta es la secuencia en que deben cargar los scripts
 7.ESTADOSTUPA
 8.PROYECTO
 9.PARAMETROS
+10.ESTADOSTUPADOC
