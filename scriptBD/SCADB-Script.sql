@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      ORACLE Version 10g                           */
-/* Created on:     11/05/2009 06:33:34 p.m.                     */
+/* Created on:     16/05/2009 12:38:52 p.m.                     */
 /*==============================================================*/
 
 
@@ -12,6 +12,9 @@ ALTER TABLE ACAE
 
 ALTER TABLE CONSULTOR
    DROP CONSTRAINT FK_CONSULTO_GENERALIZ_PERSONA;
+
+ALTER TABLE CONTROLENVIO
+   DROP CONSTRAINT FK_CONTROLE_ASSOCIATI_ACAE;
 
 ALTER TABLE DOCUMENTOPERSONA
    DROP CONSTRAINT FK_DOCUMENT_ASSOCIATI_PERSONA;
@@ -67,6 +70,8 @@ DROP TABLE CONTROL_ARCHIVOS CASCADE CONSTRAINTS;
 
 DROP TABLE CONSULTOR CASCADE CONSTRAINTS;
 
+DROP TABLE CONTROLENVIO CASCADE CONSTRAINTS;
+
 DROP TABLE DOCUMENTO CASCADE CONSTRAINTS;
 
 DROP TABLE DOCUMENTOPERSONA CASCADE CONSTRAINTS;
@@ -85,7 +90,7 @@ DROP TABLE EXPEDIENTEPASO CASCADE CONSTRAINTS;
 
 DROP TABLE IMAGENDOCUMENTO CASCADE CONSTRAINTS;
 
-DROP TABLE PARAMETROS CASCADE CONSTRAINTS;
+DROP TABLE PARAMETRO CASCADE CONSTRAINTS;
 
 DROP TABLE PERSONA CASCADE CONSTRAINTS;
 
@@ -114,6 +119,7 @@ CREATE TABLE ACAE  (
    PERSONAID            INTEGER                         NOT NULL,
    CLSSECTOR            VARCHAR2(3)                     NOT NULL,
    CLSSUBSECTOR         VARCHAR2(4)                     NOT NULL,
+   TIPACAE              VARCHAR2(3),
    TIPDOCUMENTOGER      VARCHAR2(3),
    CODDOCUMENTOGER      VARCHAR2(50),
    TXTAPELLIDOSNOMBRES  VARCHAR2(1000),
@@ -147,6 +153,17 @@ CREATE TABLE CONSULTOR  (
 
 COMMENT ON TABLE CONSULTOR IS
 'Personas juridicas habilitados por las ACAE para que elaboren los IGAs';
+
+/*==============================================================*/
+/* Table: CONTROLENVIO                                          */
+/*==============================================================*/
+CREATE TABLE CONTROLENVIO  (
+   TIPARCHIVO           VARCHAR2(3)                     NOT NULL,
+   PERIODO              VARCHAR2(254)                   NOT NULL,
+   PERSONAID            INTEGER                         NOT NULL,
+   TIPSITUACION         VARCHAR2(3),
+   CONSTRAINT PK_CONTROLENVIO PRIMARY KEY (TIPARCHIVO, PERIODO, PERSONAID)
+);
 
 /*==============================================================*/
 /* Table: DOCUMENTO                                             */
@@ -274,15 +291,15 @@ COMMENT ON TABLE IMAGENDOCUMENTO IS
 'Para almacenar las rutas y nombres de los documentos adjuntos que se va a cargar';
 
 /*==============================================================*/
-/* Table: PARAMETROS                                            */
+/* Table: PARAMETRO                                             */
 /*==============================================================*/
-CREATE TABLE PARAMETROS  (
+CREATE TABLE PARAMETRO  (
    IDPARAMETRO          INTEGER                         NOT NULL,
-   CODPARAMETRO         VARCHAR2(3)                     NOT NULL,
+   CODPARAMETRO         VARCHAR2(6),
    TIPPARAMETRO         VARCHAR2(3),
    TXTPARAMETRO         VARCHAR2(255),
    TXTVALOR             VARCHAR2(255),
-   CONSTRAINT PK_PARAMETROS PRIMARY KEY (IDPARAMETRO, CODPARAMETRO)
+   CONSTRAINT PK_PARAMETRO PRIMARY KEY (IDPARAMETRO)
 );
 
 /*==============================================================*/
@@ -293,7 +310,7 @@ CREATE TABLE PERSONA  (
    UBIGEOID             VARCHAR2(6),
    TIPDOCUMENTOPER      VARCHAR2(3),
    NUMDOCUMENTOPER      VARCHAR2(50),
-   TIPOPERSONA          VARCHAR2(3),
+   TIPPERSONA           VARCHAR2(3),
    TXTRAZONSOCIAL       VARCHAR2(255),
    TXTDOMICILIO         VARCHAR2(255),
    TELEFONO             VARCHAR2(50),
@@ -384,6 +401,7 @@ CREATE TABLE TEXPEDIENTE  (
    NUMRESL              VARCHAR2(50),
    FCHRESL              DATE,
    DSCBIGA              VARCHAR2(1000),
+   NUMITAM              VARCHAR2(50),
    CONSTRAINT PK_TEXPEDIENTE PRIMARY KEY (NUMACAE, CODPROY, NUMEXPD, TIPTRAN, PERIODO)
 );
 
@@ -459,6 +477,10 @@ ALTER TABLE ACAE
 ALTER TABLE CONSULTOR
    ADD CONSTRAINT FK_CONSULTO_GENERALIZ_PERSONA FOREIGN KEY (PERSONAID)
       REFERENCES PERSONA (PERSONAID);
+
+ALTER TABLE CONTROLENVIO
+   ADD CONSTRAINT FK_CONTROLE_ASSOCIATI_ACAE FOREIGN KEY (PERSONAID)
+      REFERENCES ACAE (PERSONAID);
 
 ALTER TABLE DOCUMENTOPERSONA
    ADD CONSTRAINT FK_DOCUMENT_ASSOCIATI_PERSONA FOREIGN KEY (PERSONAID)
