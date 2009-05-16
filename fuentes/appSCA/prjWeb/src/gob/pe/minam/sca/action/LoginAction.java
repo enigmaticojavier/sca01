@@ -3,9 +3,16 @@
  */
 package gob.pe.minam.sca.action;
 
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import freemarker.ext.servlet.HttpRequestHashModel;
 import gob.pe.minam.sca.framework.ConstantesSistema;
 import gob.pe.minam.sca.pojo.Usuario;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
@@ -53,14 +60,21 @@ public class LoginAction extends ActionSupport {
         	this.setTxtValor(usuario.getTxtValor());
 			if (usuario.getTipUsuario().equals(ConstantesSistema.TIPO_USUARIO_ADM)){
 				sReturn = "ADM";
+				this.ponerSesion(usuario);
 			} else if (usuario.getTipUsuario().equals(ConstantesSistema.TIPO_USUARIO_ACAE)){
 				sReturn = "ACA";
-			}        	
+			}			
+			
 		} else {
 			addActionError("Usuario o Clave no válidos.");
 			return ERROR;
 		}
 		return sReturn;		
+	}
+	
+	public void ponerSesion(Usuario usuario){
+		Map session = ActionContext.getContext().getSession();
+	    session.put("Usuario", usuario);
 	}
    
 }
