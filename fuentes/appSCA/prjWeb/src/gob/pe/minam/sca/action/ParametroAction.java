@@ -10,7 +10,7 @@ import gob.pe.minam.sca.framework.exception.NegocioException;
 
 import java.util.ArrayList;
 
-
+   
 public class ParametroAction extends ActionSupport implements Preparable {
     
     private String tipParametro;

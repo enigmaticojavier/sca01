@@ -16,6 +16,15 @@
                     <result name="input">/pages/parametro/parametroForm.jsp</result>
                     <result name="error">error.jsp</result>
             </action>
+            <action name="showLogin">
+		<result>/index.jsp</result>
+	    </action>
+	    <action name="doLogin" class="gob.pe.minam.sca.action.LoginAction">
+            	<result name="input">/index.jsp</result>
+            	<result name="error">/index.jsp</result>
+            	<result name="ADM">/pages/login/loginSuccessADM.jsp</result>
+            	<result name="ACA">/pages/login/loginSuccessACA.jsp</result>
+        </action>
 	</package>
         
 </struts>

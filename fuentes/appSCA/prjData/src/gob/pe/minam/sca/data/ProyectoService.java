@@ -12,10 +12,13 @@ import com.ibatis.dao.client.DaoManager;
 import gob.pe.minam.sca.data.DaoConfig;
 import gob.pe.minam.sca.data.dao.ParametroDao;
 import gob.pe.minam.sca.data.dao.ProyectoDao;
+import gob.pe.minam.sca.data.dao.UsuarioDao;
 
 /**
  * @author Danny Espíritu
- * @version 1.0
+ * @author Dante Antiporta
+ * @version 1.1 - 14/05/2009
+ * @version 1.0 - 10/05/2009
  */
 
 public class ProyectoService {
@@ -29,12 +32,14 @@ public class ProyectoService {
   private DaoManager daoManager = DaoConfig.getDaomanager();
   private ProyectoDao  proyectoDao;
   private ParametroDao parametroDao;
+  private UsuarioDao usuarioDao;
   
   /* Constructors */
 
   public ProyectoService() {
     proyectoDao   = 	 (ProyectoDao)daoManager.getDao(ProyectoDao.class);
     parametroDao  = 	 (ParametroDao)daoManager.getDao(ParametroDao.class);
+    usuarioDao  = 	 (UsuarioDao)daoManager.getDao(UsuarioDao.class);
   }
 
   /* Get Instance */
@@ -56,5 +61,10 @@ public class ProyectoService {
   public ParametroDao getParametroDao() {
     return parametroDao;
   }
+  
+  public UsuarioDao getUsuarioDao() {
+	return usuarioDao;
+  }
+  
   
 }

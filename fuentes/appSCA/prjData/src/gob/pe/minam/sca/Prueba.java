@@ -2,7 +2,7 @@ package gob.pe.minam.sca;
 
 import gob.pe.minam.sca.pojo.Parametro;
 
-import java.util.List;
+import java.util.List; 
 
 
 /**

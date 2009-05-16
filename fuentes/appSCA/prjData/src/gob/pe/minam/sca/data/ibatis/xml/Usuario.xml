@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Usuario">
+
+  <typeAlias alias="Usuario" type="gob.pe.minam.sca.pojo.Usuario"/>
+
+  <resultMap id="UsuarioRSMap" class="Usuario">    
+    <result property="personaId" column="PERSONAID"/>
+    <result property="usuario" column="USUARIO"/>
+    <result property="codClave" column="CODCLAVE"/>
+    <result property="tipUsuario" column="TIPUSUARIO"/>
+    <result property="txtValor" column="TXTVALOR"/>
+  </resultMap>
+  
+  <select id="getUsuario" resultClass="Usuario" parameterClass="Usuario" resultMap="UsuarioRSMap">
+    select 
+      	USUARIO.PERSONAID, 
+        USUARIO.USUARIO, 
+        USUARIO.CODCLAVE,
+        USUARIO.TIPUSUARIO        
+    from  USUARIO   
+  </select>
+  
+  <select id="getUsuarioByKey" resultClass="Usuario" parameterClass="Usuario" >
+    select      	
+    	U.PERSONAID, 
+        U.USUARIO, 
+        U.CODCLAVE,
+        U.TIPUSUARIO,
+        P.TXTVALOR     
+    from USUARIO U, PARAMETROS P 
+    where 
+    	USUARIO  = 	#usuario#
+    	AND U.CODCLAVE = #codClave#
+    	AND U.TIPUSUARIO=P.CODPARAMETRO AND P.TIPPARAMETRO='TUS'
+  </select>
+
+</sqlMap>

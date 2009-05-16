@@ -11,14 +11,15 @@
   <transactionManager type="JDBC" commitRequired="false">
     <dataSource type="SIMPLE">
       <property name="JDBC.Driver" value="oracle.jdbc.driver.OracleDriver"/>
-      <property name="JDBC.ConnectionURL" value="jdbc:oracle:thin:@localhost:1521:bdrimac"/>
-      <property name="JDBC.Username" value="sca1"/>
-      <property name="JDBC.Password" value="sca1"/>
+      <property name="JDBC.ConnectionURL" value="jdbc:oracle:thin:@localhost:1521:SCADB"/>
+      <property name="JDBC.Username" value="sca"/>
+      <property name="JDBC.Password" value="sca"/>
     </dataSource>
   </transactionManager>
 
+  
   <sqlMap resource="gob/pe/minam/sca/data/ibatis/xml/Parametro.xml"/>
   <sqlMap resource="gob/pe/minam/sca/data/ibatis/xml/Proyecto.xml"/>
-  
+  <sqlMap resource="gob/pe/minam/sca/data/ibatis/xml/Usuario.xml"/>
 
 </sqlMapConfig>
