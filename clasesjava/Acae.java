@@ -10,16 +10,18 @@ import java.util.*;
  * 
  * @pdOid cab80929-c1e9-4b36-9ab8-d86f7f4745be */
 public class Acae extends Persona {
+   /** @pdOid 3b51f217-98c6-4002-a386-5a881cb21a49 */
+   private java.lang.String tipAcae;
    /** @pdOid b660a22b-788f-4a39-8173-e4b05499a326 */
-   private Char(3) TipDocumentoGer;
+   private java.lang.String tipDocumentoGer;
    /** @pdOid eccca16c-8343-468b-a476-90d8c9717c67 */
-   private String(50) CodDocumentoGer;
+   private java.lang.String codDocumentoGer;
    /** @pdOid 085398c2-b81c-4116-9de0-f829118c1955 */
-   private String(1000) TxtApellidosNombres;
+   private java.lang.String txtApellidosNombres;
    /** @pdOid 233919f8-5896-40ee-9a7c-164701ca217d */
-   private String(255) TxtCargo;
+   private java.lang.String txtCargo;
    /** @pdOid 25e9e7e0-6f89-43d6-8cc3-dbc70b11d757 */
-   private String(50) TelefonoGer;
+   private java.lang.String telefonoGer;
    
    /** @pdOid cceb8dc0-bf37-4076-94cd-2ee194c0adb5
        @pdRoleInfo migr=yes name=Expediente assc=Association12 coll=java.util.Collection impl=java.util.HashSet mult=0..* */

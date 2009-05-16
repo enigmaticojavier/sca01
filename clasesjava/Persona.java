@@ -11,23 +11,23 @@ import java.util.*;
  * @pdOid f5e02575-75bf-40fc-9ad4-e7b3af9b7f68 */
 public class Persona {
    /** @pdOid 3d88dbcb-87af-4a58-ae34-1b835bdc885d */
-   private int PersonaId;
+   private int personaId;
    /** @pdOid 32ba6b62-3dd1-4e4a-a9f1-3cfb88ad1b16 */
-   private Char(3) TipDocumentoPer;
+   private java.lang.String tipDocumentoPer;
    /** @pdOid fbb05f3b-a14e-47e5-8d06-a6ba8f0c4d60 */
-   private String(50) NumDocumentoPer;
+   private java.lang.String numDocumentoPer;
    /** @pdOid fe2b0dcf-5e82-44de-a8af-564d7c535c4e */
-   private Char(3) TipoPersona;
+   private java.lang.String tipPersona;
    /** @pdOid bdc06b32-e0a3-47f0-9032-8a8b48cb5332 */
-   private String(255) TxtRazonSocial;
+   private java.lang.String txtRazonSocial;
    /** @pdOid 3dc9fe35-053d-40ac-a404-ea3300691597 */
-   private String(255) TxtDomicilio;
+   private java.lang.String txtDomicilio;
    /** @pdOid 5e813c04-a7e5-4f79-9c8d-47e04c79974f */
-   private String(50) Telefono;
+   private java.lang.String telefono;
    /** @pdOid 403f50cf-e5f2-476b-a390-e5efbf7e3f24 */
-   private String(50) TxtEmail;
+   private java.lang.String txtEmail;
    /** @pdOid 75e794b2-f524-4c1d-9c7d-0b5db4986946 */
-   private String(50) Fax;
+   private java.lang.String fax;
    
    /** @pdOid 90e22fa9-7b4c-4542-8c93-53056e5bd89d
        @pdRoleInfo migr=yes name=DocumentoPersona assc=Association14 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Composition */

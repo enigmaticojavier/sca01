@@ -11,13 +11,13 @@ import java.util.*;
  * @pdOid 42929a34-81f3-4010-a385-ec560e2c7fbb */
 public class SubSector {
    /** @pdOid 5ef52846-5d6f-46c8-83aa-c7466ec6cb61 */
-   private Char(3) ClsSector;
+   private java.lang.String clsSector;
    /** @pdOid e6fd48bc-fb1e-44b6-9ac8-1be15cf36bd4 */
-   private Char(4) ClsSubSector;
+   private java.lang.String clsSubSector;
    /** @pdOid cc16585f-e314-4465-9dba-e73f91d5a5e5 */
-   private Char(3) TipSubSector;
+   private java.lang.String tipSubSector;
    /** @pdOid bbbe34ba-d10c-42b4-acdf-082b545ef960 */
-   private String(255) TxtSubSector;
+   private java.lang.String txtSubSector;
    
    /** @pdOid f89b21ab-50af-47ef-894a-f7341c8c8987
        @pdRoleInfo migr=yes name=Acae assc=Association20 coll=java.util.Collection impl=java.util.HashSet mult=0..* */

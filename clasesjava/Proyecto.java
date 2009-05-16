@@ -11,21 +11,25 @@ import java.util.*;
  * @pdOid fc53b83a-6006-474d-9240-bec92475f020 */
 public class Proyecto {
    /** @pdOid 491eccf5-7b61-48ff-b7b6-77b0925bb7ea */
-   private int PryId;
+   private int pryId;
+   /** @pdOid 6c159c92-47d3-497b-ae27-9a1e2472dc95 */
+   private java.lang.String codProyecto;
    /** @pdOid 8d220e5d-a3b9-454f-900c-7295d09af56c */
-   private String(1000) TxtCoordenadas;
+   private java.lang.String txtCoordenadas;
    /** @pdOid cfc98976-921e-4d97-ba9b-98de2c57fe92 */
-   private Char(4) ClsTipificacion;
+   private java.lang.String clsTipificacion;
    /** @pdOid 0c013a06-596a-43bd-b597-2f6ee7ff6f58 */
-   private String(1000) TxtDescripcion;
+   private java.lang.String txtDescripcion;
    /** @pdOid 3838d1c6-e1c0-4cbf-9bc7-80b69a83ce71 */
-   private double MnInversion;
+   private java.lang.Double mnInversion;
    /** @pdOid 3340f8fd-b8bc-4644-bec5-51650446be5d */
-   private Char(4) ClsSector;
+   private java.lang.String clsSector;
    /** @pdOid d81e3797-c641-4fec-9c83-27eccb4c3866 */
-   private Char(4) ClsSubSector;
+   private java.lang.String clsSubSector;
    /** @pdOid 25d4f5aa-08b1-4386-b4cb-30f6ecae8e3e */
-   private java.util.Date FchExpediente;
+   private java.util.Date fchExpediente;
+   /** @pdOid 1ccc5ee0-fa7b-4da8-b8b0-7eb5154593c5 */
+   private java.lang.String periodo;
    
    /** @pdOid 2f94451f-3215-4470-85c6-16020ed4a6a1
        @pdRoleInfo migr=yes name=Expediente assc=Association1 coll=java.util.Collection impl=java.util.HashSet mult=0..* */

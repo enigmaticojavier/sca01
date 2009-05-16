@@ -11,15 +11,17 @@ import java.util.*;
  * @pdOid 85363f55-53e2-4391-a237-43f9a7de2215 */
 public class Documento {
    /** @pdOid 0624957c-0ac1-43fe-9630-b5c4ab7924dc */
-   private int DocId;
+   private int docId;
    /** @pdOid e0f3fade-45d8-4138-8604-9a0669caf1a5 */
-   private Char(3) TipoDocumento;
+   private java.lang.String tipoDocumento;
    /** @pdOid 96d87b81-6d2e-476a-9abe-2837008d3f7d */
-   private String(50) CodDocumento;
+   private java.lang.String codDocumento;
    /** @pdOid 9d3ebf49-9609-4d0e-ba74-ca1fd459d51e */
-   private java.util.Date FchExpedicion;
+   private java.util.Date fchExpedicion;
    /** @pdOid 85469e3e-16e4-4a2b-b987-ecaff8b278f8 */
-   private java.util.Date FchPresentacion;
+   private java.util.Date fchPresentacion;
+   /** @pdOid b8bcf3e8-f9c5-4bae-9f74-f882489ff179 */
+   private java.lang.String periodo;
    
    /** @pdOid d146dd05-e9a7-4869-ab39-47b44cf4cb6f
        @pdRoleInfo migr=yes name=DocumentoPersona assc=Association17 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Composition */

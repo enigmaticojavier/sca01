@@ -11,6 +11,6 @@ import java.util.*;
  * @pdOid 42d826d1-8382-484c-9f7f-a044d42a49f8 */
 public class Eia extends Documento {
    /** @pdOid aee8dc9c-04a9-42c0-876c-d0df75868867 */
-   private String(1000) TxtResumen;
+   private java.lang.String txtResumen;
 
 }

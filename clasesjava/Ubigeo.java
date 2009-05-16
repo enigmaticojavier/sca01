@@ -11,11 +11,11 @@ import java.util.*;
  * @pdOid ddaeb218-05b7-43b7-9b7a-f1e5ec4f2e7d */
 public class Ubigeo {
    /** @pdOid e580793b-3504-4c85-983f-90746941673b */
-   private String(6) UbigeoId;
+   private java.lang.String ubigeoId;
    /** @pdOid 20084e87-2f7a-49b1-9f07-948bf8779028 */
-   private String(255) TxtDescripcion;
+   private java.lang.String txtDescripcion;
    /** @pdOid 4bc94f19-3fe1-462e-bcc2-04a7ea416e70 */
-   private String(255) TxtDescripcionLarga;
+   private java.lang.String txtDescripcionLarga;
    
    /** @pdOid aa785665-033a-4632-8413-7aea62a3b77a
        @pdRoleInfo migr=yes name=Persona assc=Association16 coll=java.util.Collection impl=java.util.HashSet mult=0..* */

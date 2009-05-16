@@ -11,11 +11,13 @@ import java.util.*;
  * @pdOid 44665cf2-cf28-48f6-8a68-025448bcdc41 */
 public class ExpedientePaso {
    /** @pdOid 6c7a3373-f58f-4ef9-ac27-bd6c91c64072 */
-   private int Nsecuencia;
+   private int nsecuencia;
    /** @pdOid a6c3caa7-9944-439f-8a40-42164a658cbd */
-   private Char(3) TipPaso;
+   private java.lang.String tipPaso;
    /** @pdOid 70ece057-2fdc-4cb9-ad67-0303d1767cbc */
-   private java.util.Date FchPaso;
+   private java.util.Date fchPaso;
+   /** @pdOid 1ec4e8cc-5c41-4f60-943c-2ae6a633ba2b */
+   private java.lang.String periodo;
    
    /** @pdOid cb37e7af-4058-4590-ba00-2c2948684066
        @pdRoleInfo migr=yes name=ExpedienteDocumento assc=Association15 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Composition */
