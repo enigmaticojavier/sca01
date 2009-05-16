@@ -5,11 +5,8 @@ package gob.pe.minam.sca.action;
 
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
-import freemarker.ext.servlet.HttpRequestHashModel;
 import gob.pe.minam.sca.framework.ConstantesSistema;
+import gob.pe.minam.sca.pojo.Acae;
 import gob.pe.minam.sca.pojo.Usuario;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -25,6 +22,7 @@ public class LoginAction extends ActionSupport {
 	private String usuario=null;
 	private String codClave=null;
 	private String txtValor=null;
+	private Acae acae = new Acae();
 	
 	public String getUsuario() {
 		return usuario;
@@ -45,6 +43,13 @@ public class LoginAction extends ActionSupport {
 	public void setTxtValor(String txtValor) {
 		this.txtValor = txtValor;
 	}
+	
+	public Acae getAcae() {
+		return acae;
+	}
+	public void setAcae(Acae acae) {
+		this.acae = acae;
+	}
 	public String execute() throws Exception {
         
 		String sReturn="";
@@ -61,7 +66,9 @@ public class LoginAction extends ActionSupport {
 			if (usuario.getTipUsuario().equals(ConstantesSistema.TIPO_USUARIO_ADM)){
 				sReturn = "ADM";
 				this.ponerSesion(usuario);
-			} else if (usuario.getTipUsuario().equals(ConstantesSistema.TIPO_USUARIO_ACAE)){
+			} else if (usuario.getTipUsuario().equals(ConstantesSistema.TIPO_USUARIO_ACAE)){				
+				acae.setPersonaId(usuario.getPersonaId());
+				acae = Acae.getAcaeByKey(acae);
 				sReturn = "ACA";
 			}			
 			
