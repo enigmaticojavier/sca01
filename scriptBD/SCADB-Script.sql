@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      ORACLE Version 10g                           */
-/* Created on:     16/05/2009 12:38:52 p.m.                     */
+/* Created on:     16/05/2009 12:48:44 p.m.                     */
 /*==============================================================*/
 
 
@@ -66,8 +66,6 @@ ALTER TABLE USUARIO
 
 DROP TABLE ACAE CASCADE CONSTRAINTS;
 
-DROP TABLE CONTROL_ARCHIVOS CASCADE CONSTRAINTS;
-
 DROP TABLE CONSULTOR CASCADE CONSTRAINTS;
 
 DROP TABLE CONTROLENVIO CASCADE CONSTRAINTS;
@@ -132,18 +130,6 @@ COMMENT ON TABLE ACAE IS
 'Autoridades sectoriales que expiden las certificaciones ambientales (con resolucion)';
 
 /*==============================================================*/
-/* Table: CONTROL_ARCHIVOS                                      */
-/*==============================================================*/
-CREATE TABLE CONTROL_ARCHIVOS  (
-   PERSONAID            INTEGER                         NOT NULL,
-   CODARCHIVO           VARCHAR2(3)                     NOT NULL,
-   CODPERIODO           VARCHAR2(6)                     NOT NULL,
-   FCHENVIO             DATE,
-   NUMREGISTROS         INTEGER,
-   CONSTRAINT PK_CONTROL_ARCHIVOS PRIMARY KEY (PERSONAID, CODARCHIVO, CODPERIODO)
-);
-
-/*==============================================================*/
 /* Table: CONSULTOR                                             */
 /*==============================================================*/
 CREATE TABLE CONSULTOR  (
@@ -162,6 +148,8 @@ CREATE TABLE CONTROLENVIO  (
    PERIODO              VARCHAR2(254)                   NOT NULL,
    PERSONAID            INTEGER                         NOT NULL,
    TIPSITUACION         VARCHAR2(3),
+   FCHENVIO             DATE,
+   NUMREGISTROS         INTEGER,
    CONSTRAINT PK_CONTROLENVIO PRIMARY KEY (TIPARCHIVO, PERIODO, PERSONAID)
 );
 
