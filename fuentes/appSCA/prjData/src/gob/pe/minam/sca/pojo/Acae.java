@@ -1,5 +1,7 @@
 package gob.pe.minam.sca.pojo;
 
+import java.util.List;
+
 public class Acae extends Persona {
 	
 	/** @pdOid 3b51f217-98c6-4002-a386-5a881cb21a49 */
@@ -15,55 +17,63 @@ public class Acae extends Persona {
 	   /** @pdOid 25e9e7e0-6f89-43d6-8cc3-dbc70b11d757 */
 	   private java.lang.String telefonoGer;
 	   
-	   public java.util.Collection<Expediente> expediente;
-	   
-	   /** @pdGenerated default getter */
-	   public java.util.Collection<Expediente> getExpediente() {
-	      if (expediente == null)
-	         expediente = new java.util.HashSet<Expediente>();
-	      return expediente;
-	   }
-	   
-	   /** @pdGenerated default iterator getter */
-	   public java.util.Iterator getIteratorExpediente() {
-	      if (expediente == null)
-	         expediente = new java.util.HashSet<Expediente>();
-	      return expediente.iterator();
-	   }
-	   
-	   /** @pdGenerated default setter
-	     * @param newExpediente */
-	   public void setExpediente(java.util.Collection<Expediente> newExpediente) {
-	      removeAllExpediente();
-	      for (java.util.Iterator iter = newExpediente.iterator(); iter.hasNext();)
-	         addExpediente((Expediente)iter.next());
-	   }
-	   
-	   /** @pdGenerated default add
-	     * @param newExpediente */
-	   public void addExpediente(Expediente newExpediente) {
-	      if (newExpediente == null)
-	         return;
-	      if (this.expediente == null)
-	         this.expediente = new java.util.HashSet<Expediente>();
-	      if (!this.expediente.contains(newExpediente))
-	         this.expediente.add(newExpediente);
-	   }
-	   
-	   /** @pdGenerated default remove
-	     * @param oldExpediente */
-	   public void removeExpediente(Expediente oldExpediente) {
-	      if (oldExpediente == null)
-	         return;
-	      if (this.expediente != null)
-	         if (this.expediente.contains(oldExpediente))
-	            this.expediente.remove(oldExpediente);
-	   }
-	   
-	   /** @pdGenerated default removeAll */
-	   public void removeAllExpediente() {
-	      if (expediente != null)
-	         expediente.clear();
-	   }
+	   public List<Expediente> expediente;
+
+	public java.lang.String getTipAcae() {
+		return tipAcae;
+	}
+
+	public void setTipAcae(java.lang.String tipAcae) {
+		this.tipAcae = tipAcae;
+	}
+
+	public java.lang.String getTipDocumentoGer() {
+		return tipDocumentoGer;
+	}
+
+	public void setTipDocumentoGer(java.lang.String tipDocumentoGer) {
+		this.tipDocumentoGer = tipDocumentoGer;
+	}
+
+	public java.lang.String getCodDocumentoGer() {
+		return codDocumentoGer;
+	}
+
+	public void setCodDocumentoGer(java.lang.String codDocumentoGer) {
+		this.codDocumentoGer = codDocumentoGer;
+	}
+
+	public java.lang.String getTxtApellidosNombres() {
+		return txtApellidosNombres;
+	}
+
+	public void setTxtApellidosNombres(java.lang.String txtApellidosNombres) {
+		this.txtApellidosNombres = txtApellidosNombres;
+	}
+
+	public java.lang.String getTxtCargo() {
+		return txtCargo;
+	}
+
+	public void setTxtCargo(java.lang.String txtCargo) {
+		this.txtCargo = txtCargo;
+	}
+
+	public java.lang.String getTelefonoGer() {
+		return telefonoGer;
+	}
+
+	public void setTelefonoGer(java.lang.String telefonoGer) {
+		this.telefonoGer = telefonoGer;
+	}
+
+	public List<Expediente> getExpediente() {
+		return expediente;
+	}
+
+	public void setExpediente(List<Expediente> expediente) {
+		this.expediente = expediente;
+	}
+	  
 		
 }

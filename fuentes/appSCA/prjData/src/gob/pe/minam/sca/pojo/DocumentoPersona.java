@@ -1,3 +1,4 @@
+package gob.pe.minam.sca.pojo;
 /***********************************************************************
  * Module:  DocumentoPersona.java
  * Author:  JORGE
