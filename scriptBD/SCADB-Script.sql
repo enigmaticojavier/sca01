@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      ORACLE Version 10g                           */
-/* Created on:     16/05/2009 12:48:44 p.m.                     */
+/* Created on:     21/05/2009 09:16:50 a.m.                     */
 /*==============================================================*/
 
 
@@ -100,6 +100,8 @@ DROP TABLE RESOLUCION CASCADE CONSTRAINTS;
 
 DROP TABLE SUBSECTOR CASCADE CONSTRAINTS;
 
+DROP TABLE TCATALOGOTIPOS CASCADE CONSTRAINTS;
+
 DROP TABLE TEXPEDIENTE CASCADE CONSTRAINTS;
 
 DROP TABLE TPROPONENTE CASCADE CONSTRAINTS;
@@ -115,10 +117,10 @@ DROP TABLE USUARIO CASCADE CONSTRAINTS;
 /*==============================================================*/
 CREATE TABLE ACAE  (
    PERSONAID            INTEGER                         NOT NULL,
-   CLSSECTOR            VARCHAR2(3)                     NOT NULL,
+   CLSSECTOR            VARCHAR2(6)                     NOT NULL,
    CLSSUBSECTOR         VARCHAR2(4)                     NOT NULL,
-   TIPACAE              VARCHAR2(3),
-   TIPDOCUMENTOGER      VARCHAR2(3),
+   TIPACAE              VARCHAR2(6),
+   TIPDOCUMENTOGER      VARCHAR2(6),
    CODDOCUMENTOGER      VARCHAR2(50),
    TXTAPELLIDOSNOMBRES  VARCHAR2(1000),
    TXTCARGO             VARCHAR2(255),
@@ -144,13 +146,15 @@ COMMENT ON TABLE CONSULTOR IS
 /* Table: CONTROLENVIO                                          */
 /*==============================================================*/
 CREATE TABLE CONTROLENVIO  (
-   TIPARCHIVO           VARCHAR2(3)                     NOT NULL,
    PERIODO              VARCHAR2(254)                   NOT NULL,
    PERSONAID            INTEGER                         NOT NULL,
-   TIPSITUACION         VARCHAR2(3),
-   FCHENVIO             DATE,
-   NUMREGISTROS         INTEGER,
-   CONSTRAINT PK_CONTROLENVIO PRIMARY KEY (TIPARCHIVO, PERIODO, PERSONAID)
+   FLGENVIOPRY          VARCHAR2(6),
+   FCHENVIOPRY          DATE,
+   FLGENVIOPRO          VARCHAR2(254),
+   FCHENVIOPRO          DATE,
+   FLGENVIOEXP          VARCHAR2(254),
+   FCHENVIOEXP          DATE,
+   CONSTRAINT PK_CONTROLENVIO PRIMARY KEY (PERIODO, PERSONAID)
 );
 
 /*==============================================================*/
@@ -158,7 +162,7 @@ CREATE TABLE CONTROLENVIO  (
 /*==============================================================*/
 CREATE TABLE DOCUMENTO  (
    DOCID                INTEGER                         NOT NULL,
-   TIPODOCUMENTO        VARCHAR2(3),
+   TIPODOCUMENTO        VARCHAR2(6),
    CODDOCUMENTO         VARCHAR2(50),
    FCHEXPEDICION        DATE,
    FCHPRESENTACION      DATE,
@@ -175,7 +179,7 @@ COMMENT ON TABLE DOCUMENTO IS
 CREATE TABLE DOCUMENTOPERSONA  (
    DOCID                INTEGER                         NOT NULL,
    PERSONAID            INTEGER                         NOT NULL,
-   TIPODOCPERSONA       VARCHAR2(3)                     NOT NULL,
+   TIPODOCPERSONA       VARCHAR2(6)                     NOT NULL,
    CONSTRAINT PK_DOCUMENTOPERSONA PRIMARY KEY (DOCID, PERSONAID, TIPODOCPERSONA)
 );
 
@@ -195,10 +199,10 @@ COMMENT ON TABLE EIA IS
 /* Table: ESTADOSTUPA                                           */
 /*==============================================================*/
 CREATE TABLE ESTADOSTUPA  (
-   TIPTRAMITE           VARCHAR2(3)                     NOT NULL,
+   TIPTRAMITE           VARCHAR2(6)                     NOT NULL,
    NUMSECUENCIA         INTEGER                         NOT NULL,
-   TIPPASO              VARCHAR2(3)                     NOT NULL,
-   TIPESTADOTRAMITE     VARCHAR2(3),
+   TIPPASO              VARCHAR2(6)                     NOT NULL,
+   TIPESTADOTRAMITE     VARCHAR2(6),
    CONSTRAINT PK_ESTADOSTUPA PRIMARY KEY (TIPTRAMITE, NUMSECUENCIA)
 );
 
@@ -209,9 +213,9 @@ COMMENT ON TABLE ESTADOSTUPA IS
 /* Table: ESTADOSTUPADOC                                        */
 /*==============================================================*/
 CREATE TABLE ESTADOSTUPADOC  (
-   TIPTRAMITE           VARCHAR2(3)                     NOT NULL,
+   TIPTRAMITE           VARCHAR2(6)                     NOT NULL,
    NUMSECUENCIA         INTEGER                         NOT NULL,
-   TIPDOCUMENTO         VARCHAR2(3)                     NOT NULL,
+   TIPDOCUMENTO         VARCHAR2(6)                     NOT NULL,
    CONSTRAINT PK_ESTADOSTUPADOC PRIMARY KEY (TIPTRAMITE, NUMSECUENCIA, TIPDOCUMENTO)
 );
 
@@ -227,7 +231,7 @@ CREATE TABLE EXPEDIENTE  (
    PERSONAID            INTEGER                         NOT NULL,
    NUMEXPEDIENTE        VARCHAR2(50),
    FCHEXPEDIENTE        DATE,
-   TIPTRAMITE           VARCHAR2(3),
+   TIPTRAMITE           VARCHAR2(6),
    CLSTIPIFICACION      VARCHAR2(4),
    PERIODO              VARCHAR2(6),
    CONSTRAINT PK_EXPEDIENTE PRIMARY KEY (EXPID)
@@ -256,7 +260,7 @@ COMMENT ON TABLE EXPEDIENTEDOCUMENTO IS
 CREATE TABLE EXPEDIENTEPASO  (
    EXPID                INTEGER                         NOT NULL,
    NSECUENCIA           INTEGER                         NOT NULL,
-   TIPPASO              VARCHAR2(3),
+   TIPPASO              VARCHAR2(6),
    FCHPASO              DATE,
    PERIODO              VARCHAR2(6),
    CONSTRAINT PK_EXPEDIENTEPASO PRIMARY KEY (EXPID, NSECUENCIA)
@@ -296,9 +300,9 @@ CREATE TABLE PARAMETRO  (
 CREATE TABLE PERSONA  (
    PERSONAID            INTEGER                         NOT NULL,
    UBIGEOID             VARCHAR2(6),
-   TIPDOCUMENTOPER      VARCHAR2(3),
+   TIPDOCUMENTOPER      VARCHAR2(6),
    NUMDOCUMENTOPER      VARCHAR2(50),
-   TIPPERSONA           VARCHAR2(3),
+   TIPPERSONA           VARCHAR2(6),
    TXTRAZONSOCIAL       VARCHAR2(255),
    TXTDOMICILIO         VARCHAR2(255),
    TELEFONO             VARCHAR2(50),
@@ -315,7 +319,7 @@ COMMENT ON TABLE PERSONA IS
 /*==============================================================*/
 CREATE TABLE PROPONENTE  (
    PERSONAID            INTEGER                         NOT NULL,
-   TIPODOCUMENTORL      VARCHAR2(3),
+   TIPODOCUMENTORL      VARCHAR2(6),
    CODDOCUMENTORL       VARCHAR2(50),
    TXTNOMBRESRL         VARCHAR2(255),
    PERIODO              VARCHAR2(6),
@@ -337,7 +341,7 @@ CREATE TABLE PROYECTO  (
    CLSTIPIFICACION      VARCHAR2(4),
    TXTDESCRIPCION       VARCHAR2(1000),
    MNINVERSION          NUMBER,
-   CLSSECTOR            VARCHAR2(4),
+   CLSSECTOR            VARCHAR2(6),
    CLSSUBSECTOR         VARCHAR2(4),
    FCHEXPEDIENTE        DATE,
    PERIODO              VARCHAR2(6),
@@ -352,7 +356,7 @@ COMMENT ON TABLE PROYECTO IS
 /*==============================================================*/
 CREATE TABLE RESOLUCION  (
    DOCID                INTEGER                         NOT NULL,
-   TIPRESOLUCION        VARCHAR2(3),
+   TIPRESOLUCION        VARCHAR2(6),
    FCHPUBLICACION       DATE,
    FCHVIGENCIA          DATE,
    RESUMEN              VARCHAR2(1000),
@@ -366,15 +370,26 @@ COMMENT ON TABLE RESOLUCION IS
 /* Table: SUBSECTOR                                             */
 /*==============================================================*/
 CREATE TABLE SUBSECTOR  (
-   CLSSECTOR            VARCHAR2(3)                     NOT NULL,
+   CLSSECTOR            VARCHAR2(6)                     NOT NULL,
    CLSSUBSECTOR         VARCHAR2(4)                     NOT NULL,
-   TIPSUBSECTOR         VARCHAR2(3),
+   TIPSUBSECTOR         VARCHAR2(6),
    TXTSUBSECTOR         VARCHAR2(255),
    CONSTRAINT PK_SUBSECTOR PRIMARY KEY (CLSSECTOR, CLSSUBSECTOR)
 );
 
 COMMENT ON TABLE SUBSECTOR IS
 'Subclasificacion de las autoridades sectoriales';
+
+/*==============================================================*/
+/* Table: TCATALOGOTIPOS                                        */
+/*==============================================================*/
+CREATE TABLE TCATALOGOTIPOS  (
+   NUMID                INTEGER                         NOT NULL,
+   TABLA                VARCHAR2(30),
+   COLUMNA              VARCHAR2(30),
+   TIPPARAMETRO         VARCHAR2(3),
+   CONSTRAINT PK_TCATALOGOTIPOS PRIMARY KEY (NUMID)
+);
 
 /*==============================================================*/
 /* Table: TEXPEDIENTE                                           */
@@ -420,7 +435,7 @@ CREATE TABLE TPROYECTO  (
    TIPOCAT              VARCHAR2(3),
    RUCPROP              VARCHAR2(11),
    TMPVIDA              INTEGER,
-   TSECTOR              VARCHAR2(3),
+   TSECTOR              VARCHAR2(6),
    TSUBSEC              VARCHAR2(4),
    UBIGEOG              VARCHAR2(6),
    FCHPRES              DATE,
@@ -447,7 +462,7 @@ CREATE TABLE USUARIO  (
    USUARIO              VARCHAR2(50)                    NOT NULL,
    PERSONAID            INTEGER                         NOT NULL,
    CODCLAVE             VARCHAR2(50),
-   TIPUSUARIO           VARCHAR2(3),
+   TIPUSUARIO           VARCHAR2(6),
    CONSTRAINT PK_USUARIO PRIMARY KEY (USUARIO)
 );
 
