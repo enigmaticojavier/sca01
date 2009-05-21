@@ -18,13 +18,13 @@ RENAME CONTROLENVIO TO TMP_CONTROLENVIO;
 /* Table: CONTROLENVIO                                          */
 /*==============================================================*/
 CREATE TABLE CONTROLENVIO  (
-   PERIODO              VARCHAR2(254)                   NOT NULL,
+   PERIODO              VARCHAR2(6)                   NOT NULL,
    PERSONAID            INTEGER                         NOT NULL,
-   FLGENVIOPRY          VARCHAR2(6),
+   FLGENVIOPRY          VARCHAR2(1),
    FCHENVIOPRY          DATE,
-   FLGENVIOPRO          VARCHAR2(254),
+   FLGENVIOPRO          VARCHAR2(1),
    FCHENVIOPRO          DATE,
-   FLGENVIOEXP          VARCHAR2(254),
+   FLGENVIOEXP          VARCHAR2(1),
    FCHENVIOEXP          DATE,
    CONSTRAINT PK_CONTROLENVIO PRIMARY KEY (PERIODO, PERSONAID)
 );
