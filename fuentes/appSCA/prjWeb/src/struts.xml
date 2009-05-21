@@ -25,6 +25,9 @@
             	<result name="ADM">/pages/login/loginSuccessADM.jsp</result>
             	<result name="ACA">/pages/login/loginSuccessACA.jsp</result>
         </action>
+        <action name="doLogout" class="gob.pe.minam.sca.action.LogoutAction">
+       		<result name="success" type="redirect">/index.jsp</result>
+        </action>		
 	</package>
         
 </struts>

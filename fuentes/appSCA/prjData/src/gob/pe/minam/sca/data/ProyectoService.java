@@ -10,6 +10,7 @@ package gob.pe.minam.sca.data;
 import com.ibatis.dao.client.DaoManager;
 
 import gob.pe.minam.sca.data.DaoConfig;
+import gob.pe.minam.sca.data.dao.AcaeDao;
 import gob.pe.minam.sca.data.dao.ParametroDao;
 import gob.pe.minam.sca.data.dao.ProyectoDao;
 import gob.pe.minam.sca.data.dao.UsuarioDao;
@@ -33,6 +34,7 @@ public class ProyectoService {
   private ProyectoDao  proyectoDao;
   private ParametroDao parametroDao;
   private UsuarioDao usuarioDao;
+  private AcaeDao acaeDao;
   
   /* Constructors */
 
@@ -40,6 +42,7 @@ public class ProyectoService {
     proyectoDao   = 	 (ProyectoDao)daoManager.getDao(ProyectoDao.class);
     parametroDao  = 	 (ParametroDao)daoManager.getDao(ParametroDao.class);
     usuarioDao  = 	 (UsuarioDao)daoManager.getDao(UsuarioDao.class);
+    acaeDao  = 	 (AcaeDao)daoManager.getDao(AcaeDao.class);
   }
 
   /* Get Instance */
@@ -66,5 +69,8 @@ public class ProyectoService {
 	return usuarioDao;
   }
   
+  public AcaeDao getAcaeDao() {
+	return acaeDao;
+  }  
   
 }

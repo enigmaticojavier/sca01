@@ -1,5 +1,10 @@
 package gob.pe.minam.sca.pojo;
 
+import gob.pe.minam.sca.data.ProyectoService;
+import gob.pe.minam.sca.data.dao.AcaeDao;
+import gob.pe.minam.sca.data.dao.UsuarioDao;
+import gob.pe.minam.sca.framework.DateUtil;
+
 import java.util.List;
 
 public class Acae extends Persona {
@@ -22,6 +27,7 @@ public class Acae extends Persona {
    private java.lang.String telefonoGer;
    private String txtValor;
    private String txtSubSector;
+   private String fechaActual = DateUtil.fechaActualString();
    
    public List<Expediente> expediente;
 
@@ -111,6 +117,16 @@ public class Acae extends Persona {
 
 	public void setClsSubSector(java.lang.String clsSubSector) {
 		this.clsSubSector = clsSubSector;
+	}
+	
+	public String getFechaActual() {
+		return fechaActual;
+	}
+
+	public static Acae getAcaeByKey(Acae acae){
+		ProyectoService proyectoService = ProyectoService.getInstance();
+		AcaeDao acaeDao = proyectoService.getAcaeDao(); 
+		return acaeDao.getAcaeByKey(acae);
 	}
 	   
 }
