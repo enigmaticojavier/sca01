@@ -37,5 +37,11 @@
 	AND A.CLSSECTOR = S.CLSSECTOR AND A.CLSSUBSECTOR = S.CLSSUBSECTOR
 	AND A.PERSONAID=#personaId#
   </select>
+  <insert id="insertAcae"  parameterClass="Acae">
+   INSERT INTO ACAE 
+   ( PERSONAID, TIPACAE, CLSSECTOR, CLSSUBSECTOR, TIPDOCUMENTOGER, CODDOCUMENTOGER, TXTAPELLIDOSNOMBRES, TXTCARGO, TELEFONOGER )
+   VALUES 
+   ( #personaId#, #tipAcae#, #clsSector#, #clsSubSector#, #tipDocumentoGer#, #codDocumentoGer#, #txtApellidosNombres#, #txtCargo#, #telefonoGer# )   
+   </insert>
 
 </sqlMap>

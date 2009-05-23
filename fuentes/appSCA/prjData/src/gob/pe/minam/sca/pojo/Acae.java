@@ -1,21 +1,22 @@
 package gob.pe.minam.sca.pojo;
+/***********************************************************************
+ * Module:  Acae.java
+ * Author:  Dante Antiporta
+ * Purpose: Defines the Class Acae
+ ***********************************************************************/
 
 import gob.pe.minam.sca.data.ProyectoService;
 import gob.pe.minam.sca.data.dao.AcaeDao;
-import gob.pe.minam.sca.data.dao.UsuarioDao;
 import gob.pe.minam.sca.framework.DateUtil;
+import gob.pe.minam.sca.framework.exception.DAOException;
 
 import java.util.List;
 
 public class Acae extends Persona {
 	
-	/** @pdOid 3b51f217-98c6-4002-a386-5a881cb21a49 */
+ /** @pdOid 3b51f217-98c6-4002-a386-5a881cb21a49 */
    private java.lang.String tipAcae;
    /** @pdOid b660a22b-788f-4a39-8173-e4b05499a326 */
-   private java.lang.String clsSector;
-   /** @pdOid e6fd48bc-fb1e-44b6-9ac8-1be15cf36bd4 */
-   private java.lang.String clsSubSector;
-   
    private java.lang.String tipDocumentoGer;
    /** @pdOid eccca16c-8343-468b-a476-90d8c9717c67 */
    private java.lang.String codDocumentoGer;
@@ -24,17 +25,22 @@ public class Acae extends Persona {
    /** @pdOid 233919f8-5896-40ee-9a7c-164701ca217d */
    private java.lang.String txtCargo;
    /** @pdOid 25e9e7e0-6f89-43d6-8cc3-dbc70b11d757 */
-   private java.lang.String telefonoGer;
+   private java.lang.String telefonoGer;	   
+   /** @pdOid b660a22b-788f-4a39-8173-e4b05499a326 */
+   private java.lang.String clsSector;
+   /** @pdOid e6fd48bc-fb1e-44b6-9ac8-1be15cf36bd4 */
+   private java.lang.String clsSubSector;
+   
    private String txtValor;
    private String txtSubSector;
    private String fechaActual = DateUtil.fechaActualString();
    
    public List<Expediente> expediente;
-
-	public java.lang.String getTipAcae() {
-		return tipAcae;
-	}
 	
+	public java.lang.String getTipAcae() {
+	return tipAcae;
+	}
+
 	public void setTipAcae(java.lang.String tipAcae) {
 		this.tipAcae = tipAcae;
 	}
@@ -79,6 +85,22 @@ public class Acae extends Persona {
 		this.telefonoGer = telefonoGer;
 	}
 	
+	public java.lang.String getClsSector() {
+		return clsSector;
+	}
+	
+	public void setClsSector(java.lang.String clsSector) {
+		this.clsSector = clsSector;
+	}
+	
+	public java.lang.String getClsSubSector() {
+		return clsSubSector;
+	}
+	
+	public void setClsSubSector(java.lang.String clsSubSector) {
+		this.clsSubSector = clsSubSector;
+	}
+	
 	public String getTxtValor() {
 		return txtValor;
 	}
@@ -102,31 +124,32 @@ public class Acae extends Persona {
 	public void setExpediente(List<Expediente> expediente) {
 		this.expediente = expediente;
 	}
-
-	public java.lang.String getClsSector() {
-		return clsSector;
-	}
-
-	public void setClsSector(java.lang.String clsSector) {
-		this.clsSector = clsSector;
-	}
-
-	public java.lang.String getClsSubSector() {
-		return clsSubSector;
-	}
-
-	public void setClsSubSector(java.lang.String clsSubSector) {
-		this.clsSubSector = clsSubSector;
-	}
 	
+	public void setFechaActual(String fechaActual) {
+		this.fechaActual = fechaActual;
+	}
+
 	public String getFechaActual() {
 		return fechaActual;
 	}
 
-	public static Acae getAcaeByKey(Acae acae){
+	public static Acae getAcaeByKey(Acae acae) throws DAOException{
 		ProyectoService proyectoService = ProyectoService.getInstance();
 		AcaeDao acaeDao = proyectoService.getAcaeDao(); 
 		return acaeDao.getAcaeByKey(acae);
 	}
-	   
+	
+	public static Acae insertAcae(Acae acae) throws DAOException{
+		ProyectoService proyectoService = ProyectoService.getInstance();
+		AcaeDao acaeDao = proyectoService.getAcaeDao();
+		acaeDao.insertAcae(acae);		
+		return acaeDao.getAcaeByKey(acae);
+	}
+	
+	public static Acae updateAcae(Acae acae) throws DAOException{
+		ProyectoService proyectoService = ProyectoService.getInstance();
+		AcaeDao acaeDao = proyectoService.getAcaeDao();
+		acaeDao.updateAcae(acae);
+		return acaeDao.getAcaeByKey(acae);
+	}
 }

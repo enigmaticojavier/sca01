@@ -13,7 +13,7 @@ import java.util.*;
  * @pdOid f5e02575-75bf-40fc-9ad4-e7b3af9b7f68 */
 public class Persona {
    /** @pdOid 3d88dbcb-87af-4a58-ae34-1b835bdc885d */
-   private Integer personaId;
+   protected Integer personaId;
    /** @pdOid 32ba6b62-3dd1-4e4a-a9f1-3cfb88ad1b16 */
    private String tipDocumentoPer;
    /** @pdOid fbb05f3b-a14e-47e5-8d06-a6ba8f0c4d60 */

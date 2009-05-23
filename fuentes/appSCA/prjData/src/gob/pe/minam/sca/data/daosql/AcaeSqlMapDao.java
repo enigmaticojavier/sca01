@@ -6,6 +6,8 @@ import com.ibatis.dao.client.DaoManager;
 
 import gob.pe.minam.sca.data.BaseSqlMapDao;
 import gob.pe.minam.sca.data.dao.AcaeDao;
+import gob.pe.minam.sca.framework.exception.DAOException;
+import gob.pe.minam.sca.framework.exception.NegocioException;
 import gob.pe.minam.sca.pojo.Acae;
 
 public class AcaeSqlMapDao extends BaseSqlMapDao implements AcaeDao {
@@ -14,24 +16,24 @@ public class AcaeSqlMapDao extends BaseSqlMapDao implements AcaeDao {
 		    super(daoManager);
    }
 	  
-   public Acae getAcaeByKey(Acae acae) {
+   public Acae getAcaeByKey(Acae acae) throws DAOException {
 	    return (Acae) queryForObject("getAcaeByKey", acae);
    }
 
-   public List getAcae(Acae acae) {
-	   return (List) queryForList("getAcae", acae);
+   public List<Acae> getAcae(Acae acae) throws DAOException {
+	   return (List<Acae>) queryForList("getAcae", acae);
    }
    
-   public Acae insertAcae(Acae acae) {
-	   return (Acae) queryForObject("insertAcae", acae);
+   public Object insertAcae(Acae acae) throws DAOException {
+	   return (Object) insert("insertAcae", acae);
    }
    
-   public Acae updateAcae(Acae acae) {
-	   return (Acae) queryForObject("updateAcae", acae);
+   public int updateAcae(Acae acae) throws DAOException {
+	   return update("updateAcae", acae);
    }
    
-   public void deleteAcae(Acae acae) {
-	   queryForObject("deleteAcae", acae);
+   public void deleteAcae(Acae acae) throws DAOException {
+	   delete("deleteAcae", acae);
    }
 
 }
