@@ -6,18 +6,18 @@
 	<include file="struts-default.xml"/>
 	<!-- Configuration for the default package. -->
 	<package name="default" extends="struts-default">
-            <default-interceptor-ref name="paramsPrepareParamsStack"/>
-            <action name="index" class="gob.pe.minam.sca.action.ParametroAction" method="list">
-                    <result name="success">/pages/parametro/parametro.jsp</result>
-                    <interceptor-ref name="basicStack"/>
-            </action>
-            <action name="parametro" class="gob.pe.minam.sca.action.ParametroAction" method="input">
-                    <result name="success" type="redirectAction">index</result>
-                    <result name="input">/pages/parametro/parametroForm.jsp</result>
-                    <result name="error">error.jsp</result>
-            </action>
-            <action name="showLogin">
-		<result>/index.jsp</result>
+        <default-interceptor-ref name="paramsPrepareParamsStack"/>
+        <action name="index" class="gob.pe.minam.sca.action.ParametroAction" method="list">
+                <result name="success">/pages/parametro/parametro.jsp</result>
+                <interceptor-ref name="basicStack"/>
+        </action>
+        <action name="parametro" class="gob.pe.minam.sca.action.ParametroAction" method="input">
+                <result name="success" type="redirectAction">index</result>
+                <result name="input">/pages/parametro/parametroForm.jsp</result>
+                <result name="error">error.jsp</result>
+        </action>
+        <action name="showLogin">
+			<result>/index.jsp</result>
 	    </action>
 	    <action name="doLogin" class="gob.pe.minam.sca.action.LoginAction">
             	<result name="input">/index.jsp</result>
@@ -27,7 +27,10 @@
         </action>
         <action name="doLogout" class="gob.pe.minam.sca.action.LogoutAction">
        		<result name="success" type="redirect">/index.jsp</result>
-        </action>		
+        </action>
+        <action name="Acae*" class="gob.pe.minam.sca.action.AcaeAction" method="{1}">
+        	<result name="input">/pages/acae/acaeForm.jsp</result>
+        </action>       
 	</package>
         
 </struts>
