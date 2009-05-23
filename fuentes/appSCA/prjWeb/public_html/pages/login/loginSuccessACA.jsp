@@ -1,8 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>SINIA - Sistema Nacional de InformaciÃ³n Ambiental</title>
+	<title>SINIA - Sistema Nacional de Información Ambiental</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="Description" content="-- MINAM PERU Ministerio del Medio Ambiente (MINAM).">
 	<META NAME="Keywords" CONTENT="PERU,  MINAM ,  PerÃº, economy, MINISTERIO, AMBIENTE, Statistical , Ministerio del Ambiente, estadisticas, Indicadores, Indicadores Ambientales">
@@ -120,7 +121,7 @@ function MM_openBrWindow2(theURL,winName,features) {
                     
                     <tr>
                       <td width="4%">&nbsp;</td>
-                      <td width="96%"><a href="index.php?idTipoElementoInformacion=10">Cerrar Sesión</a></td>
+                      <td width="96%"><a href="<%= request.getContextPath() %>/doLogout.action">Cerrar Sesión</a></td>
                     </tr>
                     <tr>
                       <td colspan="2"><img src="public/img/web/fondo_menu.jpg" width="220" height="1" /></td>
@@ -176,7 +177,24 @@ function MM_openBrWindow2(theURL,winName,features) {
 				</tr>
 			</table>
 			<s:property value="txtValor"/>
-			
+			<br/>
+			<table border="1" cellpadding="0" cellspacing="0" width="90%">
+			<tr>
+				<td>Autoridad Sectorial:</td><td><s:property value="acae.txtValor"/></td>
+			</tr>
+			<tr>
+				<td>Institución / Dependencia:</td><td><s:property value="acae.txtSubSector"/></td>
+			</tr>
+			<tr>
+				<td>Profesional Responsable:</td><td><s:property value="acae.txtApellidosNombres"/></td>
+			</tr>
+			<tr>
+				<td>Periodo a informar:</td><td>falta</td>
+			</tr>
+			<tr>
+				<td>Fecha Actual:</td><td><s:property value="acae.fechaActual"/></td>
+			</tr>
+			</table>			
 			<script type="text/javascript" src="public/js/ajax/ajax.js"></script>
 <script language="javascript">
 

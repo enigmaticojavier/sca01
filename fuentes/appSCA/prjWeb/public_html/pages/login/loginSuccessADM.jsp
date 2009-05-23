@@ -1,8 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>SINIA - Sistema Nacional de InformaciÃ³n Ambiental</title>
+	<title>SINIA - Sistema Nacional de Información Ambiental</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="Description" content="-- MINAM PERU Ministerio del Medio Ambiente (MINAM).">
 	<META NAME="Keywords" CONTENT="PERU,  MINAM ,  PerÃº, economy, MINISTERIO, AMBIENTE, Statistical , Ministerio del Ambiente, estadisticas, Indicadores, Indicadores Ambientales">
@@ -112,7 +113,7 @@ function MM_openBrWindow2(theURL,winName,features) {
                     
                     <tr>
                       <td width="4%">&nbsp;</td>
-                      <td width="96%"><a href="index.php?idTipoElementoInformacion=14">Inscripción del ACAE</a></td>
+                      <td width="96%"><a href="<%= request.getContextPath() %>/Acaeinput.action">Inscripción del ACAE</a></td>
                     </tr>
                     <tr>
                       <td colspan="2"><img src="public/img/web/fondo_menu.jpg" width="220" height="1" /></td>
@@ -134,7 +135,7 @@ function MM_openBrWindow2(theURL,winName,features) {
                     </tr>
                     <tr>
                       <td width="4%">&nbsp;</td>
-                      <td width="96%"><a href="index.php?idTipoElementoInformacion=5">Cerrar Sesión</a></td>
+                      <td width="96%"><a href="<%= request.getContextPath() %>/doLogout.action">Cerrar Sesión</a></td>
                     </tr>
                     <tr>
                       <td colspan="2"><img src="public/img/web/fondo_menu.jpg" width="220" height="1" /></td>
@@ -250,19 +251,19 @@ function navegar(direccion, nueva_ventana){
 </script>
 <div id="div_buscar">
   <table width="100%" border="0">
-
   <tr>
-    
-  </tr>
-  
+    <td></td>
+  </tr>  
 </table>
 </div>
 <br/>
-	</th>
+</th>
           </tr>
-        </table></td>
-        	  </tr>
-    </table></td>
+        </table>
+        </td>
+        </tr>
+    </table>
+    </td>
   </tr>
   <tr>
     <td align="left" background="public/img/web/cool-blue_r9_c8.jpg" valign="top"><table summary="Footer Table for Terms links and Top of page link" border="0" cellpadding="0" cellspacing="0" width="100%">
