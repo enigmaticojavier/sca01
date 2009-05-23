@@ -7,7 +7,9 @@
 package gob.pe.minam.sca.data.dao;
 
 import gob.pe.minam.sca.framework.exception.DAOException;
-import gob.pe.minam.sca.pojo.Proyecto;
+
+import java.util.Date;
+import java.util.List;
 
 /**
  * @author Danny Espíritu
@@ -15,11 +17,10 @@ import gob.pe.minam.sca.pojo.Proyecto;
  */
 
 public interface ProyectoDao {
-
-  public Proyecto getProyecto(Proyecto proyecto) throws DAOException;
-
-  public void insertProyecto(Proyecto proyecto) throws DAOException;
-
-  public void deleteProyecto(Proyecto proyecto) throws DAOException;
+  
+  public List buscarProyecto (String txtDescripcion, String ubigeoId,
+                              String clsTipificacion, Date fchExpedienteDesde, 
+                              Date fchExpedienteHasta, String estadoTramite, 
+                              String clsSector, String clsSubSector) throws DAOException;
   
 }
