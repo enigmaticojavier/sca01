@@ -10,6 +10,8 @@ public class Expediente {
     private Date fchExpediente;
     private String tipTramite;
     private String clsTipificacion;
+    
+    private Proyecto proyecto;
      
     public Expediente() {
     }
