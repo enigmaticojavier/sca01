@@ -5,12 +5,20 @@
  * Purpose: Define Clase Proyecto
  ***********************************************************************/
 
+import gob.pe.minam.sca.data.ProyectoService;
+import gob.pe.minam.sca.data.dao.ProyectoDao;
+import gob.pe.minam.sca.framework.exception.DAOException;
+import gob.pe.minam.sca.framework.exception.NegocioException;
+
 import java.io.Serializable;
 
-import java.util.*;
+import java.util.Date;
+
+import java.util.List;
+
 
 /** Maestro de proyectos o actividades que requieren certificacion ambiental
-  */
+ */
 public class Proyecto implements Serializable{
    
    private int pryId;
@@ -22,7 +30,11 @@ public class Proyecto implements Serializable{
    private double mnInversion;
    private String clsSector;
    private String clsSubSector;
-   private java.util.Date fchExpediente;
+   private Date fchExpediente;
+   private Persona persona;
+   
+   /*added*/
+   private String dscTipificacion;
 
    void Proyecto(int pryId, String ubigeoId, int personaId, 
                  String txtCoordenadas, String clsTipificacion, String txtDescripcion, 
@@ -117,4 +129,37 @@ public class Proyecto implements Serializable{
     public int getPersonaId() {
         return personaId;
     }
+    
+    public void setDscTipificacion(String dscTipificacion) {
+        this.dscTipificacion = dscTipificacion;
+    }
+
+    public String getDscTipificacion() {
+        return dscTipificacion;
+    }
+    
+    public void setPersona(Persona persona) {
+        this.persona = persona;
+    }
+
+    public Persona getPersona() {
+        return persona;
+    }
+    
+    public static List buscarProyecto(String txtDescripcion,/*nombreProyecto*/ String ubigeoId, /*departamento*/
+                                      String clsTipificacion,/*categoria*/ Date fchExpedienteDesde, /*Fecha de Presentación Desde*/
+                                      Date fchExpedienteHasta,/*Fecha de Presentación Desde*/ String estadoTramite, /*Estado Tramite*/
+                                      String clsSector, /*Institución*/ String clsSubSector /*Dependencia*/) throws NegocioException{
+       try{  
+         ProyectoDao proyectoDao = ProyectoService.getInstance().getProyectoDao();
+         return proyectoDao.buscarProyecto( txtDescripcion, ubigeoId, clsTipificacion, fchExpedienteDesde,
+                                            fchExpedienteHasta, estadoTramite, 
+                                            clsSector, clsSubSector);
+       }catch(DAOException ex){
+         throw new NegocioException(ex.toString(),ex.getCodigoMensajeUsuario());
+       }catch(Exception ex){
+         throw new NegocioException(ex.toString(),"Error producido en Pojo");
+       }
+    }
+
 }

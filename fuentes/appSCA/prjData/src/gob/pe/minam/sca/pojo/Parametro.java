@@ -70,10 +70,11 @@ public class Parametro implements Serializable{
         return txtValor;
     }
     
-    public static Parametro obtenerParametro(Parametro parametro) throws NegocioException{
+    public static Parametro obtenerParametro(int idParametro) throws NegocioException{
        try{  
+         
          ParametroDao parametroDao = ProyectoService.getInstance().getParametroDao();
-         return parametroDao.getParametro(parametro);
+         return parametroDao.getParametro(idParametro);
        }catch(DAOException ex){
          throw new NegocioException(ex.toString(),ex.getCodigoMensajeUsuario());
        }catch(Exception ex){
@@ -92,7 +93,7 @@ public class Parametro implements Serializable{
        }
     }
     
-    public static List buscarTipoParametroXParametroId(String tipParametro) throws NegocioException{
+    public static List buscarParametroXTipoParametro(String tipParametro) throws NegocioException{
        try{  
          ParametroDao parametroDao = ProyectoService.getInstance().getParametroDao();
          return parametroDao.findParametroXTipoParametro(tipParametro);
@@ -102,6 +103,8 @@ public class Parametro implements Serializable{
          throw new NegocioException(ex.toString(),"Error producido en Pojo");
        }
     }
+    
+    
     
     public static void insertParametro(Parametro parametro) throws NegocioException{
         try{  
@@ -125,10 +128,10 @@ public class Parametro implements Serializable{
         }
     }
     
-    public static void deleteParametro(Parametro parametro) throws NegocioException{
+    public static void deleteParametro(int idParametro) throws NegocioException{
         try{  
           ParametroDao parametroDao = ProyectoService.getInstance().getParametroDao();
-          parametroDao.deleteParametro(parametro);
+          parametroDao.deleteParametro(idParametro);
         }catch(DAOException ex){
           throw new NegocioException(ex.toString(),ex.getCodigoMensajeUsuario());
         }catch(Exception ex){
