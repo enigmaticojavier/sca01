@@ -1,12 +1,10 @@
 /*
  * DateUtil.java
  * 
- * Copyright - Contraloria General de la República, Todos los derechos reservados.
  */
 
 package gob.pe.minam.sca.framework;
 
-import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -14,15 +12,6 @@ import java.util.Date;
 import java.util.Locale;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
-
-/**
- * TODO Ingresar definición de la clase DateUtil
- * 
- * @author  raquino - 60321
-* @version 1.0.0 - 04/09/2007
- * @see     TODO Ingresar los métodos que se desean ver
- * @since   1.0.0
- */
 
 public class DateUtil {
 	

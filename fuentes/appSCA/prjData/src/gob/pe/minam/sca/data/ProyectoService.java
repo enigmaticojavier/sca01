@@ -10,10 +10,12 @@ package gob.pe.minam.sca.data;
 import com.ibatis.dao.client.DaoManager;
 
 import gob.pe.minam.sca.data.DaoConfig;
+import gob.pe.minam.sca.data.dao.AcaeDao;
 import gob.pe.minam.sca.data.dao.ParametroDao;
 import gob.pe.minam.sca.data.dao.ProyectoDao;
 import gob.pe.minam.sca.data.dao.SubSectorDao;
 import gob.pe.minam.sca.data.dao.UbigeoDao;
+import gob.pe.minam.sca.data.dao.UsuarioDao;
 
 /**
  * @author Danny Espíritu
@@ -33,6 +35,8 @@ public class ProyectoService {
   private ParametroDao parametroDao;
   private UbigeoDao ubigeoDao;
   private SubSectorDao subSectorDao;
+  private AcaeDao acaeDao;
+  private UsuarioDao usuarioDao;
   
   /* Constructors */
 
@@ -41,6 +45,8 @@ public class ProyectoService {
     parametroDao  = 	 (ParametroDao)daoManager.getDao(ParametroDao.class);
     subSectorDao  =      (SubSectorDao)daoManager.getDao(SubSectorDao.class);
     ubigeoDao  =         (UbigeoDao)daoManager.getDao(UbigeoDao.class);
+    acaeDao = (AcaeDao)daoManager.getDao(AcaeDao.class);
+    usuarioDao = (UsuarioDao)daoManager.getDao(UsuarioDao.class);
   }
 
   /* Get Instance */
@@ -70,6 +76,13 @@ public class ProyectoService {
    public SubSectorDao getSubSectorDao() {
       return subSectorDao;
    }
-    
-  
+   
+   public AcaeDao getAcaeDao() {
+	return acaeDao;
+   }
+
+	public UsuarioDao getUsuarioDao() {
+		return usuarioDao;
+	}
+   
 }
