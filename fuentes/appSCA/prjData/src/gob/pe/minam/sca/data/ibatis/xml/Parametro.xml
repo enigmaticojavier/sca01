@@ -25,20 +25,20 @@
     select * from PARAMETROS
   </select>
 
-  <select id="getParametroByKey" parameterClass="Parametro" resultClass="Parametro">
-    select * from PARAMETROS
+  <select id="getParametroByKey" parameterClass="int" resultClass="Parametro">
+    select * from PARAMETRO
     where IDPARAMETRO = #idParametro#
   </select>
    
   <insert id="insertParametro" parameterClass="Parametro">
-    insert into PARAMETROS(
+    insert into PARAMETRO(
       IDPARAMETRO,
       CODPARAMETRO,
       TIPPARAMETRO,
       TXTPARAMETRO,
       TXTVALOR
     )values(
-        #idParametro#,
+        parametroid_sequence.NEXTVAL,
         #codParametro#,
         #tipParametro#,
         #txtParametro#,
@@ -47,7 +47,7 @@
   </insert>
   
   <update id="updateParametro" parameterClass="Parametro">
-    update PARAMETROS
+    update PARAMETRO
     set CODPARAMETRO=#codParametro#,
         TIPPARAMETRO=#tipParametro#,
         TXTPARAMETRO=#txtParametro#,
@@ -56,18 +56,18 @@
   </update>
   
    <delete id="deleteParametro" parameterClass="int">
-    delete from PARAMETROS
+    delete from PARAMETRO
     where IDPARAMETRO = #idParametro#
   </delete>
   
   <select id="selectTipoParametro" parameterClass="int" resultMap="TipoParametroResult">
     select distinct tipparametro, txtparametro 
-    from parametros
+    from parametro
   </select>
   
   <select id="findParametroXTipoParametro" parameterClass="string" resultMap="ParametroResult">
     select * 
-    from parametros
+    from parametro
     where tipparametro=#tipParametro#
   </select>
 

@@ -58,5 +58,21 @@
      #fchExpediente#
     )
   </insert>
+  
+  <parameterMap id="parametersBuscarProyecto" class="map" >
+    <parameter property="p_rsProyecto" jdbcType="ORACLECURSOR" javaType="java.sql.ResultSet" mode="OUT"/>
+    <parameter property="p_cDescripcion" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+    <parameter property="p_cUbigeoId" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+    <parameter property="p_cClsTipificacion" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+    <parameter property="p_dFchExpedienteDesde" jdbcType="DATE" javaType="java.util.Date" mode="IN"/>
+    <parameter property="p_dFchExpedienteHasta" jdbcType="DATE" javaType="java.util.Date" mode="IN"/>
+    <parameter property="p_cEstadoTramite" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+    <parameter property="p_cClsSector" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+    <parameter property="p_cClsSubSector" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+  </parameterMap>
+  <procedure id="PQ_PROYECTO.BUSCAR" parameterMap="parametersBuscarProyecto">
+     { call PQ_PROYECTO.BUSCAR(?,?,?,?,?,?,?,?,?) }
+  </procedure>
+    
 
 </sqlMap>

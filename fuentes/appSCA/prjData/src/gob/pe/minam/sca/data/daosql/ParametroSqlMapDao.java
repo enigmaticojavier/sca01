@@ -30,9 +30,9 @@ public class ParametroSqlMapDao extends BaseSqlMapDao implements ParametroDao {
     super(daoManager);
   }
 
-  public Parametro getParametro(Parametro parametro) throws DAOException{
+  public Parametro getParametro(Integer idParametro) throws DAOException{
     try{
-      return (Parametro) queryForObject("getParametroByKey", parametro);
+      return (Parametro) queryForObject("getParametroByKey", idParametro);
     }catch(SqlMapException ex){
       throw new DAOException(ex.toString(),"Error producido en BD : No se puede ejecutar la Obtención de Curso");
     }catch(DaoException ex){
@@ -66,9 +66,9 @@ public class ParametroSqlMapDao extends BaseSqlMapDao implements ParametroDao {
       }
     }
 
-    public void deleteParametro(Parametro parametro) throws DAOException{
+    public void deleteParametro(Integer idParametro) throws DAOException{
         try{
-          delete("deleteParametro", parametro);
+          delete("deleteParametro", idParametro);
         }catch(SqlMapException ex){
           throw new DAOException(ex.toString(),"Error producido en BD : No se puede ejecutar la Eliminación de Curso");
         }catch(DaoException ex){
@@ -80,7 +80,7 @@ public class ParametroSqlMapDao extends BaseSqlMapDao implements ParametroDao {
     
     public List listarTipoParametro() throws DAOException{
       try{
-        return queryForList("selectTipoParametro");
+        return queryForList("selectTipoParametro",0);
       }catch(SqlMapException ex){
         throw new DAOException(ex.toString(),"Error producido en BD : No se puede ejecutar la Obtención de Curso");
       }catch(DaoException ex){
