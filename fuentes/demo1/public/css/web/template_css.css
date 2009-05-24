@@ -705,5 +705,25 @@ font-style: normal;
 color:#333333;
 }
 
+.encabezado2 {
+	color: #000000;
+	font-size: 10px;
+	background-repeat: no-repeat;
+	font-weight:bold;
+}
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+
+}
+.style1 {
+font-family:"Trebuchet MS";
+font-size:10px;
+color: #FFFFFF;
+}
+.style2 {color: #FFFFFF}
 
 /* Termina SCA*/
