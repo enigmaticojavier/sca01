@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="com.genuitec.eclipse.j2eedt.core.J2EE14_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/prjData"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Libreria Web"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/displaytag-1.2.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-beanutils.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/ibatis-common-2.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/ibatis-dao-2.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/ibatis-sqlmap-2.jar"/>
+	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
+</classpath>
