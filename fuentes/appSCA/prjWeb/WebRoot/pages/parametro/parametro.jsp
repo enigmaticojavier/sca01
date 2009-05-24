@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=ISO-8859-1" language="java" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 <html>
@@ -29,7 +29,7 @@
     <!--div class="titleDiv"><s:text name="label.parametro.titulo"/></div-->
     <h1 align="left"><s:text name="label.parametro.titulo"/></h1>
     <form action="">
-    <s:select label="Tipo de ParÃ¡metro" name="tipParametro" value="tipParametro" list="tipoParametros" listKey="tipParametro" listValue="txtParametro" onchange="javascript:cambiarTipoParametro()"/>
+    <s:select label="Tipo de Parámetro" name="tipParametro" value="tipParametro" list="tipoParametros" listKey="tipParametro" listValue="txtParametro" onchange="javascript:cambiarTipoParametro()"/>
     <br/>
     
     <br/>

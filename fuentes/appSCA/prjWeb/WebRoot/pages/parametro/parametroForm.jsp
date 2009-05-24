@@ -1,10 +1,10 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=ISO-8859-1" language="java" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <s:if test="parametro==null || parametro.idParametro == null">
     <s:set name="title" value="%{'Nuevo Parametro'}"/>
 </s:if>
 <s:else>
-    <s:set name="title" value="%{'ActualizaciÃ³n Parametro'}"/>
+    <s:set name="title" value="%{'Actualización Parametro'}"/>
 </s:else>
 <html>
 <head>
