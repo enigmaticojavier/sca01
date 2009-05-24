@@ -19,6 +19,10 @@
         implementation="gob.pe.minam.sca.data.daosql.UbigeoSqlMapDao"/>               
    <dao interface="gob.pe.minam.sca.data.dao.SubSectorDao"
         implementation="gob.pe.minam.sca.data.daosql.SubSectorSqlMapDao"/>
+  <dao interface="gob.pe.minam.sca.data.dao.UsuarioDao"
+        implementation="gob.pe.minam.sca.data.daosql.UsuarioSqlMapDao"/>
+  <dao interface="gob.pe.minam.sca.data.dao.AcaeDao"
+        implementation="gob.pe.minam.sca.data.daosql.AcaeSqlMapDao"/>
   </context>
 
 </daoConfig>
