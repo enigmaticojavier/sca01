@@ -168,7 +168,10 @@ function MM_openBrWindow2(theURL,winName,features) {
                     
                     <tr>
                       <td width="4%">&nbsp;</td>
-                      <td width="96%"><a href="index.php?idTipoElementoInformacion=5">Consultas</a></td>
+                        <s:url action="proyecto" id="urlProyecto">
+                            <s:param name="parametro.idParametro" value="idProyecto"/>
+                        </s:url>
+                      <td width="96%"><a href="<s:property value="#urlProyecto"/>">ConsultasYY</a></td>
                     </tr>
                     <tr>
                       <td colspan="2"><img src="public/img/web/fondo_menu.jpg" width="220" height="1" /></td>
@@ -322,6 +325,11 @@ function navegar(direccion, nueva_ventana){
   <table width="100%" border="0">
 
   <tr>
+    
+    
+    
+    
+    
     
   </tr>
   
