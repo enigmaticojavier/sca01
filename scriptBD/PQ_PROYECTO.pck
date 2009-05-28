@@ -31,7 +31,6 @@ create or replace package body PQ_PROYECTO is
     nEstadoTramite   NUMBER(1);
     nClsSector       NUMBER(1);
     nClsSubSector    NUMBER(1);
-    cont             integer;
   BEGIN
     IF p_cDescripcion IS NULL THEN
       nDescripcion := 0;
@@ -69,33 +68,22 @@ create or replace package body PQ_PROYECTO is
       nClsSubSector := 1;
     END IF;
   
-    select count(*)
-      into cont
-      from proyecto
-     where fchexpediente between p_dFchExpedienteDesde and
-           p_dFchExpedienteHasta;
-  
-    insert into prueba1
-      (campo1, campo2, campo3)
-    values
-      (p_dFchExpedienteDesde, p_dFchExpedienteHasta, cont);
-    -- 1 true
-    commit;
-  
     open p_rsProyecto for
       select pryid,
-             txtdescripcion,
-             pr.ubigeoid,
+             pr.txtdescripcion ,
+             u.ubigeoid,
+             u.txtdescripcion DSCUBIGEO,
              clstipificacion,
              PARAMETRO_BUSCAR('IGA', clstipificacion) dsctipificacion,
              pr.personaid personaid,
              pe.txtrazonsocial,
              --PARAMETRO_BUSCAR(clstipificacion,),
              TO_CHAR(fchexpediente,'dd/mm/yyyy') fchexpediente
-        from proyecto pr, persona pe
+        from proyecto pr, persona pe, ubigeo u
        where pr.personaid = pe.personaid(+)
+         and pr.ubigeoid = u.ubigeoid(+)
          and (nDescripcion = 0 or
-             txtdescripcion like '%' || UPPER(p_cDescripcion) || '%') --'PRJ'
+             pr.txtdescripcion like '%' || UPPER(p_cDescripcion) || '%') --'PRJ'
          and (nUbigeoId = 0 or
              substr(pr.ubigeoid, 0, 2) = substr(p_cUbigeoId, 0, 2)) --'150000'
          and (nClsTipificacion = 0 or clstipificacion = p_cClsTipificacion) --'CA2'
