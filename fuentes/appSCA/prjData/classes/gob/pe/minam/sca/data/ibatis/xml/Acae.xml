@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Acae">
+
+  <typeAlias alias="Acae" type="gob.pe.minam.sca.pojo.Acae"/>
+
+  <resultMap id="AcaeRSMap" class="Acae">    
+    <result property="personaId" column="PERSONAID"/>
+    <result property="tipAcae" column="TIPACAE"/>
+    <result property="clsSector" column="CLSSECTOR"/>
+    <result property="clsSubSector" column="CLSSUBSECTOR"/>    
+    <result property="txtApellidosNombres" column="TXTAPELLIDOSNOMBRES"/>
+    <result property="txtCargo" column="TXTCARGO"/>    
+    <result property="txtValor" column="TXTVALOR"/>
+    <result property="txtSubSector" column="TXTSUBSECTOR"/>
+    <result property="tipDocumentoGer" column="TIPDOCUMENTOGER"/>
+    <result property="codDocumentoGer" column="CODDOCUMENTOGER"/>
+    <result property="telefonoGer" column="TELEFONOGER"/>
+  </resultMap>
+  
+  <select id="getAcae" resultClass="Acae" parameterClass="Acae" resultMap="AcaeRSMap">
+    select 
+      	*  
+    from ACAE   
+  </select>
+  
+  <select id="getAcaeByKey" resultClass="Acae" parameterClass="Acae" >
+	SELECT A.PERSONAID, A.TIPACAE, A.CLSSECTOR, A.CLSSUBSECTOR, A.TXTAPELLIDOSNOMBRES, A.TXTCARGO,
+	P.TXTVALOR, S.TXTSUBSECTOR
+	FROM ACAE A, PARAMETRO P, SUBSECTOR S
+	WHERE A.CLSSECTOR = P.CODPARAMETRO 
+	AND P.TIPPARAMETRO='MIN'
+	AND A.CLSSECTOR = S.CLSSECTOR AND A.CLSSUBSECTOR = S.CLSSUBSECTOR
+	AND A.PERSONAID=#personaId#
+  </select>
+  <insert id="insertAcae"  parameterClass="Acae">
+   INSERT INTO ACAE 
+   ( PERSONAID, TIPACAE, CLSSECTOR, CLSSUBSECTOR, TIPDOCUMENTOGER, CODDOCUMENTOGER, TXTAPELLIDOSNOMBRES, TXTCARGO, TELEFONOGER )
+   VALUES 
+   ( #personaId#, #tipAcae#, #clsSector#, #clsSubSector#, #tipDocumentoGer#, #codDocumentoGer#, #txtApellidosNombres#, #txtCargo#, #telefonoGer# )   
+   </insert>
+
+</sqlMap>
