@@ -7,10 +7,12 @@ create or replace package PQ_PROYECTO is
                    p_dFchExpedienteDesde DATE,
                    p_dFchExpedienteHasta DATE,
                    p_cEstadoTramite      VARCHAR2,
+                   p_cTipoAcae           VARCHAR2,
                    p_cClsSector          VARCHAR2,
                    p_cClsSubSector       VARCHAR2);
   FUNCTION PARAMETRO_BUSCAR(p_cTipParametro VARCHAR2,
                             p_cCodParametro VARCHAR2) RETURN VARCHAR2;
+  FUNCTION GETESTADOTRAMITE(p_cPryId VARCHAR2) RETURN VARCHAR2;
 end PQ_PROYECTO;
 /
 create or replace package body PQ_PROYECTO is
@@ -22,6 +24,7 @@ create or replace package body PQ_PROYECTO is
                    p_dFchExpedienteDesde DATE,
                    p_dFchExpedienteHasta DATE,
                    p_cEstadoTramite      VARCHAR2,
+                   p_cTipoAcae           VARCHAR2,
                    p_cClsSector          VARCHAR2,
                    p_cClsSubSector       VARCHAR2) IS
     nDescripcion     NUMBER(1);
@@ -29,6 +32,7 @@ create or replace package body PQ_PROYECTO is
     nClsTipificacion NUMBER(1);
     nFchExpediente   NUMBER(1);
     nEstadoTramite   NUMBER(1);
+    nTipoAcae        NUMBER(1);
     nClsSector       NUMBER(1);
     nClsSubSector    NUMBER(1);
   BEGIN
@@ -37,62 +41,133 @@ create or replace package body PQ_PROYECTO is
     ELSE
       nDescripcion := 1;
     END IF;
-    IF p_cUbigeoId IS NULL THEN
+    IF p_cUbigeoId IS NULL OR p_cUbigeoId = '0' THEN
       nUbigeoId := 0;
     ELSE
       nUbigeoId := 1;
     END IF;
-    IF p_cClsTipificacion IS NULL THEN
+    IF p_cClsTipificacion IS NULL OR p_cClsTipificacion = '0' THEN
       nClsTipificacion := 0;
     ELSE
-      nClsTipificacion := 1;
+      IF p_cClsTipificacion = '-1' THEN  
+         nClsTipificacion := -1;
+      ELSE
+         nClsTipificacion := 1;
+      END IF;    
     END IF;
     IF p_dFchExpedienteDesde IS NULL AND p_dFchExpedienteHasta IS NULL THEN
       nFchExpediente := 0;
     ELSE
       nFchExpediente := 1;
     END IF;
-    IF p_cEstadoTramite IS NULL THEN
+    IF p_cEstadoTramite IS NULL OR p_cEstadoTramite = '0' THEN
       nEstadoTramite := 0;
     ELSE
       nEstadoTramite := 1;
     END IF;
-    IF p_cClsSector IS NULL THEN
+    IF p_cTipoAcae IS NULL OR p_cTipoAcae = '0' THEN
+      nTipoAcae := 0;
+    ELSE
+      nTipoAcae := 1;
+    END IF;
+    IF p_cClsSector IS NULL OR p_cClsSector = '0' THEN
       nClsSector := 0;
     ELSE
       nClsSector := 1;
     END IF;
-    IF p_cClsSubSector IS NULL THEN
+    IF p_cClsSubSector IS NULL OR p_cClsSubSector = '0' THEN
       nClsSubSector := 0;
     ELSE
       nClsSubSector := 1;
     END IF;
-  
-    open p_rsProyecto for
-      select pryid,
-             pr.txtdescripcion ,
-             u.ubigeoid,
-             u.txtdescripcion DSCUBIGEO,
-             clstipificacion,
-             PARAMETRO_BUSCAR('IGA', clstipificacion) dsctipificacion,
-             pr.personaid personaid,
-             pe.txtrazonsocial,
-             --PARAMETRO_BUSCAR(clstipificacion,),
-             TO_CHAR(fchexpediente,'dd/mm/yyyy') fchexpediente
-        from proyecto pr, persona pe, ubigeo u
-       where pr.personaid = pe.personaid(+)
-         and pr.ubigeoid = u.ubigeoid(+)
-         and (nDescripcion = 0 or
-             pr.txtdescripcion like '%' || UPPER(p_cDescripcion) || '%') --'PRJ'
-         and (nUbigeoId = 0 or
-             substr(pr.ubigeoid, 0, 2) = substr(p_cUbigeoId, 0, 2)) --'150000'
-         and (nClsTipificacion = 0 or clstipificacion = p_cClsTipificacion) --'CA2'
-         and (nFchExpediente = 0 or
-             (fchexpediente between p_dFchExpedienteDesde and
-             p_dFchExpedienteHasta))
-         and (nEstadoTramite = 0 or p_cEstadoTramite = p_cEstadoTramite)
-         and (nClsSector = 0 or clssector = p_cClsSector) --'AGR' 
-         and (nClsSubSector = 0 or clssubsector = p_cClsSubSector); --'AGR1';
+    IF nTipoAcae = 1 AND nClsSector = 0 AND nClsSubSector = 0 THEN
+      open p_rsProyecto for
+        select pryid,
+               pr.txtdescripcion,
+               u.ubigeoid,
+               u.txtdescripcion DSCUBIGEO,
+               clstipificacion,
+               PARAMETRO_BUSCAR('IGA', clstipificacion) dsctipificacion,
+               pr.personaid personaid,
+               pe.txtrazonsocial,
+               TO_CHAR(fchexpediente, 'dd/mm/yyyy') fchexpediente,
+               GETESTADOTRAMITE(pryid) esttram
+          from proyecto pr, persona pe, ubigeo u
+         where pr.personaid = pe.personaid(+)
+           and pr.ubigeoid = u.ubigeoid(+)
+           and (nDescripcion = 0 or
+               pr.txtdescripcion like '%' || UPPER(p_cDescripcion) || '%') --'PRJ'
+           and (nUbigeoId = 0 or
+               substr(pr.ubigeoid, 0, 2) = substr(p_cUbigeoId, 0, 2)) --'150000'
+           and (nClsTipificacion = 0 or
+               clstipificacion = p_cClsTipificacion) --'CA2'
+           and (nFchExpediente = 0 or
+               (fchexpediente between p_dFchExpedienteDesde and
+               p_dFchExpedienteHasta))
+           and (nEstadoTramite = 0 or
+               GETESTADOTRAMITE(pryid) = p_cEstadoTramite)
+           and clssector in
+               (select codparametro
+                  from parametro ins
+                 where ins.tipparametro = p_cTipoAcae);
+    ELSE
+      IF nClsTipificacion=-1 THEN
+         open p_rsProyecto for
+          select pryid,
+                 pr.txtdescripcion,
+                 u.ubigeoid,
+                 u.txtdescripcion DSCUBIGEO,
+                 clstipificacion,
+                 PARAMETRO_BUSCAR('IGA', clstipificacion) dsctipificacion,
+                 pr.personaid personaid,
+                 pe.txtrazonsocial,
+                 TO_CHAR(fchexpediente, 'dd/mm/yyyy') fchexpediente,
+                 GETESTADOTRAMITE(pryid) esttram
+            from proyecto pr, persona pe, ubigeo u
+           where pr.personaid = pe.personaid(+)
+             and pr.ubigeoid = u.ubigeoid(+)
+             and (nDescripcion = 0 or
+                 pr.txtdescripcion like '%' || UPPER(p_cDescripcion) || '%') --'PRJ'
+             and (nUbigeoId = 0 or
+                 substr(pr.ubigeoid, 0, 2) = substr(p_cUbigeoId, 0, 2)) --'150000'
+             and clstipificacion NOT IN('CA0','CA1','CA2','CA3') 
+             and (nFchExpediente = 0 or
+                 (fchexpediente between p_dFchExpedienteDesde and
+                 p_dFchExpedienteHasta))
+             and (nEstadoTramite = 0 or
+                 GETESTADOTRAMITE(pryid) = p_cEstadoTramite)
+             and (nClsSector = 0 or clssector = p_cClsSector) --'AGR' 
+             and (nClsSubSector = 0 or clssubsector = p_cClsSubSector); --'AGR1';
+      ELSE
+         open p_rsProyecto for
+          select pryid,
+                 pr.txtdescripcion,
+                 u.ubigeoid,
+                 u.txtdescripcion DSCUBIGEO,
+                 clstipificacion,
+                 PARAMETRO_BUSCAR('IGA', clstipificacion) dsctipificacion,
+                 pr.personaid personaid,
+                 pe.txtrazonsocial,
+                 TO_CHAR(fchexpediente, 'dd/mm/yyyy') fchexpediente,
+                 GETESTADOTRAMITE(pryid) esttram
+            from proyecto pr, persona pe, ubigeo u
+           where pr.personaid = pe.personaid(+)
+             and pr.ubigeoid = u.ubigeoid(+)
+             and (nDescripcion = 0 or
+                 pr.txtdescripcion like '%' || UPPER(p_cDescripcion) || '%') --'PRJ'
+             and (nUbigeoId = 0 or
+                 substr(pr.ubigeoid, 0, 2) = substr(p_cUbigeoId, 0, 2)) --'150000'
+             and (nClsTipificacion = 0 or
+                 clstipificacion = p_cClsTipificacion) --'CA2'
+             and (nFchExpediente = 0 or
+                 (fchexpediente between p_dFchExpedienteDesde and
+                 p_dFchExpedienteHasta))
+             and (nEstadoTramite = 0 or
+                 GETESTADOTRAMITE(pryid) = p_cEstadoTramite)
+             and (nClsSector = 0 or clssector = p_cClsSector) --'AGR' 
+             and (nClsSubSector = 0 or clssubsector = p_cClsSubSector); --'AGR1';
+      END IF;      
+    END IF;
   END BUSCAR;
 
   FUNCTION PARAMETRO_BUSCAR(p_cTipParametro VARCHAR2,
@@ -111,6 +186,29 @@ create or replace package body PQ_PROYECTO is
     END;
     RETURN cDscParam;
   END PARAMETRO_BUSCAR;
+
+  FUNCTION GETESTADOTRAMITE(p_cPryId VARCHAR2) RETURN VARCHAR2 IS
+    c_TipEstTram estadostupa.tipestadotramite%TYPE;
+  BEGIN
+    BEGIN
+      select et.tipestadotramite
+        into c_TipEstTram
+        from expediente e, expedientepaso ep, estadostupa et
+       where e.expid = ep.expid
+         and e.tiptramite = et.tiptramite
+         and ep.tippaso = et.tippaso
+         and (ep.expid, ep.nsecuencia) in
+             (select ep.expid, max(ep.nsecuencia)
+                from expedientepaso ep, expediente e
+               where ep.expid = e.expid
+                 and e.pryid = p_cPryId
+               group by e.tiptramite, ep.expid);
+    EXCEPTION
+      WHEN OTHERS THEN
+        c_TipEstTram := '';
+    END;
+    RETURN c_TipEstTram;
+  END;
 
 END;
 /
