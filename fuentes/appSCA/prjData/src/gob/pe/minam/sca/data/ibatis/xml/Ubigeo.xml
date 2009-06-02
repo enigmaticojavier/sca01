@@ -25,7 +25,7 @@
    
   <select id="selectDepartamento" parameterClass="int" resultMap="UbigeoResult">
     SELECT * FROM UBIGEO T 
-    WHERE SUBSTR(UBIGEOID,3,4)='0000'
+    WHERE SUBSTR(UBIGEOID,3,4)='0000' ORDER BY T.TXTDESCRIPCION
   </select>
   
 </sqlMap>
