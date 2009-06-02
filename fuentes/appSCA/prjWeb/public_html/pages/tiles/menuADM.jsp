@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
 	<tr>
@@ -14,7 +15,7 @@
 	      <!--Heading of the accordion ( clicked to show n hide ) -->
               <!--Prefix of heading (the DIV above this) and content (the DIV below this) to be same... eg. foo-header & foo-content-->
               
-		<div id="test1-content">
+		<div id="test-content">
                 <!--DIV which show/hide on click of header-->
                 <!--This DIV is for inline styling like padding...-->
                 <div class="accordion_child">
@@ -22,7 +23,7 @@
                     
                     <tr>
                       <td width="4%">&nbsp;</td>
-                      <td width="96%"><a href="<%= request.getContextPath() %>/acaeForm!list">Inscripci贸n del ACAE</a></td>
+                      <td width="96%"><a href="<%= request.getContextPath() %>/acaeForm!list">Inscripci髇 del ACAE</a></td>
                     </tr>
                     <tr>
                       <td colspan="2"><img src="public/img/web/fondo_menu.jpg" width="220" height="1" /></td>
@@ -30,7 +31,7 @@
                     
                     <tr>
                       <td width="4%">&nbsp;</td>
-                      <td width="96%"><a href="index.php?idTipoElementoInformacion=10">Consulta/Modificaci贸n de Datos de las ACAE</a></td>
+                      <td width="96%"><a href="index.php?idTipoElementoInformacion=10">Consulta/Modificaci髇 de Datos de las ACAE</a></td>
                     </tr>
                     <tr>
                       <td colspan="2"><img src="public/img/web/fondo_menu.jpg" width="220" height="1" /></td>
@@ -41,14 +42,14 @@
                         <s:url action="index" id="urlParametro">
                           <s:param name="parametro.idParametro" value="idParametro"/>
                         </s:url>
-                        <a href="<s:property value="#urlParametro"/>">Configuraci贸n de Par谩metros</a></td>
+                        <a href="<s:property value="#urlParametro"/>">Configuraci髇 de Par醡etros</a></td>
                     </tr>
                     <tr>
                       <td colspan="2"><img src="public/img/web/fondo_menu.jpg" width="220" height="1" /></td>
                     </tr>
                     <tr>
                       <td width="4%">&nbsp;</td>
-                      <td width="96%"><a href="<%= request.getContextPath() %>/doLogout.action">Cerrar Sesi贸n</a></td>
+                      <td width="96%"><a href="<%= request.getContextPath() %>/doLogout.action">Cerrar Sesi髇</a></td>
                     </tr>
                     <tr>
                       <td colspan="2"><img src="public/img/web/fondo_menu.jpg" width="220" height="1" /></td>
@@ -65,35 +66,7 @@
                 <td height="1" bgcolor="#92D050"></td>
              </tr>
            </table>
-           <br />
-            <s:form action="doLogin" method="POST" >            
-              <tr>
-                <td height="34" valign="middle" class="login1"><div align="center"><br />
-                <span class="style2">ACCESO A USUARIOS</span></div></td>
-              </tr>
-              <tr>
-                <td width="235" height="132" class="login2">
-                <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                  <tr>
-                    <td width="4%">&nbsp;</td>
-                    <td width="92%">
-                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                      <s:actionerror />
-                        <s:fielderror />                      
-                      <s:textfield name="usuario" value="" label="Usuario"/>
-					  <s:password name="codClave" value="" label="Clave"/>
-                      <tr>
-                        <td colspan="2">&nbsp;</td>
-                      </tr>
-                      <s:submit value="Ingresar" align="center"/>
-                    </table>
-                    </td>
-                    <td width="4%">&nbsp;</td>
-                  </tr>
-
-                </table></td>
-              </tr>
-            </s:form>
+           <br />            
            <p>&nbsp;</p>
            <p>&nbsp;</p>
            <p>&nbsp;</p>
