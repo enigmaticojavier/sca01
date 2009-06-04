@@ -30,6 +30,10 @@
   <sqlMap resource="gob/pe/minam/sca/data/ibatis/xml/SubSector.xml"/>
   <sqlMap resource="gob/pe/minam/sca/data/ibatis/xml/Usuario.xml"/>
   <sqlMap resource="gob/pe/minam/sca/data/ibatis/xml/Acae.xml"/>
-  
+  <sqlMap resource="gob/pe/minam/sca/data/ibatis/xml/ExpedienteDocumento.xml"/>
+  <sqlMap resource="gob/pe/minam/sca/data/ibatis/xml/ImagenDocumento.xml"/>
+  <sqlMap resource="gob/pe/minam/sca/data/ibatis/xml/Expediente.xml"/>
+  <sqlMap resource="gob/pe/minam/sca/data/ibatis/xml/Periodo.xml"/>   
+
 
 </sqlMapConfig>
