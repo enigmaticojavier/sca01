@@ -5,11 +5,16 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import java.util.Map;
 
+
 public class AccionSoporte extends ActionSupport {
     MensajeError mensajeError;
     public static String MSGSUCCESS="Operación realizada correctamente";
     public static String MSGERROR="Ocurrió un Error";
-
+    public static String COMBO_TXT_ALL="TODOS";
+    public static String COMBO_COD_ALL="0";
+    public static String COMBO_TXT_OTROS="OTROS";
+    public static String COMBO_COD_OTROS="-1";
+    
     public void setMensajeError(MensajeError mensajeError) {
         this.mensajeError = mensajeError;
     }
@@ -36,6 +41,12 @@ public class AccionSoporte extends ActionSupport {
         mapSession.put(key, value);
     }
     
+    public String getParameterValue(String param) {
+      Object varr = ActionContext.getContext().getParameters().get(param);
+      if (varr == null) return "";
+      return ((String[]) varr)[0];
+    }
+
     public Object getVarSession(String key){
         Object value;
         Map mapSession = ActionContext.getContext().getSession();
