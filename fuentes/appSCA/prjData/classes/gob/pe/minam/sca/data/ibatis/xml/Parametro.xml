@@ -63,6 +63,7 @@
   <select id="selectTipoParametro" parameterClass="int" resultMap="TipoParametroResult">
     select distinct tipparametro, txtparametro 
     from parametro
+    order by txtparametro 
   </select>
   
   <select id="findParametroXTipoParametro" parameterClass="string" resultMap="ParametroResult">
@@ -70,5 +71,14 @@
     from parametro
     where tipparametro=#tipParametro#
   </select>
+  
+  <select id="findParametroXParametro" parameterClass="Parametro" resultMap="ParametroResult">
+    select ins.* 
+    from parametro tac, parametro ins
+    where tac.tipparametro=#tipParametro# and 
+    ins.tipparametro =tac.codparametro and ins.codparametro=#codParametro#
+  </select>
+  
+  
 
 </sqlMap>

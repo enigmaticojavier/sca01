@@ -139,6 +139,10 @@
                   <url path="../LibreriaSCA/LibreriaWeb/tiles-servlet-2.1.2.jar" jar-entry=""/>
                   <url path="../LibreriaSCA/LibreriaWeb/xwork-2.1.2.jar" jar-entry=""/>
                   <url path="../LibreriaSCA/LibreriaWeb/commons-beanutils-1.7.0.jar" jar-entry=""/>
+                  <url path="../LibreriaSCA/LibreriaWeb/displaytag-export-poi-1.1.jar" jar-entry=""/>
+                  <url path="../LibreriaSCA/LibreriaWeb/displaytag-export-poi-1.2-sources.jar" jar-entry=""/>
+                  <url path="../LibreriaSCA/LibreriaWeb/jstl.jar" jar-entry=""/>
+                  <url path="../LibreriaSCA/LibreriaWeb/standard.jar" jar-entry=""/>
                </list>
                <value n="description" v="LibreriaWeb"/>
                <value n="id" v="LibreriaWeb"/>
@@ -181,6 +185,156 @@
             <value n="URI" v="http://displaytag.sf.net/el"/>
             <value n="version" v="1.1"/>
          </hash>
+         <hash n="WEB-INF\lib\standard.jar!\META-INF\c.tld">
+            <value n="jspVersion" v=""/>
+            <value n="name" v="JSTL Core"/>
+            <value n="prefix" v="c"/>
+            <value n="runInEditor" v="false"/>
+            <value n="showInPalette" v="true"/>
+            <value n="tldURL" v="WEB-INF/lib/standard.jar!/META-INF/c.tld"/>
+            <value n="URI" v="http://java.sun.com/jsp/jstl/core"/>
+            <value n="version" v="1.1"/>
+         </hash>
+         <hash n="WEB-INF\lib\standard.jar!\META-INF\c-1_0.tld">
+            <value n="jspVersion" v="1.2"/>
+            <value n="name" v="JSTL Core"/>
+            <value n="prefix" v="c"/>
+            <value n="runInEditor" v="false"/>
+            <value n="showInPalette" v="false"/>
+            <value n="tldURL" v="WEB-INF/lib/standard.jar!/META-INF/c-1_0.tld"/>
+            <value n="URI" v="http://java.sun.com/jstl/core"/>
+            <value n="version" v="1.0"/>
+         </hash>
+         <hash n="WEB-INF\lib\standard.jar!\META-INF\c-1_0-rt.tld">
+            <value n="jspVersion" v="1.2"/>
+            <value n="name" v="JSTL Core RT"/>
+            <value n="prefix" v="c_rt"/>
+            <value n="runInEditor" v="false"/>
+            <value n="showInPalette" v="false"/>
+            <value n="tldURL" v="WEB-INF/lib/standard.jar!/META-INF/c-1_0-rt.tld"/>
+            <value n="URI" v="http://java.sun.com/jstl/core_rt"/>
+            <value n="version" v="1.0"/>
+         </hash>
+         <hash n="WEB-INF\lib\standard.jar!\META-INF\fmt.tld">
+            <value n="jspVersion" v=""/>
+            <value n="name" v="JSTL Format"/>
+            <value n="prefix" v="fmt"/>
+            <value n="runInEditor" v="false"/>
+            <value n="showInPalette" v="true"/>
+            <value n="tldURL" v="WEB-INF/lib/standard.jar!/META-INF/fmt.tld"/>
+            <value n="URI" v="http://java.sun.com/jsp/jstl/fmt"/>
+            <value n="version" v="1.1"/>
+         </hash>
+         <hash n="WEB-INF\lib\standard.jar!\META-INF\fmt-1_0.tld">
+            <value n="jspVersion" v="1.2"/>
+            <value n="name" v="JSTL Format"/>
+            <value n="prefix" v="fmt"/>
+            <value n="runInEditor" v="false"/>
+            <value n="showInPalette" v="false"/>
+            <value n="tldURL" v="WEB-INF/lib/standard.jar!/META-INF/fmt-1_0.tld"/>
+            <value n="URI" v="http://java.sun.com/jstl/fmt"/>
+            <value n="version" v="1.0"/>
+         </hash>
+         <hash n="WEB-INF\lib\standard.jar!\META-INF\fmt-1_0-rt.tld">
+            <value n="jspVersion" v="1.2"/>
+            <value n="name" v="JSTL Format RT"/>
+            <value n="prefix" v="fmt_rt"/>
+            <value n="runInEditor" v="false"/>
+            <value n="showInPalette" v="false"/>
+            <value n="tldURL" v="WEB-INF/lib/standard.jar!/META-INF/fmt-1_0-rt.tld"/>
+            <value n="URI" v="http://java.sun.com/jstl/fmt_rt"/>
+            <value n="version" v="1.0"/>
+         </hash>
+         <hash n="WEB-INF\lib\standard.jar!\META-INF\fn.tld">
+            <value n="jspVersion" v=""/>
+            <value n="name" v="JSTL Functions"/>
+            <value n="prefix" v="fn"/>
+            <value n="runInEditor" v="false"/>
+            <value n="showInPalette" v="false"/>
+            <value n="tldURL" v="WEB-INF/lib/standard.jar!/META-INF/fn.tld"/>
+            <value n="URI" v="http://java.sun.com/jsp/jstl/functions"/>
+            <value n="version" v="1.1"/>
+         </hash>
+         <hash n="WEB-INF\lib\standard.jar!\META-INF\permittedTaglibs.tld">
+            <value n="jspVersion" v=""/>
+            <value n="name" v="JSTL Permitted Taglibs"/>
+            <value n="prefix" v="permittedTaglibs"/>
+            <value n="runInEditor" v="false"/>
+            <value n="showInPalette" v="false"/>
+            <value n="tldURL" v="WEB-INF/lib/standard.jar!/META-INF/permittedTaglibs.tld"/>
+            <value n="URI" v="http://jakarta.apache.org/taglibs/standard/permittedTaglibs"/>
+            <value n="version" v="1.1"/>
+         </hash>
+         <hash n="WEB-INF\lib\standard.jar!\META-INF\scriptfree.tld">
+            <value n="jspVersion" v=""/>
+            <value n="name" v="JSTL Script Free"/>
+            <value n="prefix" v="scriptfree"/>
+            <value n="runInEditor" v="false"/>
+            <value n="showInPalette" v="false"/>
+            <value n="tldURL" v="WEB-INF/lib/standard.jar!/META-INF/scriptfree.tld"/>
+            <value n="URI" v="http://jakarta.apache.org/taglibs/standard/scriptfree"/>
+            <value n="version" v="1.1"/>
+         </hash>
+         <hash n="WEB-INF\lib\standard.jar!\META-INF\sql.tld">
+            <value n="jspVersion" v=""/>
+            <value n="name" v="JSTL SQL"/>
+            <value n="prefix" v="sql"/>
+            <value n="runInEditor" v="false"/>
+            <value n="showInPalette" v="true"/>
+            <value n="tldURL" v="WEB-INF/lib/standard.jar!/META-INF/sql.tld"/>
+            <value n="URI" v="http://java.sun.com/jsp/jstl/sql"/>
+            <value n="version" v="1.1"/>
+         </hash>
+         <hash n="WEB-INF\lib\standard.jar!\META-INF\sql-1_0.tld">
+            <value n="jspVersion" v="1.2"/>
+            <value n="name" v="JSTL SQL"/>
+            <value n="prefix" v="sql"/>
+            <value n="runInEditor" v="false"/>
+            <value n="showInPalette" v="true"/>
+            <value n="tldURL" v="WEB-INF/lib/standard.jar!/META-INF/sql-1_0.tld"/>
+            <value n="URI" v="http://java.sun.com/jstl/sql"/>
+            <value n="version" v="1.0"/>
+         </hash>
+         <hash n="WEB-INF\lib\standard.jar!\META-INF\sql-1_0-rt.tld">
+            <value n="jspVersion" v="1.2"/>
+            <value n="name" v="JSTL SQL RT"/>
+            <value n="prefix" v="sql_rt"/>
+            <value n="runInEditor" v="false"/>
+            <value n="showInPalette" v="false"/>
+            <value n="tldURL" v="WEB-INF/lib/standard.jar!/META-INF/sql-1_0-rt.tld"/>
+            <value n="URI" v="http://java.sun.com/jstl/sql_rt"/>
+            <value n="version" v="1.0"/>
+         </hash>
+         <hash n="WEB-INF\lib\standard.jar!\META-INF\x.tld">
+            <value n="jspVersion" v=""/>
+            <value n="name" v="JSTL XML"/>
+            <value n="prefix" v="x"/>
+            <value n="runInEditor" v="false"/>
+            <value n="showInPalette" v="true"/>
+            <value n="tldURL" v="WEB-INF/lib/standard.jar!/META-INF/x.tld"/>
+            <value n="URI" v="http://java.sun.com/jsp/jstl/xml"/>
+            <value n="version" v="1.1"/>
+         </hash>
+         <hash n="WEB-INF\lib\standard.jar!\META-INF\x-1_0.tld">
+            <value n="jspVersion" v="1.2"/>
+            <value n="name" v="JSTL XML"/>
+            <value n="prefix" v="x"/>
+            <value n="runInEditor" v="false"/>
+            <value n="showInPalette" v="true"/>
+            <value n="tldURL" v="WEB-INF/lib/standard.jar!/META-INF/x-1_0.tld"/>
+            <value n="URI" v="http://java.sun.com/jstl/xml"/>
+            <value n="version" v="1.0"/>
+         </hash>
+         <hash n="WEB-INF\lib\standard.jar!\META-INF\x-1_0-rt.tld">
+            <value n="jspVersion" v="1.2"/>
+            <value n="name" v="JSTL XML RT"/>
+            <value n="prefix" v="x_rt"/>
+            <value n="runInEditor" v="false"/>
+            <value n="showInPalette" v="false"/>
+            <value n="tldURL" v="WEB-INF/lib/standard.jar!/META-INF/x-1_0-rt.tld"/>
+            <value n="URI" v="http://java.sun.com/jstl/xml_rt"/>
+            <value n="version" v="1.0"/>
+         </hash>
          <hash n="WEB-INF\lib\struts2-core-2.1.6.jar!\META-INF\struts-tags.tld">
             <value n="jspVersion" v=""/>
             <value n="name" v="&quot;Struts Tags&quot;"/>
@@ -191,15 +345,15 @@
             <value n="URI" v="/struts-tags"/>
             <value n="version" v="2.2.3"/>
          </hash>
-         <hash n="WEB-INF\lib\tiles-jsp-2.1.2.jar!\META-INF\tld\tiles-jsp.tld">
-            <value n="jspVersion" v="1.2"/>
-            <value n="name" v="tiles"/>
-            <value n="prefix" v="tiles"/>
+         <hash n="WEB-INF\tld\c.tld">
+            <value n="jspVersion" v=""/>
+            <value n="name" v="JSTL Core"/>
+            <value n="prefix" v="c"/>
             <value n="runInEditor" v="false"/>
             <value n="showInPalette" v="true"/>
-            <value n="tldURL" v="WEB-INF/lib/tiles-jsp-2.1.2.jar!/META-INF/tld/tiles-jsp.tld"/>
-            <value n="URI" v="http://tiles.apache.org/tags-tiles"/>
-            <value n="version" v="2.1"/>
+            <value n="tldURL" v="WEB-INF/tld/c.tld"/>
+            <value n="URI" v="http://java.sun.com/jsp/jstl/core"/>
+            <value n="version" v="1.1"/>
          </hash>
          <hash n="WEB-INF\tld\displaytag.tld">
             <value n="jspVersion" v="1.1"/>
@@ -211,15 +365,15 @@
             <value n="URI" v="http://jakarta.apache.org/taglibs/display"/>
             <value n="version" v="1.0"/>
          </hash>
-         <hash n="WEB-INF\tld\tiles-jsp.tld">
-            <value n="jspVersion" v="1.2"/>
-            <value n="name" v="tiles"/>
-            <value n="prefix" v="tiles"/>
+         <hash n="WEB-INF\tld\fmt.tld">
+            <value n="jspVersion" v=""/>
+            <value n="name" v="JSTL Format"/>
+            <value n="prefix" v="fmt"/>
             <value n="runInEditor" v="false"/>
             <value n="showInPalette" v="true"/>
-            <value n="tldURL" v="WEB-INF/tld/tiles-jsp.tld"/>
-            <value n="URI" v="http://tiles.apache.org/tags-tiles"/>
-            <value n="version" v="2.1"/>
+            <value n="tldURL" v="WEB-INF/tld/fmt.tld"/>
+            <value n="URI" v="http://java.sun.com/jsp/jstl/fmt"/>
+            <value n="version" v="1.1"/>
          </hash>
       </hash>
    </hash>

@@ -22,7 +22,15 @@
    <dao interface="gob.pe.minam.sca.data.dao.UsuarioDao"
         implementation="gob.pe.minam.sca.data.daosql.UsuarioSqlMapDao"/> 
    <dao interface="gob.pe.minam.sca.data.dao.AcaeDao"
-        implementation="gob.pe.minam.sca.data.daosql.AcaeSqlMapDao"/>      
+        implementation="gob.pe.minam.sca.data.daosql.AcaeSqlMapDao"/>
+   <dao interface="gob.pe.minam.sca.data.dao.ExpedienteDao"
+        implementation="gob.pe.minam.sca.data.daosql.ExpedienteSqlMapDao"/> 
+   <dao interface="gob.pe.minam.sca.data.dao.ExpedienteDocumentoDao"
+        implementation="gob.pe.minam.sca.data.daosql.ExpedienteDocumentoSqlMapDao"/> 
+   <dao interface="gob.pe.minam.sca.data.dao.ImagenDocumentoDao"
+        implementation="gob.pe.minam.sca.data.daosql.ImagenDocumentoSqlMapDao"/>
+   <dao interface="gob.pe.minam.sca.data.dao.PeriodoDao"
+        implementation="gob.pe.minam.sca.data.daosql.PeriodoSqlMapDao"/>    	      
   </context>
 
 </daoConfig>
