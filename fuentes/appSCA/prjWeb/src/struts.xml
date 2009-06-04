@@ -10,18 +10,51 @@
 	<!-- Configuration for the default package. -->
         
 	<package name="default" extends="struts-default">
-            <default-interceptor-ref name="paramsPrepareParamsStack"/>
-                   
-            <action name="index" class="gob.pe.minam.sca.action.ParametroAction" method="list">
+            
+	    <!--interceptors>
+                 <interceptor name="authenticationInterceptor" class="gob.pe.minam.sca.action.AuthenticationInterceptor"/>
+                 <interceptor-stack name="authenticationInterceptor">
+                     <interceptor-ref name="authenticationInterceptor">
+                        <param name="acceptedParamNames">
+                            "[[\p{Graph}\s]+[^,#:=]]*" 
+                         </param>
+                         <param name="excludeParams">
+                            _,d-\d+?-[sop]
+                         </param>
+
+                     </interceptor-ref>
+                     <interceptor-ref name="basicStack">
+                     </interceptor-ref>
+                 </interceptor-stack>
+            </interceptors-->
+            <interceptors>
+               <interceptor-stack name="defaultStack">
+                  <interceptor-ref name="prepare" />
+                  <interceptor-ref name="params">
+                     <param name="acceptedParamNames">
+                       [[\p{Graph}\s]+[^,#:=]]* 
+                     </param>
+                     <param name="excludeParams">
+                        _,d-\d+?-[sope]
+                     </param>
+                  </interceptor-ref>
+               </interceptor-stack>
+            </interceptors>
+            <!--default-interceptor-ref name="paramsPrepareParamsStack"/-->
+            <default-interceptor-ref name="defaultStack"/>
+            <action name="index" class="gob.pe.minam.sca.action.ParametroAction" method="list" >
                 <result name="success">/pages/parametro/parametro.jsp</result>
-                <interceptor-ref name="basicStack"/>
+                <!--interceptor-ref name="basicStack"/-->
+                <interceptor-ref name="defaultStack">
+                </interceptor-ref>        
             </action>
-      
             <action name="parametro" class="gob.pe.minam.sca.action.ParametroAction" method="input">
                 <result name="success" type="redirectAction">index</result>
                 <result name="input">/pages/parametro/parametroForm.jsp</result>
                 <result name="error">error.jsp</result>
+                <interceptor-ref name="defaultStack"/>
             </action>
+	
 	    <action name="showLogin">
                 <result>/index.jsp</result>
 	    </action>
@@ -41,17 +74,39 @@
 	</package>
         
         <package name="pckproyecto" extends="struts-default">
-            <default-interceptor-ref name="paramsPrepareParamsStack"/>
+            <interceptors>
+               <interceptor-stack name="defaultStack">
+                  <interceptor-ref name="prepare" />  
+                  <interceptor-ref name="params">
+                     <param name="acceptedParamNames">
+                       [[\p{Graph}\s]+[^,#:=]]* 
+                     </param>   
+                     <param name="excludeParams">
+                        _,d-\d+?-[sope]
+                     </param>
+                  </interceptor-ref>
+               </interceptor-stack>
+            </interceptors>
+            <default-interceptor-ref name="defaultStack"/>
             <action name="proyecto" class="gob.pe.minam.sca.action.ProyectoAction" method="list">
                 <result name="success">/pages/proyecto/proyecto.jsp</result>
-                <interceptor-ref name="basicStack"/>
+                <interceptor-ref name="defaultStack"/>
             </action>
-            <action name="proyectoForm" class="gob.pe.minam.sca.action.ProyectoAction" method="input">
+            <action name="proyectoForm" class="gob.pe.minam.sca.action.ProyectoExpedienteAction" method="input">
                 <result name="success" type="redirectAction">index</result>
                 <result name="input">/pages/proyecto/proyectoForm.jsp</result>
                 <result name="error">error.jsp</result>
-            </action>
+                <interceptor-ref name="defaultStack"/>
+            </action>    
 	</package>
         
+        <package name="pckestadistica" extends="struts-default">
+            <default-interceptor-ref name="paramsPrepareParamsStack"/>
+            <action name="estadistica" class="gob.pe.minam.sca.action.EstadisticaAction" method="list">
+                <result name="success">/pages/estadistica/estadistica.jsp</result>
+                <interceptor-ref name="defaultStack"/>
+            </action>
+	</package>
+	        
         
 </struts>
