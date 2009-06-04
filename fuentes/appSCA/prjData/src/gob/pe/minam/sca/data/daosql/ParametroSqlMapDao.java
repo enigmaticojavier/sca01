@@ -94,11 +94,26 @@ public class ParametroSqlMapDao extends BaseSqlMapDao implements ParametroDao {
         try{
           return queryForList("findParametroXTipoParametro",tipParametro);
         }catch(SqlMapException ex){
-          throw new DAOException(ex.toString(),"Error producido en BD : No se puede ejecutar la Obtención de Curso");
+          throw new DAOException(ex.toString(),"Error producido en BD : No se puede ejecutar la Obtención de Parametro");
         }catch(DaoException ex){
-          throw new DAOException(ex.toString(),"Error producido en BD : Obtención de Curso presenta problemas");
+          throw new DAOException(ex.toString(),"Error producido en BD : Obtención de Parametro presenta problemas");
         }catch(Exception ex){
-          throw new DAOException(ex.toString(),"Error producido en la Carga de Obtención de Curso ");
+          throw new DAOException(ex.toString(),"Error producido en la Carga de Obtención de Parametro ");
+        }  
+    }
+    
+    public Parametro findParametroXParametro(String tipParametro, String codParametro) throws DAOException{
+        try{
+            Parametro p = new Parametro();
+            p.setTipParametro(tipParametro);
+            p.setCodParametro(codParametro);
+            return (Parametro) queryForObject("findParametroXParametro", p);
+        }catch(SqlMapException ex){
+          throw new DAOException(ex.toString(),"Error producido en BD : No se puede ejecutar la Obtención de Parametro");
+        }catch(DaoException ex){
+          throw new DAOException(ex.toString(),"Error producido en BD : Obtención de Parametro presenta problemas");
+        }catch(Exception ex){
+          throw new DAOException(ex.toString(),"Error producido en la Carga de Obtención de Parametro ");
         }  
     }
     
