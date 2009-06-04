@@ -25,14 +25,16 @@
                     <s:param name="parametro.idParametro" value="idParametro"/>
                 </s:url>
                 <a href="<s:property value="#url"/>">Parametros</a>
-                
                 <br>
-                
                 <s:url action="proyecto" id="urlProyecto">
                     <s:param name="parametro.idParametro" value="idProyecto"/>
                 </s:url>
                 <a href="<s:property value="#urlProyecto"/>">Proyecto</a>
-                
+                <br>
+                <s:url action="estadistica" id="urlEstadistica">
+                    <s:param name="parametro.idParametro" value="idEstadistica"/>
+                </s:url>
+                <a href="<s:property value="#urlEstadistica"/>">Estadistica</a>
             </td>
             
         
