@@ -9,9 +9,11 @@ import gob.pe.minam.sca.pojo.Parametro;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 
 public class ParametroAction extends AccionSoporte implements Preparable {
-    
+    static Logger log = Logger.getLogger("ParametroAction.class");
     private String tipParametro;
     private Parametro parametro;
     private List parametros;
@@ -19,7 +21,7 @@ public class ParametroAction extends AccionSoporte implements Preparable {
     
     public void prepare() throws Exception {
         try{
-            System.out.println("ParametroAction.prepare---------------------------------------------->");
+            log.info("[ParametroAction.prepare][Ini]");
             llenaTipoParametros();
             /*Before inserting, updating*/
             if (this.parametro!=null && this.parametro.getIdParametro()!=null){
@@ -27,19 +29,18 @@ public class ParametroAction extends AccionSoporte implements Preparable {
                this.parametro=parametro.obtenerParametro(this.parametro.getIdParametro());
             }
             String tmpTipParametro=getParameterValue("tipParametro");
-            System.out.println("Select tmpTipParametro"+tmpTipParametro);
+            log.info("tmpTipParametro " + tmpTipParametro);
             /*Select Tipo Parametro*/
-            
             if (tmpTipParametro==null || tmpTipParametro.equals("")){
-                System.out.println("---No existe tmpTipParametro en el request -------------->");
+                log.info("No existe tmpTipParametro en el request ");
                 tmpTipParametro=(String)this.getVarSession("tipParametro"); 
                 if (tmpTipParametro==null){
-                    System.out.println("---No existe tmpTipParametro en el session -------------->");
+                    log.info("No existe tmpTipParametro en el session");
                     this.tipParametro=((Parametro)this.tipoParametros.get(0)).getTipParametro();
                     this.parametros=parametro.buscarParametroXTipoParametro(this.tipParametro);
                     this.setVarSession("tipParametro",this.tipParametro);
                 }else{
-                    System.out.println("---Si existe tmpTipParametro en el session -------------->");
+                    log.info("Si existe tmpTipParametro en el session");
                     this.tipParametro=tmpTipParametro;
                     this.parametros=parametro.buscarParametroXTipoParametro(this.tipParametro);
                     if (!(this.parametros!=null && this.parametros.size()>0)){
@@ -48,9 +49,8 @@ public class ParametroAction extends AccionSoporte implements Preparable {
                     }
                     this.setVarSession("tipParametro",this.tipParametro);
                 }    
-                //}
             }else{
-                System.out.println("---Si existe tmpTipParametro en el request -------------->");
+                log.info("Si existe tmpTipParametro en el request");
                 this.tipParametro=tmpTipParametro;
                 this.parametros=parametro.buscarParametroXTipoParametro(this.tipParametro);
                 this.setVarSession("tipParametro",this.tipParametro);
@@ -59,26 +59,26 @@ public class ParametroAction extends AccionSoporte implements Preparable {
                     this.parametros=parametro.buscarParametroXTipoParametro(this.tipParametro);
                 }
             }
-            System.out.println("tmpTipParametro-->"+tmpTipParametro + " this.tipParametro" + this.tipParametro);
-            System.out.println("ParametroAction.prepare<-----------------------------------------");
+            log.info("tmpTipParametro-->"+tmpTipParametro + " this.tipParametro" + this.tipParametro);
+            log.info("[ParametroAction.prepare][Fin]");
         }catch(Exception ex){
             ex.printStackTrace();
         }  
     }
     
     public String input() {
-        System.out.println("-------------->ParametroAction.input");
         try{
+            log.info("[ParametroAction.input][Ini]");
             String tmpTipParametro=getParameterValue("tipParametro");
             /*Set the update form*/
             if (tmpTipParametro.equals("")){
                 String parIdParametro=getParameterValue("idParametro");
-                System.out.println("update parIdParametro " + parIdParametro);
+                log.info("Updating parIdParametro " + parIdParametro);
                 int idParametro=parIdParametro.equals("")?0:Integer.parseInt(parIdParametro);
                 this.parametro=parametro.obtenerParametro(idParametro);
             /*Set the insert form*/
             }else{
-                System.out.println("insert tmpTipParametro " + tmpTipParametro);
+                log.info("Inserting tmpTipParametro " + tmpTipParametro);
                 this.tipParametro=tmpTipParametro;
                 this.parametro=new Parametro();
                 this.parametro.setTipParametro(this.tipParametro);
@@ -88,13 +88,15 @@ public class ParametroAction extends AccionSoporte implements Preparable {
         }catch(Exception ex){
             ex.printStackTrace();
         }
-        System.out.println("<--------------ParametroAction.input");
+        log.info("[ParametroAction.input][Fin]");
         return INPUT;
     }
     
     public String doSave() {
-        System.out.println("----------------------->ParametroAction.save");
+        log.info("[ParametroAction.save][Ini]");
         try{
+            this.parametro.setCodParametro(this.parametro.getCodParametro().toUpperCase());
+            this.parametro.setTxtValor(this.parametro.getTxtValor().toUpperCase());
             if (this.parametro.getIdParametro()==null){
                parametro.insertParametro(this.parametro);
             }else{
@@ -106,12 +108,12 @@ public class ParametroAction extends AccionSoporte implements Preparable {
             ex.printStackTrace();
             this.setearMensajeError("0",this.MSGERROR + ex.toString());
         }
-        System.out.println("<-----------------------ParametroAction.save");
+        log.info("[ParametroAction.save][Fin]");
         return SUCCESS;
     }
     
     public String delete() {
-        System.out.println("ParametroAction.delete -->" + this.parametro.getIdParametro());
+        log.info("[ParametroAction.delete][Ini]");
         try{
             parametro.deleteParametro(this.parametro.getIdParametro());
             this.setearMensajeError("1",this.MSGSUCCESS);
@@ -120,26 +122,28 @@ public class ParametroAction extends AccionSoporte implements Preparable {
             ex.printStackTrace();
             this.setearMensajeError("0",this.MSGERROR + ex.toString());
         }
+        log.info("[ParametroAction.delete][Fin]");
         return SUCCESS;
     }
     
     public String list(){
-      System.out.println("ParametroAction.List---->");
+      log.info("[ParametroAction.list][Ini]");
       try{
         llenaTipoParametros();
         System.out.println("this.tipParametro " + this.tipParametro);
         Parametro pr = new Parametro(); 
         this.tipParametro=(String)this.getVarSession("tipParametro");
         System.out.println(" session " + (String)this.getVarSession("tipParametro"));
+        //--->Borrar
+        //this.tipParametro="GLO";
+        //<--Borrar  
         this.parametros=pr.buscarParametroXTipoParametro(this.tipParametro);
         this.setMensajeError((MensajeError)this.getVarSession("mensajeError"));
-        //this.setVarSession("tipParametro",this.tipParametro);
         this.setVarSession("mensajeError",null);
-        System.out.println("ParametroAction.List<----");
-        return SUCCESS;
       }catch(Exception ex){
         ex.printStackTrace();
       }  
+      log.info("[ParametroAction.list][Fin]");
       return SUCCESS;
     }
     

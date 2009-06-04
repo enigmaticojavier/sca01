@@ -10,15 +10,5 @@
      <field-validator type="requiredstring">
           <message key="errors.required.txtValor"/>
       </field-validator>
-  </field>
-  <field name="parametro.codParametro">
-     <field-validator type="requiredstring">
-          <message key="errors.required.codParametro"/>
-      </field-validator>
-  </field>
-  <field name="parametro.txtValor">
-     <field-validator type="requiredstring">
-          <message key="errors.required.txtValor"/>
-      </field-validator>
-  </field>
+  </field> 
 </validators>

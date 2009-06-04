@@ -1,6 +1,5 @@
 package gob.pe.minam.sca.action;
 
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.Preparable;
 
 import gob.pe.minam.sca.framework.AccionSoporte;
@@ -14,10 +13,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 
 public class ProyectoAction extends AccionSoporte implements Preparable {
-    
+    static Logger log = Logger.getLogger("ProyectoAction.class");
     /*Parámetros Búsqueda*/
+    private Integer pryId;
     private String txtDescripcion; /*nombreProyecto*/
     private String ubigeoId; /*departamento*/
     private String clsTipificacion; /*categoria*/
@@ -37,48 +38,45 @@ public class ProyectoAction extends AccionSoporte implements Preparable {
     private List parInstitucion;
     private List parDependencia;
     
-    
     public void prepare() throws Exception {
         try{
-            System.out.println("ParametroAction.prepare---------------------------------------------->");
+            log.info("[ProyectoAction.prepare][Ini]");
             llenaParametrosIniciales();
-            System.out.println("ParametroAction.prepare<-----------------------------------------");
+            log.info("pryId "+this.pryId);
+            log.info("[ProyectoAction.prepare][Fin]");
         }catch(Exception ex){
             ex.printStackTrace();
         }  
     }
     
     public String input() {
-        System.out.println("-------------->ParametroAction.input");
         try{
-            String tmpTipParametro=getParameterValue("tipParametro");
+            log.info("[ProyectoAction.input][Ini]");
+            String tmpTipParametro=this.getParameterValue("tipParametro");
+            log.info("[ProyectoAction.input][Fin]");
         }catch(Exception ex){
             ex.printStackTrace();
         }
-        System.out.println("<--------------ParametroAction.input");
         return INPUT;
     }
     
     public String list(){
-      System.out.println("ParametroAction.List---->");
       try{
-        Parametro pr = new Parametro();
-        SubSector sb = new SubSector();
-        /*Institucion*/
-        if (this.parTipoAcae!=null && this.parTipoAcae.size()>0){
-         this.parInstitucion=pr.buscarParametroXTipoParametro(((Parametro)this.parTipoAcae.get(0)).getCodParametro());
-        }else{
-          this.parInstitucion=new ArrayList();
-        }   
-        /*Dependencia*/
-        if (this.parInstitucion!=null && this.parInstitucion.size()>0){
-         this.parDependencia=sb.buscarSubsectorXSector(((Parametro)this.parInstitucion.get(0)).getCodParametro()) ;
-        }else{
-         this.parDependencia=new ArrayList();
-        }
-        
+        log.info("[ProyectoAction.list][Ini]");
+        Parametro par = new Parametro();
+        SubSector sub = new SubSector();
+        List lstIns = new ArrayList();
+        List lstDep = new ArrayList();
+        par.setCodParametro(COMBO_COD_ALL);
+        par.setTxtValor(COMBO_TXT_ALL);
+        lstIns.add(par);
+        this.parInstitucion=lstIns;
+        sub.setClsSubSector(COMBO_COD_ALL);
+        sub.setTxtSubSector(COMBO_TXT_ALL);
+        lstDep.add(sub);
+        this.parDependencia=lstDep;
         this.setVarSession("mensajeError",null);
-        System.out.println("ParametroAction.List<----");
+        log.info("[ProyectoAction.list][Fin]");
         return SUCCESS;
       }catch(Exception ex){
         ex.printStackTrace();
@@ -88,17 +86,40 @@ public class ProyectoAction extends AccionSoporte implements Preparable {
     
     private void llenaParametrosIniciales(){
       try{
+          log.info("[ProyectoAction.llenaParametrosIniciales][Ini]");
           Parametro pr = new Parametro(); 
-          SubSector sb = new SubSector();
           Ubigeo ubi = new Ubigeo();
           /*Departamentos*/
-          this.ubiDepartamentos=ubi.listarDepartamento();
+          List lstDepa=ubi.listarDepartamento();
+          Ubigeo ubigeo = new Ubigeo();
+          ubigeo.setUbigeoId(COMBO_COD_ALL);
+          ubigeo.setTxtDescripcion(COMBO_TXT_ALL);
+          lstDepa.add(ubigeo);
+          this.ubiDepartamentos=lstDepa;
+          if (this.ubigeoId==null) ubigeoId=COMBO_COD_ALL;
           /*Categoria del Proyecto*/
-          this.parCategProy=pr.buscarParametroXTipoParametro("IGA");
+          List lstCatPry=pr.buscarParametroXTipoParametro("IGA");
+          Parametro par = new Parametro();
+          par.setCodParametro(COMBO_COD_OTROS);
+          par.setTxtValor(COMBO_TXT_OTROS);
+          lstCatPry.add(par);
+          par = new Parametro();
+          par.setCodParametro(COMBO_COD_ALL);
+          par.setTxtValor(COMBO_TXT_ALL);
+          lstCatPry.add(par);
+          if (this.clsTipificacion==null) clsTipificacion=COMBO_COD_ALL;
+          this.parCategProy=lstCatPry;
           /*Estado del Trámite*/
-          this.parEstadoTramite=pr.buscarParametroXTipoParametro("EST");
+          List lstEstTra = pr.buscarParametroXTipoParametro("EST");
+          lstEstTra.add(par);
+          if (estadoTramite==null) estadoTramite=COMBO_COD_ALL;
+          this.parEstadoTramite=lstEstTra;
           /*Tipo de Acae*/
-          this.parTipoAcae=pr.buscarParametroXTipoParametro("TAC");
+          List lstTipAcae = pr.buscarParametroXTipoParametro("TAC");
+          lstTipAcae.add(par);
+          if (this.tipoAcae==null) tipoAcae=COMBO_COD_ALL;
+          this.parTipoAcae=lstTipAcae;
+          log.info("[ProyectoAction.llenaParametrosIniciales][Fin]");
       }catch(Exception ex){
           ex.printStackTrace();
       }                  
@@ -106,21 +127,37 @@ public class ProyectoAction extends AccionSoporte implements Preparable {
     
     public String buscarInstitucionXTipoAcae(){
       try{
-          System.out.println("buscarInstitucionXTipoAcae Ini");
-          Parametro pr = new Parametro(); 
-          SubSector sb = new SubSector();
+          log.info("[ProyectoAction.buscarInstitucionXTipoAcae][Ini]");
+          Parametro par = new Parametro(); 
+          SubSector sub = new SubSector();
+          List lstIns = new ArrayList();
+          List lstDep = new ArrayList();
           if (this.tipoAcae!=null){
-              System.out.println("this.parInstitucion " + this.tipoAcae);
-              this.parInstitucion=pr.buscarParametroXTipoParametro(this.tipoAcae);
-              if (this.parInstitucion!=null && this.parInstitucion.size()>0){
-                  this.parDependencia=sb.buscarSubsectorXSector(((Parametro)this.parInstitucion.get(0)).getCodParametro()) ;
+              log.info("this.tipoAcae " + this.tipoAcae);
+              if (!this.tipoAcae.equals(COMBO_COD_ALL)){
+                  lstIns=par.buscarParametroXTipoParametro(this.tipoAcae);
+                  if (lstIns==null) lstIns = new ArrayList();
+                  par.setCodParametro(COMBO_COD_ALL);
+                  par.setTxtValor(COMBO_TXT_ALL);
+                  lstIns.add(par);
+                  this.parInstitucion=lstIns;
+                  this.clsSector=COMBO_COD_ALL;
               }else{
-                  this.parInstitucion=new ArrayList();
+                  par.setCodParametro(COMBO_COD_ALL);
+                  par.setTxtValor(COMBO_TXT_ALL);
+                  lstIns.add(par);
+                  this.parInstitucion=lstIns;
+                  this.clsSector=COMBO_COD_ALL;
               }
+              sub.setClsSubSector(COMBO_COD_ALL);
+              sub.setTxtSubSector(COMBO_TXT_ALL);
+              lstDep.add(sub);
+              this.parDependencia=lstDep;
+              this.clsSubSector=COMBO_COD_ALL;
           }else{
               this.parInstitucion=new ArrayList();
           }   
-          System.out.println("buscarInstitucionXTipoAcae Fin");
+          log.info("[ProyectoAction.buscarInstitucionXTipoAcae][Fin]");
       }catch(Exception ex){
         ex.printStackTrace();
       } 
@@ -129,19 +166,32 @@ public class ProyectoAction extends AccionSoporte implements Preparable {
     
     public String buscarDependenciaXInstitucion(){
       try{
-          Parametro pr = new Parametro();
-          SubSector sb = new SubSector();
-          this.parInstitucion=pr.buscarParametroXTipoParametro(this.tipoAcae);
+          log.info("[ProyectoAction.buscarDependenciaXInstitucion][Ini]");
+          Parametro par = new Parametro(); 
+          SubSector sub = new SubSector();
+          List lstIns = new ArrayList();
+          List lstDep = new ArrayList();
+          lstIns=par.buscarParametroXTipoParametro(this.tipoAcae);
+          if (lstIns==null) lstIns = new ArrayList();
+          par.setCodParametro(COMBO_COD_ALL);
+          par.setTxtValor(COMBO_TXT_ALL);
+          lstIns.add(par);
+          this.parInstitucion=lstIns;
           if (this.clsSector!=null){
-              System.out.println("this.clsSector " + this.clsSector);
-              this.parDependencia=sb.buscarSubsectorXSector(this.clsSector) ;
-              if (this.parDependencia!=null && this.parDependencia.size()>0){
-              }else{
-                 this.parDependencia=new ArrayList();
-              }  
+              log.info("this.clsSector " + this.clsSector);
+              if (!this.clsSector.equals(COMBO_COD_ALL)){
+                  lstDep=sub.buscarSubsectorXSector(this.clsSector);
+                  if (lstDep==null) lstDep=new ArrayList();
+              }
+              sub.setClsSubSector(COMBO_COD_ALL);
+              sub.setTxtSubSector(COMBO_TXT_ALL);
+              lstDep.add(sub);
+              this.parDependencia=lstDep;
+              this.clsSubSector=COMBO_COD_ALL;
           }else{
               this.parDependencia=new ArrayList();
           }
+          log.info("[ProyectoAction.buscarDependenciaXInstitucion][Fin]");
       }catch(Exception ex){
         ex.printStackTrace();
       } 
@@ -150,34 +200,46 @@ public class ProyectoAction extends AccionSoporte implements Preparable {
     
     public String buscarProyecto(){
         try{
-            System.out.println("tipoAcae-->"+this.tipoAcae+"-->clsSector-->"+this.clsSector+"-->clsSubSector-->"+this.clsSubSector);
-            Parametro pr = new Parametro();
-            SubSector sb = new SubSector();
+            log.info("[ProyectoAction.buscarProyecto][Ini]");
+            log.info("tipoAcae-->"+this.tipoAcae+"-->clsSector-->"+this.clsSector+"-->clsSubSector-->"+this.clsSubSector);
+            Parametro par = new Parametro();
+            SubSector sub = new SubSector();
+            List lstIns = new ArrayList();
+            List lstDep = new ArrayList();
             /*Institucion*/
-            if (this.tipoAcae!=null){
-              this.parInstitucion=pr.buscarParametroXTipoParametro(this.tipoAcae);
-            }else{
-              this.parInstitucion=new ArrayList();
-            }   
-            /*Dependencia*/
-            if (this.parInstitucion!=null && this.parInstitucion.size()>0){
-             this.parDependencia=sb.buscarSubsectorXSector(this.clsSector) ;
-            }else{
-             this.parDependencia=new ArrayList();
+            if (this.tipoAcae==null) {
+               this.tipoAcae=COMBO_COD_ALL;
+               this.clsSector=COMBO_COD_ALL;
+               this.clsSubSector=COMBO_COD_ALL;
             }
-            this.proyectos=Proyecto.buscarProyecto(this.txtDescripcion,this.ubigeoId,this.clsTipificacion,this.fchExpedienteDesde,this.fchExpedienteHasta,this.estadoTramite,this.clsSector,this.clsSubSector);  
+            if (!this.tipoAcae.equals(COMBO_COD_ALL)){
+              lstIns=par.buscarParametroXTipoParametro(this.tipoAcae);
+            }
+            if (lstIns==null) lstIns = new ArrayList();
+            par.setCodParametro(COMBO_COD_ALL);
+            par.setTxtValor(COMBO_TXT_ALL);
+            lstIns.add(par);
+            this.parInstitucion=lstIns;
+            /*Dependencia*/
+            if (this.clsSector==null) {
+               this.clsSector=COMBO_COD_ALL;
+               this.clsSubSector=COMBO_COD_ALL;
+            }
+            if (!this.clsSector.equals(COMBO_COD_ALL)){
+             lstDep=sub.buscarSubsectorXSector(this.clsSector) ;
+            }
+            sub.setClsSubSector(COMBO_COD_ALL);
+            sub.setTxtSubSector(COMBO_TXT_ALL);
+            lstDep.add(sub);
+            this.parDependencia=lstDep;
+            this.proyectos=Proyecto.buscarProyecto(this.txtDescripcion,this.ubigeoId,this.clsTipificacion,this.fchExpedienteDesde,this.fchExpedienteHasta,this.estadoTramite, this.tipoAcae, this.clsSector,this.clsSubSector);  
+            log.info("[ProyectoAction.buscarProyecto][Fin]");
         }catch(Exception ex){
           ex.printStackTrace();
         } 
         return SUCCESS;  
     }
     
-    public String getParameterValue(String param) {
-      Object varr = ActionContext.getContext().getParameters().get(param);
-      if (varr == null) return "";
-      return ((String[]) varr)[0];
-    }
-
     public void setTxtDescripcion(String txtDescripcion) {
         this.txtDescripcion = txtDescripcion;
     }
@@ -313,4 +375,5 @@ public class ProyectoAction extends AccionSoporte implements Preparable {
     public List getParDependencia() {
         return parDependencia;
     }
+
 }
