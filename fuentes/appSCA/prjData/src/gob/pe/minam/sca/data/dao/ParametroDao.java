@@ -30,4 +30,6 @@ public interface ParametroDao {
   
   public List findParametroXTipoParametro(String tipParametro) throws DAOException;
   
+  public Parametro findParametroXParametro(String tipParametro, String codParametro) throws DAOException;
+  
 }

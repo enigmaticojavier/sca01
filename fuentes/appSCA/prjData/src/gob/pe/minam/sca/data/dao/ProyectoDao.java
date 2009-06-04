@@ -8,6 +8,8 @@ package gob.pe.minam.sca.data.dao;
 
 import gob.pe.minam.sca.framework.exception.DAOException;
 
+import gob.pe.minam.sca.pojo.Proyecto;
+
 import java.util.Date;
 import java.util.List;
 
@@ -21,6 +23,8 @@ public interface ProyectoDao {
   public List buscarProyecto (String txtDescripcion, String ubigeoId,
                               String clsTipificacion, Date fchExpedienteDesde, 
                               Date fchExpedienteHasta, String estadoTramite, 
-                              String clsSector, String clsSubSector) throws DAOException;
+                              String tipoAcae, String clsSector, String clsSubSector) throws DAOException;
+
+  public Proyecto ObtenerProyecto(Integer prjId) throws DAOException;
   
 }
