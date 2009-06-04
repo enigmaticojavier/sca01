@@ -11,7 +11,11 @@ import com.ibatis.dao.client.DaoManager;
 
 import gob.pe.minam.sca.data.DaoConfig;
 import gob.pe.minam.sca.data.dao.AcaeDao;
+import gob.pe.minam.sca.data.dao.ExpedienteDao;
+import gob.pe.minam.sca.data.dao.ExpedienteDocumentoDao;
+import gob.pe.minam.sca.data.dao.ImagenDocumentoDao;
 import gob.pe.minam.sca.data.dao.ParametroDao;
+import gob.pe.minam.sca.data.dao.PeriodoDao;
 import gob.pe.minam.sca.data.dao.ProyectoDao;
 import gob.pe.minam.sca.data.dao.SubSectorDao;
 import gob.pe.minam.sca.data.dao.UbigeoDao;
@@ -25,28 +29,34 @@ import gob.pe.minam.sca.data.dao.UsuarioDao;
 public class ProyectoService {
 
   /* Constants */
-
   private static ProyectoService instance = new ProyectoService();
 
   /* Private Fields */
-
   private DaoManager daoManager = DaoConfig.getDaomanager();
   private ProyectoDao  proyectoDao;
   private ParametroDao parametroDao;
   private UbigeoDao ubigeoDao;
   private SubSectorDao subSectorDao;
+  private ExpedienteDocumentoDao expedienteDocumentoDao;
+  private ImagenDocumentoDao imagenDocumentoDao;
   private AcaeDao acaeDao;
   private UsuarioDao usuarioDao;
+  private ExpedienteDao expedienteDao;
+  private PeriodoDao periodoDao;
   
   /* Constructors */
 
-  private ProyectoService() {
-    proyectoDao   = 	 (ProyectoDao)daoManager.getDao(ProyectoDao.class);
-    parametroDao  = 	 (ParametroDao)daoManager.getDao(ParametroDao.class);
-    subSectorDao  =      (SubSectorDao)daoManager.getDao(SubSectorDao.class);
-    ubigeoDao  =         (UbigeoDao)daoManager.getDao(UbigeoDao.class);
-    acaeDao = (AcaeDao)daoManager.getDao(AcaeDao.class);
-    usuarioDao = (UsuarioDao)daoManager.getDao(UsuarioDao.class);
+  public ProyectoService() {
+    proyectoDao            = (ProyectoDao)daoManager.getDao(ProyectoDao.class);
+    parametroDao           = (ParametroDao)daoManager.getDao(ParametroDao.class);
+    subSectorDao           = (SubSectorDao)daoManager.getDao(SubSectorDao.class);
+    ubigeoDao              = (UbigeoDao)daoManager.getDao(UbigeoDao.class);
+    expedienteDocumentoDao = (ExpedienteDocumentoDao)daoManager.getDao(ExpedienteDocumentoDao.class);
+    imagenDocumentoDao     = (ImagenDocumentoDao)daoManager.getDao(ImagenDocumentoDao.class);
+    expedienteDao          = (ExpedienteDao)daoManager.getDao(ExpedienteDao.class);
+    periodoDao             = (PeriodoDao)daoManager.getDao(PeriodoDao.class);
+    acaeDao                = (AcaeDao)daoManager.getDao(AcaeDao.class);
+    usuarioDao             = (UsuarioDao)daoManager.getDao(UsuarioDao.class);
   }
 
   /* Get Instance */
@@ -69,20 +79,36 @@ public class ProyectoService {
     return parametroDao;
   }
 
+  public ExpedienteDocumentoDao getExpedienteDocumentoDao() {
+    return expedienteDocumentoDao;
+  }
+
+  public ImagenDocumentoDao getImagenDocumentoDao() {
+    return imagenDocumentoDao;
+  }
+
   public UbigeoDao getUbigeoDao() {
     return ubigeoDao;
   }
   
-   public SubSectorDao getSubSectorDao() {
-      return subSectorDao;
-   }
+  public SubSectorDao getSubSectorDao() {
+    return subSectorDao;
+  }
    
-   public AcaeDao getAcaeDao() {
-	return acaeDao;
-   }
+  public AcaeDao getAcaeDao() {
+    return acaeDao;
+  }
 
-    public UsuarioDao getUsuarioDao() {
-            return usuarioDao;
+  public UsuarioDao getUsuarioDao() {
+    return usuarioDao;
+  }
+  
+  public ExpedienteDao getExpedienteDao(){
+    return expedienteDao;
+  }
+  
+    public PeriodoDao getPeriodoDao(){
+      return periodoDao;
     }
-   
+
 }
