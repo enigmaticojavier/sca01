@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Expediente">
+
+  <typeAlias alias="EstadisticaVo" type="gob.pe.minam.sca.vo.EstadisticaVo"/>
+  
+  <resultMap id="EstadisticaResult" class="EstadisticaVo">
+      <result property="clsSector" column="CLSSECTOR"/>
+      <result property="dscClsSector" column="DSCCLSSECTOR"/>
+      <result property="clsTipificacion" column="CLSTIPIFICACION"/>
+      <result property="dscClsTipificacion" column="DSCCLSTIPIFICACION"/>
+      <result property="tipEstadoTramite" column="TIPESTADOTRAMITE"/>
+      <result property="contExp" column="CONTEXP"/>
+  </resultMap>
+  
+  <select id="ListarEstadistica" resultMap="EstadisticaResult" parameterClass="EstadisticaVo">
+    select pry.clssector, ins.txtvalor dscclssector, tes.codparametro clstipificacion, 
+           tes.txtvalor dscclstipificacion, et.tipestadotramite, count(*) contexp
+    from proyecto pry, parametro ins, parametro tac, parametro tes,
+         expediente e, expedientepaso ep, estadostupa et 
+    where ins.tipparametro=tac.codparametro and tac.tipparametro='TAC' and pry.clssector=ins.codparametro 
+    and tes.tipparametro='IGA' and tes.codparametro=pry.clstipificacion
+    and pry.pryid = e.pryid and e.expid = ep.expid
+    and to_char(ep.fchpaso,'YYYYMM')=#periodo# and e.tiptramite=et.tiptramite
+    and ep.tippaso=et.tippaso and tac.codparametro=#tipAcae#
+    group by pry.clssector, ins.txtvalor, tes.codparametro, et.tipestadotramite, tes.txtvalor
+    order by clssector  
+  </select>
+  
+</sqlMap>
+
+
+    
+

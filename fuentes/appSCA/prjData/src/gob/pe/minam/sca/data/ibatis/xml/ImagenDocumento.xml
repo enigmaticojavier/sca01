@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="ImagenDocumento">
+
+  <typeAlias alias="ImagenDocumento" type="gob.pe.minam.sca.pojo.ImagenDocumento"/>
+  
+  <resultMap id="ImagenDocumentoResult" class="ImagenDocumento">
+      <result property="documento.docId" column="docid"/>
+      <result property="nsecuencia" column="nsecuencia"/>
+      <result property="txtRutaImagen" column="txtrutaimagen"/>
+  </resultMap>
+  
+  <select id="BUSCARIMAGENXDOC" parameterClass="int" resultMap="ImagenDocumentoResult">
+      select docid,
+             nsecuencia,
+             txtrutaimagen
+      from imagendocumento
+      where docid=#docid#
+  </select>
+
+</sqlMap>

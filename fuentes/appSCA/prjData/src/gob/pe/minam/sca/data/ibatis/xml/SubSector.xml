@@ -15,13 +15,33 @@
     <result property="txtSubSector" column="TXTSUBSECTOR"/>
   </resultMap>
   
-  <select id="selectAllSubSector" resultClass="SubSector">
+  <select id="SelectAllSubSector" resultClass="SubSector">
     select * from SUBSECTOR
   </select>
 
-  <select id="selectSubsectorBySector" parameterClass="string" resultMap="SubSectorResult">
+  <select id="SelectSubsectorBySector" parameterClass="string" resultMap="SubSectorResult">
     select * from subsector 
     where clssector=#clsSector#
+  </select>
+  
+  <select id="SelectSubsector" parameterClass="SubSector" resultMap="SubSectorResult">
+    select * from subsector 
+    where clssector=#clsSector#
+    and clssubsector=#clsSubSector#
+  </select>
+  
+  <resultMap id="ObtenerSubsectorResult" class="SubSector">
+    <result property="clsSector" column="CLSSECTOR"/>
+    <result property="dscClsSector" column="TXTVALOR"/>
+    <result property="clsSubSector" column="CLSSUBSECTOR"/>
+    <result property="txtSubSector" column="TXTSUBSECTOR"/>
+  </resultMap>
+  <select id="ObtenerSubsector" parameterClass="SubSector" resultMap="ObtenerSubsectorResult">
+    select sub.clssector, ins.txtvalor, sub.clssubsector, sub.txtsubsector
+    from parametro tac, parametro ins, subsector sub
+    where tac.tipparametro='TAC' and 
+    ins.tipparametro=tac.codparametro and ins.codparametro=#clsSector# and
+    sub.clssector=ins.codparametro and sub.clssubsector=#clsSubSector#
   </select>
   
 </sqlMap>

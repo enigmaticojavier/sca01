@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Periodo">
+
+  <typeAlias alias="Periodo" type="gob.pe.minam.sca.pojo.Periodo"/>
+  
+  <resultMap id="PeriodoResult" class="Periodo">
+    <result property="anio" column="ANIO"/>
+    <result property="mes" column="MES"/>
+    <result property="perActual" column="PERACTUAL"/>
+    <result property="estado" column="ESTADO"/>
+    <result property="periodo" column="PERIODO"/>
+  </resultMap>
+  
+  <select id="SelectAllPeriodo" resultMap="PeriodoResult">
+    select anio, mes, peractual, estado, anio || '-' || lpad(mes,2,'0') periodo from periodo order by anio desc, mes desc
+  </select>
+
+</sqlMap>
