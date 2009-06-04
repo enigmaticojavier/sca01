@@ -21,9 +21,9 @@ import java.util.List;
  */
 public class Proyecto implements Serializable{
    
-   private int pryId;
+   private Integer pryId;
    private String ubigeoId;
-   private int personaId;
+   private Integer personaId;
    private String txtCoordenadas;
    private String clsTipificacion;
    private String txtDescripcion;
@@ -31,32 +31,17 @@ public class Proyecto implements Serializable{
    private String clsSector;
    private String clsSubSector;
    private Date fchExpediente;
-   private Persona persona;
+   private Proponente proponente;
+   private Ubigeo ubigeo;
    
    /*added*/
-   private String dscTipificacion;
+   private String dscClsTipificacion;
+   private String dscClsSector;
+   private String dscClsSubSector;
+   private String estadoTramite;
 
-   void Proyecto(int pryId, String ubigeoId, int personaId, 
-                 String txtCoordenadas, String clsTipificacion, String txtDescripcion, 
-                 double mnInversion, String clsSector, String clsSubSector){
-     this.pryId=pryId;
-     this.ubigeoId=ubigeoId;
-     this.personaId=personaId;
-     this.txtCoordenadas=txtCoordenadas;
-     this.clsTipificacion=clsTipificacion;
-     this.txtDescripcion=txtDescripcion;
-     this.mnInversion=mnInversion; 
-     this.clsSector=clsSector; 
-     this.clsSubSector=clsSubSector;
+   void Proyecto(){
    } 
-
-    public void setPryId(int pryId) {
-        this.pryId = pryId;
-    }
-
-    public int getPryId() {
-        return pryId;
-    }
 
     public void setTxtCoordenadas(String txtCoordenadas) {
         this.txtCoordenadas = txtCoordenadas;
@@ -122,39 +107,95 @@ public class Proyecto implements Serializable{
         return ubigeoId;
     }
 
-    public void setPersonaId(int personaId) {
+    public void setUbigeo(Ubigeo ubigeo) {
+        this.ubigeo = ubigeo;
+    }
+
+    public Ubigeo getUbigeo() {
+        return ubigeo;
+    }
+    
+    public void setPryId(Integer pryId) {
+        this.pryId = pryId;
+    }
+
+    public Integer getPryId() {
+        return pryId;
+    }
+
+    public void setPersonaId(Integer personaId) {
         this.personaId = personaId;
     }
 
-    public int getPersonaId() {
+    public Integer getPersonaId() {
         return personaId;
     }
     
-    public void setDscTipificacion(String dscTipificacion) {
-        this.dscTipificacion = dscTipificacion;
+    public void setDscClsTipificacion(String dscClsTipificacion) {
+        this.dscClsTipificacion = dscClsTipificacion;
     }
 
-    public String getDscTipificacion() {
-        return dscTipificacion;
+    public String getDscClsTipificacion() {
+        return dscClsTipificacion;
     }
     
-    public void setPersona(Persona persona) {
-        this.persona = persona;
+    public void setProponente(Proponente proponente) {
+        this.proponente = proponente;
     }
 
-    public Persona getPersona() {
-        return persona;
+    public Proponente getProponente() {
+        return proponente;
+    }
+    
+    public void setDscClsSector(String dscClsSector) {
+        this.dscClsSector = dscClsSector;
+    }
+
+    public String getDscClsSector() {
+        return dscClsSector;
+    }
+
+    public void setDscClsSubSector(String dscClsSubSector) {
+        this.dscClsSubSector = dscClsSubSector;
+    }
+
+    public String getDscClsSubSector() {
+        return dscClsSubSector;
+    }
+    
+    public void setEstadoTramite(String estadoTramite) {
+        this.estadoTramite = estadoTramite;
+    }
+
+    public String getEstadoTramite() {
+        return estadoTramite;
     }
     
     public static List buscarProyecto(String txtDescripcion,/*nombreProyecto*/ String ubigeoId, /*departamento*/
                                       String clsTipificacion,/*categoria*/ Date fchExpedienteDesde, /*Fecha de Presentación Desde*/
                                       Date fchExpedienteHasta,/*Fecha de Presentación Desde*/ String estadoTramite, /*Estado Tramite*/
-                                      String clsSector, /*Institución*/ String clsSubSector /*Dependencia*/) throws NegocioException{
+                                      String tipoAcae, String clsSector, /*Institución*/ String clsSubSector /*Dependencia*/) throws NegocioException{
        try{  
          ProyectoDao proyectoDao = ProyectoService.getInstance().getProyectoDao();
          return proyectoDao.buscarProyecto( txtDescripcion, ubigeoId, clsTipificacion, fchExpedienteDesde,
                                             fchExpedienteHasta, estadoTramite, 
-                                            clsSector, clsSubSector);
+                                            tipoAcae, clsSector, clsSubSector);
+       }catch(DAOException ex){
+         throw new NegocioException(ex.toString(),ex.getCodigoMensajeUsuario());
+       }catch(Exception ex){
+         throw new NegocioException(ex.toString(),"Error producido en Pojo");
+       }
+    }
+    
+    public static Proyecto obtenerProyecto(Integer pryId) throws NegocioException{
+       try{
+         ProyectoDao proyectoDao = ProyectoService.getInstance().getProyectoDao();
+         Proyecto pry = proyectoDao.ObtenerProyecto(pryId);
+         SubSector sub = new SubSector();
+         sub = sub.buscarSubsector(pry.getClsSector(),pry.getClsSubSector());
+         pry.setDscClsSector(sub.getDscClsSector());
+         pry.setDscClsSubSector(sub.getTxtSubSector());
+         return pry;
        }catch(DAOException ex){
          throw new NegocioException(ex.toString(),ex.getCodigoMensajeUsuario());
        }catch(Exception ex){

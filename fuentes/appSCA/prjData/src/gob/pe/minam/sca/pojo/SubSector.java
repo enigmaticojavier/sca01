@@ -21,6 +21,8 @@ public class SubSector implements Serializable{
     private String clsSubSector;
     private String tipSubSector;
     private String txtSubSector;
+    /*added*/
+    private String dscClsSector;
     
     public SubSector() {
     }
@@ -57,6 +59,14 @@ public class SubSector implements Serializable{
         return txtSubSector;
     }
     
+    public void setDscClsSector(String dscClsSector) {
+        this.dscClsSector = dscClsSector;
+    }
+
+    public String getDscClsSector() {
+        return dscClsSector;
+    }
+    
     public static List buscarSubsectorXSector(String sector) throws NegocioException{
        try{  
          SubSectorDao subSectorDao = ProyectoService.getInstance().getSubSectorDao();
@@ -67,4 +77,19 @@ public class SubSector implements Serializable{
          throw new NegocioException(ex.toString(),"Error producido en Pojo");
        }
     }
+    
+    public static SubSector buscarSubsector(String sector, String subsector) throws NegocioException{
+       try{  
+         SubSector s = new SubSector();
+         s.setClsSector(sector);
+         s.setClsSubSector(subsector);
+         SubSectorDao subSectorDao = ProyectoService.getInstance().getSubSectorDao();
+         return subSectorDao.obtenerSubsector(s);
+       }catch(DAOException ex){
+         throw new NegocioException(ex.toString(),ex.getCodigoMensajeUsuario());
+       }catch(Exception ex){
+         throw new NegocioException(ex.toString(),"Error producido en Pojo");
+       }
+    }
+
 }

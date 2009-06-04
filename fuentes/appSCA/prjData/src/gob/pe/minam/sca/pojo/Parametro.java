@@ -104,6 +104,16 @@ public class Parametro implements Serializable{
        }
     }
     
+    public static Parametro buscarParametroXParametro(String tipParametro, String codParametro) throws NegocioException{
+       try{  
+         ParametroDao parametroDao = ProyectoService.getInstance().getParametroDao();
+         return parametroDao.findParametroXParametro(tipParametro,codParametro);
+       }catch(DAOException ex){
+         throw new NegocioException(ex.toString(),ex.getCodigoMensajeUsuario());
+       }catch(Exception ex){
+         throw new NegocioException(ex.toString(),"Error producido en Pojo");
+       }
+    }
     
     
     public static void insertParametro(Parametro parametro) throws NegocioException{
