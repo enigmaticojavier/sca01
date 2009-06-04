@@ -1,6 +1,11 @@
 <%@ page contentType="text/html;charset=ISO-8859-1" language="java" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<jsp:useBean id="date" class="java.util.Date"/>
+
+
+
 <html>
 <head>
     <link href="<s:url value='/css/main.css'/>" rel="stylesheet" type="text/css"/>
@@ -31,15 +36,14 @@
           //}    
         }
         function validar(){
-          alert('jaj');  
           var obj = document.getElementById('fchExpedienteDesde');
           if (!validaFecha(obj)){
-             alert('jaj111');              
+             obj.focus();
              return false;
           }
-          alert('jaj1');  
           obj = document.getElementById('fchExpedienteHasta');
           if (!validaFecha(obj)){
+             obj.focus();
              return false;
           }
           return true;  
@@ -57,72 +61,141 @@
         }
     </script>
 </head>
-<body align="center" leftmargin="0" topmargin="0" width="500">
+<body align="center" leftmargin="0" topmargin="0" width="600">
     
     
+    <br>
     
+        
     <s:if test="mensajeError.codigo!=null">
     <div class="titleDiv">
     <s:label name="mensajeError.mensaje" label="Mensaje" />
     </div>
     </s:if>
-    <!--div class="titleDiv"><s:text name="label.parametro.titulo"/></div-->
-    <h1 align="left"><s:text name="label.proyecto.titulo"/></h1>
-    
-        <form >
-                <div>
+        <s:form theme="simple">
+                
+            <table>    
+            <tr><td align="center">
+                <h1 align="left"><s:text name="label.proyecto.titulo"/></h1>        
+            </td></tr>
+            <tr><td align="center">
                 <table>
-                <s:textfield label="%{getText('label.proyecto.txtDescripcion')}" name="txtDescripcion" value="%{txtDescripcion}" size="40"/>
-                <s:select label="Departamento" name="ubigeoId" value="ubigeoId" list="ubiDepartamentos" listKey="ubigeoId" listValue="txtDescripcion"/>
-                <s:select label="Categoria del Proyecto" name="clsTipificacion" value="clsTipificacion" list="parCategProy" listKey="codParametro" listValue="txtValor"/>
-                </table>
-                </div>
-                <div>
-                <!--s:label label="Fecha de Presentacion" /-->
-                <s:textfield label="%{getText('label.proyecto.fchExpedienteDesde')}" name="fchExpedienteDesde" value="%{fchExpedienteDesde}" size="10">
-                   <s:param name="value">
-                     <s:date name="fchExpedienteDesde" format="dd/MM/yyyy" />
-                   </s:param>
-                </s:textfield>
-                <!--input type=button value="select" onclick="displayDatePicker('fchExpedienteDesde', this);"-->
-                
-                <s:textfield label="%{getText('label.proyecto.fchExpedienteHasta')}" name="fchExpedienteHasta" value="%{fchExpedienteHasta}" size="10">
-                   <s:param name="value">
-                     <s:date name="fchExpedienteHasta" format="dd/MM/yyyy" />
-                   </s:param>
-                </s:textfield>
-                
-                </div>
-                <div>
-                <s:select label="Estado del Tramite" name="estadoTramite" value="estadoTramite" list="parEstadoTramite" listKey="codParametro" listValue="txtValor"/>
-                </div>
-                <div>
-                <s:select label="Tipo Acae" name="tipoAcae" value="tipoAcae" list="parTipoAcae" listKey="codParametro" listValue="txtValor" onchange="javascript:cambiarTipoAcae()"/>
-                </div>
-                <div>
-                <s:select label="Institucion" name="clsSector" value="clsSector" list="parInstitucion" listKey="codParametro" listValue="txtValor" onchange="javascript:cambiarInstitucion()"/>
-                </div>
-                <div>
-                <s:select label="Dependencia" name="clsSubSector" value="clsSubSector" list="parDependencia" listKey="clsSubSector" listValue="txtSubSector"/>
-                </div>
-                
-                <s:submit value="%{getText('button.label.submit')}" onclick="buscarProyecto()"/>
+                  <tr>
+                    <td >
+                        <s:label value="%{getText('label.proyecto.txtDescripcion')}"/>
+                    </td>    
+                    <td>
+                        <s:textfield name="txtDescripcion" value="%{txtDescripcion}" size="60"/>
+                    </td>
+                  </tr>   
+                  <tr> 
+                    <td>
+                        <s:label value="Departamento"/>
+                    </td>    
+                    <td>    
+                        <s:select name="ubigeoId" value="ubigeoId" list="ubiDepartamentos" listKey="ubigeoId" listValue="txtDescripcion"/>
+                    </td>
+                  </tr>    
+                  <tr> 
+                    <td>    
+                        <s:label value="Categoria del Proyecto"/>
+                    </td>    
+                    <td>    
+                        <s:select name="clsTipificacion" value="clsTipificacion" list="parCategProy" listKey="codParametro" listValue="txtValor"/>
+                    </td>    
+                  </tr>  
+                  <tr>
+                    <td>
+                        <s:label value="%{getText('label.proyecto.fchExpediente')}"/>
+                    </td>    
+                    <td>        
+                        <s:label value="Desde"/>
+                        <s:textfield name="fchExpedienteDesde" value="%{fchExpedienteDesde}" size="10" maxLength="10">
+                           <s:param name="value">
+                             <s:date name="fchExpedienteDesde" format="dd/MM/yyyy" />
+                           </s:param>
+                        </s:textfield>
+                        <s:label value="Hasta"/>
+                        <s:textfield name="fchExpedienteHasta" value="%{fchExpedienteHasta}" size="10" maxLength="10">
+                           <s:param name="value">
+                             <s:date name="fchExpedienteHasta" format="dd/MM/yyyy" />
+                           </s:param>
+                        </s:textfield>
+                    </td>    
+                  </tr>  
+                  <tr>
+                    <td>
+                        <s:label value="Estado del Trámite"/>
+                    </td>    
+                    <td>
+                        <s:select name="estadoTramite" value="estadoTramite" list="parEstadoTramite" listKey="codParametro" listValue="txtValor"/>
+                    </td>    
+                  </tr>  
+                  <tr>
+                    <td >
+                        <s:label value="Tipo ACAE" />
+                    </td>    
+                    <td>
+                        <s:select name="tipoAcae" value="tipoAcae" list="parTipoAcae" listKey="codParametro" listValue="txtValor" onchange="javascript:cambiarTipoAcae()"/>
+                    </td>
+                  </tr>   
+                  <tr>
+                    <td>
+                        <s:label value="Institución" />
+                    </td>    
+                    <td>
+                        <s:select name="clsSector" value="clsSector" list="parInstitucion" listKey="codParametro" listValue="txtValor" onchange="javascript:cambiarInstitucion()"/>        
+                    </td>
+                  </tr>  
+                  <tr>
+                    <td>
+                        <s:label value="Dependencia"/>
+                    </td>    
+                    <td>
+                        <s:select name="clsSubSector" value="clsSubSector" list="parDependencia" listKey="clsSubSector" listValue="txtSubSector"/>        
+                    </td>
+                  </tr> 
+                  <tr>
+                    <td colspan="2" align="center">
+                        <s:submit value="%{getText('button.label.buscar')}" onclick="buscarProyecto()"/>        
+                    </td>
+                  </tr> 
+                </table>   
+            </td></tr>
+            <tr><td>
+                <s:set name="proyectos" value="proyectos" scope="request" />
+                <display:table name="proyectos" requestURI="proyecto!buscarProyecto" excludedParams="*" class="dataTable" id="proyecto" pagesize="10" style="width:700" export="true">
+                    <display:setProperty name="export.csv" value="false" /> 
+                    <display:setProperty name="export.xls" value="true" />
+                    <display:setProperty name="export.xml" value="false" />
+                    <display:setProperty name="export.xls.filename" value="proyecto.xls"/> 
+                    <display:column property="pryId" title="" style="width:5"  media="html" />
+                    <display:column property="txtDescripcion" title="Nombre del Proyecto" style="width:450" media="html excel csv" />
+                    <display:column property="dscClsTipificacion" title="Clasificacion" style="width:50" media="html excel csv"/>
+                    <display:column property="proponente.persona.txtRazonSocial" title="Proponente" style="width:50" media="html excel csv"/>
+                    <display:column title="Fecha Presentac" style="width:10" media="html excel csv">
+                        <fmt:formatDate value="${proyecto.fchExpediente}" pattern="dd/MM/yyyy"/> 
+                    </display:column> 
+                    <display:column property="ubigeo.txtDescripcion" title="Departamento" style="width:15" media="html excel csv"/>
+                    <display:column property="estadoTramite" title="Est. Actual Trámite" style="width:10" media="html excel csv"/>
+                    <display:column href="proyectoForm!input" paramId="pryId" paramProperty="pryId" title="Detalle" style="width:5%" media="html">
+                        Detalle
+                    </display:column>
+                    <!--paramId es una propiedad del action -->
+                </display:table>
+                <s:if test="proyectos=null">
+                    No existen proyectos que cumplan el criterio de búsqueda
+                </s:if>
+                <s:actionmessage />
+            </td></tr>
+            <tr><td>
+                <s:if test="proyectos.size>0">
+                    <a href="javascript:nuevoParametro()">Exportar Excel</a>        
+                </s:if>
+            </td></tr>
+        </table>
+        </s:form>
         
-        
-        <display:table name="proyectos" requestURI="index" class="dataTable" id="parametro" pagesize="10" style="width:800">
-            <display:column property="pryId" title="proyecto.pryId" style="width:1%"  />
-            <display:column property="txtDescripcion" title="proyecto.txtDescripcion" style="width:35%"  />
-            <display:column property="clsTipificacion" title="proyecto.clsTipificacion" style="width:35%"  />
-            <display:column property="personaId" title="proyecto.personaId" style="width:35%"  />
-            <display:column property="fchExpediente" title="proyecto.fchExpediente" style="width:35%"  />
-            <display:column property="ubigeoId" title="proyecto.ubigeoId" style="width:35%"  />
-            <display:column property="ubigeoId" title="proyecto.estado" style="width:5%"  />
-            <display:column href="proyecto!input" paramId="pryId" paramProperty="pryId" title="Ver Detalle" style="width:5%" >Detalle</display:column>
-            <!--paramId es una propiedad del action -->
-        </display:table>
-        
-        <s:actionmessage />
-        
-    </form>
+    
 </body>
 </html>
