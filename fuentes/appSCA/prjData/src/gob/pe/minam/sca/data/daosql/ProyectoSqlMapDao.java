@@ -18,7 +18,10 @@ import gob.pe.minam.sca.data.dao.ProyectoDao;
 
 import gob.pe.minam.sca.framework.exception.DAOException;
 import gob.pe.minam.sca.pojo.Persona;
+import gob.pe.minam.sca.pojo.Proponente;
 import gob.pe.minam.sca.pojo.Proyecto;
+
+import gob.pe.minam.sca.pojo.Ubigeo;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -48,8 +51,7 @@ public class ProyectoSqlMapDao extends BaseSqlMapDao implements ProyectoDao {
     public List buscarProyecto (String txtDescripcion, String ubigeoId,
                                 String clsTipificacion, Date fchExpedienteDesde, 
                                 Date fchExpedienteHasta, String estadoTramite, 
-                                String clsSector, String clsSubSector) throws DAOException{
-                                
+                                String tipoAcae, String clsSector, String clsSubSector) throws DAOException{
         try{
           Map map = new HashMap(); 
           map.put("p_cDescripcion",txtDescripcion);
@@ -58,6 +60,7 @@ public class ProyectoSqlMapDao extends BaseSqlMapDao implements ProyectoDao {
           map.put("p_dFchExpedienteDesde",fchExpedienteDesde);
           map.put("p_dFchExpedienteHasta",fchExpedienteHasta);
           map.put("p_cEstadoTramite",estadoTramite);
+          map.put("p_cTipoAcae",tipoAcae);
           map.put("p_cClsSector",clsSector);
           map.put("p_cClsSubSector",clsSubSector);
           System.out.println("txtDescripcion"+txtDescripcion);
@@ -73,23 +76,29 @@ public class ProyectoSqlMapDao extends BaseSqlMapDao implements ProyectoDao {
           List lstProyecto = new ArrayList();
           DateFormat df= new SimpleDateFormat("dd/MM/yyyy");
           while (itProyecto.hasNext()){
-                System.out.println("prueba");
                 DynaBean bean = (DynaBean)itProyecto.next();
                 Proyecto pr = new Proyecto();
                 pr.setPryId(Integer.parseInt((String)bean.get("PRYID")));
                 pr.setTxtDescripcion((String)bean.get("TXTDESCRIPCION"));
                 if (bean.get("PERSONAID")!=null){
+                    Proponente prop = new Proponente();
                     Persona p=new Persona();
                     pr.setPersonaId(Integer.parseInt((String)bean.get("PERSONAID")));
                     p.setTxtRazonSocial((String)bean.get("TXTRAZONSOCIAL"));
-                    pr.setPersona(p);
+                    prop.setPersona(p);
+                    pr.setProponente(prop);
+                    
                 }  
                 if (bean.get("FCHEXPEDIENTE")!=null){
                     pr.setFchExpediente(df.parse((String)bean.get("FCHEXPEDIENTE")));
                 }    
-                pr.setUbigeoId((String)bean.get("UBIGEOID"));
+                Ubigeo ubigeo = new Ubigeo();
+                ubigeo.setUbigeoId((String)bean.get("UBIGEOID"));
+                ubigeo.setTxtDescripcion((String)bean.get("DSCUBIGEO"));
+                pr.setUbigeo(ubigeo);
                 pr.setClsTipificacion((String)bean.get("CLSTIPIFICACION"));
-                pr.setDscTipificacion((String)bean.get("DSCTIPIFICACION"));
+                pr.setDscClsTipificacion((String)bean.get("DSCTIPIFICACION"));
+                pr.setEstadoTramite((String)bean.get("ESTTRAM"));
                 lstProyecto.add(pr);
           }
           return lstProyecto;
@@ -102,5 +111,19 @@ public class ProyectoSqlMapDao extends BaseSqlMapDao implements ProyectoDao {
           throw new DAOException(ex.toString(),"Error producido en la Eliminación de Proyecto");
         }        
     }
+    
+    public Proyecto ObtenerProyecto(Integer prjId) throws DAOException{
+        try{
+          return (Proyecto)queryForObject("ObtenerProyecto",prjId);
+        }catch(SqlMapException ex){
+          throw new DAOException(ex.toString(),"Error producido en BD : No se puede ejecutar la Eliminación de Proyecto");
+        }catch(DaoException ex){
+          throw new DAOException(ex.toString(),"Error producido en BD : Eliminación de Proyecto presenta problemas");
+        }catch(Exception ex){
+          ex.printStackTrace();  
+          throw new DAOException(ex.toString(),"Error producido en la Eliminación de Proyecto");
+        }
+    }
+    
   
 }

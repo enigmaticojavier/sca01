@@ -9,6 +9,8 @@ import gob.pe.minam.sca.data.dao.SubSectorDao;
 
 import gob.pe.minam.sca.framework.exception.DAOException;
 
+import gob.pe.minam.sca.pojo.SubSector;
+
 import java.util.List;
 
 public class SubSectorSqlMapDao  extends BaseSqlMapDao implements SubSectorDao  {
@@ -19,7 +21,7 @@ public class SubSectorSqlMapDao  extends BaseSqlMapDao implements SubSectorDao  
     
     public List buscarSubSectorXSector(String sector) throws DAOException{
         try{
-          return queryForList("selectSubsectorBySector",sector);
+          return queryForList("SelectSubsectorBySector",sector);
         }catch(SqlMapException ex){
           throw new DAOException(ex.toString(),"Error producido en BD : No se puede ejecutar la Obtención de SubSector");
         }catch(DaoException ex){
@@ -28,4 +30,17 @@ public class SubSectorSqlMapDao  extends BaseSqlMapDao implements SubSectorDao  
           throw new DAOException(ex.toString(),"Error producido en la Carga de Obtención de SubSector ");
         }  
     }
+    
+    public SubSector obtenerSubsector(SubSector subSector) throws DAOException{
+        try{
+          return (SubSector)queryForObject("ObtenerSubsector",subSector);
+        }catch(SqlMapException ex){
+          throw new DAOException(ex.toString(),"Error producido en BD : No se puede ejecutar la Obtención de SubSector");
+        }catch(DaoException ex){
+          throw new DAOException(ex.toString(),"Error producido en BD : Obtención de SubSector presenta problemas");
+        }catch(Exception ex){
+          throw new DAOException(ex.toString(),"Error producido en la Carga de Obtención de SubSector ");
+        }  
+    }
+    
 }
