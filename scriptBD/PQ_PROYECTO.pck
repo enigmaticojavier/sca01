@@ -96,7 +96,7 @@ create or replace package body PQ_PROYECTO is
          where pr.personaid = pe.personaid(+)
            and pr.ubigeoid = u.ubigeoid(+)
            and (nDescripcion = 0 or
-               pr.txtdescripcion like '%' || UPPER(p_cDescripcion) || '%') --'PRJ'
+               UPPER(pr.txtdescripcion) like '%' || UPPER(p_cDescripcion) || '%') --'PRJ'
            and (nUbigeoId = 0 or
                substr(pr.ubigeoid, 0, 2) = substr(p_cUbigeoId, 0, 2)) --'150000'
            and (nClsTipificacion = 0 or
@@ -127,7 +127,7 @@ create or replace package body PQ_PROYECTO is
            where pr.personaid = pe.personaid(+)
              and pr.ubigeoid = u.ubigeoid(+)
              and (nDescripcion = 0 or
-                 pr.txtdescripcion like '%' || UPPER(p_cDescripcion) || '%') --'PRJ'
+                 UPPER(pr.txtdescripcion) like '%' || UPPER(p_cDescripcion) || '%') --'PRJ'
              and (nUbigeoId = 0 or
                  substr(pr.ubigeoid, 0, 2) = substr(p_cUbigeoId, 0, 2)) --'150000'
              and clstipificacion NOT IN('CA0','CA1','CA2','CA3') 
@@ -154,7 +154,7 @@ create or replace package body PQ_PROYECTO is
            where pr.personaid = pe.personaid(+)
              and pr.ubigeoid = u.ubigeoid(+)
              and (nDescripcion = 0 or
-                 pr.txtdescripcion like '%' || UPPER(p_cDescripcion) || '%') --'PRJ'
+                 UPPER(pr.txtdescripcion) like '%' || UPPER(p_cDescripcion) || '%') --'PRJ'
              and (nUbigeoId = 0 or
                  substr(pr.ubigeoid, 0, 2) = substr(p_cUbigeoId, 0, 2)) --'150000'
              and (nClsTipificacion = 0 or
