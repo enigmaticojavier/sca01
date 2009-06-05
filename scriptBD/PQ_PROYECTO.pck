@@ -13,6 +13,9 @@ create or replace package PQ_PROYECTO is
   FUNCTION PARAMETRO_BUSCAR(p_cTipParametro VARCHAR2,
                             p_cCodParametro VARCHAR2) RETURN VARCHAR2;
   FUNCTION GETESTADOTRAMITE(p_cPryId VARCHAR2) RETURN VARCHAR2;
+  FUNCTION GETESTADOTRAMITETXT(p_cPryId VARCHAR2) RETURN VARCHAR2;
+  FUNCTION GETDEPARTAMENTO(p_cUbigeoid VARCHAR2) RETURN VARCHAR2;
+  
 end PQ_PROYECTO;
 /
 create or replace package body PQ_PROYECTO is
@@ -85,13 +88,13 @@ create or replace package body PQ_PROYECTO is
         select pryid,
                pr.txtdescripcion,
                u.ubigeoid,
-               u.txtdescripcion DSCUBIGEO,
+               GETDEPARTAMENTO(u.ubigeoid) DSCUBIGEO,
                clstipificacion,
                PARAMETRO_BUSCAR('IGA', clstipificacion) dsctipificacion,
                pr.personaid personaid,
                pe.txtrazonsocial,
                TO_CHAR(fchexpediente, 'dd/mm/yyyy') fchexpediente,
-               GETESTADOTRAMITE(pryid) esttram
+               GETESTADOTRAMITETXT(pryid) esttram
           from proyecto pr, persona pe, ubigeo u
          where pr.personaid = pe.personaid(+)
            and pr.ubigeoid = u.ubigeoid(+)
@@ -116,13 +119,13 @@ create or replace package body PQ_PROYECTO is
           select pryid,
                  pr.txtdescripcion,
                  u.ubigeoid,
-                 u.txtdescripcion DSCUBIGEO,
+                 GETDEPARTAMENTO(u.ubigeoid) DSCUBIGEO,
                  clstipificacion,
                  PARAMETRO_BUSCAR('IGA', clstipificacion) dsctipificacion,
                  pr.personaid personaid,
                  pe.txtrazonsocial,
                  TO_CHAR(fchexpediente, 'dd/mm/yyyy') fchexpediente,
-                 GETESTADOTRAMITE(pryid) esttram
+                 GETESTADOTRAMITETXT(pryid) esttram
             from proyecto pr, persona pe, ubigeo u
            where pr.personaid = pe.personaid(+)
              and pr.ubigeoid = u.ubigeoid(+)
@@ -143,13 +146,13 @@ create or replace package body PQ_PROYECTO is
           select pryid,
                  pr.txtdescripcion,
                  u.ubigeoid,
-                 u.txtdescripcion DSCUBIGEO,
+                 GETDEPARTAMENTO(u.ubigeoid) DSCUBIGEO,
                  clstipificacion,
                  PARAMETRO_BUSCAR('IGA', clstipificacion) dsctipificacion,
                  pr.personaid personaid,
                  pe.txtrazonsocial,
                  TO_CHAR(fchexpediente, 'dd/mm/yyyy') fchexpediente,
-                 GETESTADOTRAMITE(pryid) esttram
+                 GETESTADOTRAMITETXT(pryid) esttram
             from proyecto pr, persona pe, ubigeo u
            where pr.personaid = pe.personaid(+)
              and pr.ubigeoid = u.ubigeoid(+)
@@ -209,6 +212,46 @@ create or replace package body PQ_PROYECTO is
     END;
     RETURN c_TipEstTram;
   END;
+  
+  FUNCTION GETESTADOTRAMITETXT(p_cPryId VARCHAR2) RETURN VARCHAR2 IS
+    c_TipEstTram parametro.txtvalor%TYPE;
+  BEGIN
+    BEGIN
+      select par.txtvalor
+        into c_TipEstTram
+        from expediente e, expedientepaso ep, estadostupa et, parametro par
+       where e.expid = ep.expid
+         and e.tiptramite = et.tiptramite
+         and ep.tippaso = et.tippaso
+         and et.tipestadotramite=par.codparametro
+         and (ep.expid, ep.nsecuencia) in
+             (select ep.expid, max(ep.nsecuencia)
+                from expedientepaso ep, expediente e
+               where ep.expid = e.expid
+                 and e.pryid = p_cPryId
+               group by e.tiptramite, ep.expid);
+    EXCEPTION
+      WHEN OTHERS THEN
+        c_TipEstTram := '';
+    END;
+    RETURN c_TipEstTram;
+  END;
+  
+  FUNCTION GETDEPARTAMENTO(p_cUbigeoid VARCHAR2) RETURN VARCHAR2 IS
+    c_TxtDescripcion ubigeo.txtdescripcion%TYPE;
+  BEGIN
+    BEGIN
+      select u.txtdescripcion
+        into c_TxtDescripcion
+        from ubigeo u
+        where u.ubigeoid=substr(p_cUbigeoid,0,2)||'0000';
+    EXCEPTION
+      WHEN OTHERS THEN
+        c_TxtDescripcion:= '';
+    END;
+    RETURN c_TxtDescripcion;
+  END;
+  
 
 END;
 /
