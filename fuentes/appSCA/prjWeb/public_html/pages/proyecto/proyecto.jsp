@@ -28,7 +28,7 @@
         }
         function buscarProyecto(){
           var valid = validar();  
-          alert(valid);
+          //alert(valid);
           //if (valid){
               var frm=document.forms[0];
               frm.action="proyecto!buscarProyecto";
@@ -186,9 +186,9 @@
                             <display:setProperty name="export.xml" value="false" />
                             <display:setProperty name="export.xls.filename" value="proyecto.xls"/> 
                             <display:column property="pryId" title="" style="width:5"  media="html" />
-                            <display:column property="txtDescripcion" title="Nombre del Proyecto" style="width:550" media="html excel csv" />
+                            <display:column property="txtDescripcion" title="Nombre del Proyecto" style="width:600" media="html excel csv" />
                             <display:column property="dscClsTipificacion" title="Clasificación" style="width:50" media="html excel csv"/>
-                            <display:column property="proponente.persona.txtRazonSocial" title="Proponente" style="width:50" media="html excel csv"/>
+                            <display:column property="proponente.persona.txtRazonSocial" title="Proponente" style="width:70" media="html excel csv"/>
                             <display:column title="Fec Presen" style="width:10" media="html excel csv">
                                 <fmt:formatDate value="${proyecto.fchExpediente}" pattern="dd/MM/yyyy"/> 
                             </display:column> 
