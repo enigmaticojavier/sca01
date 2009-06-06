@@ -8,12 +8,12 @@
     <title><s:text name="label.parametro.titulo"/></title>
     <script language="javascript">
         function cambiarTipoParametro(){
-          var frm=document.forms[0];
+          var frm=frmParametro;
           frm.action="index";
           frm.submit();
         }
         function nuevoParametro(){
-          var frm=document.forms[0];
+          var frm=frmParametro;
           frm.action="parametro!input";
           frm.submit();
         }
@@ -34,7 +34,7 @@
         </td>
         <td width="560" valign="top">
     <!-- Copia Skeleton Fin -->
-        <s:form theme="simple">
+        <s:form theme="simple" name="frmParametro">
         <table width="100%">
           <tr> 
             <td colspan="2">

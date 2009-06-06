@@ -1,10 +1,11 @@
+<html>
 <%@ page contentType="text/html;charset=ISO-8859-1" language="java" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-
+<body>
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
 	<tr>
 	<td>			  
@@ -76,7 +77,7 @@
              </tr>
            </table>
            <br />
-            <s:form action="doLogin" method="POST" >            
+            <s:form action="doLogin" method="POST">
               <tr>
                 <td height="34" valign="middle" class="login1"><div align="center"><br />
                 <span class="style2">ACCESO A USUARIOS</span></div></td>
@@ -111,3 +112,5 @@
        </td>
        </tr>
 </table>           
+</body>
+</html>

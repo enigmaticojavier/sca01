@@ -14,13 +14,13 @@
     <script language="javascript">
         function saveParametro(){
           if (validar()){  
-              var frm=document.forms[0];
+              var frm=frmParametro;
               frm.action="parametro!save.action";
               frm.submit();
           }    
         }
         function validar(){
-          var frm=document.forms[0];
+          var frm=frmParametro;
           var obj=document.getElementById('parametro.codParametro');
           if (obj.value==""){
              alert("Ingrese Código Parametro");
@@ -58,7 +58,7 @@
     <h1><s:property value="#title"/></h1>
     <s:actionerror />
     <s:actionmessage />   
-    <s:form theme="simple" method="post">
+    <s:form theme="simple" method="post" name="frmParametro">
         <table>    
             <tr>
                 <td>

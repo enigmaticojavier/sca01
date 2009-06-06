@@ -17,12 +17,14 @@
     <title><s:text name="label.proyecto.titulo"/></title>
     <script language="javascript">
         function cambiarTipoAcae(){
-          var frm=document.forms[0];
+          var frm=frmProyecto;
+          frm.method="post";
           frm.action="proyecto!buscarInstitucionXTipoAcae";
           frm.submit();  
         }
         function cambiarInstitucion(){
-          var frm=document.forms[0];
+          var frm=frmProyecto;
+          frm.method="post";
           frm.action="proyecto!buscarDependenciaXInstitucion";
           frm.submit();
         }
@@ -30,7 +32,8 @@
           var valid = validar();  
           //alert(valid);
           //if (valid){
-              var frm=document.forms[0];
+              var frm=frmProyecto;
+              frm.method="post";
               frm.action="proyecto!buscarProyecto";
               frm.submit();  
           //}    
@@ -83,7 +86,7 @@
             <s:label name="mensajeError.mensaje" label="Mensaje" />
             </div>
             </s:if>
-            <s:form theme="simple" method="POST">
+            <s:form name="frmProyecto" theme="simple" method="POST">
                 <table>    
                 <tr><td align="center">
                     <h1 align="left"><s:text name="label.proyecto.titulo"/></h1>        
