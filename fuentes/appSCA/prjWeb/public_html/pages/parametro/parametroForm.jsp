@@ -38,11 +38,27 @@
     </script>
 </head>
 <body>
- <h1><s:text name="label.parametro.titulo"/></h1>
-<h1><s:property value="#title"/></h1>
-<s:actionerror />
-<s:actionmessage />
-    <s:form theme="simple" action="javascript:saveParametro()" method="post">
+ 
+    
+        <!-- Copia Skeleton Ini -->
+    <table summary="Main Table for Techshelp" border="0" cellpadding="0" cellspacing="0" width="1000">
+      <tr>
+        <td colspan="2">
+         <%@ include file="/pages/tiles/cabecera.jsp" %>
+        </td>
+      </tr>
+      <tr>
+        <td width="240" align="left" valign="top">
+          <%@ include file="/pages/tiles/menu.jsp"%>
+        </td>
+        <td width="560" valign="top">
+    <!-- Copia Skeleton Fin -->    
+    
+    <h1><s:text name="label.parametro.titulo"/></h1>
+    <h1><s:property value="#title"/></h1>
+    <s:actionerror />
+    <s:actionmessage />   
+    <s:form theme="simple" method="post">
         <table>    
             <tr>
                 <td>
@@ -91,12 +107,24 @@
             </tr>    
             <tr>    
                 <td colspan="2">    
-                    <s:submit value="%{getText('button.label.submit')}"/>
-                    <!--s:submit value="%{getText('button.label.cancel')}" name="redirect-action:index"/-->
+                    <!--s:submit value="%{getText('button.label.submit')}"/-->
+                    <input type="button" value="Grabar" onclick="javascript:saveParametro()"/>
                     <input type="button" value="Regresar" onclick="javascript:window.history.go(-1)"/>
                 </td>    
             </tr>
         </table>
     </s:form>
+    
+    <!-- Copia Skeleton Ini -->
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" align="left" background="public/img/web/cool-blue_r9_c8.jpg" valign="top" width="100%">        
+          <%@ include file="/pages/tiles/pie.jsp" %>
+        </td>
+      </tr>
+      </table>
+    <!-- Copia Skeleton Fin -->
+    
 </body>
 </html>

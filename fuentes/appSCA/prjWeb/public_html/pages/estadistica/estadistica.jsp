@@ -33,10 +33,20 @@
 </head>
 <body align="center" leftmargin="0" topmargin="0" width="500">
     
+    <!-- Copia Skeleton Ini -->
+    <table summary="Main Table for Techshelp" border="0" cellpadding="0" cellspacing="0" width="1000">
+      <tr>
+        <td colspan="2">
+         <%@ include file="/pages/tiles/cabecera.jsp" %>
+        </td>
+      </tr>
+      <tr>
+        <td width="240" align="left" valign="top">
+          <%@ include file="/pages/tiles/menu.jsp"%>
+        </td>
+        <td width="560" valign="top">
+    <!-- Copia Skeleton Fin -->
     
-    <br>
-    
-        
     <s:if test="mensajeError.codigo!=null">
     <div class="titleDiv">
     <s:label name="mensajeError.mensaje" label="Mensaje" />
@@ -91,7 +101,17 @@
             </td></tr>
         </table>
         </s:form>
-        
+    
+    <!-- Copia Skeleton Ini -->
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" align="left" background="public/img/web/cool-blue_r9_c8.jpg" valign="top" width="100%">        
+          <%@ include file="/pages/tiles/pie.jsp" %>
+        </td>
+      </tr>
+      </table>
+    <!-- Copia Skeleton Fin --> 
     
 </body>
 </html>

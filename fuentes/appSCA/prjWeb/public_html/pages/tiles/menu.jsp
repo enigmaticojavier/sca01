@@ -1,10 +1,14 @@
-
+<%@ page contentType="text/html;charset=ISO-8859-1" language="java" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
 	<tr>
 	<td>			  
          <script language="javascript">
-
             function MM_openBrWindow2(theURL,winName,features) {
               window.open(theURL,winName,features);
             }
@@ -51,7 +55,10 @@
                     
                     <tr>
                       <td width="4%">&nbsp;</td>
-                      <td width="96%"><a href="index.php?idTipoElementoInformacion=12">Estadisticas</a></td>
+                      <s:url action="estadistica" id="urlEstadistica">
+                        <s:param name="parametro.idParametro" value="idEstadistica"/>
+                      </s:url>
+                      <td width="96%"><a href="<s:property value="#urlEstadistica"/>">Estadistica</a></td>
                     </tr>
                     <tr>
                       <td colspan="2"><img src="public/img/web/fondo_menu.jpg" width="220" height="1" /></td>
@@ -69,7 +76,7 @@
              </tr>
            </table>
            <br />
-            <s:form action="/doLogin" method="POST" >            
+            <s:form action="doLogin" method="POST" >            
               <tr>
                 <td height="34" valign="middle" class="login1"><div align="center"><br />
                 <span class="style2">ACCESO A USUARIOS</span></div></td>

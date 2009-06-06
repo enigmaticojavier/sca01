@@ -1,8 +1,10 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=ISO-8859-1" language="java" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 <html>
 <head>
     <link href="<s:url value='/css/main.css'/>" rel="stylesheet" type="text/css"/>
+    <LINK HREF="styles/displaytagsca.css" REL="stylesheet" TYPE="text/css">
     <title><s:text name="label.parametro.titulo"/></title>
     <script language="javascript">
         function cambiarTipoParametro(){
@@ -10,49 +12,42 @@
           frm.action="index";
           frm.submit();
         }
+        function nuevoParametro(){
+          var frm=document.forms[0];
+          frm.action="parametro!input";
+          frm.submit();
+        }
     </script>
 </head>
-<body>
-<div class="titleDiv"><s:text name="label.parametro.titulo"/></div>
-
+<body align="center" leftmargin="0" topmargin="0" width="700">
+    
+    <s:if test="mensajeError.codigo!=null">
+    <div class="titleDiv">
+    <s:label name="mensajeError.mensaje" label="Mensaje" />
+    </div>
+    </s:if>
+    <!--div class="titleDiv"><s:text name="label.parametro.titulo"/></div-->
+    <h1 align="left"><s:text name="label.parametro.titulo"/></h1>
     <form action="">
-    <s:select name="tipParametro" value="tipParametro" list="tipoParametros" listKey="tipParametro" listValue="txtParametro" onchange="javascript:cambiarTipoParametro()"/>
+    <s:select label="Tipo de Parámetro" name="tipParametro" value="tipParametro" list="tipoParametros" listKey="tipParametro" listValue="txtParametro" onchange="javascript:cambiarTipoParametro()"/>
+    <br/>
     
-    <h1><s:text name="label.parametro.titulo"/></h1>
-    <s:url id="url" action="parametro!input" />
-    <a href="<s:property value="#url"/>">Nuevo Parametro</a>
-    <br/><br/>
-    <table class="borderAll">
-        <tr>
-            <th><s:text name="label.parametro.idParametro"/></th>
-            <th><s:text name="label.parametro.txtValor"/></th>
-            <th><s:text name="label.parametro.codParametro"/></th>
-            <th>&nbsp;</th>
-            <th>&nbsp;</th>
-        </tr>
+    <br/>
+        <s:set name="parametros" value="parametros" scope="request" />
+        <display:table name="parametros" requestURI="index" excludedParams="*" class="dataTable" id="parametro" pagesize="10" style="width:700" export="false">
+            <display:setProperty name="export.csv" value="false" /> 
+            <display:setProperty name="export.xls" value="false" />
+            <display:setProperty name="export.xml" value="false" />
+            <display:setProperty name="export.xls.filename" value="parametro.xls"/> 
+            <display:column property="idParametro" title="Id" style="width:10"  />
+            <display:column property="txtValor" title="Descripción del Parámetro" style="width:400"  />
+            <display:column property="codParametro" title="Valor del Parámetro" style="width:50"  />
+            <display:column href="parametro!input" paramId="idParametro" paramProperty="idParametro" title="Detalle" style="width:15" >Detalle</display:column>
+            <%/*display:column href="parametro!delete" paramId="parametro.idParametro" paramProperty="idParametro" title="Eliminar" style="width:5%">Eliminar</display:column*/%>
+        </display:table>
+        <a href="javascript:nuevoParametro()">Nuevo Parametro</a>
+        <s:actionmessage />
         
-        <s:iterator value="parametros" status="status">
-            <tr class="<s:if test="#status.even">even</s:if><s:else>odd</s:else>">
-                <td class="nowrap"><s:property value="idParametro"/></td>
-                <td class="nowrap"><s:property value="txtValor"/></td>
-                <td class="nowrap"><s:property value="codParametro"/></td>
-                <td class="nowrap">
-                    <s:url action="parametro!input" id="url">
-                        <s:param name="parametro.idParametro" value="idParametro"/>
-                    </s:url>
-                    <a href="<s:property value="#url"/>">Edit</a>
-                </td>    
-                <td class="nowrap">    
-                    &nbsp;&nbsp;&nbsp;
-                    <s:url action="parametro!delete" id="url">
-                        <s:param name="parametro.idParametro" value="idParametro"/>
-                    </s:url>
-                    <a href="<s:property value="#url"/>">Delete</a>
-                </td>
-            </tr>
-        </s:iterator>
-    </table>
-    
     </form>
 </body>
 </html>

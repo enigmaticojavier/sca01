@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
 	<tr>
 	<td>			  
@@ -36,8 +37,10 @@
                     </tr>
                     <tr>
                       <td width="4%">&nbsp;</td>
-                      <td width="96%"><a href="index.php?idTipoElementoInformacion=14">Estadísticas</a></td>
-                    </tr>
+                      <s:url action="estadistica" id="urlEstadistica">
+                        <s:param name="parametro.idParametro" value="idEstadistica"/>
+                      </s:url>
+                      <td width="96%"><a href="<s:property value="#urlEstadistica"/>">Estadistica</a></td>
                     <tr>
                       <td colspan="2"><img src="public/img/web/fondo_menu.jpg" width="220" height="1" /></td>
                     </tr>

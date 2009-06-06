@@ -65,118 +65,142 @@
 </head>
 <body align="center" leftmargin="0" topmargin="0" width="500">
     
-    <br>
-    <s:if test="mensajeError.codigo!=null">
-    <div class="titleDiv">
-    <s:label name="mensajeError.mensaje" label="Mensaje" />
-    </div>
-    </s:if>
-        <s:form theme="simple">
-                
-            <table>    
-            <tr><td align="center">
-                <h1 align="left"><s:text name="label.proyecto.titulo"/></h1>        
-            </td></tr>
-            <tr><td align="center">
-                <table>
-                  <tr>
-                    <td >
-                        <s:label value="%{getText('label.proyecto.txtDescripcion')}"/>
-                    </td>    
-                    <td>
-                        <s:textfield name="proyecto.txtDescripcion" value="%{proyecto.txtDescripcion}" size="40" readonly="true"/>
-                    </td>
-                  </tr>   
-                  <tr> 
-                    <td>    
-                        <s:label value="Categoría del Proyecto"/>
-                    </td>    
-                    <td>    
-                        <s:textfield name="proyecto.dscClsTipificacion" value="%{proyecto.dscClsTipificacion}" size="60" readonly="true"/>
-                    </td>    
-                  </tr>  
-                  <tr> 
-                    <td>    
-                        <s:label value="Fecha Inicio"/>
-                    </td>    
-                    <td>    
-                        <s:textfield name="proyecto.fchExpediente" value="%{proyecto.fchExpediente}" size="10" readonly="true">
-                           <s:param name="value"> 
-                            <s:date name="proyecto.fchExpediente" format="dd/MM/yyyy" />
-                           </s:param> 
-                        </s:textfield>
-                    </td>    
-                  </tr>  
-                  <tr> 
-                    <td>    
-                        <s:label value="Institución" />
-                    </td>    
-                    <td>    
-                        <s:textfield name="proyecto.dscClsSector" value="%{proyecto.dscClsSector}" size="40" readonly="true"/>
-                    </td>    
-                  </tr>  
-                  <tr> 
-                    <td>    
-                        <s:label value="Dependencia"/>
-                    </td>
-                    <td>    
-                        <s:textfield name="proyecto.dscClsSubSector" value="%{proyecto.dscClsSubSector}" size="40" readonly="true"/>
-                    </td>    
-                  </tr>  
-                <!--/table>   
-            </td></tr>
-            <tr><td align="center">
-                <table-->
-                  <tr> 
-                    <td>    
-                        <s:label value="RUC" />
-                    </td>    
-                    <td>    
-                        <s:textfield name="proyecto.proponente.persona.numDocumentoPer" value="%{proyecto.proponente.persona.numDocumentoPer}" size="10" readonly="true"/>
-                    </td>    
-                  <tr> 
-                    <td>    
-                        <s:label value="Razón Social" />
-                    </td>    
-                    <td>    
-                        <s:textfield name="proyecto.proponente.persona.txtRazonSocial" value="%{proyecto.proponente.persona.txtRazonSocial}" size="40" readonly="true"/>
-                    </td>    
-                  <tr> 
-                    <td>    
-                        <s:label value="Representante Legal" />
-                    </td>    
-                    <td>    
-                        <s:textfield name="proyecto.proponente.txtNombresRl" value="%{proyecto.proponente.txtNombresRl}" size="40" readonly="true"/>
-                    </td>    
-                  </tr>  
-                </table>   
-            </td></tr>
-            <tr><td>
-                
-                <display:table name="expedienteDocumentos" requestURI="proyectoForm" class="dataTable" id="expedienteDocumento" pagesize="10" style="width:620">
-                    <display:column property="expedientePaso.expediente.expId" title="Id" style="width:1%"  />
-                    <display:column property="expedientePaso.expediente.numExpediente" title="Nro Exp" style="width:40%"  />
-                    <display:column title="Fecha Transacción"> 
-                        <fmt:formatDate value="${expedientePaso.expediente.fchExpediente}" pattern="dd/MM/yyyy"/> 
-                    </display:column>
-                    <display:column property="documento.dscTipoDocumento" title="Tipo Documento" style="width:40%"  />
-                    <display:column property="expedientePaso.dscTipPaso" title="Descripción" style="width:40%"  />
-                    <display:column property="documento.codDocumento" title="Nro Documento" style="width:40%"  />
-                    <display:column title="Archivos" style="width:40%"> 
-                        <c:forEach var="imagen" items="${expedienteDocumento.documento.lstImagenDocumento}" varStatus="rowCounter">
-                            <a href="<c:out value="${imagen.txtRutaImagen}"/>">Ver</a>
-                        </c:forEach>
-                    </display:column>
-                    <%/*display:column href="proyectoExpediente!input" paramId="pryId" paramProperty="pryId" title="Ver Detalle" style="width:5%"--Detalle</isplay:column--*/%>
-                    <!--paramId es una propiedad del action -->
-                </display:table>
-                <s:actionmessage />
-            </td></tr>
-            <tr><td>
-               <a href="javascript:window.history.go(-1)">Retornar</a>&nbsp;        
-            </td></tr>
-        </table>
-        </s:form>
+    <!-- Copia Skeleton Ini -->
+    <table summary="Main Table for Techshelp" border="0" cellpadding="0" cellspacing="0" width="1000">
+      <tr>
+        <td colspan="2">
+         <%@ include file="/pages/tiles/cabecera.jsp" %>
+        </td>
+      </tr>
+      <tr>
+        <td width="240" align="left" valign="top">
+          <%@ include file="/pages/tiles/menu.jsp"%>
+        </td>
+        <td width="800" valign="top">
+    <!-- Copia Skeleton Fin -->
+    
+        <s:if test="mensajeError.codigo!=null">
+        <div class="titleDiv">
+        <s:label name="mensajeError.mensaje" label="Mensaje" />
+        </div>
+        </s:if>
+            <s:form theme="simple">
+                    
+                <table>    
+                <tr><td align="center">
+                    <h1 align="left"><s:text name="label.proyecto.titulo"/></h1>        
+                </td></tr>
+                <tr><td align="center">
+                    <table>
+                      <tr>
+                        <td >
+                            <s:label value="%{getText('label.proyecto.txtDescripcion')}"/>
+                        </td>    
+                        <td>
+                            <s:textfield name="proyecto.txtDescripcion" value="%{proyecto.txtDescripcion}" size="40" readonly="true"/>
+                        </td>
+                      </tr>   
+                      <tr> 
+                        <td>    
+                            <s:label value="Categoría del Proyecto"/>
+                        </td>    
+                        <td>    
+                            <s:textfield name="proyecto.dscClsTipificacion" value="%{proyecto.dscClsTipificacion}" size="60" readonly="true"/>
+                        </td>    
+                      </tr>  
+                      <tr> 
+                        <td>    
+                            <s:label value="Fecha Inicio"/>
+                        </td>    
+                        <td>    
+                            <s:textfield name="proyecto.fchExpediente" value="%{proyecto.fchExpediente}" size="10" readonly="true">
+                               <s:param name="value"> 
+                                <s:date name="proyecto.fchExpediente" format="dd/MM/yyyy" />
+                               </s:param> 
+                            </s:textfield>
+                        </td>    
+                      </tr>  
+                      <tr> 
+                        <td>    
+                            <s:label value="Institución" />
+                        </td>    
+                        <td>    
+                            <s:textfield name="proyecto.dscClsSector" value="%{proyecto.dscClsSector}" size="40" readonly="true"/>
+                        </td>    
+                      </tr>  
+                      <tr> 
+                        <td>    
+                            <s:label value="Dependencia"/>
+                        </td>
+                        <td>    
+                            <s:textfield name="proyecto.dscClsSubSector" value="%{proyecto.dscClsSubSector}" size="40" readonly="true"/>
+                        </td>    
+                      </tr>  
+                    <!--/table>   
+                </td></tr>
+                <tr><td align="center">
+                    <table-->
+                      <tr> 
+                        <td>    
+                            <s:label value="RUC" />
+                        </td>    
+                        <td>    
+                            <s:textfield name="proyecto.proponente.persona.numDocumentoPer" value="%{proyecto.proponente.persona.numDocumentoPer}" size="10" readonly="true"/>
+                        </td>    
+                      <tr> 
+                        <td>    
+                            <s:label value="Razón Social" />
+                        </td>    
+                        <td>    
+                            <s:textfield name="proyecto.proponente.persona.txtRazonSocial" value="%{proyecto.proponente.persona.txtRazonSocial}" size="40" readonly="true"/>
+                        </td>    
+                      <tr> 
+                        <td>    
+                            <s:label value="Representante Legal" />
+                        </td>    
+                        <td>    
+                            <s:textfield name="proyecto.proponente.txtNombresRl" value="%{proyecto.proponente.txtNombresRl}" size="40" readonly="true"/>
+                        </td>    
+                      </tr>  
+                    </table>   
+                </td></tr>
+                <tr><td>
+                    
+                    <display:table name="expedienteDocumentos" requestURI="proyectoForm" class="dataTable" id="expedienteDocumento" pagesize="10" style="width:620">
+                        <display:column property="expedientePaso.expediente.expId" title="Id" style="width:1%"  />
+                        <display:column property="expedientePaso.expediente.numExpediente" title="Nro Exp" style="width:40%"  />
+                        <display:column title="Fecha Transacción"> 
+                            <fmt:formatDate value="${expedientePaso.expediente.fchExpediente}" pattern="dd/MM/yyyy"/> 
+                        </display:column>
+                        <display:column property="documento.dscTipoDocumento" title="Tipo Documento" style="width:40%"  />
+                        <display:column property="expedientePaso.dscTipPaso" title="Descripción" style="width:40%"  />
+                        <display:column property="documento.codDocumento" title="Nro Documento" style="width:40%"  />
+                        <display:column title="Archivos" style="width:40%"> 
+                            <c:forEach var="imagen" items="${expedienteDocumento.documento.lstImagenDocumento}" varStatus="rowCounter">
+                                <a href="<c:out value="${imagen.txtRutaImagen}"/>">Ver</a>
+                            </c:forEach>
+                        </display:column>
+                        <%/*display:column href="proyectoExpediente!input" paramId="pryId" paramProperty="pryId" title="Ver Detalle" style="width:5%"--Detalle</isplay:column--*/%>
+                        <!--paramId es una propiedad del action -->
+                    </display:table>
+                    <s:actionmessage />
+                </td></tr>
+                <tr><td>
+                   <a href="javascript:window.history.go(-1)">Retornar</a>&nbsp;        
+                </td></tr>
+            </table>
+            </s:form>
+        
+    <!-- Copia Skeleton Ini -->
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" align="left" background="public/img/web/cool-blue_r9_c8.jpg" valign="top">        
+          <%@ include file="/pages/tiles/pie.jsp" %>
+        </td>
+      </tr>
+      </table>
+    <!-- Copia Skeleton Fin -->
         
     
 </body>
