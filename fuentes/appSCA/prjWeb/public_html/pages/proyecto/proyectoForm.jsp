@@ -170,7 +170,7 @@
                         <display:column property="expedientePaso.expediente.expId" title="Id" style="width:1%"  />
                         <display:column property="expedientePaso.expediente.numExpediente" title="Nro Exp" style="width:40%"  />
                         <display:column title="Fecha Transacción"> 
-                            <fmt:formatDate value="${expedientePaso.expediente.fchExpediente}" pattern="dd/MM/yyyy"/> 
+                            <fmt:formatDate value="${expedienteDocumento.expedientePaso.expediente.fchExpediente}" pattern="dd/MM/yyyy"/> 
                         </display:column>
                         <display:column property="documento.dscTipoDocumento" title="Tipo Documento" style="width:40%"  />
                         <display:column property="expedientePaso.dscTipPaso" title="Descripción" style="width:40%"  />

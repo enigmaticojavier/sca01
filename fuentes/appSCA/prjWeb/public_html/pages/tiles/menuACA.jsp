@@ -41,6 +41,7 @@
                         <s:param name="parametro.idParametro" value="idEstadistica"/>
                       </s:url>
                       <td width="96%"><a href="<s:property value="#urlEstadistica"/>">Estadistica</a></td>
+                    </tr>  
                     <tr>
                       <td colspan="2"><img src="public/img/web/fondo_menu.jpg" width="220" height="1" /></td>
                     </tr>
