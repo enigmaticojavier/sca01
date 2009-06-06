@@ -14,7 +14,7 @@
       <result property="documento.docId" column="docid"/>
       <result property="expedientePaso.expediente.numExpediente" column="numexpediente"/>
       <result property="expedientePaso.expediente.fchExpediente" column="fchexpediente"/>
-      <result property="expedientePaso.dscTipPaso" column="dscTipPaso"/>
+      <!--result property="expedientePaso.dscTipPaso" column="dscTipPaso"/-->
       <result property="documento.dscTipoDocumento" column="txtvalor"/>
       <result property="documento.codDocumento" column="coddocumento"/>
   </resultMap>

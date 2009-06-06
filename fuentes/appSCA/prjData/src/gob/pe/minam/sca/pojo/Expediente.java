@@ -1,5 +1,5 @@
 /***********************************************************************
- * Module:  Proyecto.java
+ * Module:  Expediente.java
  * Author:  Danny Espíritu
  * Purpose: Define Clase Expediente
  ***********************************************************************/
@@ -7,7 +7,6 @@ package gob.pe.minam.sca.pojo;
 
 import gob.pe.minam.sca.data.ProyectoService;
 import gob.pe.minam.sca.data.dao.ExpedienteDao;
-import gob.pe.minam.sca.data.dao.ExpedienteDocumentoDao;
 import gob.pe.minam.sca.framework.exception.DAOException;
 import gob.pe.minam.sca.framework.exception.NegocioException;
 
@@ -121,6 +120,8 @@ public class Expediente {
                     tmpDscClsSector=est.getDscClsSector();
                     tmpDscClsTipificacion=est.getDscClsTipificacion();
                 }
+                System.out.println("tmpClsSector " + tmpClsSector + " tmpClsTipificacion " + tmpClsTipificacion + " tmpDscClsSector " + tmpDscClsSector + " tmpDscClsTipificacion " + tmpDscClsTipificacion);
+                System.out.println("est.getClsSector() " + est.getClsSector() + " est.getClsTipificacion() " + est.getClsTipificacion() + " est.getTipEstadoTramite() " + est.getTipEstadoTramite());
                 if ( tmpClsSector.equals(est.getClsSector()) && tmpClsTipificacion.equals(est.getClsTipificacion()) ){
                     if (est.getTipEstadoTramite().equals("EVA")){
                         evaluacion+=est.getContExp(); 
@@ -144,6 +145,8 @@ public class Expediente {
                     estRes.setDesaprobado(desaprobado);
                     estRes.setAnulado(anulado);
                     estRes.setDesistido(desistido);
+                    System.out.println("Insertando1----->");
+                    estRes.setTotal(estRes.getEvaluacion()+estRes.getAprobado()+estRes.getDesaprobado()+estRes.getAnulado()+estRes.getDesistido());
                     lstEstRes.add(estRes);
                     tmpClsSector=est.getClsSector();
                     tmpClsTipificacion=est.getClsTipificacion();
@@ -162,7 +165,7 @@ public class Expediente {
                         desistido+=est.getContExp();
                     }
                 }
-                if (i==0 || i==lstEstadistica.size()-1){
+                if ( (i==0 && i==lstEstadistica.size()-1) || i==lstEstadistica.size()-1 ){
                     estRes = new EstadisticaVo();
                     estRes.setClsSector(tmpClsSector);
                     estRes.setClsTipificacion(tmpClsTipificacion);
@@ -174,6 +177,7 @@ public class Expediente {
                     estRes.setAnulado(anulado);
                     estRes.setDesistido(desistido);
                     estRes.setTotal(estRes.getEvaluacion()+estRes.getAprobado()+estRes.getDesaprobado()+estRes.getAnulado()+estRes.getDesistido());
+                    System.out.println("Insertando2----->");
                     lstEstRes.add(estRes);
                 }
             }

@@ -25,10 +25,10 @@
     where ins.tipparametro=tac.codparametro and tac.tipparametro='TAC' and pry.clssector=ins.codparametro 
     and tes.tipparametro='IGA' and tes.codparametro=pry.clstipificacion
     and pry.pryid = e.pryid and e.expid = ep.expid
-    and to_char(ep.fchpaso,'YYYYMM')=#periodo# and e.tiptramite=et.tiptramite
+    and #periodo#>=to_char(ep.fchpaso,'YYYYMM') and e.tiptramite=et.tiptramite
     and ep.tippaso=et.tippaso and tac.codparametro=#tipAcae#
     group by pry.clssector, ins.txtvalor, tes.codparametro, et.tipestadotramite, tes.txtvalor
-    order by clssector  
+    order by clssector, clstipificacion  
   </select>
   
 </sqlMap>
