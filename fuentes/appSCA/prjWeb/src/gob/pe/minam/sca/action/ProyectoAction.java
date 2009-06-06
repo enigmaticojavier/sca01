@@ -233,6 +233,7 @@ public class ProyectoAction extends AccionSoporte implements Preparable {
             lstDep.add(sub);
             this.parDependencia=lstDep;
             this.proyectos=Proyecto.buscarProyecto(this.txtDescripcion,this.ubigeoId,this.clsTipificacion,this.fchExpedienteDesde,this.fchExpedienteHasta,this.estadoTramite, this.tipoAcae, this.clsSector,this.clsSubSector);  
+            log.info(this.proyectos==null?"this.proyectos.size=0":"this.proyectos.size="+this.proyectos.size());
             log.info("[ProyectoAction.buscarProyecto][Fin]");
         }catch(Exception ex){
           ex.printStackTrace();

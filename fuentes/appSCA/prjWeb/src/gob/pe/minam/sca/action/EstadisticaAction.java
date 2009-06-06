@@ -88,7 +88,7 @@ public class EstadisticaAction extends AccionSoporte implements Preparable {
         String tmpPeriodo=this.periodo.substring(0,4) + this.periodo.substring(5,7);
         log.info("this.tipAcae " + this.tipAcae + "tmpPeriodo"+tmpPeriodo);
         this.estadisticas = exp.listarEstadistica(this.tipAcae,tmpPeriodo);
-        log.info("[EstadisticaAction.list][Ini]");
+        log.info("[EstadisticaAction.list][Fin]");
         return SUCCESS;
       }catch(Exception ex){
         ex.printStackTrace();
