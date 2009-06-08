@@ -12,14 +12,14 @@ import gob.pe.minam.sca.pojo.Usuario;
 
 public interface UsuarioDao {
 
-	  public Usuario getUsuarioByKey(Usuario usuario);
+      public Usuario getUsuarioByKey(Usuario usuario);
 
-	  public List getUsuario(Usuario usuario);
+      public List getUsuario(Usuario usuario);
 
-	  public Usuario insertUsuario(Usuario usuario);
+      public void insertUsuario(Usuario usuario);
 
-	  public Usuario updateUsuario(Usuario usuario);
+      public void updateUsuario(Usuario usuario);
 
-	  public void deleteUsuario(Usuario usuario);
+      public void deleteUsuario(Usuario usuario);
 
 }

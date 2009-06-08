@@ -9,6 +9,8 @@ package gob.pe.minam.sca.data.dao;
 import gob.pe.minam.sca.framework.exception.DAOException;
 import gob.pe.minam.sca.pojo.Parametro;
 
+import gob.pe.minam.sca.pojo.Ubigeo;
+
 import java.util.List;
 
 /**
@@ -16,8 +18,11 @@ import java.util.List;
  * @version 1.0
  */
 
-public interface UbigeoDao {
+ public interface UbigeoDao {
 
-  public List listarDepartamento() throws DAOException;
-  
-}
+   public List listarDepartamento() throws DAOException;
+   
+   public List listarProvincia(Ubigeo ubigeo) throws DAOException;
+   
+   public List listarDistrito(Ubigeo ubigeo) throws DAOException;
+ }

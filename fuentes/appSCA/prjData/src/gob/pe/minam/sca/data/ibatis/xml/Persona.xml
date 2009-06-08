@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Persona">
+
+  <typeAlias alias="Persona" type="gob.pe.minam.sca.pojo.Persona"/>
+
+  <resultMap id="PersonaRSMap" class="Persona"> 
+    <result property="personaId" column="PERSONAID"/>
+    <result property="ubigeoId" column="UBIGEOID"/>
+    <result property="tipDocumentoPer" column="TIPDOCUMENTOPER"/>
+    <result property="numDocumentoPer" column="NUMDOCUMENTOPER"/>
+    <result property="tipPersona" column="TIPPERSONA"/>    
+    <result property="txtRazonSocial" column="TXTRAZONSOCIAL"/>
+    <result property="txtDomicilio" column="TXTDOMICILIO"/>    
+    <result property="telefono" column="TELEFONO"/>
+    <result property="txtEmail" column="TXTEMAIL"/>
+    <result property="fax" column="FAX"/>    
+  </resultMap>  
+     
+   <select id="getPersonaByKey" resultClass="Persona" parameterClass="Persona">
+    SELECT PERSONAID, UBIGEOID, TIPDOCUMENTOPER, NUMDOCUMENTOPER, TIPPERSONA,
+    TXTRAZONSOCIAL, TXTDOMICILIO, TELEFONO, TXTEMAIL, FAX 
+    FROM PERSONA WHERE PERSONAID = #personaId#
+   </select>
+     <update id="updatePersona" parameterClass="Persona">
+    UPDATE PERSONA SET UBIGEOID=#ubigeoId#, TXTRAZONSOCIAL=#txtRazonSocial#, 
+    TXTDOMICILIO=#txtDomicilio#, TELEFONO=#telefono#, TXTEMAIL=#txtEmail#, FAX=#fax#
+    WHERE PERSONAID = #personaId#
+   </update>
+
+ <insert id="insertPersona" parameterClass="Persona">
+    INSERT INTO PERSONA(PERSONAID, 
+    UBIGEOID, 
+    TIPPERSONA,
+    TXTRAZONSOCIAL, 
+    TXTDOMICILIO, 
+    TELEFONO, 
+    TXTEMAIL, 
+    FAX)
+    VALUES (#personaId#, 
+    #ubigeoId#,
+    'ACA',
+    #txtRazonSocial#, 
+    #txtDomicilio#, 
+    #telefono#, 
+    #txtEmail#, 
+    #fax#)
+   </insert>
+
+  <select id="getNextItem" resultClass="java.lang.Integer" parameterClass="int">
+        select PERSONAID_SEQUENCE.NEXTVAL from dual
+   </select>
+  
+</sqlMap>

@@ -13,27 +13,27 @@ import gob.pe.minam.sca.pojo.Acae;
 public class AcaeSqlMapDao extends BaseSqlMapDao implements AcaeDao {
 	
    public AcaeSqlMapDao(DaoManager daoManager) {
-		    super(daoManager);
+        super(daoManager);
    }
 	  
    public Acae getAcaeByKey(Acae acae) throws DAOException {
-	    return (Acae) queryForObject("getAcaeByKey", acae);
+        return (Acae) queryForObject("getAcaeByKey", acae);
    }
 
-   public List<Acae> getAcae(Acae acae) throws DAOException {
-	   return (List<Acae>) queryForList("getAcae", acae);
+   public List getAcae(Acae acae) throws DAOException {
+	return (List) queryForList("getAcae", acae);
    }
    
-   public Object insertAcae(Acae acae) throws DAOException {
-	   return (Object) insert("insertAcae", acae);
+   public void insertAcae(Acae acae) throws DAOException {
+        insert("insertAcae", acae);
    }
    
-   public int updateAcae(Acae acae) throws DAOException {
-	   return update("updateAcae", acae);
+   public void updateAcae(Acae acae) throws DAOException {
+        update("updateAcae", acae);
    }
    
    public void deleteAcae(Acae acae) throws DAOException {
-	   delete("deleteAcae", acae);
+        delete("deleteAcae", acae);
    }
 
 }

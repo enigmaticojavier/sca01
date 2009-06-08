@@ -6,6 +6,11 @@ package gob.pe.minam.sca.pojo;
  * Purpose: Defines the Class Persona
  ***********************************************************************/
 
+import gob.pe.minam.sca.data.ProyectoService;
+
+import gob.pe.minam.sca.data.dao.PersonaDao;
+import gob.pe.minam.sca.framework.exception.DAOException;
+
 import java.util.*;
 
 /** Maestro de personas
@@ -30,13 +35,12 @@ public class Persona {
    private String txtEmail;
    /** @pdOid 75e794b2-f524-4c1d-9c7d-0b5db4986946 */
    private String fax;
-      
+   private String ubigeoId;
+   
    /** @pdOid 90e22fa9-7b4c-4542-8c93-53056e5bd89d
        @pdRoleInfo migr=yes name=DocumentoPersona assc=Association14 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Composition */
    public List<DocumentoPersona> documentoPersona;
-   /** @pdOid 4e6fa3e4-dd86-4bf2-9294-8e8e05f4b98f
-       @pdRoleInfo migr=yes name=Usuario assc=Association19 coll=java.util.Collection impl=java.util.HashSet mult=0..* */
-   public java.util.List<Usuario> usuario;
+   
 
    public Integer getPersonaId() {
 	return personaId;
@@ -104,11 +108,31 @@ public class Persona {
 	public void setDocumentoPersona(List<DocumentoPersona> documentoPersona) {
 		this.documentoPersona = documentoPersona;
 	}
-	public java.util.List<Usuario> getUsuario() {
-		return usuario;
-	}
-	public void setUsuario(java.util.List<Usuario> usuario) {
-		this.usuario = usuario;
-	}
-   
+
+    public static Persona getPersonaByKey(Persona persona){
+        ProyectoService proyectoService = ProyectoService.getInstance();
+        PersonaDao personaDao = proyectoService.getPersonaDao();
+        return personaDao.getPersonaByKey(persona);
+    }
+ 
+    public static Integer getNextItem() {
+           ProyectoService proyectoService = ProyectoService.getInstance();
+           PersonaDao personaDao = proyectoService.getPersonaDao();
+           return personaDao.getNextItem();
+       }
+
+       public static void insertPersona(Persona persona) throws DAOException {
+           ProyectoService proyectoService = ProyectoService.getInstance();
+           PersonaDao personaDao = proyectoService.getPersonaDao();
+           personaDao.insertPersona(persona);
+       }
+       
+
+    public void setUbigeoId(String ubigeoId) {
+        this.ubigeoId = ubigeoId;
+    }
+
+    public String getUbigeoId() {
+        return ubigeoId;
+    }
 }

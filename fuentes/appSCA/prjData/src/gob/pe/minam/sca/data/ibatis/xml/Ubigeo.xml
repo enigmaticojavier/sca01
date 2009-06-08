@@ -27,5 +27,16 @@
     SELECT * FROM UBIGEO T 
     WHERE SUBSTR(UBIGEOID,3,4)='0000' ORDER BY T.TXTDESCRIPCION
   </select>
-  
+  <select id="selectProvincia" parameterClass="Ubigeo" resultMap="UbigeoResult">
+    SELECT * FROM UBIGEO T 
+    WHERE SUBSTR(UBIGEOID,1,2)=#codDepartamento#
+       AND SUBSTR(UBIGEOID,3,2) &lt; &gt;'00'
+       AND SUBSTR(UBIGEOID,5,2)='00' ORDER BY TXTDESCRIPCION
+  </select>
+  <select id="selectDistrito" parameterClass="Ubigeo" resultMap="UbigeoResult">
+    SELECT * FROM UBIGEO T 
+    WHERE SUBSTR(UBIGEOID,1,2)=#codDepartamento#
+        AND SUBSTR(UBIGEOID,3,2)=#codProvincia#
+        AND SUBSTR(UBIGEOID,5,2)&lt; &gt;'00' ORDER BY TXTDESCRIPCION   
+  </select>
 </sqlMap>

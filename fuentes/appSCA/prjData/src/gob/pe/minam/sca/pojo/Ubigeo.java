@@ -16,9 +16,12 @@ import java.io.Serializable;
 import java.util.List;
 
 public class Ubigeo implements Serializable{
-    String ubigeoId;
-    String txtDescripcion;
-    String txtDescripcionLarga;
+    private String ubigeoId;
+    private String txtDescripcion;
+    private String txtDescripcionLarga;
+    private String codDepartamento;
+    private String codProvincia;
+    private String codDistrito;
     
     public Ubigeo() {
     }
@@ -48,13 +51,61 @@ public class Ubigeo implements Serializable{
     }
     
     public static List listarDepartamento() throws NegocioException{
-       try{  
-         UbigeoDao ubigeoDao = ProyectoService.getInstance().getUbigeoDao();
-         return ubigeoDao.listarDepartamento();
+       try {
+           UbigeoDao ubigeoDao = ProyectoService.getInstance().getUbigeoDao();
+           return ubigeoDao.listarDepartamento();
        }catch(DAOException ex){
          throw new NegocioException(ex.toString(),ex.getCodigoMensajeUsuario());
        }catch(Exception ex){
          throw new NegocioException(ex.toString(),"Error producido en Pojo");
        }
+    }
+    
+    public static List listarProvincia(Ubigeo ubigeo) throws NegocioException {        
+        try {
+            ProyectoService proyectoService = ProyectoService.getInstance();
+            UbigeoDao ubigeoDao = proyectoService.getUbigeoDao();
+            return ubigeoDao.listarProvincia(ubigeo);
+        } catch (DAOException ex) {
+            throw new NegocioException(ex.toString(),ex.getCodigoMensajeUsuario());
+        } catch(Exception ex){
+            throw new NegocioException(ex.toString(),"Error producido en Pojo");
+       }
+    }
+    
+    public static List listarDistrito(Ubigeo ubigeo) throws NegocioException {
+        try {
+            ProyectoService proyectoService = ProyectoService.getInstance();
+            UbigeoDao ubigeoDao = proyectoService.getUbigeoDao();
+            return ubigeoDao.listarDistrito(ubigeo);
+        } catch (DAOException ex) {
+            throw new NegocioException(ex.toString(),ex.getCodigoMensajeUsuario());
+        } catch(Exception ex){
+            throw new NegocioException(ex.toString(),"Error producido en Pojo");
+        }
+    }
+    
+    public void setCodProvincia(String codProvincia) {
+        this.codProvincia = codProvincia;
+    }
+
+    public String getCodProvincia() {
+        return codProvincia;
+    }
+
+    public void setCodDistrito(String codDistrito) {
+        this.codDistrito = codDistrito;
+    }
+
+    public String getCodDistrito() {
+        return codDistrito;
+    }
+
+    public void setCodDepartamento(String codDepartamento) {
+        this.codDepartamento = codDepartamento;
+    }
+
+    public String getCodDepartamento() {
+        return codDepartamento;
     }
 }

@@ -21,41 +21,52 @@ public class Usuario {
    private String tipUsuario;
    private String txtValor;
    
-	public String getUsuario() {
-		return usuario;
-	}
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
-	}
-	public Integer getPersonaId() {
-		return personaId;
-	}
-	public void setPersonaId(Integer personaId) {
-		this.personaId = personaId;
-	}	
-	public String getCodClave() {
-		return codClave;
-	}
-	public void setCodClave(String codClave) {
-		this.codClave = codClave;
-	}
-	public String getTipUsuario() {
-		return tipUsuario;
-	}
-	public void setTipUsuario(String tipUsuario) {
-		this.tipUsuario = tipUsuario;
-	}
-		
-	public String getTxtValor() {
-		return txtValor;
-	}
-	public void setTxtValor(String txtValor) {
-		this.txtValor = txtValor;
-	}
-	public static Usuario getUsuarioByKey(Usuario usuario){
-		ProyectoService proyectoService = ProyectoService.getInstance();
-		UsuarioDao usuarioDao = proyectoService.getUsuarioDao();		
-		return usuarioDao.getUsuarioByKey(usuario);
-	}
+    public String getUsuario() {
+            return usuario;
+    }
+    public void setUsuario(String usuario) {
+            this.usuario = usuario;
+    }
+    public Integer getPersonaId() {
+            return personaId;
+    }
+    public void setPersonaId(Integer personaId) {
+            this.personaId = personaId;
+    }	
+    public String getCodClave() {
+            return codClave;
+    }
+    public void setCodClave(String codClave) {
+            this.codClave = codClave;
+    }
+    public String getTipUsuario() {
+            return tipUsuario;
+    }
+    public void setTipUsuario(String tipUsuario) {
+            this.tipUsuario = tipUsuario;
+    }
+            
+    public String getTxtValor() {
+            return txtValor;
+    }
+    public void setTxtValor(String txtValor) {
+            this.txtValor = txtValor;
+    }
+    public static Usuario getUsuarioByKey(Usuario usuario){
+            ProyectoService proyectoService = ProyectoService.getInstance();
+            UsuarioDao usuarioDao = proyectoService.getUsuarioDao();		
+            return usuarioDao.getUsuarioByKey(usuario);
+    }
+    public static void insertUsuario(Usuario usuario) {
+        ProyectoService proyectoService = ProyectoService.getInstance();
+        UsuarioDao usuarioDao = proyectoService.getUsuarioDao();
+        usuarioDao.insertUsuario(usuario);
+    }
+    
+    public static void updateUsuario(Usuario usuario) {
+        ProyectoService proyectoService = ProyectoService.getInstance();
+        UsuarioDao usuarioDao = proyectoService.getUsuarioDao();
+        usuarioDao.updateUsuario(usuario);
+    }
    
 }

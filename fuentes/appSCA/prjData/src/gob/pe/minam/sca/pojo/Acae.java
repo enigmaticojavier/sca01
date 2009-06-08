@@ -37,119 +37,119 @@ public class Acae extends Persona {
    
    public List<Expediente> expediente;
 	
-	public java.lang.String getTipAcae() {
-	return tipAcae;
-	}
+    public java.lang.String getTipAcae() {
+    return tipAcae;
+    }
 
-	public void setTipAcae(java.lang.String tipAcae) {
-		this.tipAcae = tipAcae;
-	}
-	
-	public java.lang.String getTipDocumentoGer() {
-		return tipDocumentoGer;
-	}
-	
-	public void setTipDocumentoGer(java.lang.String tipDocumentoGer) {
-		this.tipDocumentoGer = tipDocumentoGer;
-	}
-	
-	public java.lang.String getCodDocumentoGer() {
-		return codDocumentoGer;
-	}
-	
-	public void setCodDocumentoGer(java.lang.String codDocumentoGer) {
-		this.codDocumentoGer = codDocumentoGer;
-	}
-	
-	public java.lang.String getTxtApellidosNombres() {
-		return txtApellidosNombres;
-	}
-	
-	public void setTxtApellidosNombres(java.lang.String txtApellidosNombres) {
-		this.txtApellidosNombres = txtApellidosNombres;
-	}
-	
-	public java.lang.String getTxtCargo() {
-		return txtCargo;
-	}
-	
-	public void setTxtCargo(java.lang.String txtCargo) {
-		this.txtCargo = txtCargo;
-	}
-	
-	public java.lang.String getTelefonoGer() {
-		return telefonoGer;
-	}
-	
-	public void setTelefonoGer(java.lang.String telefonoGer) {
-		this.telefonoGer = telefonoGer;
-	}
-	
-	public java.lang.String getClsSector() {
-		return clsSector;
-	}
-	
-	public void setClsSector(java.lang.String clsSector) {
-		this.clsSector = clsSector;
-	}
-	
-	public java.lang.String getClsSubSector() {
-		return clsSubSector;
-	}
-	
-	public void setClsSubSector(java.lang.String clsSubSector) {
-		this.clsSubSector = clsSubSector;
-	}
-	
-	public String getTxtValor() {
-		return txtValor;
-	}
-	
-	public void setTxtValor(String txtValor) {
-		this.txtValor = txtValor;
-	}
-	
-	public String getTxtSubSector() {
-		return txtSubSector;
-	}
-	
-	public void setTxtSubSector(String txtSubSector) {
-		this.txtSubSector = txtSubSector;
-	}
-	
-	public List<Expediente> getExpediente() {
-		return expediente;
-	}
-	
-	public void setExpediente(List<Expediente> expediente) {
-		this.expediente = expediente;
-	}
-	
-	public void setFechaActual(String fechaActual) {
-		this.fechaActual = fechaActual;
-	}
+    public void setTipAcae(java.lang.String tipAcae) {
+            this.tipAcae = tipAcae;
+    }
+    
+    public java.lang.String getTipDocumentoGer() {
+            return tipDocumentoGer;
+    }
+    
+    public void setTipDocumentoGer(java.lang.String tipDocumentoGer) {
+            this.tipDocumentoGer = tipDocumentoGer;
+    }
+    
+    public java.lang.String getCodDocumentoGer() {
+            return codDocumentoGer;
+    }
+    
+    public void setCodDocumentoGer(java.lang.String codDocumentoGer) {
+            this.codDocumentoGer = codDocumentoGer;
+    }
+    
+    public java.lang.String getTxtApellidosNombres() {
+            return txtApellidosNombres;
+    }
+    
+    public void setTxtApellidosNombres(java.lang.String txtApellidosNombres) {
+            this.txtApellidosNombres = txtApellidosNombres;
+    }
+    
+    public java.lang.String getTxtCargo() {
+            return txtCargo;
+    }
+    
+    public void setTxtCargo(java.lang.String txtCargo) {
+            this.txtCargo = txtCargo;
+    }
+    
+    public java.lang.String getTelefonoGer() {
+            return telefonoGer;
+    }
+    
+    public void setTelefonoGer(java.lang.String telefonoGer) {
+            this.telefonoGer = telefonoGer;
+    }
+    
+    public java.lang.String getClsSector() {
+            return clsSector;
+    }
+    
+    public void setClsSector(java.lang.String clsSector) {
+            this.clsSector = clsSector;
+    }
+    
+    public java.lang.String getClsSubSector() {
+            return clsSubSector;
+    }
+    
+    public void setClsSubSector(java.lang.String clsSubSector) {
+            this.clsSubSector = clsSubSector;
+    }
+    
+    public String getTxtValor() {
+            return txtValor;
+    }
+    
+    public void setTxtValor(String txtValor) {
+            this.txtValor = txtValor;
+    }
+    
+    public String getTxtSubSector() {
+            return txtSubSector;
+    }
+    
+    public void setTxtSubSector(String txtSubSector) {
+            this.txtSubSector = txtSubSector;
+    }
+    
+    public List<Expediente> getExpediente() {
+            return expediente;
+    }
+    
+    public void setExpediente(List<Expediente> expediente) {
+            this.expediente = expediente;
+    }
+    
+    public void setFechaActual(String fechaActual) {
+            this.fechaActual = fechaActual;
+    }
 
-	public String getFechaActual() {
-		return fechaActual;
-	}
+    public String getFechaActual() {
+            return fechaActual;
+    }
 
-	public static Acae getAcaeByKey(Acae acae) throws DAOException{
-		ProyectoService proyectoService = ProyectoService.getInstance();
-		AcaeDao acaeDao = proyectoService.getAcaeDao(); 
-		return acaeDao.getAcaeByKey(acae);
-	}
-	
-	public static Acae insertAcae(Acae acae) throws DAOException{
-		ProyectoService proyectoService = ProyectoService.getInstance();
-		AcaeDao acaeDao = proyectoService.getAcaeDao();
-		acaeDao.insertAcae(acae);		
-		return acaeDao.getAcaeByKey(acae);
-	}
-	
-	public static Acae updateAcae(Acae acae) throws DAOException{
-		ProyectoService proyectoService = ProyectoService.getInstance();
-		AcaeDao acaeDao = proyectoService.getAcaeDao();
-		acaeDao.updateAcae(acae);
-		return acaeDao.getAcaeByKey(acae);
-	}
+    public static Acae getAcaeByKey(Acae acae) throws DAOException{
+        ProyectoService proyectoService = ProyectoService.getInstance();
+        AcaeDao acaeDao = proyectoService.getAcaeDao(); 
+        return acaeDao.getAcaeByKey(acae);
+    }
+    
+    public static void insertAcae(Acae acae) throws DAOException{
+        ProyectoService proyectoService = ProyectoService.getInstance();
+        AcaeDao acaeDao = proyectoService.getAcaeDao();
+        acaeDao.insertAcae(acae);		
+        //return acaeDao.getAcaeByKey(acae);
+    }
+    
+    public static void updateAcae(Acae acae) throws DAOException{
+        ProyectoService proyectoService = ProyectoService.getInstance();
+        AcaeDao acaeDao = proyectoService.getAcaeDao();
+        acaeDao.updateAcae(acae);
+        //return acaeDao.getAcaeByKey(acae);
+    }
 }

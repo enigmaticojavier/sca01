@@ -16,6 +16,7 @@ import gob.pe.minam.sca.data.dao.ExpedienteDocumentoDao;
 import gob.pe.minam.sca.data.dao.ImagenDocumentoDao;
 import gob.pe.minam.sca.data.dao.ParametroDao;
 import gob.pe.minam.sca.data.dao.PeriodoDao;
+import gob.pe.minam.sca.data.dao.PersonaDao;
 import gob.pe.minam.sca.data.dao.ProyectoDao;
 import gob.pe.minam.sca.data.dao.SubSectorDao;
 import gob.pe.minam.sca.data.dao.UbigeoDao;
@@ -43,7 +44,7 @@ public class ProyectoService {
   private UsuarioDao usuarioDao;
   private ExpedienteDao expedienteDao;
   private PeriodoDao periodoDao;
-  
+  private PersonaDao personaDao;
   /* Constructors */
 
   public ProyectoService() {
@@ -57,6 +58,7 @@ public class ProyectoService {
     periodoDao             = (PeriodoDao)daoManager.getDao(PeriodoDao.class);
     acaeDao                = (AcaeDao)daoManager.getDao(AcaeDao.class);
     usuarioDao             = (UsuarioDao)daoManager.getDao(UsuarioDao.class);
+    personaDao             = (PersonaDao)daoManager.getDao(PersonaDao.class);
   }
 
   /* Get Instance */
@@ -111,4 +113,7 @@ public class ProyectoService {
       return periodoDao;
     }
 
+    public PersonaDao getPersonaDao() {
+        return personaDao;
+    }
 }

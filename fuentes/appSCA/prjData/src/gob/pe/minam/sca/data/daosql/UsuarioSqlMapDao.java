@@ -16,22 +16,20 @@ public class UsuarioSqlMapDao extends BaseSqlMapDao implements UsuarioDao {
 	  
    public Usuario getUsuarioByKey(Usuario usuario) {
 	    return (Usuario) queryForObject("getUsuarioByKey", usuario);
-	  }
+      }
 
-	  public List getUsuario(Usuario usuario) {
-	    return (List) queryForList("getUsuario", usuario);
-	  }
+  public List getUsuario(Usuario usuario) {
+    return (List) queryForList("getUsuario", usuario);
+  }
 
-	  public Usuario insertUsuario(Usuario usuario) {
-	    return (Usuario) queryForObject("insertUsuario", usuario);
-	  }
+    public void insertUsuario(Usuario usuario) {
+        insert("insertUsuario", usuario);
+    }
 
-	  public Usuario updateUsuario(Usuario usuario) {
-	    return (Usuario) queryForObject("updateUsuario", usuario);
-	  }
+    public void updateUsuario(Usuario usuario) {
+        update("updateUsuario", usuario);
+    }
 
-	  public void deleteUsuario(Usuario usuario) {
-	    queryForObject("deleteUsuario", usuario);
-	  }
-
+    public void deleteUsuario(Usuario usuario) {
+    }
 }

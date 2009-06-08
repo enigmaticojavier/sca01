@@ -34,9 +34,18 @@
         P.TXTVALOR     
     from USUARIO U, PARAMETRO P 
     where 
-    	USUARIO  = 	#usuario#
+    	USUARIO  = #usuario#
     	AND U.CODCLAVE = #codClave#
     	AND U.TIPUSUARIO=P.CODPARAMETRO AND P.TIPPARAMETRO='TUS'
   </select>
 
+    <insert id="insertUsuario"  parameterClass="Usuario">
+        INSERT INTO USUARIO(PERSONAID,USUARIO,CODCLAVE, TIPUSUARIO) 
+        VALUES (#personaId#, #usuario#, #codClave#, #tipUsuario#)
+      </insert>
+      
+    <update id="updateUsuario" parameterClass="Usuario">
+    UPDATE USUARIO SET USUARIO=#usuario#, CODCLAVE=#codClave#, TIPUSUARIO=#tipUsuario#
+    WHERE PERSONAID = #personaId#
+  </update>
 </sqlMap>

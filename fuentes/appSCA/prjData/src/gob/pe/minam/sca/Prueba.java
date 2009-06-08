@@ -5,6 +5,7 @@ import gob.pe.minam.sca.pojo.ExpedienteDocumento;
 import gob.pe.minam.sca.pojo.ImagenDocumento;
 import gob.pe.minam.sca.pojo.Parametro;
 
+import gob.pe.minam.sca.pojo.Persona;
 import gob.pe.minam.sca.pojo.Proyecto;
 
 import gob.pe.minam.sca.pojo.SubSector;
@@ -24,7 +25,14 @@ public class Prueba {
 
   public static void main(String args[]){
     Proyecto p= new Proyecto();
+    Persona persona =  new Persona();
+    Persona persona2;
     try{
+        Integer id = new Integer(0);
+        persona.setPersonaId(id);
+        persona2 = persona.getPersonaByKey(persona);
+        System.out.println("persona2="+persona2);
+        
         DateFormat myDateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date d1 = myDateFormat.parse("01/05/1994");
         Date d2 = myDateFormat.parse("01/05/1995");

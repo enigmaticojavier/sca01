@@ -38,10 +38,15 @@
 	AND A.PERSONAID=#personaId#
   </select>
   <insert id="insertAcae"  parameterClass="Acae">
-   INSERT INTO ACAE 
-   ( PERSONAID, TIPACAE, CLSSECTOR, CLSSUBSECTOR, TIPDOCUMENTOGER, CODDOCUMENTOGER, TXTAPELLIDOSNOMBRES, TXTCARGO, TELEFONOGER )
-   VALUES 
-   ( #personaId#, #tipAcae#, #clsSector#, #clsSubSector#, #tipDocumentoGer#, #codDocumentoGer#, #txtApellidosNombres#, #txtCargo#, #telefonoGer# )   
+       INSERT INTO ACAE 
+       ( PERSONAID, TIPACAE, CLSSECTOR, CLSSUBSECTOR, TXTAPELLIDOSNOMBRES, TXTCARGO, TELEFONOGER)
+       VALUES (#personaId#, #tipAcae#, #clsSector#, #clsSubSector#, 
+       #txtApellidosNombres#, #txtCargo#, #telefonoGer# )
    </insert>
+   <update id="updateAcae" parameterClass="Acae">
+        UPDATE ACAE SET TIPACAE=#tipAcae#, CLSSECTOR=#clsSector#, CLSSUBSECTOR=#clsSubSector#,
+        TXTAPELLIDOSNOMBRES=#txtApellidosNombres#, TXTCARGO=#txtCargo#, TELEFONOGER=#telefonoGer#)
+        WHERE PERSONAID=#personaId#
+   </update>
 
 </sqlMap>
