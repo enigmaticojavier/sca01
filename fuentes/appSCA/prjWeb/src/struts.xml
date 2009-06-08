@@ -50,6 +50,8 @@
             </action>
             <action name="acaeForm" class="gob.pe.minam.sca.action.AcaeAction" method="{0}">
                 <result name="success">/pages/acae/acaeForm.jsp</result>
+                <result name="creado">/pages/acae/acaeSuccess.jsp</result>
+                <result name="error">/pages/acae/acaeError.jsp</result>
                 <interceptor-ref name="basicStack"/>
             </action>       		
 	</package>

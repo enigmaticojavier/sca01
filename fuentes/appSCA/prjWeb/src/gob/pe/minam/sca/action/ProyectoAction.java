@@ -88,14 +88,12 @@ public class ProyectoAction extends AccionSoporte implements Preparable {
       try{
           log.info("[ProyectoAction.llenaParametrosIniciales][Ini]");
           Parametro pr = new Parametro(); 
-          Ubigeo ubi = new Ubigeo();
-          /*Departamentos*/
-          List lstDepa=ubi.listarDepartamento();
           Ubigeo ubigeo = new Ubigeo();
+          /*Departamentos*/          
           ubigeo.setUbigeoId(COMBO_COD_ALL);
           ubigeo.setTxtDescripcion(COMBO_TXT_ALL);
-          lstDepa.add(ubigeo);
-          this.ubiDepartamentos=lstDepa;
+          this.ubiDepartamentos=ubigeo.listarDepartamento();
+          ubiDepartamentos.add(ubigeo);
           if (this.ubigeoId==null) ubigeoId=COMBO_COD_ALL;
           /*Categoria del Proyecto*/
           List lstCatPry=pr.buscarParametroXTipoParametro("IGA");

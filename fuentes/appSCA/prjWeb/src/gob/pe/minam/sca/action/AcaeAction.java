@@ -1,5 +1,9 @@
 package gob.pe.minam.sca.action;
 
+import gob.pe.minam.sca.pojo.Acae;
+
+import gob.pe.minam.sca.pojo.Usuario;
+
 import java.util.List;
 
 import gob.pe.minam.sca.framework.ConstantesSistema;
@@ -9,6 +13,7 @@ import gob.pe.minam.sca.pojo.Parametro;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Preparable;
 
+import gob.pe.minam.sca.framework.exception.DAOException;
 import gob.pe.minam.sca.pojo.Persona;
 import gob.pe.minam.sca.pojo.SubSector;
 
@@ -17,38 +22,32 @@ import gob.pe.minam.sca.pojo.Ubigeo;
 import java.util.ArrayList;
 
 public class AcaeAction extends ActionSupport  implements Preparable {
-	
+    public static String COMBO_TXT_SELECCIONAR="SELECCIONAR";
+    public static String COMBO_COD_SELECCIONAR="0";	
     private String tipoAcae;
     private String ubigeoId; /*departamento*/
+    private String codProvincia;
+    private String codDistrito;
     private String clsSector; /*Institución*/
     private String clsSubSector; /*Dependencia*/
     private List parTipoAcae;
     private List parInstitucion;
     private List parDependencia;
     private List ubiDepartamentos;
-    private Persona persona;    
+    private List ubiProvincia;
+    private List ubiDistrito;
     
-    /**
-    private String txtRazonSocial;
+    private Persona persona;
+    private Acae acae; 
+    private Usuario usuario;
+    private String codClave2;
 
-    public String getTxtRazonSocial() {
-            return txtRazonSocial;
-    }
-
-    public void setTxtRazonSocial(String txtRazonSocial) {
-            this.txtRazonSocial = txtRazonSocial;
-    }
-    **/
-
-    /**
-     * 
-     */
     private static final long serialVersionUID = -8873103128650016222L;
 
     public void prepare() throws Exception {
         try {
             System.out.println("Inicio prepare");
-            llenaParametrosIniciales();
+            llenaParametrosIniciales();            
             System.out.println("Fin prepare");
             
         }catch (Exception ex){
@@ -60,9 +59,19 @@ public class AcaeAction extends ActionSupport  implements Preparable {
         System.out.println("Inicio llenaParametrosIniciales");
         try {
             Parametro pr = new Parametro();
-            Ubigeo ubi = new Ubigeo();
+            Ubigeo ubigeo = new Ubigeo();
             /*Departamentos*/
-            this.ubiDepartamentos=ubi.listarDepartamento();
+            List lstDepa=ubigeo.listarDepartamento();            
+            ubigeo.setUbigeoId(COMBO_COD_SELECCIONAR);
+            ubigeo.setTxtDescripcion(COMBO_TXT_SELECCIONAR);
+            lstDepa.add(ubigeo);            
+            this.ubiDepartamentos=lstDepa;
+            if (this.ubigeoId==null) ubigeoId=COMBO_COD_SELECCIONAR;
+            //buscarProvincia();
+            this.ubiProvincia = new ArrayList();
+            if (this.codProvincia==null) ubiProvincia.add(ubigeo);
+            this.ubiDistrito = new ArrayList();
+            if (this.codDistrito==null) ubiDistrito.add(ubigeo);
             /*Tipo de Acae*/
              System.out.println("Buscando tipo Acae");
             this.parTipoAcae=pr.buscarParametroXTipoParametro(ConstantesSistema.TIPO_ACAE);
@@ -72,6 +81,98 @@ public class AcaeAction extends ActionSupport  implements Preparable {
         System.out.println("Fin llenaParametrosIniciales");
     }
     
+    public String doCrearAcae(){
+              
+        try {        
+            Integer personaId =  this.persona.getNextItem();
+            this.persona.setPersonaId(personaId);            
+            this.acae.setPersonaId(personaId);
+            this.usuario.setPersonaId(personaId);
+            this.acae.setTipAcae(this.tipoAcae);
+            this.acae.setClsSector(this.clsSector);
+            this.acae.setClsSubSector(this.clsSubSector);
+            System.out.println("acae.getTipAcae()="+this.tipoAcae);
+            System.out.println("acae.getClsSector()="+this.clsSector);
+            System.out.println("acae.getClsSubSector()="+this.clsSubSector);
+            persona.insertPersona(this.persona);
+            acae.insertAcae(this.acae);
+            usuario.insertUsuario(this.usuario);            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        
+        return "creado";
+    }
+    public String doCargarParametros(){
+        try {
+            buscarInstitucionXTipoAcae();
+            buscarDependenciaXInstitucion();
+            if (!this.ubigeoId.equals(COMBO_COD_SELECCIONAR)){
+                buscarProvincia();    
+            }
+          
+            
+        }  catch (Exception ex) {
+             ex.printStackTrace();
+        }
+        return SUCCESS;
+    }
+    
+    public void buscarProvincia(){
+        try {                    
+            System.out.println("ubigeoId="+getUbigeoId());
+            Ubigeo ubigeo = new Ubigeo();
+            List lstUbigeo = new ArrayList();
+            ubigeo.setUbigeoId(COMBO_COD_SELECCIONAR);
+            ubigeo.setTxtDescripcion(COMBO_TXT_SELECCIONAR);
+            if (!this.ubigeoId.equals(COMBO_COD_SELECCIONAR)){
+                String codDepartamento = this.ubigeoId.substring(0,2);
+                System.out.println("codDepartamento="+codDepartamento);
+                ubigeo.setCodDepartamento(codDepartamento);                                
+                lstUbigeo = ubigeo.listarProvincia(ubigeo);
+                lstUbigeo.add(ubigeo);
+                this.ubiProvincia = lstUbigeo;
+                buscarDistrito(ubigeo);
+                //this.codProvincia=COMBO_COD_SELECCIONAR;
+            } else {
+                lstUbigeo.add(ubigeo);
+                this.ubiProvincia = lstUbigeo;
+                this.codProvincia=COMBO_COD_SELECCIONAR;
+            }
+            
+            /**
+            ubigeo.setUbigeoId(COMBO_COD_SELECCIONAR);
+            ubigeo.setTxtDescripcion(COMBO_TXT_SELECCIONAR);
+            if (ubigeoId!=null) {
+                String ubigeo2 = this.ubigeoId.substring(0,2);
+                System.out.println("ubigeo2="+ubigeo2);
+                ubigeo.setCodDepartamento(ubigeo2);
+                this.ubiProvincia = ubigeo.listarProvincia(ubigeo);
+                ubiProvincia.add(ubigeo);
+                //this.codProvincia=COMBO_COD_SELECCIONAR;
+                System.out.println("saliendo");
+                 if (ubiProvincia!=null) {
+                     buscarDistrito(ubigeo);
+                 }
+            }
+            **/
+        }catch (Exception ex) {
+             ex.printStackTrace();
+        }        
+    }
+    public void buscarDistrito(Ubigeo ubigeo){
+        try {
+        if (codProvincia!=null && !codProvincia.equals(this.COMBO_COD_SELECCIONAR)) { 
+            String codProvincia = this.codProvincia.substring(2,4);
+            System.out.println("codProvincia="+codProvincia);
+            ubigeo.setCodProvincia(codProvincia);            
+            this.ubiDistrito = ubigeo.listarDistrito(ubigeo);
+            System.out.println("ubidistrito="+ubiDistrito.size());
+        }          
+        }catch (Exception ex) {
+             ex.printStackTrace();
+        } 
+    }
     public String list() throws NegocioException {
         try{
           Parametro pr = new Parametro();
@@ -101,7 +202,7 @@ public class AcaeAction extends ActionSupport  implements Preparable {
     }
     
     
-    public String buscarInstitucionXTipoAcae(){
+    public void buscarInstitucionXTipoAcae(){
       try{
           System.out.println("buscarInstitucionXTipoAcae Ini");
           Parametro pr = new Parametro(); 
@@ -123,10 +224,10 @@ public class AcaeAction extends ActionSupport  implements Preparable {
       }catch(Exception ex){
         ex.printStackTrace();
       } 
-      return SUCCESS;
+      
     }
     
-    public String buscarDependenciaXInstitucion(){
+    public void buscarDependenciaXInstitucion(){
       try{
           Parametro pr = new Parametro();
           SubSector sb = new SubSector();
@@ -146,7 +247,7 @@ public class AcaeAction extends ActionSupport  implements Preparable {
       }catch(Exception ex){
         ex.printStackTrace();
       } 
-      return SUCCESS;
+      
     }
 
     public void setTipoAcae(String tipoAcae) {
@@ -219,5 +320,61 @@ public class AcaeAction extends ActionSupport  implements Preparable {
 
     public List getUbiDepartamentos() {
         return ubiDepartamentos;
+    }
+
+    public void setUbiProvincia(List ubiProvincia) {
+        this.ubiProvincia = ubiProvincia;
+    }
+
+    public List getUbiProvincia() {
+        return ubiProvincia;
+    }
+
+    public void setUbiDistrito(List ubiDistrito) {
+        this.ubiDistrito = ubiDistrito;
+    }
+
+    public List getUbiDistrito() {
+        return ubiDistrito;
+    }
+
+    public void setCodProvincia(String codProvincia) {
+        this.codProvincia = codProvincia;
+    }
+
+    public String getCodProvincia() {
+        return codProvincia;
+    }
+
+    public void setCodDistrito(String codDistrito) {
+        this.codDistrito = codDistrito;
+    }
+
+    public String getCodDistrito() {
+        return codDistrito;
+    }
+
+    public void setAcae(Acae acae) {
+        this.acae = acae;
+    }
+
+    public Acae getAcae() {
+        return acae;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setCodClave2(String codClave2) {
+        this.codClave2 = codClave2;
+    }
+
+    public String getCodClave2() {
+        return codClave2;
     }
 }
