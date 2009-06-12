@@ -25,6 +25,16 @@ public class PeriodoSqlMapDao extends BaseSqlMapDao implements PeriodoDao{
         }catch(Exception ex){
           throw new DAOException(ex.toString(),"Error producido en la Carga de Obtención de Estadistica ");
         }  
-        
+    }
+    public List listarPeriodoReporte() throws DAOException{
+        try{
+          return queryForList("SelectPeriodoReporte",0);
+        }catch(SqlMapException ex){
+          throw new DAOException(ex.toString(),"Error producido en BD : No se puede ejecutar la Obtención de Estadistica");
+        }catch(DaoException ex){
+          throw new DAOException(ex.toString(),"Error producido en BD : Obtención de Estadistica presenta problemas");
+        }catch(Exception ex){
+          throw new DAOException(ex.toString(),"Error producido en la Carga de Obtención de Estadistica ");
+        }  
     }
 }

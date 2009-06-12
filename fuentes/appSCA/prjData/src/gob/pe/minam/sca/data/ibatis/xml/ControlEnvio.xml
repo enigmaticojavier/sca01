@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="ControlEnvio">
+
+  <typeAlias alias="ControlEnvio" type="gob.pe.minam.sca.pojo.ControlEnvio"/>
+  
+  <resultMap id="ControlEnvioResult" class="ControlEnvio">
+    <result property="periodo" column="PERIODO"/>
+    <result property="personaId" column="PERSONAID"/>
+    <result property="flgEnvioPro" column="FLGENVIOPRO"/>
+    <result property="fchEnvioPro" column="FCHENVIOPRO"/>
+    <result property="flgEnvioPry" column="FLGENVIOPRY"/>
+    <result property="fchEnvioPry" column="FCHENVIOPRY"/>
+    <result property="flgEnvioExp" column="FLGENVIOEXP"/>
+    <result property="fchEnvioExp" column="FCHENVIOEXP"/>
+  </resultMap>
+  
+  <select id="SelectControlEnvio" parameterClass="string" resultMap="ControlEnvioResult">
+    select periodo, personaid, flgenviopro, fchenviopro, 
+    flgenviopry, fchenviopry, flgenvioexp, fchenvioexp
+    from controlenvio
+    where periodo = #param#
+  </select>
+  
+</sqlMap>

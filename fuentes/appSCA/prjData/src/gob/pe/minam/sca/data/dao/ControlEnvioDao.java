@@ -1,5 +1,5 @@
 /***********************************************************/
-/* File Name: ExpedienteDao.java                           */
+/* File Name: ControlEnvioDao.java                           */
 /* Descripción: Interfase para las clases Dao de Ibatis  */
 /* Fecha: Mayo 2009                               	 */
 /* Autor: Danny Espíritu                                 */
@@ -8,9 +8,8 @@ package gob.pe.minam.sca.data.dao;
 
 import gob.pe.minam.sca.framework.exception.DAOException;
 
-import java.util.List;
+import gob.pe.minam.sca.pojo.ControlEnvio;
 
-public interface PeriodoDao {
-    public List listarPeriodo() throws DAOException;
-    public List listarPeriodoReporte() throws DAOException;
+public interface ControlEnvioDao{
+    public ControlEnvio obtenerControlEnvioXPeriodo(String periodo) throws DAOException;
 }
