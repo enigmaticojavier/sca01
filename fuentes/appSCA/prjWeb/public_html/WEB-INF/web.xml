@@ -5,9 +5,34 @@
 >
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee">
 
+    <servlet>
+        <servlet-name>DescargaServlet</servlet-name>
+        <servlet-class>gob.pe.minam.sca.servlet.DescargaServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DescargaServlet</servlet-name>
+        <url-pattern>/DescargaServlet</url-pattern>
+    </servlet-mapping>
+   <filter>  
+        <filter-name>FiltroDescarga</filter-name>  
+        <filter-class>  
+            gob.mimdes.sime.filtro.FiltroDescarga
+        </filter-class>  
+        <init-param>  
+            <param-name>parametroFiltroDescarga</param-name>  
+            <param-value>parametroFiltroDescarga en prueba</param-value>  
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>FiltroDescarga</filter-name>
+        <url-pattern>/DescargaServlet*</url-pattern>
+    </filter-mapping>
+    
+    
     <listener>
         <listener-class>org.apache.struts2.tiles.StrutsTilesListener</listener-class>
     </listener>
+    
     <servlet-mapping>
         <servlet-name>DisplaySource</servlet-name>
         <url-pattern>*.source</url-pattern>
@@ -31,6 +56,8 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
     
+    
+    
     <taglib>
         <taglib-uri>http://displaytag.sourceforge.net/</taglib-uri>
         <taglib-location>/WEB-INF/tld/displaytag.tld</taglib-location>
@@ -48,7 +75,7 @@
     <taglib>
         <taglib-uri>http://java.sun.com/jstl/core</taglib-uri>
         <taglib-location>/WEB-INF/tld/c.tld</taglib-location>
-      </taglib>
+    </taglib>
 	
     
     <welcome-file-list>
