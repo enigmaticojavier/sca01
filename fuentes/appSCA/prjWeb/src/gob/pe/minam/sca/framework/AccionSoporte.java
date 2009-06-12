@@ -5,7 +5,6 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import java.util.Map;
 
-
 public class AccionSoporte extends ActionSupport {
     MensajeError mensajeError;
     public static String MSGSUCCESS="Operación realizada correctamente";
@@ -53,4 +52,5 @@ public class AccionSoporte extends ActionSupport {
         value=mapSession.get(key);
         return value;
     }
+    
 }
