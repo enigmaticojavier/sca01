@@ -35,6 +35,14 @@
                     <s:param name="parametro.idParametro" value="idEstadistica"/>
                 </s:url>
                 <a href="<s:property value="#urlEstadistica"/>">Estadistica</a>
+                <br>
+                <s:url action="archivo!cargaArchivo" id="urlArchivo">
+                    <s:param name="parametro.idArchivo" value="idArchivo"/>
+                </s:url>
+                <a href="<s:property value="#urlArchivo"/>">Archivo</a>
+                <br>
+                <a href="<%=request.getContextPath()%>/DescargaServlet">Descarga</a>
+                
             </td>
             
         
