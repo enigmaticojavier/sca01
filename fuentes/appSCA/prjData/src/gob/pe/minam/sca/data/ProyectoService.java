@@ -11,6 +11,7 @@ import com.ibatis.dao.client.DaoManager;
 
 import gob.pe.minam.sca.data.DaoConfig;
 import gob.pe.minam.sca.data.dao.AcaeDao;
+import gob.pe.minam.sca.data.dao.ControlEnvioDao;
 import gob.pe.minam.sca.data.dao.ExpedienteDao;
 import gob.pe.minam.sca.data.dao.ExpedienteDocumentoDao;
 import gob.pe.minam.sca.data.dao.ImagenDocumentoDao;
@@ -45,6 +46,8 @@ public class ProyectoService {
   private ExpedienteDao expedienteDao;
   private PeriodoDao periodoDao;
   private PersonaDao personaDao;
+  private ControlEnvioDao controlEnvioDao;
+  
   /* Constructors */
 
   public ProyectoService() {
@@ -58,6 +61,7 @@ public class ProyectoService {
     periodoDao             = (PeriodoDao)daoManager.getDao(PeriodoDao.class);
     acaeDao                = (AcaeDao)daoManager.getDao(AcaeDao.class);
     usuarioDao             = (UsuarioDao)daoManager.getDao(UsuarioDao.class);
+    controlEnvioDao        = (ControlEnvioDao)daoManager.getDao(ControlEnvioDao.class);
     personaDao             = (PersonaDao)daoManager.getDao(PersonaDao.class);
   }
 
@@ -112,7 +116,12 @@ public class ProyectoService {
     public PeriodoDao getPeriodoDao(){
       return periodoDao;
     }
-
+	
+    public ControlEnvioDao getControlEnvioDao() {
+	  
+        return controlEnvioDao;
+    }
+    
     public PersonaDao getPersonaDao() {
         return personaDao;
     }
