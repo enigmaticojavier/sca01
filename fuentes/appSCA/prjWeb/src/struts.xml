@@ -93,5 +93,14 @@
             </action>
 	</package>
 	        
+        <package name="pckupload" extends="struts-default">
+            <action name="showUpload">
+                <result>/pages/periodo/cargainformacion.jsp</result>
+            </action>
+            <action name="archivo" class="gob.pe.minam.sca.action.ArchivoAction">
+                <result name="input">/pages/periodo/cargaarchivos.jsp</result>
+                <result>/pages/periodo/cargaresultado.jsp</result>
+            </action>    
+        </package>
         
 </struts>
