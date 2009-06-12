@@ -49,5 +49,13 @@ start with 32
 increment by 1
 cache 20;
 
+-- Create sequence 
+create sequence PARAMETROID_SEQUENCE
+minvalue 1
+maxvalue 999999999999999999999999999
+start with 2133
+increment by 1
+cache 20;
+
 
 spool off
