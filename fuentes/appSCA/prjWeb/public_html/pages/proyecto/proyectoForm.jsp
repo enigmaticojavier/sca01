@@ -1,8 +1,8 @@
 <%@ page contentType="text/html;charset=ISO-8859-1" language="java" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
-<%@ taglib uri="/WEB-INF/tld/c.tld" prefix="c"%>
-<%@ taglib prefix="fmt" uri="/WEB-INF/tld/fmt.tld" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:useBean id="date" class="java.util.Date"/>
 
 
@@ -85,7 +85,6 @@
         </div>
         </s:if>
             <s:form theme="simple">
-                    
                 <table>    
                 <tr><td align="center">
                     <h1 align="left"><s:text name="label.proyecto.titulo"/></h1>        
@@ -177,7 +176,7 @@
                         <display:column property="documento.codDocumento" title="Nro Documento" style="width:40%"  />
                         <display:column title="Archivos" style="width:40%"> 
                             <c:forEach var="imagen" items="${expedienteDocumento.documento.lstImagenDocumento}" varStatus="rowCounter">
-                                <a href="<c:out value="${imagen.txtRutaImagen}"/>">Ver</a>
+                                <a href="<%=request.getContextPath()%>/DescargaServlet?file=<c:out value="${imagen.txtRutaImagen}"/>">Ver</a>
                             </c:forEach>
                         </display:column>
                         <%/*display:column href="proyectoExpediente!input" paramId="pryId" paramProperty="pryId" title="Ver Detalle" style="width:5%"--Detalle</isplay:column--*/%>
