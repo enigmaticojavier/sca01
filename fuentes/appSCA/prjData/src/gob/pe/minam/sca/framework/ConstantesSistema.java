@@ -7,11 +7,18 @@ package gob.pe.minam.sca.framework;
 
 public class ConstantesSistema {
 	
-	public final static String TIPO_USUARIO_ADM = "ADM";
-	public final static String TIPO_USUARIO_ACAE = "ACA";
-	public final static String COD_PARAMETRO_MIN = "MIN";
-	public final static String COD_PARAMETRO_GRE = "GRE";
-	public final static String COD_PARAMETRO_GLO = "GLO";
-        public final static String TIPO_ACAE = "TAC";
-	
+    public final static String TIPO_USUARIO_ADM = "ADM";
+    public final static String TIPO_USUARIO_ACAE = "ACA";
+    public final static String COD_PARAMETRO_MIN = "MIN";
+    public final static String COD_PARAMETRO_GRE = "GRE";
+    public final static String COD_PARAMETRO_GLO = "GLO";
+    public final static String TIPO_ACAE = "TAC";
+    
+    public final static String ENVIO_NO_ENVIADO    = "NNN";
+    public final static String ENVIO_ENVIADO_OK    = "EOK";
+    public final static String ENVIO_ENVIADO_ERROR = "ERR";
+    public final static String ENVIO_REENVIADO     = "ROK";
+    
+    public final static String CARPETA_TEMPORAL="TMP";	
+    public final static String CARPETA_IMAGENES="DIR";
 }
