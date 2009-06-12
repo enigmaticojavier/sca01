@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      ORACLE Version 10g                           */
-/* Created on:     21/05/2009 09:30:42 a.m.                     */
+/* Created on:     12/06/2009 04:48:02 p.m.                     */
 /*==============================================================*/
 
 
@@ -64,6 +64,8 @@ ALTER TABLE RESOLUCION
 ALTER TABLE USUARIO
    DROP CONSTRAINT FK_USUARIO_ASSOCIATI_PERSONA;
 
+DROP view VPROYECTOESTADO;
+
 DROP TABLE ACAE CASCADE CONSTRAINTS;
 
 DROP TABLE CONSULTOR CASCADE CONSTRAINTS;
@@ -118,7 +120,7 @@ DROP TABLE USUARIO CASCADE CONSTRAINTS;
 CREATE TABLE ACAE  (
    PERSONAID            INTEGER                         NOT NULL,
    CLSSECTOR            VARCHAR2(6)                     NOT NULL,
-   CLSSUBSECTOR         VARCHAR2(4)                     NOT NULL,
+   CLSSUBSECTOR         VARCHAR2(6)                     NOT NULL,
    TIPACAE              VARCHAR2(6),
    TIPDOCUMENTOGER      VARCHAR2(6),
    CODDOCUMENTOGER      VARCHAR2(50),
@@ -146,15 +148,15 @@ COMMENT ON TABLE CONSULTOR IS
 /* Table: CONTROLENVIO                                          */
 /*==============================================================*/
 CREATE TABLE CONTROLENVIO  (
-   PERIODO              VARCHAR2(6)                     NOT NULL,
    PERSONAID            INTEGER                         NOT NULL,
-   FLGENVIOPRY          VARCHAR2(1),
+   PERIODO              VARCHAR2(6)                     NOT NULL,
+   ESTENVIOPRY          VARCHAR2(6),
    FCHENVIOPRY          DATE,
-   FLGENVIOPRO          VARCHAR2(1),
+   ESTENVIOPRO          VARCHAR2(6),
    FCHENVIOPRO          DATE,
-   FLGENVIOEXP          VARCHAR2(1),
+   ESTENVIOEXP          VARCHAR2(6),
    FCHENVIOEXP          DATE,
-   CONSTRAINT PK_CONTROLENVIO PRIMARY KEY (PERIODO, PERSONAID)
+   CONSTRAINT PK_CONTROLENVIO PRIMARY KEY (PERIODO)
 );
 
 /*==============================================================*/
@@ -177,10 +179,10 @@ COMMENT ON TABLE DOCUMENTO IS
 /* Table: DOCUMENTOPERSONA                                      */
 /*==============================================================*/
 CREATE TABLE DOCUMENTOPERSONA  (
-   DOCID                INTEGER                         NOT NULL,
    PERSONAID            INTEGER                         NOT NULL,
+   DOCID                INTEGER                         NOT NULL,
    TIPODOCPERSONA       VARCHAR2(6)                     NOT NULL,
-   CONSTRAINT PK_DOCUMENTOPERSONA PRIMARY KEY (DOCID, PERSONAID, TIPODOCPERSONA)
+   CONSTRAINT PK_DOCUMENTOPERSONA PRIMARY KEY (PERSONAID, DOCID, TIPODOCPERSONA)
 );
 
 /*==============================================================*/
@@ -276,6 +278,7 @@ CREATE TABLE IMAGENDOCUMENTO  (
    NSECUENCIA           INTEGER                         NOT NULL,
    DOCID                INTEGER                         NOT NULL,
    TXTRUTAIMAGEN        VARCHAR2(1000),
+   TXTNOMARCHIVO        VARCHAR2(255),
    CONSTRAINT PK_IMAGENDOCUMENTO PRIMARY KEY (NSECUENCIA)
 );
 
@@ -342,7 +345,7 @@ CREATE TABLE PROYECTO  (
    TXTDESCRIPCION       VARCHAR2(1000),
    MNINVERSION          NUMBER,
    CLSSECTOR            VARCHAR2(6),
-   CLSSUBSECTOR         VARCHAR2(4),
+   CLSSUBSECTOR         VARCHAR2(6),
    FCHEXPEDIENTE        DATE,
    PERIODO              VARCHAR2(6),
    CONSTRAINT PK_PROYECTO PRIMARY KEY (PRYID)
@@ -371,7 +374,7 @@ COMMENT ON TABLE RESOLUCION IS
 /*==============================================================*/
 CREATE TABLE SUBSECTOR  (
    CLSSECTOR            VARCHAR2(6)                     NOT NULL,
-   CLSSUBSECTOR         VARCHAR2(4)                     NOT NULL,
+   CLSSUBSECTOR         VARCHAR2(6)                     NOT NULL,
    TIPSUBSECTOR         VARCHAR2(6),
    TXTSUBSECTOR         VARCHAR2(255),
    CONSTRAINT PK_SUBSECTOR PRIMARY KEY (CLSSECTOR, CLSSUBSECTOR)
@@ -468,6 +471,25 @@ CREATE TABLE USUARIO  (
 
 COMMENT ON TABLE USUARIO IS
 'Maestro de usuarios (En la implementacion solo se creara uno por cada ACAE)';
+
+/*==============================================================*/
+/* View: VPROYECTOESTADO                                        */
+/*==============================================================*/
+CREATE OR REPLACE VIEW VPROYECTOESTADO AS
+SELECT EX.PRYID, EP.*, ET.TIPESTADOTRAMITE 
+FROM EXPEDIENTEPASO EP, 
+		 ESTADOSTUPA ET,
+     EXPEDIENTE EX
+WHERE (EP.EXPID, EP.NSECUENCIA) IN
+        (SELECT A.EXPID, MAX(NSECUENCIA)
+        	FROM EXPEDIENTEPASO A
+        	GROUP BY A.EXPID) AND
+       EP.TIPPASO = ET.TIPPASO AND
+       EX.EXPID		= EP.EXPID 
+WITH READ ONLY;
+
+ COMMENT ON TABLE VPROYECTOESTADO IS
+'Estados de cada Proyecto (en verdad es la situación del trámite de solicitud de certificación ambiental de los proyectos)';
 
 ALTER TABLE ACAE
    ADD CONSTRAINT FK_ACAE_ASSOCIATI_SUBSECTO FOREIGN KEY (CLSSECTOR, CLSSUBSECTOR)
