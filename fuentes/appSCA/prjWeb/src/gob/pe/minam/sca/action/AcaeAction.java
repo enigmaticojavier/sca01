@@ -11,9 +11,6 @@ import gob.pe.minam.sca.framework.exception.NegocioException;
 import gob.pe.minam.sca.pojo.Parametro;
 
 import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.Preparable;
-
-import gob.pe.minam.sca.framework.exception.DAOException;
 import gob.pe.minam.sca.pojo.Persona;
 import gob.pe.minam.sca.pojo.SubSector;
 
@@ -21,11 +18,15 @@ import gob.pe.minam.sca.pojo.Ubigeo;
 
 import java.util.ArrayList;
 
-public class AcaeAction extends ActionSupport  implements Preparable {
+import org.apache.log4j.Logger;
+
+public class AcaeAction extends ActionSupport  {
+    static Logger log = Logger.getLogger("AcaeAction.class");
     public static String COMBO_TXT_SELECCIONAR="SELECCIONAR";
     public static String COMBO_COD_SELECCIONAR="0";	
     private String tipoAcae;
     private String ubigeoId; /*departamento*/
+    private String codDepartamento;
     private String codProvincia;
     private String codDistrito;
     private String clsSector; /*Institución*/
@@ -43,138 +44,28 @@ public class AcaeAction extends ActionSupport  implements Preparable {
     private String codClave2;
 
     private static final long serialVersionUID = -8873103128650016222L;
-
-    public void prepare() throws Exception {
-        try {
-            System.out.println("Inicio prepare");
-            llenaParametrosIniciales();            
-            System.out.println("Fin prepare");
-            
-        }catch (Exception ex){
-                 ex.printStackTrace();
-        }
-    }
-    
+   
     public void llenaParametrosIniciales() {            
-        System.out.println("Inicio llenaParametrosIniciales");
+        log.info("Inicio llenaParametrosIniciales");
         try {
             Parametro pr = new Parametro();
             Ubigeo ubigeo = new Ubigeo();
             /*Departamentos*/
-            List lstDepa=ubigeo.listarDepartamento();            
-            ubigeo.setUbigeoId(COMBO_COD_SELECCIONAR);
-            ubigeo.setTxtDescripcion(COMBO_TXT_SELECCIONAR);
-            lstDepa.add(ubigeo);            
+            List lstDepa=ubigeo.listarDepartamento();             
             this.ubiDepartamentos=lstDepa;
-            if (this.ubigeoId==null) ubigeoId=COMBO_COD_SELECCIONAR;
-            //buscarProvincia();
-            this.ubiProvincia = new ArrayList();
-            if (this.codProvincia==null) ubiProvincia.add(ubigeo);
-            this.ubiDistrito = new ArrayList();
-            if (this.codDistrito==null) ubiDistrito.add(ubigeo);
+                        
             /*Tipo de Acae*/
-             System.out.println("Buscando tipo Acae");
+            log.info("Buscando tipo Acae");
             this.parTipoAcae=pr.buscarParametroXTipoParametro(ConstantesSistema.TIPO_ACAE);
         } catch (Exception ex) {
              ex.printStackTrace();
         }
-        System.out.println("Fin llenaParametrosIniciales");
-    }
-    
-    public String doCrearAcae(){
-              
-        try {        
-            Integer personaId =  this.persona.getNextItem();
-            this.persona.setPersonaId(personaId);            
-            this.acae.setPersonaId(personaId);
-            this.usuario.setPersonaId(personaId);
-            this.acae.setTipAcae(this.tipoAcae);
-            this.acae.setClsSector(this.clsSector);
-            this.acae.setClsSubSector(this.clsSubSector);
-            System.out.println("acae.getTipAcae()="+this.tipoAcae);
-            System.out.println("acae.getClsSector()="+this.clsSector);
-            System.out.println("acae.getClsSubSector()="+this.clsSubSector);
-            persona.insertPersona(this.persona);
-            acae.insertAcae(this.acae);
-            usuario.insertUsuario(this.usuario);            
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        
-        return "creado";
-    }
-    public String doCargarParametros(){
-        try {
-            buscarInstitucionXTipoAcae();
-            buscarDependenciaXInstitucion();
-            if (!this.ubigeoId.equals(COMBO_COD_SELECCIONAR)){
-                buscarProvincia();    
-            }
-          
-            
-        }  catch (Exception ex) {
-             ex.printStackTrace();
-        }
-        return SUCCESS;
-    }
-    
-    public void buscarProvincia(){
-        try {                    
-            System.out.println("ubigeoId="+getUbigeoId());
-            Ubigeo ubigeo = new Ubigeo();
-            List lstUbigeo = new ArrayList();
-            ubigeo.setUbigeoId(COMBO_COD_SELECCIONAR);
-            ubigeo.setTxtDescripcion(COMBO_TXT_SELECCIONAR);
-            if (!this.ubigeoId.equals(COMBO_COD_SELECCIONAR)){
-                String codDepartamento = this.ubigeoId.substring(0,2);
-                System.out.println("codDepartamento="+codDepartamento);
-                ubigeo.setCodDepartamento(codDepartamento);                                
-                lstUbigeo = ubigeo.listarProvincia(ubigeo);
-                lstUbigeo.add(ubigeo);
-                this.ubiProvincia = lstUbigeo;
-                buscarDistrito(ubigeo);
-                //this.codProvincia=COMBO_COD_SELECCIONAR;
-            } else {
-                lstUbigeo.add(ubigeo);
-                this.ubiProvincia = lstUbigeo;
-                this.codProvincia=COMBO_COD_SELECCIONAR;
-            }
-            
-            /**
-            ubigeo.setUbigeoId(COMBO_COD_SELECCIONAR);
-            ubigeo.setTxtDescripcion(COMBO_TXT_SELECCIONAR);
-            if (ubigeoId!=null) {
-                String ubigeo2 = this.ubigeoId.substring(0,2);
-                System.out.println("ubigeo2="+ubigeo2);
-                ubigeo.setCodDepartamento(ubigeo2);
-                this.ubiProvincia = ubigeo.listarProvincia(ubigeo);
-                ubiProvincia.add(ubigeo);
-                //this.codProvincia=COMBO_COD_SELECCIONAR;
-                System.out.println("saliendo");
-                 if (ubiProvincia!=null) {
-                     buscarDistrito(ubigeo);
-                 }
-            }
-            **/
-        }catch (Exception ex) {
-             ex.printStackTrace();
-        }        
-    }
-    public void buscarDistrito(Ubigeo ubigeo){
-        try {
-        if (codProvincia!=null && !codProvincia.equals(this.COMBO_COD_SELECCIONAR)) { 
-            String codProvincia = this.codProvincia.substring(2,4);
-            System.out.println("codProvincia="+codProvincia);
-            ubigeo.setCodProvincia(codProvincia);            
-            this.ubiDistrito = ubigeo.listarDistrito(ubigeo);
-            System.out.println("ubidistrito="+ubiDistrito.size());
-        }          
-        }catch (Exception ex) {
-             ex.printStackTrace();
-        } 
+        log.info("Fin llenaParametrosIniciales");
     }
     public String list() throws NegocioException {
+        
         try{
+            llenaParametrosIniciales();
           Parametro pr = new Parametro();
           SubSector sb = new SubSector();
           /*Institucion*/
@@ -192,7 +83,19 @@ public class AcaeAction extends ActionSupport  implements Preparable {
            this.parDependencia=new ArrayList();
           }
           
-          //this.setVarSession("mensajeError",null);
+          //Departamento
+          Ubigeo ubigeo = new Ubigeo();
+          if (this.codDepartamento!=null) {
+               ubigeo.setCodDepartamento(this.getCodDepartamento().substring(0,2));
+               if (this.codProvincia!=null) {
+                   ubigeo.setCodProvincia(this.codProvincia.substring(2,4));
+               }
+           } else {
+               ubigeo.setCodDepartamento("01");            
+               ubigeo.setCodProvincia("02");    
+           }            
+           this.ubiProvincia = ubigeo.listarProvincia(ubigeo);            
+           this.ubiDistrito = ubigeo.listarDistrito(ubigeo);
           System.out.println("ParametroAction.List<----");
           //return SUCCESS;
         } catch(Exception ex){
@@ -200,7 +103,81 @@ public class AcaeAction extends ActionSupport  implements Preparable {
         }
         return SUCCESS;
     }
+    public String doCrearAcae(){
+              
+        try {        
+            Integer personaId =  this.persona.getNextItem();
+            this.persona.setPersonaId(personaId);            
+            this.acae.setPersonaId(personaId);
+            this.usuario.setPersonaId(personaId);
+            this.acae.setTipAcae(this.tipoAcae);
+            this.acae.setClsSector(this.clsSector);
+            this.acae.setClsSubSector(this.clsSubSector);
+            this.persona.setUbigeoId(this.codDistrito);
+            System.out.println("acae.getTipAcae()="+this.tipoAcae);
+            System.out.println("acae.getClsSector()="+this.clsSector);
+            System.out.println("acae.getClsSubSector()="+this.clsSubSector);
+            System.out.println("this.codDistrito="+this.codDistrito);
+            persona.insertPersona(this.persona);
+            acae.insertAcae(this.acae);
+            usuario.insertUsuario(this.usuario);            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        
+        return "creado";
+    }
+    public String doCargarParametros(){
+        try {
+            llenaParametrosIniciales();
+            buscarInstitucionXTipoAcae();
+            buscarDependenciaXInstitucion(); 
+            log.info("codDepartamento="+this.codDepartamento);
+            if (this.codDepartamento!=null && !this.codDepartamento.equals("0")){
+                buscarProvincia();
+            }
+                        
+        }  catch (Exception ex) {
+             ex.printStackTrace();
+        }
+        return SUCCESS;
+    }
     
+    public void buscarProvincia(){
+        try {                    
+            log.info("this.getCodDepartamento()"+this.getCodDepartamento());
+            
+            if (this.getCodDepartamento()!=null) {
+                Ubigeo ubigeo = new Ubigeo();
+                ubigeo.setUbigeoId(this.getCodDepartamento());
+                this.codDepartamento = this.getCodDepartamento();
+                log.info("codDepartamento="+codDepartamento);
+                ubigeo.setCodDepartamento(this.getCodDepartamento().substring(0,2));
+                this.ubiProvincia = ubigeo.listarProvincia(ubigeo);
+                ubiProvincia.add(ubigeo);            
+                log.info("saliendo");
+                 if (ubiProvincia!=null) {
+                     buscarDistrito(ubigeo);
+                 }
+            }
+            
+        }catch (Exception ex) {
+             ex.printStackTrace();
+        }        
+    }
+    public void buscarDistrito(Ubigeo ubigeo){
+        try {
+        if (codProvincia!=null) { 
+            String codProvincia = this.codProvincia.substring(2,4);
+            System.out.println("codProvincia="+codProvincia);
+            ubigeo.setCodProvincia(codProvincia);            
+            this.ubiDistrito = ubigeo.listarDistrito(ubigeo);
+            System.out.println("ubidistrito="+ubiDistrito.size());
+        }          
+        }catch (Exception ex) {
+             ex.printStackTrace();
+        } 
+    }
     
     public void buscarInstitucionXTipoAcae(){
       try{
@@ -376,5 +353,13 @@ public class AcaeAction extends ActionSupport  implements Preparable {
 
     public String getCodClave2() {
         return codClave2;
+    }
+
+    public void setCodDepartamento(String codDepartamento) {
+        this.codDepartamento = codDepartamento;
+    }
+
+    public String getCodDepartamento() {
+        return codDepartamento;
     }
 }
