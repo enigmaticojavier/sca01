@@ -83,6 +83,10 @@ public class Prueba {
         System.out.println( periodo.substring(0,4));
         System.out.println( periodo.substring(5,7));
         String tmpPeriodo=periodo.substring(0,4) + periodo.substring(5,7);
+        
+        String name="prueba.txt";
+        String extension = name.substring(name.length()-3,name.length());
+        System.out.println(extension);
       
     }catch(Exception ex){
       ex.printStackTrace(); 
