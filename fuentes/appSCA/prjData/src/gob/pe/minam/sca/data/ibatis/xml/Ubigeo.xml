@@ -8,33 +8,51 @@
 
   <typeAlias alias="Ubigeo" type="gob.pe.minam.sca.pojo.Ubigeo"/>
   
-  <resultMap id="UbigeoResult" class="Ubigeo">
+  <resultMap id="UbigeoRSMap" class="Ubigeo">
     <result property="ubigeoId" column="UBIGEOID"/>
     <result property="txtDescripcion" column="TXTDESCRIPCION"/>
     <result property="txtDescripcionLarga" column="TXTDESCRIPCIONLARGA"/>
   </resultMap>
   
-  <select id="selectAllUbigeo" resultMap="UbigeoResult">
+  <resultMap id="DptoRSMap" class="Ubigeo">
+    <result property="codDepartamento" column="UBIGEOID"/>
+    <result property="txtDescripcion" column="TXTDESCRIPCION"/>
+    <result property="txtDescripcionLarga" column="TXTDESCRIPCIONLARGA"/>
+  </resultMap>
+  
+   <resultMap id="ProvRSMap" class="Ubigeo">
+    <result property="codProvincia" column="UBIGEOID"/>
+    <result property="txtDescripcion" column="TXTDESCRIPCION"/>
+    <result property="txtDescripcionLarga" column="TXTDESCRIPCIONLARGA"/>
+  </resultMap>
+  
+  <resultMap id="DistRSMap" class="Ubigeo">
+    <result property="codDistrito" column="UBIGEOID"/>
+    <result property="txtDescripcion" column="TXTDESCRIPCION"/>
+    <result property="txtDescripcionLarga" column="TXTDESCRIPCIONLARGA"/>
+  </resultMap>
+  
+  <select id="selectAllUbigeo" resultMap="UbigeoRSMap">
     select * from UBIGEO
   </select>
 
-  <select id="getUbigeoByKey" parameterClass="int" resultClass="Parametro">
+  <select id="getUbigeoByKey" parameterClass="int" resultClass="Ubigeo">
     select * from UBIGEO
     where UBIGEOID = #ubigeoId#
   </select>
    
-  <select id="selectDepartamento" parameterClass="int" resultMap="UbigeoResult">
-    SELECT * FROM UBIGEO T 
-    WHERE SUBSTR(UBIGEOID,3,4)='0000' ORDER BY T.TXTDESCRIPCION
+  <select id="selectDepartamento" parameterClass="int" resultMap="DptoRSMap">
+    SELECT * FROM UBIGEO  
+    WHERE SUBSTR(UBIGEOID,3,4)='0000' ORDER BY TXTDESCRIPCION
   </select>
-  <select id="selectProvincia" parameterClass="Ubigeo" resultMap="UbigeoResult">
-    SELECT * FROM UBIGEO T 
+  <select id="selectProvincia" parameterClass="Ubigeo" resultMap="ProvRSMap">
+    SELECT * FROM UBIGEO  
     WHERE SUBSTR(UBIGEOID,1,2)=#codDepartamento#
        AND SUBSTR(UBIGEOID,3,2) &lt; &gt;'00'
        AND SUBSTR(UBIGEOID,5,2)='00' ORDER BY TXTDESCRIPCION
   </select>
-  <select id="selectDistrito" parameterClass="Ubigeo" resultMap="UbigeoResult">
-    SELECT * FROM UBIGEO T 
+  <select id="selectDistrito" parameterClass="Ubigeo" resultMap="DistRSMap">
+    SELECT * FROM UBIGEO  
     WHERE SUBSTR(UBIGEOID,1,2)=#codDepartamento#
         AND SUBSTR(UBIGEOID,3,2)=#codProvincia#
         AND SUBSTR(UBIGEOID,5,2)&lt; &gt;'00' ORDER BY TXTDESCRIPCION   
