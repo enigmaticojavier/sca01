@@ -59,13 +59,15 @@
                 <s:select label="Institucion" name="clsSector" value="clsSector" list="parInstitucion" listKey="codParametro" listValue="txtValor" onchange="javascript:doCargarParametros()"/>
                 <s:select label="Dependencia" name="clsSubSector" value="clsSubSector" list="parDependencia" listKey="clsSubSector" listValue="txtSubSector"/>
                 <s:textfield label="Domicilio" name="persona.txtDomicilio" value="%{persona.txtDomicilio}"/>
-                <s:select label="Departamento" name="ubigeoId" value="ubigeoId" list="ubiDepartamentos" listKey="ubigeoId" listValue="txtDescripcion" onchange="javascript:doCargarParametros()" emptyOption="SELECCCIONAR"/>
-                <s:select label="Provincia" name="codProvincia" value="ubigeoId" list="ubiProvincia" listKey="ubigeoId" listValue="txtDescripcion" onchange="javascript:doCargarParametros()" emptyOption="SELECCCIONAR"/>
-                <s:select label="Distrito" name="codDistrito" value="ubigeoId" list="ubiDistrito" listKey="ubigeoId" listValue="txtDescripcion" emptyOption="SELECCCIONAR" />
+                <s:select label="Departamento" name="codDepartamento" value="codDepartamento" list="ubiDepartamentos" listKey="codDepartamento" listValue="txtDescripcion" onchange="javascript:doCargarParametros()" emptyOption="SELECCCIONAR"/>
+                <s:select label="Provincia" name="codProvincia" value="codProvincia" list="ubiProvincia" listKey="codProvincia" listValue="txtDescripcion" onchange="javascript:doCargarParametros()" emptyOption="SELECCCIONAR"/>
+                <s:select label="Distrito" name="codDistrito" value="codDistrito" list="ubiDistrito" listKey="codDistrito" listValue="txtDescripcion" emptyOption="SELECCCIONAR" />
+                <s:textfield label="Teléfono" name="persona.telefono" value="%{persona.telefono}" size="15" maxlength="15"/>
+                <s:textfield label="Fax" name="persona.fax" value="%{persona.fax}" size="15" maxlength="15"/>
                 <tr>
                 <td colspan="2" bgcolor="Green"><font color="White">2. Datos del personal responsable</font></td>                
                 </tr>
-                <s:textfield label="Teléfono" name="acae.telefonoGer" value="%{acae.telefonoGer}" size="10"/>
+                <s:textfield label="Teléfono" name="acae.telefonoGer" value="%{acae.telefonoGer}" size="10" maxlength="15"/>
                 <s:textfield label="Email" name="persona.txtEmail" value="%{persona.txtEmail}" size="50"/>
                 <s:textfield label="Apellidos y Nombres" name="acae.txtApellidosNombres" value="%{acae.txtApellidosNombres}" size="50" maxlength="500"/>
                 <s:textfield label="Cargo" name="acae.txtCargo" value="%{acae.txtCargo}" size="50" maxlength="255"/>
