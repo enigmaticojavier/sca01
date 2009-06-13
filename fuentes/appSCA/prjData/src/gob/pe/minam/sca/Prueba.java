@@ -1,10 +1,13 @@
 package gob.pe.minam.sca;
 
+import gob.pe.minam.sca.framework.ConstantesSistema;
+import gob.pe.minam.sca.pojo.ControlEnvio;
 import gob.pe.minam.sca.pojo.Expediente;
 import gob.pe.minam.sca.pojo.ExpedienteDocumento;
 import gob.pe.minam.sca.pojo.ImagenDocumento;
 import gob.pe.minam.sca.pojo.Parametro;
 
+import gob.pe.minam.sca.pojo.Periodo;
 import gob.pe.minam.sca.pojo.Persona;
 import gob.pe.minam.sca.pojo.Proyecto;
 
@@ -95,9 +98,37 @@ public class Prueba {
         String name="prueba.txt";
         String extension = name.substring(name.length()-3,name.length());
         System.out.println(extension);
-      
+        
+        System.out.println("Existe");
+        ControlEnvio controlEnvio=new ControlEnvio();
+        controlEnvio.setPersonaId(3);
+        controlEnvio.setPeriodo("200906");
+        controlEnvio.setEstEnvioPro(ConstantesSistema.ENVIO_ENVIADO_OK);
+        controlEnvio.setFchEnvioExp(new Date());
+        controlEnvio.guardarControlEnvio(controlEnvio);
+        
     }catch(Exception ex){
       ex.printStackTrace(); 
     }    
+      try{
+        Periodo periodo1 = new Periodo();
+        List l =periodo1.listarPeriodoReporte();
+        for (int i=0;i<l.size();i++){
+          System.out.println("Periodo " + ((Periodo)l.get(i)).getPeriodo() );  
+        }
+        
+        ControlEnvio controlEnvio=new ControlEnvio();
+        controlEnvio=controlEnvio.obtenerControlEnvioXPeriodo("200912");
+        if (controlEnvio==null){
+            System.out.println("Nulo");
+        }else{
+            System.out.println("PeriodoXX-->"+controlEnvio.getPeriodo());
+        }    
+        
+      }catch(Throwable ex){
+        ex.printStackTrace();
+        System.out.println("Error-->"+ex.toString());
+      }
   }  
+  
 }
