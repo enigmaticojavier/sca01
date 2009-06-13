@@ -9,8 +9,12 @@
 
 <html>
 <head>
-    <link href="<s:url value='/css/main.css'/>" rel="stylesheet" type="text/css"/>
+    <!--link href="<s:url value='/css/main.css'/>" rel="stylesheet" type="text/css"/-->
     <LINK HREF="styles/displaytagsca.css" REL="stylesheet" TYPE="text/css">
+    
+    <link href="<%= request.getContextPath() %>/public/css/web/template_css.css" rel="stylesheet" type="text/css">
+    <link href="<%= request.getContextPath() %>/public/css/web/acordionv2.css" rel="stylesheet" type="text/css">
+    
     <!--LINK HREF="styles/fecha.css" REL="stylesheet" TYPE="text/css"-->
     <!--LINK HREF="styles/DatePicker.css" REL="stylesheet" TYPE="text/css"-->
     <!--script src="script/fecha.js"></script-->
