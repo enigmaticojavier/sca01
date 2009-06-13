@@ -54,5 +54,7 @@
   <select id="getNextItem" resultClass="java.lang.Integer" parameterClass="int">
         select PERSONAID_SEQUENCE.NEXTVAL from dual
    </select>
-  
+  <select id ="getPersonaByNombre" parameterClass="Persona" resultMap="PersonaRSMap">
+    SELECT * FROM PERSONA WHERE TXTRAZONSOCIAL LIKE '%' || #txtRazonSocial# || '%'
+  </select>
 </sqlMap>

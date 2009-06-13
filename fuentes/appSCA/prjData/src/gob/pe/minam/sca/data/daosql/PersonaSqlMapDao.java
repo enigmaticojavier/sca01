@@ -11,6 +11,9 @@ import gob.pe.minam.sca.data.dao.PersonaDao;
 import gob.pe.minam.sca.framework.exception.DAOException;
 import gob.pe.minam.sca.pojo.Persona;
 
+import java.util.Collections;
+import java.util.List;
+
 public class PersonaSqlMapDao  extends BaseSqlMapDao implements PersonaDao {
     
     public PersonaSqlMapDao (DaoManager daoManager) {
@@ -31,5 +34,9 @@ public class PersonaSqlMapDao  extends BaseSqlMapDao implements PersonaDao {
 
     public void updatePersona(Persona persona) {
         update("updatePersona", persona);
+    }
+
+    public List getPersonaByNombre(Persona persona ) {
+        return queryForList("getPersonaByNombre",persona);
     }
 }
