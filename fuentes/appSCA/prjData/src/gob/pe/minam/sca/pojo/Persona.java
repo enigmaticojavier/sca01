@@ -109,25 +109,6 @@ public class Persona {
 		this.documentoPersona = documentoPersona;
 	}
 
-    public static Persona getPersonaByKey(Persona persona){
-        ProyectoService proyectoService = ProyectoService.getInstance();
-        PersonaDao personaDao = proyectoService.getPersonaDao();
-        return personaDao.getPersonaByKey(persona);
-    }
- 
-    public static Integer getNextItem() {
-           ProyectoService proyectoService = ProyectoService.getInstance();
-           PersonaDao personaDao = proyectoService.getPersonaDao();
-           return personaDao.getNextItem();
-       }
-
-       public static void insertPersona(Persona persona) throws DAOException {
-           ProyectoService proyectoService = ProyectoService.getInstance();
-           PersonaDao personaDao = proyectoService.getPersonaDao();
-           personaDao.insertPersona(persona);
-       }
-       
-
     public void setUbigeoId(String ubigeoId) {
         this.ubigeoId = ubigeoId;
     }
@@ -135,4 +116,27 @@ public class Persona {
     public String getUbigeoId() {
         return ubigeoId;
     }
+    public static Persona getPersonaByKey(Persona persona){
+        ProyectoService proyectoService = ProyectoService.getInstance();
+        PersonaDao personaDao = proyectoService.getPersonaDao();
+        return personaDao.getPersonaByKey(persona);
+    }
+    
+    public static Integer getNextItem() {
+           ProyectoService proyectoService = ProyectoService.getInstance();
+           PersonaDao personaDao = proyectoService.getPersonaDao();
+           return personaDao.getNextItem();
+       }
+
+   public static void insertPersona(Persona persona) throws DAOException {
+       ProyectoService proyectoService = ProyectoService.getInstance();
+       PersonaDao personaDao = proyectoService.getPersonaDao();
+       personaDao.insertPersona(persona);
+   }
+   
+   public static List getPersonaByNombre(Persona persona){
+       ProyectoService proyectoService = ProyectoService.getInstance();
+       PersonaDao personaDao = proyectoService.getPersonaDao();
+       return personaDao.getPersonaByNombre(persona);
+   }
 }
