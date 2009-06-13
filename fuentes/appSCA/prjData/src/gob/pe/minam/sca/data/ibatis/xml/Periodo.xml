@@ -22,8 +22,8 @@
   
   <select id="SelectPeriodoReporte" resultMap="PeriodoResult">
     select anio, mes, peractual, estado, anio || '-' || lpad(mes,2,'0') periodo from periodo 
-    where anio || lpad(mes,2,0) not in ( select periodo from controlenvio )
-    order by anio desc, mes desc
+    where anio || lpad(mes,2,0) not in ( select periodo from controlenvio where nvl(estenvioexp,'')!='EOK' )
+    order by anio asc, mes asc
   </select>
   
 </sqlMap>

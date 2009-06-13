@@ -10,17 +10,45 @@
   <resultMap id="ControlEnvioResult" class="ControlEnvio">
     <result property="periodo" column="PERIODO"/>
     <result property="personaId" column="PERSONAID"/>
-    <result property="flgEnvioPro" column="FLGENVIOPRO"/>
+    <result property="estEnvioPro" column="ESTENVIOPRO"/>
     <result property="fchEnvioPro" column="FCHENVIOPRO"/>
-    <result property="flgEnvioPry" column="FLGENVIOPRY"/>
+    <result property="estEnvioPry" column="ESTENVIOPRY"/>
     <result property="fchEnvioPry" column="FCHENVIOPRY"/>
-    <result property="flgEnvioExp" column="FLGENVIOEXP"/>
+    <result property="estEnvioExp" column="ESTENVIOEXP"/>
     <result property="fchEnvioExp" column="FCHENVIOEXP"/>
   </resultMap>
   
   <select id="SelectControlEnvio" parameterClass="string" resultMap="ControlEnvioResult">
-    select periodo, personaid, flgenviopro, fchenviopro, 
-    flgenviopry, fchenviopry, flgenvioexp, fchenvioexp
+    select periodo, personaid, estenviopro, fchenviopro, 
+    estenviopry, fchenviopry, estenvioexp, fchenvioexp
+    from controlenvio
+    where periodo = #param#
+  </select>
+  
+  <insert id="insertControlEnvio" parameterClass="ControlEnvio">
+    insert into controlenvio(
+        periodo, personaid, estenviopro, fchenviopro, 
+        estenviopry, fchenviopry, estenvioexp, fchenvioexp
+    )values(
+        #periodo#, #personaId#, #estEnvioPro#, #fchEnvioPro#,
+        #estEnvioPry#, #fchEnvioPry#, #estEnvioExp#, #fchEnvioExp#
+    )
+  </insert>
+  
+  <update id="updateControlEnvio" parameterClass="ControlEnvio">
+    update controlenvio
+    set personaid=#personaId#, 
+        estenviopro=#estEnvioPro#, 
+        fchenviopro=#fchEnvioPro#, 
+        estenviopry=#estEnvioPry#, 
+        fchenviopry=#fchEnvioPry#,
+        estenvioexp=#estEnvioExp#, 
+        fchenvioexp=#fchEnvioExp#
+    where periodo = #periodo#
+  </update>
+  
+  <select id="existeControlEnvio" parameterClass="string" resultClass="int">
+    select count(*) cont
     from controlenvio
     where periodo = #param#
   </select>

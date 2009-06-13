@@ -26,4 +26,42 @@ public class ControlEnvioSqlMapDao extends BaseSqlMapDao implements ControlEnvio
           throw new DAOException(ex.toString(),"Error producido en la Carga de Obtención de Control Envio");
         } 
     }
+    
+    public boolean existeControlEnvio(String periodo) throws DAOException{
+        try{
+          int cont = ((Integer)queryForObject("existeControlEnvio",periodo)).intValue();
+          if (cont>0) return true;
+          else return false;
+        }catch(SqlMapException ex){
+          throw new DAOException(ex.toString(),"Error producido en BD : No se puede ejecutar la Inserción de ControlEnvio");
+        }catch(DaoException ex){
+          throw new DAOException(ex.toString(),"Error producido en BD : Inserción de ControlEnvio presenta problemas");
+        }catch(Exception ex){
+          throw new DAOException(ex.toString(),"Error producido en la Inserción de ControlEnvio");
+        }
+    }
+    
+    public void insertControlEnvio(ControlEnvio controlEnvio) throws DAOException{
+        try{
+          insert("insertControlEnvio", controlEnvio);
+        }catch(SqlMapException ex){
+          throw new DAOException(ex.toString(),"Error producido en BD : No se puede ejecutar la Inserción de ControlEnvio");
+        }catch(DaoException ex){
+          throw new DAOException(ex.toString(),"Error producido en BD : Inserción de ControlEnvio presenta problemas");
+        }catch(Exception ex){
+          throw new DAOException(ex.toString(),"Error producido en la Inserción de ControlEnvio");
+        }
+    }
+    
+    public void updateControlEnvio(ControlEnvio controlEnvio) throws DAOException{
+        try{
+          update("updateControlEnvio", controlEnvio);
+        }catch(SqlMapException ex){
+          throw new DAOException(ex.toString(),"Error producido en BD : No se puede ejecutar la Inserción de ControlEnvio");
+        }catch(DaoException ex){
+          throw new DAOException(ex.toString(),"Error producido en BD : Inserción de ControlEnvio presenta problemas");
+        }catch(Exception ex){
+          throw new DAOException(ex.toString(),"Error producido en la Inserción de ControlEnvio");
+        }
+    }
 }

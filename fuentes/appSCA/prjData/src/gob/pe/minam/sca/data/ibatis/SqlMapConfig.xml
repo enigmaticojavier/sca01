@@ -18,7 +18,8 @@
   <transactionManager type="JDBC" commitRequired="false">
     <dataSource type="SIMPLE">
       <property name="JDBC.Driver" value="oracle.jdbc.driver.OracleDriver"/>
-      <property name="JDBC.ConnectionURL" value="jdbc:oracle:thin:@localhost:1521:SCADB"/>
+      <!--property name="JDBC.ConnectionURL" value="jdbc:oracle:thin:@localhost:1521:SCADB"/-->
+      <property name="JDBC.ConnectionURL" value="jdbc:oracle:thin:@localhost:1521:BDRIMAC"/>
       <property name="JDBC.Username" value="sca"/>
       <property name="JDBC.Password" value="sca"/>
     </dataSource>
@@ -34,6 +35,7 @@
   <sqlMap resource="gob/pe/minam/sca/data/ibatis/xml/ImagenDocumento.xml"/>
   <sqlMap resource="gob/pe/minam/sca/data/ibatis/xml/Expediente.xml"/>
   <sqlMap resource="gob/pe/minam/sca/data/ibatis/xml/Periodo.xml"/>   
+  <sqlMap resource="gob/pe/minam/sca/data/ibatis/xml/ControlEnvio.xml"/>
   <sqlMap resource="gob/pe/minam/sca/data/ibatis/xml/Persona.xml"/>   
 
 </sqlMapConfig>

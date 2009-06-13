@@ -70,7 +70,11 @@ public class ProyectoService {
   public static ProyectoService getInstance() {
     if (instance == null)
     {
-      instance = new ProyectoService();
+      try{
+        instance = new ProyectoService();
+      }catch(Exception ex){
+        ex.printStackTrace();
+      }
     }
     return instance;
   }
@@ -118,8 +122,7 @@ public class ProyectoService {
     }
 	
     public ControlEnvioDao getControlEnvioDao() {
-	  
-        return controlEnvioDao;
+      return controlEnvioDao;
     }
     
     public PersonaDao getPersonaDao() {

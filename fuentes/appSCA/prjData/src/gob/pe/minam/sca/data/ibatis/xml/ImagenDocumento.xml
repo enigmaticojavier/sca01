@@ -11,12 +11,14 @@
   <resultMap id="ImagenDocumentoResult" class="ImagenDocumento">
       <result property="documento.docId" column="docid"/>
       <result property="nsecuencia" column="nsecuencia"/>
+      <result property="txtNomArchivo" column="txtnomarchivo"/>
       <result property="txtRutaImagen" column="txtrutaimagen"/>
   </resultMap>
   
   <select id="BUSCARIMAGENXDOC" parameterClass="int" resultMap="ImagenDocumentoResult">
       select docid,
              nsecuencia,
+             txtnomarchivo,
              txtrutaimagen
       from imagendocumento
       where docid=#docid#

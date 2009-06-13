@@ -31,6 +31,8 @@
         implementation="gob.pe.minam.sca.data.daosql.ImagenDocumentoSqlMapDao"/>
    <dao interface="gob.pe.minam.sca.data.dao.PeriodoDao"
         implementation="gob.pe.minam.sca.data.daosql.PeriodoSqlMapDao"/>
+   <dao interface="gob.pe.minam.sca.data.dao.ControlEnvioDao"
+        implementation="gob.pe.minam.sca.data.daosql.ControlEnvioSqlMapDao"/>
    <dao interface="gob.pe.minam.sca.data.dao.PersonaDao"
         implementation="gob.pe.minam.sca.data.daosql.PersonaSqlMapDao"/>       
   </context>
