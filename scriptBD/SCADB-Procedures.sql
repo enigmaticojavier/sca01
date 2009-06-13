@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Export file for user SCA1                     --
--- Created by JORGE on 13/06/2009, 10:14:54 a.m. --
+-- Created by JORGE on 13/06/2009, 05:33:17 p.m. --
 ---------------------------------------------------
 
 spool procedures.log
@@ -321,21 +321,21 @@ BEGIN
 DECLARE
 lnidpersona		INTEGER;
 CURSOR ctproponente IS
-SELECT * FROM SCA1.Tproponente
+SELECT * FROM Tproponente
 	WHERE numacae = al_acae AND
   			periodo = as_periodo AND
-        rucprop NOT IN (SELECT numdocumentoper FROM SCA1.persona WHERE tipdocumentoper = 'RUC' AND tippersona = 'PRO');
+        rucprop NOT IN (SELECT numdocumentoper FROM persona WHERE tipdocumentoper = 'RUC' AND tippersona = 'PRO');
 
 BEGIN
 		
     FOR cu_proponente IN ctproponente LOOP
----      SELECT NVL(MAX(personaid), 0) + 1 INTO lnidpersona FROM SCA1.persona;
+---      SELECT NVL(MAX(personaid), 0) + 1 INTO lnidpersona FROM persona;
 			SELECT PARAMETROID_SEQUENCE.NEXTVAL INTO lnidpersona FROM DUAL;
 /*			SELECT COUNT(1) FROM SCA1.persona a
       WHERE a.tipdocumentoper = 'RUC' AND
       			a.numdocumentoper = cu_proponente.rucprop*/
       BEGIN
-        INSERT INTO SCA1.persona
+        INSERT INTO persona
           (personaid,
           ubigeoid,
           tippersona,
@@ -364,7 +364,7 @@ BEGIN
        END;
       ---proponente
       BEGIN
-        INSERT INTO SCA1.proponente
+        INSERT INTO proponente
           (personaid,
           tipodocumentorl,
           coddocumentorl,
@@ -401,7 +401,7 @@ BEGIN
   lcontador		INTEGER;
 
   CURSOR cu_tproyecto IS
-  SELECT s.* FROM SCA1.TPROYECTO s
+  SELECT s.* FROM TPROYECTO s
   WHERE s.numacae = al_acae AND
   			s.periodo = as_periodo;
 
@@ -409,8 +409,8 @@ BEGIN
     FOR ltproyecto IN cu_tproyecto LOOP
       SELECT COUNT(1)
         INTO lcontador
-        FROM SCA1.proyecto t,
-        		 SCA1.persona u
+        FROM proyecto t,
+        		 persona u
        WHERE t.personaid = u.personaid AND
        			 t.codproyecto = ltproyecto.codproy AND
        			 u.numdocumentoper = ltproyecto.rucprop AND
@@ -438,7 +438,7 @@ BEGIN
 DECLARE
 lnidpersona		INTEGER;
 lnpryid				INTEGER;
-CURSOR ctproyecto IS SELECT * FROM SCA1.Tproyecto WHERE numacae = al_acae AND periodo = as_periodo;
+CURSOR ctproyecto IS SELECT * FROM Tproyecto WHERE numacae = al_acae AND periodo = as_periodo;
 
 BEGIN
 		USP_002_VERIFICA_TPROYECTO(al_acae, as_periodo, al_error);
@@ -451,15 +451,15 @@ BEGIN
 
       SELECT personaid
         INTO lnidpersona
-        FROM SCA1.persona
+        FROM persona
        WHERE tipdocumentoper = 'RUC' AND numdocumentoper = cu_proyecto.rucprop;
 
       IF lnidpersona > 0 THEN
       	BEGIN
-          SELECT SCA1.SQ_PROYECTO.NEXTVAL INTO lnpryid FROM DUAL;
-          ---SELECT NVL(MAX(pryid), 0) + 1 INTO lnpryid FROM SCA1.proyecto;
+          SELECT SQ_PROYECTO.NEXTVAL INTO lnpryid FROM DUAL;
+          ---SELECT NVL(MAX(pryid), 0) + 1 INTO lnpryid FROM proyecto;
 
-          INSERT INTO SCA1.proyecto
+          INSERT INTO proyecto
             (pryid,
             codproyecto,
             ubigeoid,
@@ -512,10 +512,10 @@ BEGIN
 	al_error := 0;
 
   BEGIN
-    DELETE SCA1.EXPEDIENTEDOCUMENTO
+    DELETE EXPEDIENTEDOCUMENTO
      WHERE (expid, nsecuencia) IN (SELECT a.expid, nsecuencia
-                                        FROM SCA1.EXPEDIENTEPASO a,
-                                             SCA1.EXPEDIENTE b
+                                        FROM EXPEDIENTEPASO a,
+                                             EXPEDIENTE b
                                        WHERE a.expid = b.expid AND
                                              b.personaid = al_acae AND
                                              a.Periodo = as_periodo); ---se ejecuta el trigger que borra todos los docs
@@ -526,8 +526,8 @@ BEGIN
 	END;
 
   BEGIN
-	DELETE SCA1.expedientepaso
-   WHERE expid IN (SELECT expid FROM SCA1.expediente WHERE personaid = al_acae) AND
+	DELETE expedientepaso
+   WHERE expid IN (SELECT expid FROM expediente WHERE personaid = al_acae) AND
    			 periodo = as_periodo;
 
    EXCEPTION
@@ -552,7 +552,9 @@ lexisteexp		INTEGER;
 lexpid				INTEGER;
 lnumsecuencia	INTEGER;
 lniddocumento	INTEGER;
-CURSOR ctexpediente IS SELECT * FROM SCA1.Texpediente WHERE numacae = al_acae AND periodo = as_periodo ORDER BY numexpd, fchtran ASC;
+lnsecuenciadoc INTEGER;
+CURSOR ctexpediente IS SELECT * FROM Texpediente WHERE numacae = al_acae AND periodo = as_periodo ORDER BY numexpd, fchtran ASC;
+CURSOR cttransaccion IS SELECT tipdocumento FROM estadostupadoc WHERE tiptramite = 'SCA' AND numsecuencia = lnumsecuencia;
 
 BEGIN
 
@@ -565,7 +567,7 @@ BEGIN
 
 			SELECT pryid
         INTO lnpryid
-        FROM SCA1.proyecto
+        FROM proyecto
        WHERE codproyecto = cu_expediente.codproy;
 
       lnpryid := NVL(lnpryid, 0);
@@ -577,15 +579,15 @@ BEGIN
 
       SELECT COUNT(1)
         INTO lexisteexp
-       FROM SCA1.expediente
+       FROM expediente
       WHERE personaid = al_acae AND numexpediente = cu_expediente.numexpd;
 
 			IF lexisteexp = 0 THEN
-      	SELECT SCA1.SQ_EXPEDIENTE.nextval INTO lexpid FROM dual;
-        ---SELECT NVL(MAX(expid), 0) + 1 INTO lexpid FROM SCA1.EXPEDIENTE;
+      	SELECT SQ_EXPEDIENTE.nextval INTO lexpid FROM dual;
+        ---SELECT NVL(MAX(expid), 0) + 1 INTO lexpid FROM EXPEDIENTE;
 
         BEGIN
-          INSERT INTO SCA1.expediente
+          INSERT INTO expediente
             (expid,
             pryid,
             personaid,
@@ -611,7 +613,7 @@ BEGIN
 			ELSE
       	SELECT expid
         	INTO lexpid
-       		FROM SCA1.expediente
+       		FROM expediente
       	 WHERE personaid = al_acae AND numexpediente = cu_expediente.numexpd;
       END IF;
 
@@ -619,7 +621,7 @@ BEGIN
       ---expedientepaso
       SELECT m.numsecuencia
         INTO lnumsecuencia
-        FROM SCA1.estadostupa m
+        FROM estadostupa m
        WHERE m.tiptramite = 'SCA' AND m.tippaso = cu_expediente.tiptran;
 
 			IF lnumsecuencia <= 0 THEN
@@ -628,7 +630,7 @@ BEGIN
       END IF;
 
       BEGIN
-        INSERT INTO SCA1.expedientepaso
+        INSERT INTO expedientepaso
           (expid, nsecuencia, tippaso, fchpaso, periodo)
         VALUES (lexpid,
               lnumsecuencia,
@@ -641,12 +643,84 @@ BEGIN
 			END;
 
       ---documento
+      FOR cu_docspedidos IN cttransaccion LOOP
+      
+          SELECT sq_documento.nextval INTO lniddocumento FROM dual;
+          
+					BEGIN
+            INSERT INTO documento
+              (docid, tipodocumento, coddocumento, fchexpedicion, fchpresentacion, periodo)
+            VALUES (lniddocumento,
+                  cu_docspedidos.tipdocumento,
+                  CASE cu_docspedidos.tipdocumento WHEN 'RES' THEN cu_expediente.numresl WHEN 'ITA' THEN cu_expediente.NUMITAM ELSE cu_expediente.numexpd END, ---aquí tendría que variar si entra un nuevo tipo de documento.
+                  CASE cu_docspedidos.tipdocumento WHEN 'RES' THEN cu_expediente.fchresl ELSE cu_expediente.fchtran END, ---aquí tendría que variar si entra un nuevo tipo de documento.
+                  CASE cu_docspedidos.tipdocumento WHEN 'RES' THEN cu_expediente.fchresl ELSE cu_expediente.fchtran END, ---aquí tendría que variar si entra un nuevo tipo de documento.
+                  cu_expediente.periodo );
+
+            EXCEPTION
+            WHEN OTHERS THEN
+            	al_error := -2; ---error de BD
+          END;
+          ---expedientedocumento
+          BEGIN
+          	
+          	SELECT MAX(nsecuenciadoc)
+              INTO lnsecuenciadoc
+              FROM expedientedocumento
+             WHERE expid = lexpid AND
+             			 nsecuencia = lnumsecuencia;
+                    
+            lnsecuenciadoc := NVL(lnsecuenciadoc, 0) + 1; --no habrá concurrencia si un usuario x ACAE-dependencia
+            
+            INSERT INTO expedientedocumento
+            (expid, nsecuencia, nsecuenciadoc, docid)
+            VALUES (lexpid,
+                  lnumsecuencia,
+                  lnsecuenciadoc,
+                lniddocumento);
+
+            EXCEPTION
+            WHEN OTHERS THEN
+            	al_error := -2; ---error de BD
+					END;
+          
+          IF cu_docspedidos.tipdocumento = 'RES' THEN          
+            BEGIN
+              INSERT INTO resolucion
+                (docid, tipresolucion, fchpublicacion, fchvigencia, resumen)
+              VALUES (lniddocumento,
+                    CASE WHEN cu_expediente.tiptran = 'RDE' THEN 'RCD' ELSE 'RCA' END, ---regla de negocio
+                    cu_expediente.fchtran,
+                    cu_expediente.fchtran,
+                    NULL );
+
+              EXCEPTION
+              WHEN OTHERS THEN
+                al_error := -2; ---error de BD
+            END;
+					END IF;
+          
+          ---eia
+          IF cu_docspedidos.tipdocumento = 'EIA' THEN
+            BEGIN
+              INSERT INTO eia
+                (docid, txtresumen)
+              VALUES (lniddocumento,
+                    cu_expediente.dscbiga);
+
+              EXCEPTION
+              WHEN OTHERS THEN
+                al_error := -2; ---error de BD
+            END;
+          END IF;    
+       END LOOP;                        	
+/*     ******************** 
       IF cu_expediente.tiptran IN ('RDE', 'RAP', 'ITA') THEN
 
-    /*		SELECT lniddocumento = MAX(documentoid)
-          FROM SCA1.documento;
+    \*		SELECT lniddocumento = MAX(documentoid)
+          FROM documento;
 
-        lniddocumento := NVL(lniddocumento) + 1;*/
+        lniddocumento := NVL(lniddocumento) + 1;*\
 
         IF cu_expediente.tiptran IN ('RDE', 'RAP') THEN
           SELECT SCA1.sq_documento.nextval INTO lniddocumento FROM dual;
@@ -729,7 +803,7 @@ BEGIN
             EXCEPTION
             WHEN OTHERS THEN
             	al_error := -2; ---error de BD
-          END;
+          END;**
 
           ---eia
           BEGIN
@@ -779,7 +853,7 @@ BEGIN
 
         ---expedientedocumento
     ----------------falta
-     END IF;
+     END IF;*/
 
     END LOOP;
 
@@ -1034,21 +1108,21 @@ prompt
 prompt Creating trigger TDEXPEDIENTEDOCUMENTO
 prompt ======================================
 prompt
-CREATE OR REPLACE TRIGGER tDExpedienteDocumento AFTER DELETE ON sca1.expedientedocumento FOR EACH ROW
+CREATE OR REPLACE TRIGGER tDExpedienteDocumento AFTER DELETE ON expedientedocumento FOR EACH ROW
 BEGIN
 	DECLARE
 /*  lnextval	INTEGER;*/
   BEGIN
-		DELETE sca1.imagendocumento
+		DELETE imagendocumento
      WHERE docid = :old.docid;
 
-    DELETE sca1.eia
+    DELETE eia
      WHERE docid = :old.docid;
 
-    DELETE sca1.resolucion
+    DELETE resolucion
      WHERE docid = :old.docid;
 
-    DELETE sca1.documento
+    DELETE documento
      WHERE docid = :old.docid;
 
   END;
