@@ -10,8 +10,10 @@ import gob.pe.minam.sca.pojo.Proyecto;
 
 import gob.pe.minam.sca.pojo.SubSector;
 
+import gob.pe.minam.sca.pojo.Ubigeo;
 import gob.pe.minam.sca.vo.EstadisticaVo;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import java.text.DateFormat;
@@ -27,12 +29,18 @@ public class Prueba {
     Proyecto p= new Proyecto();
     Persona persona =  new Persona();
     Persona persona2;
+    Ubigeo ubigeo = new Ubigeo();
+    
     try{
         Integer id = new Integer(0);
         persona.setPersonaId(id);
         persona2 = persona.getPersonaByKey(persona);
         System.out.println("persona2="+persona2);
-        
+        persona.setTxtRazonSocial("BARRICK");
+        List lstDpto = ubigeo.listarDepartamento();
+        System.out.println("lstDpto"+lstDpto.size());
+        List lstPersonas = persona.getPersonaByNombre(persona);
+        System.out.println("lstPersonas"+lstPersonas.size());
         DateFormat myDateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date d1 = myDateFormat.parse("01/05/1994");
         Date d2 = myDateFormat.parse("01/05/1995");
