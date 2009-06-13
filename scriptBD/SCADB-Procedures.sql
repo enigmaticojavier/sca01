@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Export file for user SCA1                     --
--- Created by JORGE on 12/06/2009, 04:58:38 p.m. --
+-- Created by JORGE on 13/06/2009, 10:14:54 a.m. --
 ---------------------------------------------------
 
 spool procedures.log
@@ -327,10 +327,10 @@ SELECT * FROM SCA1.Tproponente
         rucprop NOT IN (SELECT numdocumentoper FROM SCA1.persona WHERE tipdocumentoper = 'RUC' AND tippersona = 'PRO');
 
 BEGIN
-
+		
     FOR cu_proponente IN ctproponente LOOP
-      SELECT NVL(MAX(personaid), 0) + 1 INTO lnidpersona FROM SCA1.persona;
-
+---      SELECT NVL(MAX(personaid), 0) + 1 INTO lnidpersona FROM SCA1.persona;
+			SELECT PARAMETROID_SEQUENCE.NEXTVAL INTO lnidpersona FROM DUAL;
 /*			SELECT COUNT(1) FROM SCA1.persona a
       WHERE a.tipdocumentoper = 'RUC' AND
       			a.numdocumentoper = cu_proponente.rucprop*/
@@ -456,8 +456,8 @@ BEGIN
 
       IF lnidpersona > 0 THEN
       	BEGIN
-          ---lnpryid := SCA1.SQ_PROYECTO.CURRVAL + 1;
-          SELECT NVL(MAX(pryid), 0) + 1 INTO lnpryid FROM SCA1.proyecto;
+          SELECT SCA1.SQ_PROYECTO.NEXTVAL INTO lnpryid FROM DUAL;
+          ---SELECT NVL(MAX(pryid), 0) + 1 INTO lnpryid FROM SCA1.proyecto;
 
           INSERT INTO SCA1.proyecto
             (pryid,
@@ -581,8 +581,8 @@ BEGIN
       WHERE personaid = al_acae AND numexpediente = cu_expediente.numexpd;
 
 			IF lexisteexp = 0 THEN
-      	---lexpid := SCA1.SQ_EXPEDIENTE.CURRVAL + 1;
-        SELECT NVL(MAX(expid), 0) + 1 INTO lexpid FROM SCA1.EXPEDIENTE;
+      	SELECT SCA1.SQ_EXPEDIENTE.nextval INTO lexpid FROM dual;
+        ---SELECT NVL(MAX(expid), 0) + 1 INTO lexpid FROM SCA1.EXPEDIENTE;
 
         BEGIN
           INSERT INTO SCA1.expediente
@@ -649,8 +649,8 @@ BEGIN
         lniddocumento := NVL(lniddocumento) + 1;*/
 
         IF cu_expediente.tiptran IN ('RDE', 'RAP') THEN
-          ---lniddocumento := SCA1.sq_documento.currval + 1;
-					SELECT NVL(MAX(docid), 0) + 1 INTO lniddocumento FROM SCA1.documento;
+          SELECT SCA1.sq_documento.nextval INTO lniddocumento FROM dual;
+					---SELECT NVL(MAX(docid), 0) + 1 INTO lniddocumento FROM SCA1.documento;
 
 					BEGIN
             INSERT INTO SCA1.documento
@@ -700,8 +700,9 @@ BEGIN
 
         IF cu_expediente.tiptran = 'RAP' THEN
           ---lniddocumento := SCA1.sq_documento.currval + 1;
-          SELECT NVL(MAX(docid), 0) + 1 INTO lniddocumento FROM SCA1.documento;
-
+---          SELECT NVL(MAX(docid), 0) + 1 INTO lniddocumento FROM SCA1.documento;
+          SELECT SCA1.sq_documento.nextval INTO lniddocumento FROM dual;
+          
           BEGIN
             INSERT INTO SCA1.documento
               (docid, tipodocumento, coddocumento, fchexpedicion, fchpresentacion, periodo)
@@ -745,8 +746,9 @@ BEGIN
         END IF;
 
         IF cu_expediente.tiptran = 'ITA' THEN
-	        SELECT NVL(MAX(docid), 0) + 1 INTO lniddocumento FROM SCA1.documento;
+---	        SELECT NVL(MAX(docid), 0) + 1 INTO lniddocumento FROM SCA1.documento;
       ---    lniddocumento := SCA1.sq_documento.currval + 1;
+          SELECT SCA1.sq_documento.nextval INTO lniddocumento FROM dual;
 
           BEGIN
             INSERT INTO SCA1.documento
