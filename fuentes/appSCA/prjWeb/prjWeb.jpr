@@ -143,6 +143,7 @@
                   <url path="../LibreriaSCA/LibreriaWeb/displaytag-export-poi-1.2-sources.jar" jar-entry=""/>
                   <url path="../LibreriaSCA/LibreriaWeb/jstl.jar" jar-entry=""/>
                   <url path="../LibreriaSCA/LibreriaWeb/standard.jar" jar-entry=""/>
+                  <url path="../LibreriaSCA/LibreriaWeb/poi-3.5-beta4-20081128.jar" jar-entry=""/>
                </list>
                <value n="description" v="LibreriaWeb"/>
                <value n="id" v="LibreriaWeb"/>

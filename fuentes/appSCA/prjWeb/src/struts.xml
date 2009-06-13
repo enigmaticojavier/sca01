@@ -93,14 +93,30 @@
             </action>
 	</package>
 	        
-        <package name="pckupload" extends="struts-default">
-            <action name="showUpload">
-                <result>/pages/periodo/cargainformacion.jsp</result>
-            </action>
-            <action name="archivo" class="gob.pe.minam.sca.action.ArchivoAction">
+        <package name="pckarchivo" extends="struts-default">
+            <!--default-interceptor-ref name="paramsPrepareParamsStack"/-->
+            <!--action name="showUpload">
+                <result>/pages/periodo/cargaarchivos.jsp</result>
+            </action-->
+            <action name="archivo" class="gob.pe.minam.sca.action.CargaArchivoAction" method="list">
+                <result name="success">/pages/periodo/cargaarchivos.jsp</result>
                 <result name="input">/pages/periodo/cargaarchivos.jsp</result>
-                <result>/pages/periodo/cargaresultado.jsp</result>
+                <result>/pages/periodo/cargaarchivos.jsp</result>
+                <interceptor-ref name="defaultStack"/>
+            </action>    
+            <action name="archivoForm" class="gob.pe.minam.sca.action.CargaArchivoAction" method="cargaArchivoProponente">
+                <result name="success">/pages/periodo/cargaarchivos.jsp</result>
+                 <!--result>/pages/periodo/cargaarchivos.jsp</result-->
+                <interceptor-ref name="defaultStack"/>
             </action>    
         </package>
+        
+        <package name="pckupload" extends="struts-default">
+            <default-interceptor-ref name="paramsPrepareParamsStack"/>
+            <action name="upload" class="gob.pe.minam.sca.action.UploadAction" method="list">
+                <result name="success">/pages/periodo/archivo.jsp</result>
+                <interceptor-ref name="defaultStack"/>
+            </action>
+	</package>
         
 </struts>

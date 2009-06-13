@@ -75,7 +75,18 @@
         <td width="800" valign="top">
     <!-- Copia Skeleton Fin -->
     
-                <s:form name="frmArchivo"  theme="simple" action="doUpload" method="POST" enctype="multipart/form-data">
+                <s:form name="frmArchivo"  theme="simple" action="archivo!cargaArchivoProponente" method="POST" enctype="multipart/form-data">
+                <table>
+                  <tr>
+                    <td>
+                        <s:label value="Periodo"/>
+                    </td>    
+                    <td>
+                        <s:select name="periodo" value="periodo" list="periodos" listKey="periodo" listValue="periodo"/>
+                    </td>
+                  </tr>
+                </table>
+                
                 <table>    
                     <tr>
                         <td align="center">

@@ -7,6 +7,8 @@ import gob.pe.minam.sca.pojo.Expediente;
 import gob.pe.minam.sca.pojo.Parametro;
 import gob.pe.minam.sca.pojo.Periodo;
 
+import java.io.File;
+
 import java.text.DateFormat;
 
 import java.text.SimpleDateFormat;
@@ -26,6 +28,10 @@ public class EstadisticaAction extends AccionSoporte implements Preparable {
     private List parPeriodos;
     private List parTipoAcae;
     private List estadisticas;
+    
+    private File archExpediente;//The actual file
+    private String archExpedienteContentType; //The content type of the file
+    private String archExpedienteFileName; //The uploaded file name
 
     public void setParPeriodos(List parPeriodos) {
         this.parPeriodos = parPeriodos;
@@ -102,6 +108,30 @@ public class EstadisticaAction extends AccionSoporte implements Preparable {
 
     public String getTipAcae() {
         return tipAcae;
+    }
+
+    public void setArchExpediente(File archExpediente) {
+        this.archExpediente = archExpediente;
+    }
+
+    public File getArchExpediente() {
+        return archExpediente;
+    }
+
+    public void setArchExpedienteContentType(String archExpedienteContentType) {
+        this.archExpedienteContentType = archExpedienteContentType;
+    }
+
+    public String getArchExpedienteContentType() {
+        return archExpedienteContentType;
+    }
+
+    public void setArchExpedienteFileName(String archExpedienteFileName) {
+        this.archExpedienteFileName = archExpedienteFileName;
+    }
+
+    public String getArchExpedienteFileName() {
+        return archExpedienteFileName;
     }
 }
 

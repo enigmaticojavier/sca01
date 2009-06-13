@@ -1,3 +1,8 @@
+/***********************************************************************
+ * Module:  FiltroDescarga.java
+ * Author:  Danny Espíritu
+ * Purpose: FiltroDescarga
+ ***********************************************************************/
 package gob.mimdes.sime.filtro;
 
 import java.io.BufferedInputStream;
