@@ -47,8 +47,13 @@
                 <s:url action="upload" id="urlUpload">
                     <s:param name="parametro.idParametro" value="idUpload"/>
                 </s:url>
-                <a href="<s:property value="#urlUpload"/>">Upload</a>
+                <!--a href="<s:property value="#urlUpload"/>">Upload</a-->
                 
+                <br>
+                <s:url action="adjunto" id="urlAdjunto">
+                    <s:param name="parametro.idParametro" value="idAdjunto"/>
+                </s:url>
+                <!--a href="<s:property value="#urlAdjunto"/>">Adjunto</a-->
                 
             </td>
             

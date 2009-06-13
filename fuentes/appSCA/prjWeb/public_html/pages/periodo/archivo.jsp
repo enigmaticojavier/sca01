@@ -21,7 +21,7 @@
         
         function cargarArchivoProponente(){
           var frm=document.frmArchivo;
-          var periodoSeleccionado=document.getElementById("periodoSeleccionado");
+          var periodoSeleccionado=document.getElementById("periodoSeleccionado").value;
           frm.action="upload!cargaArchivoProponente?periodoSeleccionado="+periodoSeleccionado;
           if (validarArchivo(frm.archProponente)){
              try{
@@ -34,7 +34,7 @@
         }
         function cargarArchivoProyecto(){
           var frm=document.frmArchivo;
-          var periodoSeleccionado=document.getElementById("periodoSeleccionado");
+          var periodoSeleccionado=document.getElementById("periodoSeleccionado").value;
           frm.action="upload!cargaArchivoProyecto?periodoSeleccionado="+periodoSeleccionado;
           if (validarArchivo(frm.archProyecto)){
             try{
@@ -47,7 +47,7 @@
         }
         function cargarArchivoExpediente(){
           var frm=document.frmArchivo;
-          var periodoSeleccionado=document.getElementById("periodoSeleccionado");
+          var periodoSeleccionado=document.getElementById("periodoSeleccionado").value;
           frm.action="upload!cargaArchivoExpediente?periodoSeleccionado="+periodoSeleccionado;
           if (validarArchivo(frm.archExpediente)){
              try{
@@ -130,6 +130,14 @@
                     <tr>
                         <td align="center">
                             <h3 align="left">Carga de Operaciones</h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            <s:url action="adjunto" id="urlAdjunto">
+                                <s:param name="parametro.idParametro" value="idAdjunto"/>
+                            </s:url>
+                            <h3 align="left"><a href="<s:property value="#urlAdjunto"/>">Envio de Documentos Adjuntos</a></h3>
                         </td>
                     </tr>
                 </table>
