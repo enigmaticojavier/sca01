@@ -9,14 +9,14 @@ import gob.pe.minam.sca.framework.exception.NegocioException;
 import java.util.Date;
 
 public class ControlEnvio {
-    String periodo;
-    int personaId;
-    String flgEnvioPro;
-    Date fchEnvioPro;
-    String flgEnvioPry;
-    Date fchEnvioPry;
-    String flgEnvioExp;
-    Date fchEnvioExp;
+    private String periodo;
+    private int personaId;
+    private String estEnvioPro;
+    private Date fchEnvioPro;
+    private String estEnvioPry;
+    private Date fchEnvioPry;
+    private String estEnvioExp;
+    private Date fchEnvioExp;
         
     public ControlEnvio() {
     }
@@ -37,28 +37,12 @@ public class ControlEnvio {
         return personaId;
     }
 
-    public void setFlgEnvioPro(String flgEnvioPro) {
-        this.flgEnvioPro = flgEnvioPro;
-    }
-
-    public String getFlgEnvioPro() {
-        return flgEnvioPro;
-    }
-
     public void setFchEnvioPro(Date fchEnvioPro) {
         this.fchEnvioPro = fchEnvioPro;
     }
 
     public Date getFchEnvioPro() {
         return fchEnvioPro;
-    }
-
-    public void setFlgEnvioPry(String flgEnvioPry) {
-        this.flgEnvioPry = flgEnvioPry;
-    }
-
-    public String getFlgEnvioPry() {
-        return flgEnvioPry;
     }
 
     public void setFchEnvioPry(Date fchEnvioPry) {
@@ -69,20 +53,36 @@ public class ControlEnvio {
         return fchEnvioPry;
     }
 
-    public void setFlgEnvioExp(String flgEnvioExp) {
-        this.flgEnvioExp = flgEnvioExp;
-    }
-
-    public String getFlgEnvioExp() {
-        return flgEnvioExp;
-    }
-
     public void setFchEnvioExp(Date fchEnvioExp) {
         this.fchEnvioExp = fchEnvioExp;
     }
 
     public Date getFchEnvioExp() {
         return fchEnvioExp;
+    }
+    
+    public void setEstEnvioPro(String estEnvioPro) {
+        this.estEnvioPro = estEnvioPro;
+    }
+
+    public String getEstEnvioPro() {
+        return estEnvioPro;
+    }
+
+    public void setEstEnvioPry(String estEnvioPry) {
+        this.estEnvioPry = estEnvioPry;
+    }
+
+    public String getEstEnvioPry() {
+        return estEnvioPry;
+    }
+
+    public void setEstEnvioExp(String estEnvioExp) {
+        this.estEnvioExp = estEnvioExp;
+    }
+
+    public String getEstEnvioExp() {
+        return estEnvioExp;
     }
     
     public ControlEnvio obtenerControlEnvioXPeriodo(String periodo) throws NegocioException{
@@ -94,6 +94,25 @@ public class ControlEnvio {
         }catch(Exception ex){
           throw new NegocioException(ex.toString(),"Error producido en Pojo");
         }    
+    }
+    
+    public void guardarControlEnvio(ControlEnvio controlEnvio) throws NegocioException{
+        try{
+            System.out.println("periodo1-->" + controlEnvio.getPeriodo());
+            ControlEnvioDao controlEnvioDao = ProyectoService.getInstance().getControlEnvioDao();
+            boolean existe = controlEnvioDao.existeControlEnvio(controlEnvio.getPeriodo());
+            System.out.println("periodo2-->" + controlEnvio.getPeriodo());
+            System.out.println("existe-->" + existe  );
+            if (existe){
+                controlEnvioDao.updateControlEnvio(controlEnvio);            
+            }else{
+                controlEnvioDao.insertControlEnvio(controlEnvio);
+            }
+        }catch(DAOException ex){
+          throw new NegocioException(ex.toString(),ex.getCodigoMensajeUsuario());
+        }catch(Exception ex){
+          throw new NegocioException(ex.toString(),"Error producido en Pojo");
+        }
     }
     
 }

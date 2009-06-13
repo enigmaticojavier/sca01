@@ -16,6 +16,7 @@ import java.util.List;
 public class ImagenDocumento {
     private Integer nsecuencia;
     private String txtRutaImagen;
+    private String txtNomArchivo;
     private Documento documento;
       
     public ImagenDocumento() {
@@ -43,6 +44,14 @@ public class ImagenDocumento {
 
     public Documento getDocumento() {
         return documento;
+    }
+    
+    public void setTxtNomArchivo(String txtNomArchivo) {
+        this.txtNomArchivo = txtNomArchivo;
+    }
+
+    public String getTxtNomArchivo() {
+        return txtNomArchivo;
     }
     
     public static List buscarImgXDoc(Integer docId) throws NegocioException{
