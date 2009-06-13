@@ -15,7 +15,7 @@
       <result property="txtRutaImagen" column="txtrutaimagen"/>
   </resultMap>
   
-  <select id="BUSCARIMAGENXDOC" parameterClass="int" resultMap="ImagenDocumentoResult">
+  <select id="BuscarImagenXDoc" parameterClass="int" resultMap="ImagenDocumentoResult">
       select docid,
              nsecuencia,
              txtnomarchivo,

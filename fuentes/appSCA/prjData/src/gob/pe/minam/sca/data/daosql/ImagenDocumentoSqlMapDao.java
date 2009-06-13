@@ -17,7 +17,7 @@ public class ImagenDocumentoSqlMapDao extends BaseSqlMapDao implements ImagenDoc
     }
     public List buscarImgXDoc(Integer docId) throws DAOException{
         try{
-          return queryForList("BUSCARIMAGENXDOC",docId);  
+          return queryForList("BuscarImagenXDoc",docId);  
         }catch(SqlMapException ex){
           throw new DAOException(ex.toString(),"Error producido en BD : No se puede ejecutar la ImagenDocumento de Proyecto");
         }catch(DaoException ex){

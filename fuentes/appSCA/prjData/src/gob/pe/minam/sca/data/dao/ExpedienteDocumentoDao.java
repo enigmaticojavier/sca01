@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface ExpedienteDocumentoDao {
     public List buscarExDocXProy (Integer pryId) throws DAOException;
+    public List buscarExDocXPeriodoPersona(String periodo, int personaId) throws DAOException;
 }

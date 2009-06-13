@@ -14,17 +14,49 @@
       <result property="documento.docId" column="docid"/>
       <result property="expedientePaso.expediente.numExpediente" column="numexpediente"/>
       <result property="expedientePaso.expediente.fchExpediente" column="fchexpediente"/>
-      <!--result property="expedientePaso.dscTipPaso" column="dscTipPaso"/-->
       <result property="documento.dscTipoDocumento" column="txtvalor"/>
       <result property="documento.codDocumento" column="coddocumento"/>
   </resultMap>
   
-  <select id="BUSCAREXPDOCXPRY" resultMap="ExpedienteDocumentoXProyectoResult" parameterClass="int">
-      select ep.expid, ep.nsecuencia, doc.docid, ex.numexpediente, 
+  <resultMap id="ExpedienteDocumentoXPeriodoPersonaResult" class="ExpedienteDocumento">
+      <result property="expedientePaso.expediente.expId" column="expid"/>
+      <result property="expedientePaso.nsecuencia" column="nsecuencia"/>
+      <result property="documento.docId" column="docid"/>
+      <result property="expedientePaso.expediente.proyecto.pryId" column="pryid"/>
+      <result property="expedientePaso.expediente.proyecto.txtDescripcion" column="txtdescripcion"/>
+      <result property="expedientePaso.tipPaso" column="tippaso"/>
+      <result property="expedientePaso.fchPaso" column="fchpaso"/>
+      <result property="expedientePaso.expediente.numExpediente" column="numexpediente"/>
+      <result property="expedientePaso.expediente.fchExpediente" column="fchexpediente"/>
+      <result property="documento.dscTipoDocumento" column="txtvalor"/>
+      <result property="documento.codDocumento" column="coddocumento"/>
+      <result property="documento.tipoDocumento" column="tipdocumento"/>
+  </resultMap>
+  
+  <select id="BuscarExpDocXPry" resultMap="ExpedienteDocumentoXProyectoResult" parameterClass="int">
+        select ep.expid, ep.nsecuencia, doc.docid, ex.numexpediente, 
              ex.fchexpediente, tdo.txtvalor, doc.coddocumento
-      from expediente ex, expedientepaso ep, expedientedocumento ed, documento doc, parametro tdo
-      where ex.expid = ep.expid and ep.expid = ed.expid(+) and ep.nsecuencia = ed.nsecuencia(+)
-      and ed.docid = doc.docid(+) and doc.tipodocumento = tdo.codparametro(+) and  tdo.tipparametro(+) = 'DOC'
-      and ex.pryId=#param#
+        from expediente ex, expedientepaso ep, expedientedocumento ed, documento doc, parametro tdo
+        where ex.expid = ep.expid and ep.expid = ed.expid(+) and ep.nsecuencia = ed.nsecuencia(+)
+        and ed.docid = doc.docid(+) and doc.tipodocumento = tdo.codparametro(+) and  tdo.tipparametro(+) = 'DOC'
+        and ex.pryId=#param#
   </select>
+  
+  <select id="BuscarExpDocXPeriodoPersonaId" resultMap="ExpedienteDocumentoXPeriodoPersonaResult" parameterClass="ExpedienteDocumento">
+        select ep.expid, ep.nsecuencia, doc.docid, pry.pryid,
+               pry.txtdescripcion, ep.tippaso, ep.fchpaso, ex.numexpediente,
+               ex.fchexpediente, tdo.txtvalor, doc.coddocumento, doc.tipodocumento
+        from expediente ex, expedientepaso ep, expedientedocumento ed,
+             documento doc, parametro tdo, proyecto pry
+        where ex.expid = ep.expid
+           and ep.expid = ed.expid(+)
+           and ep.nsecuencia = ed.nsecuencia(+)
+           and ed.docid = doc.docid(+)
+           and doc.tipodocumento = tdo.codparametro(+)
+           and tdo.tipparametro(+) = 'DOC'
+           and ex.pryid = pry.pryid
+           and ex.personaid = #expedientePaso.expediente.personaId# /*4*/
+           /*and ep.periodo = #expedientePaso.periodo# '200905'*/
+  </select>
+  
 </sqlMap>

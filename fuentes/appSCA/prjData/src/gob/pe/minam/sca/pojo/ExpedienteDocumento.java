@@ -8,13 +8,12 @@ package gob.pe.minam.sca.pojo;
 import gob.pe.minam.sca.data.ProyectoService;
 import gob.pe.minam.sca.data.dao.ExpedienteDocumentoDao;
 import gob.pe.minam.sca.data.dao.ImagenDocumentoDao;
-import gob.pe.minam.sca.data.dao.ProyectoDao;
 import gob.pe.minam.sca.framework.exception.DAOException;
 import gob.pe.minam.sca.framework.exception.NegocioException;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+
 
 public class ExpedienteDocumento {
     
@@ -56,6 +55,26 @@ public class ExpedienteDocumento {
          System.out.println("pryId " + pryId);
          ExpedienteDocumentoDao expedienteDocumentoDao= ProyectoService.getInstance().getExpedienteDocumentoDao();
          List lstExpDoc = expedienteDocumentoDao.buscarExDocXProy(pryId);
+         List lstExpDocIma=new ArrayList();
+         for (int i=0;i<lstExpDoc.size();i++){
+             ExpedienteDocumento expDoc = (ExpedienteDocumento)lstExpDoc.get(i);
+             ImagenDocumentoDao imagenDocumentoDao = ProyectoService.getInstance().getImagenDocumentoDao();
+             expDoc.getDocumento().setLstImagenDocumento(imagenDocumentoDao.buscarImgXDoc(expDoc.getDocumento().getDocId()));
+             lstExpDocIma.add(expDoc);
+         }
+         return lstExpDocIma;
+       }catch(DAOException ex){
+         throw new NegocioException(ex.toString(),ex.getCodigoMensajeUsuario());
+       }catch(Exception ex){
+         throw new NegocioException(ex.toString(),"Error producido en Pojo");
+       }
+    }
+    
+    public static List buscarExpDocXPry(String periodo, int personaId) throws NegocioException{
+       try{  
+         System.out.println("periodo " + periodo + " personaId " + personaId);
+         ExpedienteDocumentoDao expedienteDocumentoDao= ProyectoService.getInstance().getExpedienteDocumentoDao();
+         List lstExpDoc = expedienteDocumentoDao.buscarExDocXPeriodoPersona(periodo, personaId);
          List lstExpDocIma=new ArrayList();
          for (int i=0;i<lstExpDoc.size();i++){
              ExpedienteDocumento expDoc = (ExpedienteDocumento)lstExpDoc.get(i);
