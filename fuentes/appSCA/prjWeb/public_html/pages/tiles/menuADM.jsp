@@ -31,7 +31,7 @@
                     
                     <tr>
                       <td width="4%">&nbsp;</td>
-                      <td width="96%"><a href="index.php?idTipoElementoInformacion=10">Consulta/Modificación de Datos de las ACAE</a></td>
+                      <td width="96%"><a href="<%= request.getContextPath() %>/acaeModifica!doMuestra">Consulta/Modificación de Datos de las ACAE</a></td>
                     </tr>
                     <tr>
                       <td colspan="2"><img src="public/img/web/fondo_menu.jpg" width="220" height="1" /></td>
