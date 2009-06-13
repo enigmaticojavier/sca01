@@ -7,6 +7,10 @@ package gob.pe.minam.sca.framework;
 
 public class ConstantesSistema {
 	
+    public final static int CONST_RETORNO_EXITO = 1;
+    public final static int CONST_RETORNO_ERROR_MSG = -1;
+    public final static int CONST_RETORNO_ERROR_LST = -2;
+    
     public final static String TIPO_USUARIO_ADM = "ADM";
     public final static String TIPO_USUARIO_ACAE = "ACA";
     public final static String COD_PARAMETRO_MIN = "MIN";
@@ -21,4 +25,5 @@ public class ConstantesSistema {
     
     public final static String CARPETA_TEMPORAL="TMP";	
     public final static String CARPETA_IMAGENES="DIR";
+    
 }
