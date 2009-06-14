@@ -5,8 +5,10 @@ import com.opensymphony.xwork2.Preparable;
 import gob.pe.minam.sca.framework.AccionSoporte;
 import gob.pe.minam.sca.framework.ConstantesSistema;
 import gob.pe.minam.sca.pojo.ControlEnvio;
+import gob.pe.minam.sca.pojo.Documento;
 import gob.pe.minam.sca.pojo.Expediente;
 import gob.pe.minam.sca.pojo.ExpedienteDocumento;
+import gob.pe.minam.sca.pojo.ImagenDocumento;
 import gob.pe.minam.sca.pojo.Parametro;
 import gob.pe.minam.sca.pojo.Periodo;
 import gob.pe.minam.sca.util.ExcelGenerador;
@@ -15,6 +17,8 @@ import gob.pe.minam.sca.util.bean.BeanRetorno;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+
+import java.io.IOException;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,8 +32,11 @@ public class AdjuntoAction extends AccionSoporte implements Preparable {
     
     static Logger log = Logger.getLogger("AdjuntoAction.class");
     private String periodoSeleccionado;
+    private int docId;
+    private int personaId;
     private ControlEnvio controlEnvio;
-    private List expedienteDocumento;
+    private ImagenDocumento imagenDocumento;
+    private List expedienteDocumentos;
     private List parPeriodos;
     
     // Adjunto
@@ -66,8 +73,8 @@ public class AdjuntoAction extends AccionSoporte implements Preparable {
         String tmpPeriodo=this.periodoSeleccionado.substring(0,4) + this.periodoSeleccionado.substring(5,7);
         log.info("tmpPeriodo"+tmpPeriodo);
         ExpedienteDocumento expdoc = new ExpedienteDocumento();
-        int personaId=3;
-        this.expedienteDocumento=expdoc.buscarExpDocXPry(tmpPeriodo,personaId);
+        this.personaId=4;
+        this.expedienteDocumentos=expdoc.buscarExpDocPeriodoPersona(tmpPeriodo,personaId);
         setearEstado(this.controlEnvio);
         log.info("[AdjuntoAction.list][Fin]");
         return SUCCESS;
@@ -92,15 +99,15 @@ public class AdjuntoAction extends AccionSoporte implements Preparable {
             ControlEnvio cntrEnvio=new ControlEnvio();
             this.controlEnvio=cntrEnvio.obtenerControlEnvioXPeriodo(tmpPeriodo);
             log.info(this.controlEnvio==null?"this.controlEnvio Read":"this.controlEnvio Read"+this.controlEnvio.getPeriodo());
-            int personaId=3;
+            this.personaId=4;
             String carpeta = "";
             Parametro par=new Parametro();
-            List l = par.buscarParametroXTipoParametro(ConstantesSistema.CARPETA_TEMPORAL);
+            List l = par.buscarParametroXTipoParametro(ConstantesSistema.CARPETA_IMAGENES);
             if (l!=null && l.size()>0){
                 carpeta = ((Parametro)l.get(0)).getTxtValor();
                 if (this.archAdjunto!=null){
                     String extension=Utilitarios.obtenerExtensionArchivo(archAdjuntoFileName);
-                    String nombreArchivo = carpeta + "\\" + archAdjuntoFileName;
+                    String nombreArchivo = carpeta + "\\" + Utilitarios.formatoFechaActual() + "_" + archAdjuntoFileName;
                     log.info("nombreArchivo-->"+nombreArchivo);
                     File theFile = new File(nombreArchivo);
                     try{
@@ -110,35 +117,21 @@ public class AdjuntoAction extends AccionSoporte implements Preparable {
                     }catch(FileNotFoundException e){
                         e.printStackTrace();
                         this.setearMensajeError("1","Archivo No existe");
-                    }    
+                    }catch(IOException e){
+                        e.printStackTrace();
+                        this.setearMensajeError("1","Archivo/Ruta No existe " + nombreArchivo);
+                    }
                     // Procesar Archivo
                     if (copiado){
-                        try{
-                           ExcelGenerador xls = new ExcelGenerador();
-                           beanRetLectExcel = xls.leerArchivo(personaId,9,false,nombreArchivo);
-                        }catch(Exception e){
-                            e.printStackTrace();
-                            this.setearMensajeError("1","Error en la lectura del Archivo");
-                        }
-                        if (beanRetLectExcel.getCodError()==ConstantesSistema.CONST_RETORNO_EXITO){
-                            if (controlEnvio==null){
-                                log.info("INSERT CONTROL ENVIO");
-                                controlEnvio=new ControlEnvio();
-                                controlEnvio.setPersonaId(3);
-                                controlEnvio.setPeriodo(tmpPeriodo);
-                                controlEnvio.setEstEnvioPro(ConstantesSistema.ENVIO_ENVIADO_OK);
-                                controlEnvio.setFchEnvioPro(new Date());
-                            }else{
-                                log.info("update CONTROL ENVIO");
-                                controlEnvio.setEstEnvioPro(ConstantesSistema.ENVIO_ENVIADO_OK);
-                                controlEnvio.setFchEnvioPro(new Date());
-                            }
-                            log.info("this.controlEnvioSENT-->"+this.controlEnvio.getPeriodo());
-                            cntrEnvio.guardarControlEnvio(controlEnvio);
-                        }else{
-                            this.setearMensajeError("1","Error en la lectura del Archivo " + beanRetLectExcel.getDscError());
-                            log.error("Error en la lectura del Archivo " + beanRetLectExcel.getDscError());
-                        }
+                        // Actualizar Archivo Imagen
+                        this.docId=Integer.parseInt(getParameterValue("docId").equals("")?"0":getParameterValue("docId"));
+                        Documento doc = new Documento();
+                        doc.setDocId(this.docId);
+                        this.imagenDocumento.setDocumento(doc);
+                        this.imagenDocumento.setTxtNomArchivo(archAdjuntoFileName);
+                        this.imagenDocumento.setTxtRutaImagen(nombreArchivo);
+                        ImagenDocumento imaDoc = new ImagenDocumento();
+                        imaDoc.grabarImagenDocumento(this.imagenDocumento);
                     }
                 }else{
                     log.info("Archivo Proponente Nulo");
@@ -150,6 +143,9 @@ public class AdjuntoAction extends AccionSoporte implements Preparable {
                 log.error("Carpeta Temporal no configurada");
             }
             setearEstado(this.controlEnvio);
+            
+            ExpedienteDocumento expdoc = new ExpedienteDocumento();
+            this.expedienteDocumentos=expdoc.buscarExpDocPeriodoPersona(tmpPeriodo,personaId);
             log.info("[AdjuntoAction.cargaArchivoProponente][Fin]");
        } catch (Exception e) {
            e.printStackTrace();
@@ -174,14 +170,6 @@ public class AdjuntoAction extends AccionSoporte implements Preparable {
 
     public ControlEnvio getControlEnvio() {
         return controlEnvio;
-    }
-
-    public void setExpedienteDocumento(List expedienteDocumento) {
-        this.expedienteDocumento = expedienteDocumento;
-    }
-
-    public List getExpedienteDocumento() {
-        return expedienteDocumento;
     }
 
     public void setParPeriodos(List parPeriodos) {
@@ -214,6 +202,38 @@ public class AdjuntoAction extends AccionSoporte implements Preparable {
 
     public String getArchAdjuntoFileName() {
         return archAdjuntoFileName;
+    }
+
+    public void setExpedienteDocumentos(List expedienteDocumentos) {
+        this.expedienteDocumentos = expedienteDocumentos;
+    }
+
+    public List getExpedienteDocumentos() {
+        return expedienteDocumentos;
+    }
+
+    public void setImagenDocumento(ImagenDocumento imagenDocumento) {
+        this.imagenDocumento = imagenDocumento;
+    }
+
+    public ImagenDocumento getImagenDocumento() {
+        return imagenDocumento;
+    }
+
+    public void setDocId(int docId) {
+        this.docId = docId;
+    }
+
+    public int getDocId() {
+        return docId;
+    }
+
+    public void setPersonaId(int personaId) {
+        this.personaId = personaId;
+    }
+
+    public int getPersonaId() {
+        return personaId;
     }
 }
 
