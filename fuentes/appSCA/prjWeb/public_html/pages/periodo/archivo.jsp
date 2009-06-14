@@ -133,10 +133,14 @@
                 <table>
                     <tr>
                         <td align="center">
-                            <h3 align="left">Carga de Operaciones</h3>
+                            <s:url action="upload" id="urlUpload">
+                                <s:param name="parametro.idParametro" value="idUpload"/>
+                            </s:url>
+                            <h3 align="left"><a href="<s:property value="#urlUpload"/>">Carga de Operaciones</a></h3>
                         </td>
-                    </tr>
-                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
                         <td align="center">
                             <s:url action="adjunto" id="urlAdjunto">
                                 <s:param name="parametro.idParametro" value="idAdjunto"/>

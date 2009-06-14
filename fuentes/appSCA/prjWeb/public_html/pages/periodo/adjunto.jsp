@@ -131,6 +131,26 @@
                 </table>
             </s:form>
             
+            <table>
+                <tr>
+                    <td align="center">
+                        <s:url action="upload" id="urlUpload">
+                            <s:param name="parametro.idParametro" value="idUpload"/>
+                        </s:url>
+                        <h3 align="left"><a href="<s:property value="#urlUpload"/>">Carga de Operaciones</a></h3>
+                    </td>
+                    <td>
+                        &nbsp;
+                    </td>
+                    <td align="center">
+                        <s:url action="adjunto" id="urlAdjunto">
+                            <s:param name="parametro.idParametro" value="idAdjunto"/>
+                        </s:url>
+                        <h3 align="left"><a href="<s:property value="#urlAdjunto"/>">Envio de Documentos Adjuntos</a></h3>
+                    </td>
+                </tr>
+            </table>
+                
             <display:table name="expedienteDocumentos" requestURI="adjunto" class="dataTable" id="expedienteDocumento" pagesize="10" style="width:620">
                 <display:column property="expedientePaso.expediente.expId" title="Id" style="width:1%"  />
                 <display:column property="expedientePaso.expediente.numExpediente" title="Nro Exp" style="width:40%"  />
