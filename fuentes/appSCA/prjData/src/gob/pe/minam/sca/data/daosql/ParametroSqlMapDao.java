@@ -42,18 +42,18 @@ public class ParametroSqlMapDao extends BaseSqlMapDao implements ParametroDao {
     }
   }
 
-  public void insertParametro(Parametro parametro) throws DAOException{
-    try{
-      insert("insertParametro", parametro);
-    }catch(SqlMapException ex){
-      throw new DAOException(ex.toString(),"Error producido en BD : No se puede ejecutar la Inserción de Curso");
-    }catch(DaoException ex){
-      throw new DAOException(ex.toString(),"Error producido en BD : Inserción de Curso presenta problemas");
-    }catch(Exception ex){
-      throw new DAOException(ex.toString(),"Error producido en la Inserción de Curso");
+    public void insertParametro(Parametro parametro) throws DAOException{
+        try{
+          insert("insertParametro", parametro);
+        }catch(SqlMapException ex){
+          throw new DAOException(ex.toString(),"Error producido en BD : No se puede ejecutar la Inserción de Curso");
+        }catch(DaoException ex){
+          throw new DAOException(ex.toString(),"Error producido en BD : Inserción de Curso presenta problemas");
+        }catch(Exception ex){
+          throw new DAOException(ex.toString(),"Error producido en la Inserción de Curso");
+        }
     }
-  }
-  
+    
     public void updateParametro(Parametro parametro) throws DAOException{
       try{
         update("updateParametro", parametro);

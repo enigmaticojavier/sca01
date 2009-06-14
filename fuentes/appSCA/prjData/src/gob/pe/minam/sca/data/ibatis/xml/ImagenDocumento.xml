@@ -8,6 +8,29 @@
 
   <typeAlias alias="ImagenDocumento" type="gob.pe.minam.sca.pojo.ImagenDocumento"/>
   
+  <insert id="insertImagenDocumento" parameterClass="ImagenDocumento">
+    insert into imagendocumento(
+        nsecuencia,
+        docid,
+        txtrutaimagen,
+        txtnomarchivo
+    )values(
+        SQ_IMAGENDOCUMENTO.NEXTVAL,
+        #documento.docId#,
+        #txtRutaImagen#
+        #txtNomArchivo#
+    )
+  </insert>
+  
+  <update id="updateImagenDocumento" parameterClass="ImagenDocumento">
+    update imagendocumento
+    set nsecuencia=#nsecuencia#,
+        docid=#documento.docId#,
+        txtrutaimagen=#txtRutaImagen#,
+        txtnomarchivo=#txtNomArchivo#
+    where nsecuencia=#nsecuencia#
+  </update>
+  
   <resultMap id="ImagenDocumentoResult" class="ImagenDocumento">
       <result property="documento.docId" column="docid"/>
       <result property="nsecuencia" column="nsecuencia"/>
@@ -23,5 +46,12 @@
       from imagendocumento
       where docid=#docid#
   </select>
+  
+  <select id="ExisteImagenDocumento" parameterClass="int" resultClass="int">
+      select count(*) cont
+      from imagendocumento
+      where docid=#param#
+  </select>
+  
 
 </sqlMap>

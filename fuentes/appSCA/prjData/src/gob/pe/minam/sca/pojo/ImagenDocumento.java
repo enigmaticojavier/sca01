@@ -65,4 +65,19 @@ public class ImagenDocumento {
        }
     }
     
+    public static void grabarImagenDocumento(ImagenDocumento imagenDocumento) throws NegocioException{
+       try{  
+         ImagenDocumentoDao imagenDocumentoDao = ProyectoService.getInstance().getImagenDocumentoDao();
+         if (imagenDocumentoDao.existeImagenDocumento(imagenDocumento.getDocumento().getDocId())){
+             imagenDocumentoDao.updateImagenDocumento(imagenDocumento);
+         }else{
+             imagenDocumentoDao.insertImagenDocumento(imagenDocumento);
+         }
+       }catch(DAOException ex){
+         throw new NegocioException(ex.toString(),ex.getCodigoMensajeUsuario());
+       }catch(Exception ex){
+         throw new NegocioException(ex.toString(),"Error producido en Pojo");
+       }
+    }
+    
 }

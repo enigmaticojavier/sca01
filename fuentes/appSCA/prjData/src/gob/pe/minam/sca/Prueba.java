@@ -125,6 +125,12 @@ public class Prueba {
             System.out.println("PeriodoXX-->"+controlEnvio.getPeriodo());
         }    
         
+        ExpedienteDocumento expdoc=new ExpedienteDocumento();
+        l = expdoc.buscarExpDocPeriodoPersona("200905",4);
+        for (int i=0;i<l.size();i++){
+            System.out.println("TIPPASO " + ((ExpedienteDocumento)l.get(i)).getExpedientePaso().getTipPaso() );  
+        }
+        
       }catch(Throwable ex){
         ex.printStackTrace();
         System.out.println("Error-->"+ex.toString());

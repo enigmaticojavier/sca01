@@ -1,5 +1,10 @@
 package gob.pe.minam.sca.util;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
+import java.util.Date;
+
 import org.apache.log4j.Logger;
 
 public class Utilitarios {
@@ -22,5 +27,11 @@ public class Utilitarios {
         log.error("[Utilitarios][Error] Error obteniendo Ruta" + ex.toString());
       }
       return extension;
+    }
+    
+    public static String formatoFechaActual(){
+        DateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
+        Date date = new Date();    
+        return formatter.format(date);
     }
 }

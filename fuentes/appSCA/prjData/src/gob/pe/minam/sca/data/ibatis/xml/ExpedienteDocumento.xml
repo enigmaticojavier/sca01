@@ -30,7 +30,7 @@
       <result property="expedientePaso.expediente.fchExpediente" column="fchexpediente"/>
       <result property="documento.dscTipoDocumento" column="txtvalor"/>
       <result property="documento.codDocumento" column="coddocumento"/>
-      <result property="documento.tipoDocumento" column="tipdocumento"/>
+      <result property="documento.tipoDocumento" column="tipodocumento"/>
   </resultMap>
   
   <select id="BuscarExpDocXPry" resultMap="ExpedienteDocumentoXProyectoResult" parameterClass="int">
@@ -55,8 +55,8 @@
            and doc.tipodocumento = tdo.codparametro(+)
            and tdo.tipparametro(+) = 'DOC'
            and ex.pryid = pry.pryid
-           and ex.personaid = #expedientePaso.expediente.personaId# /*4*/
-           /*and ep.periodo = #expedientePaso.periodo# '200905'*/
+           and ex.personaid = #expedientePaso.expediente.personaId# 
+           and ep.periodo = #expedientePaso.periodo# 
   </select>
   
 </sqlMap>

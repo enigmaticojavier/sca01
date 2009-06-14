@@ -70,7 +70,7 @@ public class ExpedienteDocumento {
        }
     }
     
-    public static List buscarExpDocXPry(String periodo, int personaId) throws NegocioException{
+    public static List buscarExpDocPeriodoPersona(String periodo, int personaId) throws NegocioException{
        try{  
          System.out.println("periodo " + periodo + " personaId " + personaId);
          ExpedienteDocumentoDao expedienteDocumentoDao= ProyectoService.getInstance().getExpedienteDocumentoDao();
