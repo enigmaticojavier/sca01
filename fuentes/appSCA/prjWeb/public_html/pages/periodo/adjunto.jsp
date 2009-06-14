@@ -12,6 +12,11 @@
 <html>
 <head>
     <title><s:text name="label.proyecto.titulo"/></title>
+    
+    <LINK HREF="styles/displaytagsca.css" REL="stylesheet" TYPE="text/css">
+    <link href="<%= request.getContextPath() %>/public/css/web/template_css.css" rel="stylesheet" type="text/css">
+    <link href="<%= request.getContextPath() %>/public/css/web/acordionv2.css" rel="stylesheet" type="text/css">
+    
     <script language="javascript">
         function buscarCargarPeriodo(){
             var frm=document.frmArchivo;
@@ -125,175 +130,22 @@
                     </tr>
                 </table>
             </s:form>
-            <s:form name="frmArchivo"  theme="simple" action="archivo!cargaArchivoProponente" method="POST" enctype="multipart/form-data">
-                <table>
-                    <tr>
-                        <td align="center">
-                            <h3 align="left">Carga de Operaciones</h3>
-                        </td>
-                    </tr>
-                </table>
-                <table>    
-                    <tr>
-                        <td align="center">
-                                <table border="1">
-                                  <tr>
-                                    <td>
-                                        <s:label value="No"/>
-                                    </td>
-                                    <td >
-                                        <s:label value="Archivo"/>
-                                    </td>    
-                                    <td>
-                                        <s:label value="Ubicación"/>
-                                    </td>
-                                    <td>
-                                        <s:label value="Fecha Carga"/>
-                                    </td>
-                                    <td>
-                                        <s:label value="Estado"/>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td width="18">
-                                        <s:label value="1"/>
-                                    </td>
-                                    <td width="100">
-                                        <s:label value="Proponente"/>
-                                    </td>    
-                                    <td width="500">
-                                        <s:if test="estadoCargaProponente!=null">
-                                            <s:if test="estadoCargaProponente.equals('true')">
-                                                <s:file name="archProponente" disabled="false" size="40"/>
-                                                <input type="button" name="cargar" readonly="true" size="300" value="cargar" onclick="cargarArchivoProponente();"/>
-                                            </s:if>
-                                            <s:if test="estadoCargaProponente.equals('false')">
-                                                <s:file name="archProponente" disabled="true" size="40"/>
-                                                <input type="button" name="cargar" disabled size="300" value="cargar" onclick="cargarArchivoProponente();"/>
-                                            </s:if>
-                                        </s:if>
-                                        <s:else>
-                                            &nbsp;
-                                        </s:else>
-                                    </td>
-                                    <td>
-                                        &nbsp;
-                                        <s:textfield name="controlEnvio.fchEnvioPro" value="%{controlEnvio.fchEnvioPro}" size="10" readonly="true">
-                                           <s:param name="value"> 
-                                            <s:date name="controlEnvio.fchEnvioPro" format="dd/MM/yyyy" />
-                                           </s:param> 
-                                        </s:textfield>
-                                    </td>
-                                    <td width="10">
-                                        <s:if test="estadoCargaProponente!=null">
-                                            <s:if test="estadoCargaProponente.equals('true')">
-                                                <s:checkbox name="chkEstado" disabled="true" value="true"/>
-                                            </s:if>
-                                            <s:if test="estadoCargaProponente.equals('false')">    
-                                                <s:checkbox name="chkEstado" disabled="true" value="false"/>
-                                            </s:if>
-                                        </s:if>
-                                        <s:else>
-                                            &nbsp;
-                                        </s:else>
-                                    </td>
-                                  </tr>
-                                  
-                                  <tr>
-                                    <td width="18">
-                                        <s:label value="2"/>
-                                    </td>
-                                    <td width="100">
-                                        <s:label value="Proyecto"/>
-                                    </td>    
-                                    <td width="500">
-                                        <s:if test="estadoCargaProyecto!=null">
-                                            <s:if test="estadoCargaProyecto.equals('true')">
-                                                <s:file name="archProyecto" disabled="false" size="40"/>
-                                                <input type="button" name="cargar" readonly="true" size="300" value="cargar" onclick="cargarArchivoProyecto();"/>
-                                            </s:if>
-                                            <s:if test="estadoCargaProyecto.equals('false')">
-                                                <s:file name="archProyecto" disabled="true" size="40"/>
-                                                <input type="button" name="cargar" disabled size="300" value="cargar" onclick="cargarArchivoProyecto();"/>
-                                            </s:if>
-                                        </s:if>
-                                        <s:else>
-                                            &nbsp;
-                                        </s:else>
-                                    </td>
-                                    <td>
-                                        &nbsp;
-                                        <s:textfield name="controlEnvio.fchEnvioPry" value="%{controlEnvio.fchEnvioPry}" size="10" readonly="true">
-                                           <s:param name="value"> 
-                                            <s:date name="controlEnvio.fchEnvioPry" format="dd/MM/yyyy" />
-                                           </s:param> 
-                                        </s:textfield>
-                                    </td>
-                                    <td width="10">
-                                        <s:if test="estadoCargaProyecto!=null">
-                                            <s:if test="estadoCargaProyecto.equals('true')">
-                                                <s:checkbox name="chkEstado" disabled="true" value="true"/>
-                                            </s:if>
-                                            <s:if test="estadoCargaProyecto.equals('false')">    
-                                                <s:checkbox name="chkEstado" disabled="true" value="false"/>
-                                            </s:if>
-                                        </s:if>
-                                        <s:else>
-                                            &nbsp;
-                                        </s:else>
-                                    </td>
-                                  </tr>
-                            
-                                  <tr>
-                                    <td width="18">
-                                        <s:label value="3"/>
-                                    </td>
-                                    <td width="100">
-                                        <s:label value="Expediente"/>
-                                    </td>    
-                                    <td width="500">
-                                        <s:if test="estadoCargaExpediente!=null">
-                                            <s:if test="estadoCargaExpediente.equals('true')">
-                                                <s:file name="archExpediente" disabled="false" size="40"/>
-                                                <input type="button" name="cargar" readonly="true" size="300" value="cargar" onclick="cargarArchivoExpediente();"/>
-                                            </s:if>
-                                            <s:if test="estadoCargaExpediente.equals('false')">
-                                                <s:file name="archExpediente" disabled="true" size="40"/>
-                                                <input type="button" name="cargar" disabled size="300" value="cargar" onclick="cargarArchivoExpediente();"/>
-                                            </s:if>
-                                        </s:if>
-                                        <s:else>
-                                            &nbsp;
-                                        </s:else>
-                                    </td>
-                                    <td>
-                                        &nbsp;
-                                        <s:textfield name="controlEnvio.fchEnvioExp" value="%{controlEnvio.fchEnvioExp}" size="10" readonly="true">
-                                           <s:param name="value"> 
-                                            <s:date name="controlEnvio.fchEnvioExp" format="dd/MM/yyyy" />
-                                           </s:param> 
-                                        </s:textfield>
-                                    </td>
-                                    <td width="10">
-                                        <s:if test="estadoCargaExpediente!=null">
-                                            <s:if test="estadoCargaExpediente.equals('true')">
-                                                <s:checkbox name="chkEstado" disabled="true" value="true"/>
-                                            </s:if>
-                                            <s:if test="estadoCargaExpediente.equals('false')">    
-                                                <s:checkbox name="chkEstado" disabled="true" value="false"/>
-                                            </s:if>
-                                        </s:if>
-                                        <s:else>
-                                            &nbsp;
-                                        </s:else>
-                                    </td>
-                                  </tr>  
-                                  
-                                </table>  
-                  </td>
-                </tr>
-            </table>        
-        </s:form>
+            
+            <display:table name="expedienteDocumentos" requestURI="adjunto" class="dataTable" id="expedienteDocumento" pagesize="10" style="width:620">
+                <display:column property="expedientePaso.expediente.expId" title="Id" style="width:1%"  />
+                <display:column property="expedientePaso.expediente.numExpediente" title="Nro Exp" style="width:40%"  />
+                <display:column title="Fecha Transacción"> 
+                    <fmt:formatDate value="${expedienteDocumento.expedientePaso.expediente.fchExpediente}" pattern="dd/MM/yyyy"/> 
+                </display:column>
+                <display:column property="documento.dscTipoDocumento" title="Tipo Documento" style="width:40%"  />
+                <display:column property="expedientePaso.dscTipPaso" title="Descripción" style="width:40%"  />
+                <display:column property="documento.codDocumento" title="Nro Documento" style="width:40%"  />
+                <display:column title="Archivos" style="width:40%"> 
+                    <c:forEach var="imagen" items="${expedienteDocumento.documento.lstImagenDocumento}" varStatus="rowCounter">
+                        <a href="<%=request.getContextPath()%>/DescargaServlet?file=<c:out value="${imagen.txtRutaImagen}"/>">Ver</a>
+                    </c:forEach>
+                </display:column>
+            </display:table>
             
     <!-- Copia Skeleton Ini -->
         </td>
