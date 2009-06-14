@@ -30,7 +30,10 @@
                     </tr>
                     <tr>
                       <td width="4%">&nbsp;</td>
-                      <td width="96%"><a href="index.php?idTipoElementoInformacion=14">Consultas</a></td>
+                        <s:url action="proyecto" id="urlProyecto">
+                            <s:param name="parametro.idParametro" value="idProyecto"/>
+                        </s:url>
+                      <td width="96%"><a href="<s:property value="#urlProyecto"/>">Consultas</a></td>
                     </tr>
                     <tr>
                       <td colspan="2"><img src="public/img/web/fondo_menu.jpg" width="220" height="1" /></td>

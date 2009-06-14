@@ -12,6 +12,10 @@
 <html>
 <head>
     <title><s:text name="label.proyecto.titulo"/></title>
+    
+    <link href="<%= request.getContextPath() %>/public/css/web/template_css.css" rel="stylesheet" type="text/css">
+    <link href="<%= request.getContextPath() %>/public/css/web/acordionv2.css" rel="stylesheet" type="text/css">
+    
     <script language="javascript">
         function buscarCargarPeriodo(){
             var frm=document.frmArchivo;
