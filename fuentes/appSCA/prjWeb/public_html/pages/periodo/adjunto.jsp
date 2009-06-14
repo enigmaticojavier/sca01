@@ -24,42 +24,16 @@
             frm.submit();
         }
         
-        function cargarArchivoProponente(){
+        function cargarArchivoAdjunto(){
           var frm=document.frmArchivo;
           var periodoSeleccionado=document.getElementById("periodoSeleccionado").value;
-          frm.action="upload!cargaArchivoProponente?periodoSeleccionado="+periodoSeleccionado;
-          if (validarArchivo(frm.archProponente)){
+          frm.action="adjunto!cargaArchivoAdjunto?periodoSeleccionado="+periodoSeleccionado;
+          if (validarArchivo(frm.archAdjunto)){
              try{
                 frm.submit();
              }catch(e){
                 alert("Archivo Incorrecto");
                 frm.archProponente.focus();
-             }   
-          }
-        }
-        function cargarArchivoProyecto(){
-          var frm=document.frmArchivo;
-          var periodoSeleccionado=document.getElementById("periodoSeleccionado").value;
-          frm.action="upload!cargaArchivoProyecto?periodoSeleccionado="+periodoSeleccionado;
-          if (validarArchivo(frm.archProyecto)){
-            try{
-                frm.submit();
-            }catch(e){
-                alert("Archivo Incorrecto");
-                frm.archProyecto.focus();
-            }   
-          }   
-        }
-        function cargarArchivoExpediente(){
-          var frm=document.frmArchivo;
-          var periodoSeleccionado=document.getElementById("periodoSeleccionado").value;
-          frm.action="upload!cargaArchivoExpediente?periodoSeleccionado="+periodoSeleccionado;
-          if (validarArchivo(frm.archExpediente)){
-             try{
-                frm.submit();
-             }catch(e){
-                alert("Archivo Incorrecto");
-                frm.archExpediente.focus();
              }   
           }
         }
@@ -130,7 +104,7 @@
                     </tr>
                 </table>
             </s:form>
-            
+            <s:form name="frmArchivo"  theme="simple" action="archivo!cargaArchivoProponente" method="POST" enctype="multipart/form-data">
             <table>
                 <tr>
                     <td align="center">
@@ -151,21 +125,34 @@
                 </tr>
             </table>
                 
-            <display:table name="expedienteDocumentos" requestURI="adjunto" class="dataTable" id="expedienteDocumento" pagesize="10" style="width:620">
-                <display:column property="expedientePaso.expediente.expId" title="Id" style="width:1%"  />
-                <display:column property="expedientePaso.expediente.numExpediente" title="Nro Exp" style="width:40%"  />
-                <display:column title="Fecha Transacción"> 
-                    <fmt:formatDate value="${expedienteDocumento.expedientePaso.expediente.fchExpediente}" pattern="dd/MM/yyyy"/> 
+            <display:table name="expedienteDocumentos" requestURI="adjunto" class="dataTable" id="expedienteDocumento" pagesize="20" style="width:720">
+                <display:column property="expedientePaso.expediente.expId" title="Id" style="width:1%"/>
+                <display:column property="documento.docId" title="docId" style="width:1%" media="html excel csv"/>
+                <display:column property="expedientePaso.expediente.proyecto.txtDescripcion" title="Proyecto" style="width:500"/>
+                <display:column property="expedientePaso.tipPaso" title="Tran" style="width:1"/>
+                <display:column title="Fec Trans" style="width:1"> 
+                    <fmt:formatDate value="${expedienteDocumento.expedientePaso.expediente.fchExpediente}" pattern="dd/MM/yyyy"/>
                 </display:column>
-                <display:column property="documento.dscTipoDocumento" title="Tipo Documento" style="width:40%"  />
-                <display:column property="expedientePaso.dscTipPaso" title="Descripción" style="width:40%"  />
-                <display:column property="documento.codDocumento" title="Nro Documento" style="width:40%"  />
+                <display:column property="expedientePaso.tipPaso" title="Doc" style="width:5"/>
+                <display:column title="Archivos" style="width:80"> 
+                    <table>
+                        <tr>
+                            <td>
+                                <s:file name="archAdjunto" disabled="false" size="25"/>
+                            </td>
+                        </tr>
+                    </table>
+                </display:column>
+                <display:column title="" style="width:5"> 
+                    <input type="button" name="cargar" readonly="true" size="1" value="cargar" onclick="cargarArchivoAdjunto('<c:out value="{expedienteDocumento.documento.docId}"/>'>");"/>
+                </display:column>
                 <display:column title="Archivos" style="width:40%"> 
                     <c:forEach var="imagen" items="${expedienteDocumento.documento.lstImagenDocumento}" varStatus="rowCounter">
                         <a href="<%=request.getContextPath()%>/DescargaServlet?file=<c:out value="${imagen.txtRutaImagen}"/>">Ver</a>
                     </c:forEach>
                 </display:column>
             </display:table>
+            </s:form>
             
     <!-- Copia Skeleton Ini -->
         </td>
