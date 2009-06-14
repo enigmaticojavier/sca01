@@ -17,7 +17,7 @@
     )values(
         SQ_IMAGENDOCUMENTO.NEXTVAL,
         #documento.docId#,
-        #txtRutaImagen#
+        #txtRutaImagen#,
         #txtNomArchivo#
     )
   </insert>

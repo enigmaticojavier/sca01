@@ -68,7 +68,10 @@ public class ImagenDocumento {
     public static void grabarImagenDocumento(ImagenDocumento imagenDocumento) throws NegocioException{
        try{  
          ImagenDocumentoDao imagenDocumentoDao = ProyectoService.getInstance().getImagenDocumentoDao();
-         if (imagenDocumentoDao.existeImagenDocumento(imagenDocumento.getDocumento().getDocId())){
+         System.out.println("docId-->"+imagenDocumento.getDocumento().getDocId());
+         boolean existe = imagenDocumentoDao.existeImagenDocumento(imagenDocumento.getDocumento().getDocId());
+         System.out.println("existe-->"+existe);
+         if (existe){
              imagenDocumentoDao.updateImagenDocumento(imagenDocumento);
          }else{
              imagenDocumentoDao.insertImagenDocumento(imagenDocumento);
