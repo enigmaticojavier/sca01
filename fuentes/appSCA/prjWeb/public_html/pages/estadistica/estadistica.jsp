@@ -55,7 +55,7 @@
                 
             <table>    
             <tr><td align="center">
-                <h1 align="left"><s:text name="label.estadistica.titulo"/></h1>        
+                <h3 align="left"><s:text name="label.estadistica.titulo"/></h3>        
             </td></tr>
             <tr><td align="center">
                 <table>
