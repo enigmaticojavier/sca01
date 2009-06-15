@@ -5812,3 +5812,632 @@ java.lang.IllegalStateException: Response has already been committed
 09/06/13 23:23:10.49 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
 09/06/13 23:23:10.49 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
 09/06/13 23:23:10.49 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 00:08:17.478 prjWeb: Servlet error
+java.lang.IllegalStateException: Response has already been committed
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.EvermindHttpServletResponse.sendError(EvermindHttpServletResponse.java:1147)
+	at org.apache.struts2.dispatcher.Dispatcher.sendError(Dispatcher.java:725)
+	at org.apache.struts2.dispatcher.Dispatcher.serviceAction(Dispatcher.java:485)
+	at org.apache.struts2.dispatcher.ng.ExecuteOperations.executeAction(ExecuteOperations.java:77)
+	at org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter.doFilter(StrutsPrepareAndExecuteFilter.java:76)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.ServletRequestDispatcher.invoke(ServletRequestDispatcher.java:623)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.ServletRequestDispatcher.forwardInternal(ServletRequestDispatcher.java:370)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.handleNotFound(HttpRequestHandler.java:1041)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.doProcessRequest(HttpRequestHandler.java:911)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.processRequest(HttpRequestHandler.java:453)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.serveOneRequest(HttpRequestHandler.java:221)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.run(HttpRequestHandler.java:122)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.run(HttpRequestHandler.java:111)
+	at oracle.oc4j.network.ServerSocketReadHandler$SafeRunnable.run(ServerSocketReadHandler.java:260)
+	at oracle.oc4j.network.ServerSocketAcceptHandler.procClientSocket(ServerSocketAcceptHandler.java:239)
+	at oracle.oc4j.network.ServerSocketAcceptHandler.access$700(ServerSocketAcceptHandler.java:34)
+	at oracle.oc4j.network.ServerSocketAcceptHandler$AcceptHandlerHorse.run(ServerSocketAcceptHandler.java:880)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].util.ReleasableResourcePooledExecutor$MyWorker.run(ReleasableResourcePooledExecutor.java:303)
+	at java.lang.Thread.run(Thread.java:595)
+09/06/14 00:08:34.166 prjWeb: Servlet error
+java.lang.IllegalStateException: Response has already been committed
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.EvermindHttpServletResponse.sendError(EvermindHttpServletResponse.java:1147)
+	at org.apache.struts2.dispatcher.Dispatcher.sendError(Dispatcher.java:725)
+	at org.apache.struts2.dispatcher.Dispatcher.serviceAction(Dispatcher.java:485)
+	at org.apache.struts2.dispatcher.ng.ExecuteOperations.executeAction(ExecuteOperations.java:77)
+	at org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter.doFilter(StrutsPrepareAndExecuteFilter.java:76)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.ServletRequestDispatcher.invoke(ServletRequestDispatcher.java:623)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.ServletRequestDispatcher.forwardInternal(ServletRequestDispatcher.java:370)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.handleNotFound(HttpRequestHandler.java:1041)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.doProcessRequest(HttpRequestHandler.java:911)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.processRequest(HttpRequestHandler.java:453)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.serveOneRequest(HttpRequestHandler.java:221)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.run(HttpRequestHandler.java:122)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.run(HttpRequestHandler.java:111)
+	at oracle.oc4j.network.ServerSocketReadHandler$SafeRunnable.run(ServerSocketReadHandler.java:260)
+	at oracle.oc4j.network.ServerSocketAcceptHandler.procClientSocket(ServerSocketAcceptHandler.java:239)
+	at oracle.oc4j.network.ServerSocketAcceptHandler.access$700(ServerSocketAcceptHandler.java:34)
+	at oracle.oc4j.network.ServerSocketAcceptHandler$AcceptHandlerHorse.run(ServerSocketAcceptHandler.java:880)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].util.ReleasableResourcePooledExecutor$MyWorker.run(ReleasableResourcePooledExecutor.java:303)
+	at java.lang.Thread.run(Thread.java:595)
+09/06/14 00:13:36.242 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 00:13:36.242 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 00:13:36.242 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 00:13:44.295 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 00:13:44.295 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 00:13:44.295 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 00:26:45.992 prjWeb: Servlet error
+java.lang.IllegalStateException: Response has already been committed
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.EvermindHttpServletResponse.sendError(EvermindHttpServletResponse.java:1147)
+	at org.apache.struts2.dispatcher.Dispatcher.sendError(Dispatcher.java:725)
+	at org.apache.struts2.dispatcher.Dispatcher.serviceAction(Dispatcher.java:485)
+	at org.apache.struts2.dispatcher.ng.ExecuteOperations.executeAction(ExecuteOperations.java:77)
+	at org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter.doFilter(StrutsPrepareAndExecuteFilter.java:76)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.ServletRequestDispatcher.invoke(ServletRequestDispatcher.java:623)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.ServletRequestDispatcher.forwardInternal(ServletRequestDispatcher.java:370)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.handleNotFound(HttpRequestHandler.java:1041)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.doProcessRequest(HttpRequestHandler.java:911)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.processRequest(HttpRequestHandler.java:453)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.serveOneRequest(HttpRequestHandler.java:221)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.run(HttpRequestHandler.java:122)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.run(HttpRequestHandler.java:111)
+	at oracle.oc4j.network.ServerSocketReadHandler$SafeRunnable.run(ServerSocketReadHandler.java:260)
+	at oracle.oc4j.network.ServerSocketAcceptHandler.procClientSocket(ServerSocketAcceptHandler.java:239)
+	at oracle.oc4j.network.ServerSocketAcceptHandler.access$700(ServerSocketAcceptHandler.java:34)
+	at oracle.oc4j.network.ServerSocketAcceptHandler$AcceptHandlerHorse.run(ServerSocketAcceptHandler.java:880)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].util.ReleasableResourcePooledExecutor$MyWorker.run(ReleasableResourcePooledExecutor.java:303)
+	at java.lang.Thread.run(Thread.java:595)
+09/06/14 00:37:34.511 10.1.3.3.0 Started
+09/06/14 00:37:39.403 prjWeb: 10.1.3.3.0 Started
+09/06/14 00:39:06.337 10.1.3.3.0 Started
+09/06/14 00:39:10.403 prjWeb: 10.1.3.3.0 Started
+09/06/14 00:40:05.828 10.1.3.3.0 Started
+09/06/14 00:40:10.98 prjWeb: 10.1.3.3.0 Started
+09/06/14 00:42:15.824 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 00:46:08.435 prjWeb: Servlet error
+java.lang.IllegalStateException: Response has already been committed
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.EvermindHttpServletResponse.sendError(EvermindHttpServletResponse.java:1147)
+	at org.apache.struts2.dispatcher.Dispatcher.sendError(Dispatcher.java:725)
+	at org.apache.struts2.dispatcher.Dispatcher.serviceAction(Dispatcher.java:485)
+	at org.apache.struts2.dispatcher.ng.ExecuteOperations.executeAction(ExecuteOperations.java:77)
+	at org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter.doFilter(StrutsPrepareAndExecuteFilter.java:76)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.ServletRequestDispatcher.invoke(ServletRequestDispatcher.java:623)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.ServletRequestDispatcher.forwardInternal(ServletRequestDispatcher.java:370)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.handleNotFound(HttpRequestHandler.java:1041)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.doProcessRequest(HttpRequestHandler.java:911)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.processRequest(HttpRequestHandler.java:453)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.serveOneRequest(HttpRequestHandler.java:221)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.run(HttpRequestHandler.java:122)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.run(HttpRequestHandler.java:111)
+	at oracle.oc4j.network.ServerSocketReadHandler$SafeRunnable.run(ServerSocketReadHandler.java:260)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].util.ReleasableResourcePooledExecutor$MyWorker.run(ReleasableResourcePooledExecutor.java:303)
+	at java.lang.Thread.run(Thread.java:595)
+09/06/14 00:46:12.605 prjWeb: Servlet error
+java.lang.IllegalStateException: Response has already been committed
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.EvermindHttpServletResponse.sendError(EvermindHttpServletResponse.java:1147)
+	at org.apache.struts2.dispatcher.Dispatcher.sendError(Dispatcher.java:725)
+	at org.apache.struts2.dispatcher.Dispatcher.serviceAction(Dispatcher.java:485)
+	at org.apache.struts2.dispatcher.ng.ExecuteOperations.executeAction(ExecuteOperations.java:77)
+	at org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter.doFilter(StrutsPrepareAndExecuteFilter.java:76)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.ServletRequestDispatcher.invoke(ServletRequestDispatcher.java:623)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.ServletRequestDispatcher.forwardInternal(ServletRequestDispatcher.java:370)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.handleNotFound(HttpRequestHandler.java:1041)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.doProcessRequest(HttpRequestHandler.java:911)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.processRequest(HttpRequestHandler.java:453)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.serveOneRequest(HttpRequestHandler.java:221)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.run(HttpRequestHandler.java:122)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.run(HttpRequestHandler.java:111)
+	at oracle.oc4j.network.ServerSocketReadHandler$SafeRunnable.run(ServerSocketReadHandler.java:260)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].util.ReleasableResourcePooledExecutor$MyWorker.run(ReleasableResourcePooledExecutor.java:303)
+	at java.lang.Thread.run(Thread.java:595)
+09/06/14 01:00:20.368 10.1.3.3.0 Started
+09/06/14 01:00:24.984 prjWeb: 10.1.3.3.0 Started
+09/06/14 01:00:42.74 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 01:00:42.74 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 01:00:42.75 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 01:35:53.991 prjWeb: 10.1.3.3.0 Stopped
+09/06/14 01:35:54.768 10.1.3.3.0 Started
+09/06/14 01:35:58.753 prjWeb: 10.1.3.3.0 Started
+09/06/14 01:36:56.619 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 01:36:56.632 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 01:36:56.632 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 01:36:58.163 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 01:36:58.172 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 01:36:58.172 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 01:37:06.343 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 01:37:06.344 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 01:37:06.344 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 01:37:14.437 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 01:37:14.438 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 01:37:14.438 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 02:53:44.543 prjWeb: JspServlet: No se ha podido distribuir a la página solicitada: oracle.jsp.parse.JspParseException: /pages/periodo/adjunto.jsp: Número de Línea 160,                 </display:column--> 
+Error: Se ha encontrado la etiqueta final </display:column--> sin la etiqueta inicial correspondiente.
+	at oracle.jsp.parse.JspParseTag.parseNextTag(JspParseTag.java:1049)
+	at oracle.jsp.parse.JspParseTag.parseBody(JspParseTag.java:1345)
+	at oracle.jsp.parse.OpenJspTagHandler.parseBody(OpenJspTagHandler.java:725)
+	at oracle.jsp.parse.JspParseTag.parse(JspParseTag.java:1455)
+	at oracle.jsp.parse.OpenJspTagHandler.parse(OpenJspTagHandler.java:816)
+	at oracle.jsp.parse.JspParseTag.parseNextTag(JspParseTag.java:1019)
+	at oracle.jsp.parse.JspParseTagFile.parse(JspParseTagFile.java:250)
+	at oracle.jsp.parse.OracleJsp2Java.transform(OracleJsp2Java.java:479)
+	at oracle.jsp.runtimev2.JspPageCompiler.attemptCompilePage(JspPageCompiler.java:670)
+	at oracle.jsp.runtimev2.JspPageCompiler.compileBothModes(JspPageCompiler.java:456)
+	at oracle.jsp.runtimev2.JspPageCompiler.compilePage(JspPageCompiler.java:413)
+	at oracle.jsp.runtimev2.JspPageInfo.compileAndLoad(JspPageInfo.java:705)
+	at oracle.jsp.runtimev2.JspPageTable.compileAndServe(JspPageTable.java:694)
+	at oracle.jsp.runtimev2.JspPageTable.service(JspPageTable.java:414)
+	at oracle.jsp.runtimev2.JspServlet.internalService(JspServlet.java:594)
+	at oracle.jsp.runtimev2.JspServlet.service(JspServlet.java:518)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:856)
+	at com.evermind.server.http.ServletRequestDispatcher.invoke(ServletRequestDispatcher.java:713)
+	at com.evermind.server.http.ServletRequestDispatcher.forwardInternal(ServletRequestDispatcher.java:370)
+	at com.evermind.server.http.ServletRequestDispatcher.unprivileged_forward(ServletRequestDispatcher.java:259)
+	at com.evermind.server.http.ServletRequestDispatcher.access$100(ServletRequestDispatcher.java:51)
+	at com.evermind.server.http.ServletRequestDispatcher$2.oc4jRun(ServletRequestDispatcher.java:193)
+	at oracle.oc4j.security.OC4JSecurity.doPrivileged(OC4JSecurity.java:283)
+	at com.evermind.server.http.ServletRequestDispatcher.forward(ServletRequestDispatcher.java:198)
+	at org.apache.struts2.dispatcher.ServletDispatcherResult.doExecute(ServletDispatcherResult.java:154)
+	at org.apache.struts2.dispatcher.StrutsResultSupport.execute(StrutsResultSupport.java:186)
+	at com.opensymphony.xwork2.DefaultActionInvocation.executeResult(DefaultActionInvocation.java:361)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:265)
+	at com.opensymphony.xwork2.interceptor.DefaultWorkflowInterceptor.doIntercept(DefaultWorkflowInterceptor.java:163)
+	at com.opensymphony.xwork2.interceptor.MethodFilterInterceptor.intercept(MethodFilterInterceptor.java:87)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:236)
+	at com.opensymphony.xwork2.validator.ValidationInterceptor.doIntercept(ValidationInterceptor.java:249)
+	at org.apache.struts2.interceptor.validation.AnnotationValidationInterceptor.doIntercept(AnnotationValidationInterceptor.java:68)
+	at com.opensymphony.xwork2.interceptor.MethodFilterInterceptor.intercept(MethodFilterInterceptor.java:87)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:236)
+	at com.opensymphony.xwork2.interceptor.ConversionErrorInterceptor.intercept(ConversionErrorInterceptor.java:122)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:236)
+	at com.opensymphony.xwork2.interceptor.ParametersInterceptor.doIntercept(ParametersInterceptor.java:195)
+	at com.opensymphony.xwork2.interceptor.MethodFilterInterceptor.intercept(MethodFilterInterceptor.java:87)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:236)
+	at com.opensymphony.xwork2.interceptor.ParametersInterceptor.doIntercept(ParametersInterceptor.java:195)
+	at com.opensymphony.xwork2.interceptor.MethodFilterInterceptor.intercept(MethodFilterInterceptor.java:87)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:236)
+	at com.opensymphony.xwork2.interceptor.StaticParametersInterceptor.intercept(StaticParametersInterceptor.java:148)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:236)
+	at org.apache.struts2.interceptor.CheckboxInterceptor.intercept(CheckboxInterceptor.java:93)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:236)
+	at org.apache.struts2.interceptor.FileUploadInterceptor.intercept(FileUploadInterceptor.java:235)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:236)
+	at com.opensymphony.xwork2.interceptor.ModelDrivenInterceptor.intercept(ModelDrivenInterceptor.java:89)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:236)
+	at com.opensymphony.xwork2.interceptor.ScopedModelDrivenInterceptor.intercept(ScopedModelDrivenInterceptor.java:128)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:236)
+	at org.apache.struts2.interceptor.ProfilingActivationInterceptor.intercept(ProfilingActivationInterceptor.java:104)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:236)
+	at org.apache.struts2.interceptor.debugging.DebuggingInterceptor.intercept(DebuggingInterceptor.java:267)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:236)
+	at com.opensymphony.xwork2.interceptor.ChainingInterceptor.intercept(ChainingInterceptor.java:126)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:236)
+	at com.opensymphony.xwork2.interceptor.PrepareInterceptor.doIntercept(PrepareInterceptor.java:138)
+	at com.opensymphony.xwork2.interceptor.MethodFilterInterceptor.intercept(MethodFilterInterceptor.java:87)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:236)
+	at com.opensymphony.xwork2.interceptor.I18nInterceptor.intercept(I18nInterceptor.java:148)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:236)
+	at org.apache.struts2.interceptor.ServletConfigInterceptor.intercept(ServletConfigInterceptor.java:164)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:236)
+	at com.opensymphony.xwork2.interceptor.AliasInterceptor.intercept(AliasInterceptor.java:128)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:236)
+	at com.opensymphony.xwork2.interceptor.ExceptionMappingInterceptor.intercept(ExceptionMappingInterceptor.java:176)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:236)
+	at org.apache.struts2.impl.StrutsActionProxy.execute(StrutsActionProxy.java:52)
+	at org.apache.struts2.dispatcher.Dispatcher.serviceAction(Dispatcher.java:468)
+	at org.apache.struts2.dispatcher.ng.ExecuteOperations.executeAction(ExecuteOperations.java:77)
+	at org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter.doFilter(StrutsPrepareAndExecuteFilter.java:76)
+	at com.evermind.server.http.ServletRequestDispatcher.invoke(ServletRequestDispatcher.java:623)
+	at com.evermind.server.http.ServletRequestDispatcher.forwardInternal(ServletRequestDispatcher.java:370)
+	at com.evermind.server.http.HttpRequestHandler.handleNotFound(HttpRequestHandler.java:1041)
+	at com.evermind.server.http.HttpRequestHandler.doProcessRequest(HttpRequestHandler.java:911)
+	at com.evermind.server.http.HttpRequestHandler.processRequest(HttpRequestHandler.java:453)
+	at com.evermind.server.http.HttpRequestHandler.serveOneRequest(HttpRequestHandler.java:221)
+	at com.evermind.server.http.HttpRequestHandler.run(HttpRequestHandler.java:122)
+	at com.evermind.server.http.HttpRequestHandler.run(HttpRequestHandler.java:111)
+	at oracle.oc4j.network.ServerSocketReadHandler$SafeRunnable.run(ServerSocketReadHandler.java:260)
+	at oracle.oc4j.network.ServerSocketAcceptHandler.procClientSocket(ServerSocketAcceptHandler.java:239)
+	at oracle.oc4j.network.ServerSocketAcceptHandler.access$700(ServerSocketAcceptHandler.java:34)
+	at oracle.oc4j.network.ServerSocketAcceptHandler$AcceptHandlerHorse.run(ServerSocketAcceptHandler.java:880)
+	at com.evermind.util.ReleasableResourcePooledExecutor$MyWorker.run(ReleasableResourcePooledExecutor.java:303)
+	at java.lang.Thread.run(Thread.java:595)
+
+09/06/14 03:58:28.808 10.1.3.3.0 Started
+09/06/14 03:58:33.213 prjWeb: 10.1.3.3.0 Started
+09/06/14 04:03:56.734 10.1.3.3.0 Started
+09/06/14 04:04:01.250 prjWeb: 10.1.3.3.0 Started
+09/06/14 06:32:15.524 10.1.3.3.0 Started
+09/06/14 06:32:19.695 prjWeb: 10.1.3.3.0 Started
+09/06/14 06:49:39.324 10.1.3.3.0 Started
+09/06/14 06:49:43.809 prjWeb: 10.1.3.3.0 Started
+09/06/14 06:50:40.263 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 06:50:40.266 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 06:50:40.266 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 06:50:49.318 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 06:50:49.321 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 06:50:49.321 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 06:51:18.712 prjWeb: Servlet error
+java.lang.IllegalStateException: Response has already been committed
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.EvermindHttpServletResponse.sendError(EvermindHttpServletResponse.java:1147)
+	at org.apache.struts2.dispatcher.Dispatcher.sendError(Dispatcher.java:725)
+	at org.apache.struts2.dispatcher.Dispatcher.serviceAction(Dispatcher.java:485)
+	at org.apache.struts2.dispatcher.ng.ExecuteOperations.executeAction(ExecuteOperations.java:77)
+	at org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter.doFilter(StrutsPrepareAndExecuteFilter.java:76)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.ServletRequestDispatcher.invoke(ServletRequestDispatcher.java:623)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.ServletRequestDispatcher.forwardInternal(ServletRequestDispatcher.java:370)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.handleNotFound(HttpRequestHandler.java:1041)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.doProcessRequest(HttpRequestHandler.java:911)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.processRequest(HttpRequestHandler.java:453)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.serveOneRequest(HttpRequestHandler.java:221)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.run(HttpRequestHandler.java:122)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.run(HttpRequestHandler.java:111)
+	at oracle.oc4j.network.ServerSocketReadHandler$SafeRunnable.run(ServerSocketReadHandler.java:260)
+	at oracle.oc4j.network.ServerSocketAcceptHandler.procClientSocket(ServerSocketAcceptHandler.java:239)
+	at oracle.oc4j.network.ServerSocketAcceptHandler.access$700(ServerSocketAcceptHandler.java:34)
+	at oracle.oc4j.network.ServerSocketAcceptHandler$AcceptHandlerHorse.run(ServerSocketAcceptHandler.java:880)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].util.ReleasableResourcePooledExecutor$MyWorker.run(ReleasableResourcePooledExecutor.java:303)
+	at java.lang.Thread.run(Thread.java:595)
+09/06/14 06:53:31.26 10.1.3.3.0 Started
+09/06/14 06:53:35.724 prjWeb: 10.1.3.3.0 Started
+09/06/14 06:53:47.747 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 06:53:47.748 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 06:53:47.749 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 06:53:54.529 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 06:53:54.530 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 06:53:54.530 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 06:54:26.340 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 06:54:26.342 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 06:54:26.342 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 07:04:05.456 prjWeb: Servlet error
+java.lang.IllegalStateException: Response has already been committed
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.EvermindHttpServletResponse.sendError(EvermindHttpServletResponse.java:1147)
+	at org.apache.struts2.dispatcher.Dispatcher.sendError(Dispatcher.java:725)
+	at org.apache.struts2.dispatcher.Dispatcher.serviceAction(Dispatcher.java:485)
+	at org.apache.struts2.dispatcher.ng.ExecuteOperations.executeAction(ExecuteOperations.java:77)
+	at org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter.doFilter(StrutsPrepareAndExecuteFilter.java:76)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.ServletRequestDispatcher.invoke(ServletRequestDispatcher.java:623)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.ServletRequestDispatcher.forwardInternal(ServletRequestDispatcher.java:370)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.handleNotFound(HttpRequestHandler.java:1041)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.doProcessRequest(HttpRequestHandler.java:911)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.processRequest(HttpRequestHandler.java:453)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.serveOneRequest(HttpRequestHandler.java:221)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.run(HttpRequestHandler.java:122)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.run(HttpRequestHandler.java:111)
+	at oracle.oc4j.network.ServerSocketReadHandler$SafeRunnable.run(ServerSocketReadHandler.java:260)
+	at oracle.oc4j.network.ServerSocketAcceptHandler.procClientSocket(ServerSocketAcceptHandler.java:239)
+	at oracle.oc4j.network.ServerSocketAcceptHandler.access$700(ServerSocketAcceptHandler.java:34)
+	at oracle.oc4j.network.ServerSocketAcceptHandler$AcceptHandlerHorse.run(ServerSocketAcceptHandler.java:880)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].util.ReleasableResourcePooledExecutor$MyWorker.run(ReleasableResourcePooledExecutor.java:303)
+	at java.lang.Thread.run(Thread.java:595)
+09/06/14 07:04:21.322 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 07:04:21.322 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 07:04:21.323 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 07:09:36.820 prjWeb: Servlet error
+java.lang.IllegalStateException: Response has already been committed
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.EvermindHttpServletResponse.sendError(EvermindHttpServletResponse.java:1147)
+	at org.apache.struts2.dispatcher.Dispatcher.sendError(Dispatcher.java:725)
+	at org.apache.struts2.dispatcher.Dispatcher.serviceAction(Dispatcher.java:485)
+	at org.apache.struts2.dispatcher.ng.ExecuteOperations.executeAction(ExecuteOperations.java:77)
+	at org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter.doFilter(StrutsPrepareAndExecuteFilter.java:76)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.ServletRequestDispatcher.invoke(ServletRequestDispatcher.java:623)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.ServletRequestDispatcher.forwardInternal(ServletRequestDispatcher.java:370)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.handleNotFound(HttpRequestHandler.java:1041)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.doProcessRequest(HttpRequestHandler.java:911)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.processRequest(HttpRequestHandler.java:453)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.serveOneRequest(HttpRequestHandler.java:221)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.run(HttpRequestHandler.java:122)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.run(HttpRequestHandler.java:111)
+	at oracle.oc4j.network.ServerSocketReadHandler$SafeRunnable.run(ServerSocketReadHandler.java:260)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].util.ReleasableResourcePooledExecutor$MyWorker.run(ReleasableResourcePooledExecutor.java:303)
+	at java.lang.Thread.run(Thread.java:595)
+09/06/14 07:09:45.651 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 07:09:45.654 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 07:09:45.654 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 07:10:05.113 prjWeb: Servlet error
+java.lang.IllegalStateException: Response has already been committed
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.EvermindHttpServletResponse.sendError(EvermindHttpServletResponse.java:1147)
+	at org.apache.struts2.dispatcher.Dispatcher.sendError(Dispatcher.java:725)
+	at org.apache.struts2.dispatcher.Dispatcher.serviceAction(Dispatcher.java:485)
+	at org.apache.struts2.dispatcher.ng.ExecuteOperations.executeAction(ExecuteOperations.java:77)
+	at org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter.doFilter(StrutsPrepareAndExecuteFilter.java:76)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.ServletRequestDispatcher.invoke(ServletRequestDispatcher.java:623)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.ServletRequestDispatcher.forwardInternal(ServletRequestDispatcher.java:370)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.handleNotFound(HttpRequestHandler.java:1041)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.doProcessRequest(HttpRequestHandler.java:911)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.processRequest(HttpRequestHandler.java:453)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.serveOneRequest(HttpRequestHandler.java:221)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.run(HttpRequestHandler.java:122)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.run(HttpRequestHandler.java:111)
+	at oracle.oc4j.network.ServerSocketReadHandler$SafeRunnable.run(ServerSocketReadHandler.java:260)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].util.ReleasableResourcePooledExecutor$MyWorker.run(ReleasableResourcePooledExecutor.java:303)
+	at java.lang.Thread.run(Thread.java:595)
+09/06/14 07:17:54.760 10.1.3.3.0 Started
+09/06/14 07:17:59.103 prjWeb: 10.1.3.3.0 Started
+09/06/14 07:24:41.98 10.1.3.3.0 Started
+09/06/14 07:24:45.494 prjWeb: 10.1.3.3.0 Started
+09/06/14 07:24:57.652 prjWeb: Servlet error
+java.lang.IllegalStateException: Response has already been committed
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.EvermindHttpServletResponse.sendError(EvermindHttpServletResponse.java:1147)
+	at org.apache.struts2.dispatcher.Dispatcher.sendError(Dispatcher.java:725)
+	at org.apache.struts2.dispatcher.Dispatcher.serviceAction(Dispatcher.java:485)
+	at org.apache.struts2.dispatcher.ng.ExecuteOperations.executeAction(ExecuteOperations.java:77)
+	at org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter.doFilter(StrutsPrepareAndExecuteFilter.java:76)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.ServletRequestDispatcher.invoke(ServletRequestDispatcher.java:623)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.ServletRequestDispatcher.forwardInternal(ServletRequestDispatcher.java:370)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.handleNotFound(HttpRequestHandler.java:1041)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.doProcessRequest(HttpRequestHandler.java:911)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.processRequest(HttpRequestHandler.java:453)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.serveOneRequest(HttpRequestHandler.java:221)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.run(HttpRequestHandler.java:122)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.run(HttpRequestHandler.java:111)
+	at oracle.oc4j.network.ServerSocketReadHandler$SafeRunnable.run(ServerSocketReadHandler.java:260)
+	at oracle.oc4j.network.ServerSocketAcceptHandler.procClientSocket(ServerSocketAcceptHandler.java:239)
+	at oracle.oc4j.network.ServerSocketAcceptHandler.access$700(ServerSocketAcceptHandler.java:34)
+	at oracle.oc4j.network.ServerSocketAcceptHandler$AcceptHandlerHorse.run(ServerSocketAcceptHandler.java:880)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].util.ReleasableResourcePooledExecutor$MyWorker.run(ReleasableResourcePooledExecutor.java:303)
+	at java.lang.Thread.run(Thread.java:595)
+09/06/14 07:35:28.856 10.1.3.3.0 Started
+09/06/14 07:35:33.895 prjWeb: 10.1.3.3.0 Started
+09/06/14 07:36:08.730 prjWeb: Servlet error
+java.lang.IllegalStateException: Response has already been committed
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.EvermindHttpServletResponse.sendError(EvermindHttpServletResponse.java:1147)
+	at org.apache.struts2.dispatcher.Dispatcher.sendError(Dispatcher.java:725)
+	at org.apache.struts2.dispatcher.Dispatcher.serviceAction(Dispatcher.java:485)
+	at org.apache.struts2.dispatcher.ng.ExecuteOperations.executeAction(ExecuteOperations.java:77)
+	at org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter.doFilter(StrutsPrepareAndExecuteFilter.java:76)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.ServletRequestDispatcher.invoke(ServletRequestDispatcher.java:623)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.ServletRequestDispatcher.forwardInternal(ServletRequestDispatcher.java:370)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.handleNotFound(HttpRequestHandler.java:1041)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.doProcessRequest(HttpRequestHandler.java:911)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.processRequest(HttpRequestHandler.java:453)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.serveOneRequest(HttpRequestHandler.java:221)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.run(HttpRequestHandler.java:122)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.run(HttpRequestHandler.java:111)
+	at oracle.oc4j.network.ServerSocketReadHandler$SafeRunnable.run(ServerSocketReadHandler.java:260)
+	at oracle.oc4j.network.ServerSocketAcceptHandler.procClientSocket(ServerSocketAcceptHandler.java:239)
+	at oracle.oc4j.network.ServerSocketAcceptHandler.access$700(ServerSocketAcceptHandler.java:34)
+	at oracle.oc4j.network.ServerSocketAcceptHandler$AcceptHandlerHorse.run(ServerSocketAcceptHandler.java:880)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].util.ReleasableResourcePooledExecutor$MyWorker.run(ReleasableResourcePooledExecutor.java:303)
+	at java.lang.Thread.run(Thread.java:595)
+09/06/14 07:56:52.435 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 08:22:44.482 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 08:22:44.482 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 08:22:44.482 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 09:03:54.505 10.1.3.3.0 Started
+09/06/14 09:03:58.831 prjWeb: 10.1.3.3.0 Started
+09/06/14 09:04:18.880 prjWeb: Servlet error
+java.lang.IllegalStateException: Response has already been committed
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.EvermindHttpServletResponse.sendError(EvermindHttpServletResponse.java:1147)
+	at org.apache.struts2.dispatcher.Dispatcher.sendError(Dispatcher.java:725)
+	at org.apache.struts2.dispatcher.Dispatcher.serviceAction(Dispatcher.java:485)
+	at org.apache.struts2.dispatcher.ng.ExecuteOperations.executeAction(ExecuteOperations.java:77)
+	at org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter.doFilter(StrutsPrepareAndExecuteFilter.java:76)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.ServletRequestDispatcher.invoke(ServletRequestDispatcher.java:623)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.ServletRequestDispatcher.forwardInternal(ServletRequestDispatcher.java:370)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.handleNotFound(HttpRequestHandler.java:1041)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.doProcessRequest(HttpRequestHandler.java:911)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.processRequest(HttpRequestHandler.java:453)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.serveOneRequest(HttpRequestHandler.java:221)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.run(HttpRequestHandler.java:122)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.run(HttpRequestHandler.java:111)
+	at oracle.oc4j.network.ServerSocketReadHandler$SafeRunnable.run(ServerSocketReadHandler.java:260)
+	at oracle.oc4j.network.ServerSocketAcceptHandler.procClientSocket(ServerSocketAcceptHandler.java:239)
+	at oracle.oc4j.network.ServerSocketAcceptHandler.access$700(ServerSocketAcceptHandler.java:34)
+	at oracle.oc4j.network.ServerSocketAcceptHandler$AcceptHandlerHorse.run(ServerSocketAcceptHandler.java:880)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].util.ReleasableResourcePooledExecutor$MyWorker.run(ReleasableResourcePooledExecutor.java:303)
+	at java.lang.Thread.run(Thread.java:595)
+09/06/14 09:22:18.82 10.1.3.3.0 Started
+09/06/14 09:22:22.525 prjWeb: 10.1.3.3.0 Started
+09/06/14 09:23:00.26 prjWeb: Servlet error
+java.lang.IllegalStateException: Response has already been committed
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.EvermindHttpServletResponse.sendError(EvermindHttpServletResponse.java:1147)
+	at org.apache.struts2.dispatcher.Dispatcher.sendError(Dispatcher.java:725)
+	at org.apache.struts2.dispatcher.Dispatcher.serviceAction(Dispatcher.java:485)
+	at org.apache.struts2.dispatcher.ng.ExecuteOperations.executeAction(ExecuteOperations.java:77)
+	at org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter.doFilter(StrutsPrepareAndExecuteFilter.java:76)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.ServletRequestDispatcher.invoke(ServletRequestDispatcher.java:623)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.ServletRequestDispatcher.forwardInternal(ServletRequestDispatcher.java:370)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.handleNotFound(HttpRequestHandler.java:1041)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.doProcessRequest(HttpRequestHandler.java:911)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.processRequest(HttpRequestHandler.java:453)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.serveOneRequest(HttpRequestHandler.java:221)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.run(HttpRequestHandler.java:122)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.run(HttpRequestHandler.java:111)
+	at oracle.oc4j.network.ServerSocketReadHandler$SafeRunnable.run(ServerSocketReadHandler.java:260)
+	at oracle.oc4j.network.ServerSocketAcceptHandler.procClientSocket(ServerSocketAcceptHandler.java:239)
+	at oracle.oc4j.network.ServerSocketAcceptHandler.access$700(ServerSocketAcceptHandler.java:34)
+	at oracle.oc4j.network.ServerSocketAcceptHandler$AcceptHandlerHorse.run(ServerSocketAcceptHandler.java:880)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].util.ReleasableResourcePooledExecutor$MyWorker.run(ReleasableResourcePooledExecutor.java:303)
+	at java.lang.Thread.run(Thread.java:595)
+09/06/14 17:30:43.315 10.1.3.3.0 Started
+09/06/14 17:30:48.293 prjWeb: 10.1.3.3.0 Started
+09/06/14 17:30:59.976 prjWeb: Servlet error
+java.lang.IllegalStateException: Response has already been committed
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.EvermindHttpServletResponse.sendError(EvermindHttpServletResponse.java:1147)
+	at org.apache.struts2.dispatcher.Dispatcher.sendError(Dispatcher.java:725)
+	at org.apache.struts2.dispatcher.Dispatcher.serviceAction(Dispatcher.java:485)
+	at org.apache.struts2.dispatcher.ng.ExecuteOperations.executeAction(ExecuteOperations.java:77)
+	at org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter.doFilter(StrutsPrepareAndExecuteFilter.java:76)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.ServletRequestDispatcher.invoke(ServletRequestDispatcher.java:623)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.ServletRequestDispatcher.forwardInternal(ServletRequestDispatcher.java:370)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.handleNotFound(HttpRequestHandler.java:1041)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.doProcessRequest(HttpRequestHandler.java:911)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.processRequest(HttpRequestHandler.java:453)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.serveOneRequest(HttpRequestHandler.java:221)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.run(HttpRequestHandler.java:122)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.run(HttpRequestHandler.java:111)
+	at oracle.oc4j.network.ServerSocketReadHandler$SafeRunnable.run(ServerSocketReadHandler.java:260)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].util.ReleasableResourcePooledExecutor$MyWorker.run(ReleasableResourcePooledExecutor.java:303)
+	at java.lang.Thread.run(Thread.java:595)
+09/06/14 17:31:30.799 prjWeb: Se ha anulado una conexión establecida por el software en su equipo host.
+09/06/14 17:34:21.419 10.1.3.3.0 Started
+09/06/14 17:34:25.700 prjWeb: 10.1.3.3.0 Started
+09/06/14 17:35:27.364 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 17:35:27.365 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 17:35:27.366 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 17:41:22.155 10.1.3.3.0 Started
+09/06/14 17:41:26.395 prjWeb: 10.1.3.3.0 Started
+09/06/14 17:41:43.678 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 17:41:43.679 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 17:41:43.680 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 17:46:02.105 10.1.3.3.0 Started
+09/06/14 17:46:06.502 prjWeb: 10.1.3.3.0 Started
+09/06/14 17:46:22.637 prjWeb: Servlet error
+java.lang.IllegalStateException: Response has already been committed
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.EvermindHttpServletResponse.sendError(EvermindHttpServletResponse.java:1147)
+	at org.apache.struts2.dispatcher.Dispatcher.sendError(Dispatcher.java:725)
+	at org.apache.struts2.dispatcher.Dispatcher.serviceAction(Dispatcher.java:485)
+	at org.apache.struts2.dispatcher.ng.ExecuteOperations.executeAction(ExecuteOperations.java:77)
+	at org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter.doFilter(StrutsPrepareAndExecuteFilter.java:76)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.ServletRequestDispatcher.invoke(ServletRequestDispatcher.java:623)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.ServletRequestDispatcher.forwardInternal(ServletRequestDispatcher.java:370)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.handleNotFound(HttpRequestHandler.java:1041)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.doProcessRequest(HttpRequestHandler.java:911)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.processRequest(HttpRequestHandler.java:453)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.serveOneRequest(HttpRequestHandler.java:221)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.run(HttpRequestHandler.java:122)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.run(HttpRequestHandler.java:111)
+	at oracle.oc4j.network.ServerSocketReadHandler$SafeRunnable.run(ServerSocketReadHandler.java:260)
+	at oracle.oc4j.network.ServerSocketAcceptHandler.procClientSocket(ServerSocketAcceptHandler.java:239)
+	at oracle.oc4j.network.ServerSocketAcceptHandler.access$700(ServerSocketAcceptHandler.java:34)
+	at oracle.oc4j.network.ServerSocketAcceptHandler$AcceptHandlerHorse.run(ServerSocketAcceptHandler.java:880)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].util.ReleasableResourcePooledExecutor$MyWorker.run(ReleasableResourcePooledExecutor.java:303)
+	at java.lang.Thread.run(Thread.java:595)
+09/06/14 17:51:07.820 10.1.3.3.0 Started
+09/06/14 17:51:12.187 prjWeb: 10.1.3.3.0 Started
+09/06/14 18:05:24.254 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/14 18:08:51.490 prjWeb: Servlet error
+java.lang.IllegalStateException: Response has already been committed
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.EvermindHttpServletResponse.sendError(EvermindHttpServletResponse.java:1147)
+	at org.apache.struts2.dispatcher.Dispatcher.sendError(Dispatcher.java:725)
+	at org.apache.struts2.dispatcher.Dispatcher.serviceAction(Dispatcher.java:485)
+	at org.apache.struts2.dispatcher.ng.ExecuteOperations.executeAction(ExecuteOperations.java:77)
+	at org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter.doFilter(StrutsPrepareAndExecuteFilter.java:76)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.ServletRequestDispatcher.invoke(ServletRequestDispatcher.java:623)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.ServletRequestDispatcher.forwardInternal(ServletRequestDispatcher.java:370)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.handleNotFound(HttpRequestHandler.java:1041)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.doProcessRequest(HttpRequestHandler.java:911)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.processRequest(HttpRequestHandler.java:453)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.serveOneRequest(HttpRequestHandler.java:221)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.run(HttpRequestHandler.java:122)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.run(HttpRequestHandler.java:111)
+	at oracle.oc4j.network.ServerSocketReadHandler$SafeRunnable.run(ServerSocketReadHandler.java:260)
+	at oracle.oc4j.network.ServerSocketAcceptHandler.procClientSocket(ServerSocketAcceptHandler.java:239)
+	at oracle.oc4j.network.ServerSocketAcceptHandler.access$700(ServerSocketAcceptHandler.java:34)
+	at oracle.oc4j.network.ServerSocketAcceptHandler$AcceptHandlerHorse.run(ServerSocketAcceptHandler.java:880)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].util.ReleasableResourcePooledExecutor$MyWorker.run(ReleasableResourcePooledExecutor.java:303)
+	at java.lang.Thread.run(Thread.java:595)
+09/06/14 21:24:08.30 10.1.3.3.0 Started
+09/06/14 21:24:14.909 prjWeb: 10.1.3.3.0 Started
+09/06/14 21:52:12.136 prjWeb: 10.1.3.3.0 Stopped
+09/06/14 21:52:12.883 10.1.3.3.0 Started
+09/06/14 21:52:17.13 prjWeb: 10.1.3.3.0 Started
+09/06/14 21:55:56.638 10.1.3.3.0 Started
+09/06/14 21:56:01.202 prjWeb: 10.1.3.3.0 Started
+09/06/15 17:02:33.747 10.1.3.3.0 Started
+09/06/15 17:02:41.860 prjWeb: 10.1.3.3.0 Started
+09/06/15 17:03:00.48 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/15 17:03:00.49 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/15 17:03:00.49 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/15 17:18:41.449 10.1.3.3.0 Started
+09/06/15 17:18:47.841 prjWeb: 10.1.3.3.0 Started
+09/06/15 17:20:41.486 10.1.3.3.0 Started
+09/06/15 17:20:47.999 prjWeb: 10.1.3.3.0 Started
+09/06/15 17:29:02.163 10.1.3.3.0 Started
+09/06/15 17:29:08.740 prjWeb: 10.1.3.3.0 Started
+09/06/15 17:52:14.306 10.1.3.3.0 Started
+09/06/15 17:52:18.937 prjWeb: 10.1.3.3.0 Started
+09/06/15 17:59:52.491 10.1.3.3.0 Started
+09/06/15 17:59:56.691 prjWeb: 10.1.3.3.0 Started
+09/06/15 18:29:32.665 10.1.3.3.0 Started
+09/06/15 18:29:36.917 prjWeb: 10.1.3.3.0 Started
+09/06/15 18:30:57.991 10.1.3.3.0 Started
+09/06/15 18:31:02.159 prjWeb: 10.1.3.3.0 Started
+09/06/15 18:50:42.529 10.1.3.3.0 Started
+09/06/15 18:50:46.979 prjWeb: 10.1.3.3.0 Started
+09/06/15 18:51:37.651 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/15 18:51:37.655 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/15 18:51:37.655 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/15 19:51:16.103 10.1.3.3.0 Started
+09/06/15 19:51:20.454 prjWeb: 10.1.3.3.0 Started
+09/06/15 19:52:25.168 prjWeb: Servlet error
+java.lang.IllegalStateException: Response has already been committed
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.EvermindHttpServletResponse.sendError(EvermindHttpServletResponse.java:1147)
+	at org.apache.struts2.dispatcher.Dispatcher.sendError(Dispatcher.java:725)
+	at org.apache.struts2.dispatcher.Dispatcher.serviceAction(Dispatcher.java:485)
+	at org.apache.struts2.dispatcher.ng.ExecuteOperations.executeAction(ExecuteOperations.java:77)
+	at org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter.doFilter(StrutsPrepareAndExecuteFilter.java:76)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.ServletRequestDispatcher.invoke(ServletRequestDispatcher.java:623)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.ServletRequestDispatcher.forwardInternal(ServletRequestDispatcher.java:370)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.handleNotFound(HttpRequestHandler.java:1041)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.doProcessRequest(HttpRequestHandler.java:911)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.processRequest(HttpRequestHandler.java:453)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.serveOneRequest(HttpRequestHandler.java:221)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.run(HttpRequestHandler.java:122)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.run(HttpRequestHandler.java:111)
+	at oracle.oc4j.network.ServerSocketReadHandler$SafeRunnable.run(ServerSocketReadHandler.java:260)
+	at oracle.oc4j.network.ServerSocketAcceptHandler.procClientSocket(ServerSocketAcceptHandler.java:239)
+	at oracle.oc4j.network.ServerSocketAcceptHandler.access$700(ServerSocketAcceptHandler.java:34)
+	at oracle.oc4j.network.ServerSocketAcceptHandler$AcceptHandlerHorse.run(ServerSocketAcceptHandler.java:880)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].util.ReleasableResourcePooledExecutor$MyWorker.run(ReleasableResourcePooledExecutor.java:303)
+	at java.lang.Thread.run(Thread.java:595)
+09/06/15 19:52:31.608 prjWeb: Servlet error
+java.lang.IllegalStateException: Response has already been committed
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.EvermindHttpServletResponse.sendError(EvermindHttpServletResponse.java:1147)
+	at org.apache.struts2.dispatcher.Dispatcher.sendError(Dispatcher.java:725)
+	at org.apache.struts2.dispatcher.Dispatcher.serviceAction(Dispatcher.java:485)
+	at org.apache.struts2.dispatcher.ng.ExecuteOperations.executeAction(ExecuteOperations.java:77)
+	at org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter.doFilter(StrutsPrepareAndExecuteFilter.java:76)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.ServletRequestDispatcher.invoke(ServletRequestDispatcher.java:623)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.ServletRequestDispatcher.forwardInternal(ServletRequestDispatcher.java:370)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.handleNotFound(HttpRequestHandler.java:1041)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.doProcessRequest(HttpRequestHandler.java:911)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.processRequest(HttpRequestHandler.java:453)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.serveOneRequest(HttpRequestHandler.java:221)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.run(HttpRequestHandler.java:122)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.run(HttpRequestHandler.java:111)
+	at oracle.oc4j.network.ServerSocketReadHandler$SafeRunnable.run(ServerSocketReadHandler.java:260)
+	at oracle.oc4j.network.ServerSocketAcceptHandler.procClientSocket(ServerSocketAcceptHandler.java:239)
+	at oracle.oc4j.network.ServerSocketAcceptHandler.access$700(ServerSocketAcceptHandler.java:34)
+	at oracle.oc4j.network.ServerSocketAcceptHandler$AcceptHandlerHorse.run(ServerSocketAcceptHandler.java:880)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].util.ReleasableResourcePooledExecutor$MyWorker.run(ReleasableResourcePooledExecutor.java:303)
+	at java.lang.Thread.run(Thread.java:595)
+09/06/15 19:59:03.603 10.1.3.3.0 Started
+09/06/15 19:59:07.781 prjWeb: 10.1.3.3.0 Started
+09/06/15 20:17:47.612 10.1.3.3.0 Started
+09/06/15 20:17:51.990 prjWeb: 10.1.3.3.0 Started
+09/06/15 20:30:10.721 10.1.3.3.0 Started
+09/06/15 20:30:14.821 prjWeb: 10.1.3.3.0 Started
+09/06/15 20:36:06.80 10.1.3.3.0 Started
+09/06/15 20:36:10.212 prjWeb: 10.1.3.3.0 Started
+09/06/15 20:39:21.186 10.1.3.3.0 Started
+09/06/15 20:39:25.349 prjWeb: 10.1.3.3.0 Started
+09/06/15 20:49:48.595 10.1.3.3.0 Started
+09/06/15 20:49:52.702 prjWeb: 10.1.3.3.0 Started
+09/06/15 20:53:25.504 10.1.3.3.0 Started
+09/06/15 20:53:30.164 prjWeb: 10.1.3.3.0 Started
+09/06/15 21:32:09.100 10.1.3.3.0 Started
+09/06/15 21:32:13.503 prjWeb: 10.1.3.3.0 Started
+09/06/15 21:38:00.181 10.1.3.3.0 Started
+09/06/15 21:38:04.883 prjWeb: 10.1.3.3.0 Started
+09/06/15 21:48:06.913 prjWeb: Servlet error
+java.lang.IllegalStateException: Response has already been committed
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.EvermindHttpServletResponse.sendError(EvermindHttpServletResponse.java:1147)
+	at org.apache.struts2.dispatcher.Dispatcher.sendError(Dispatcher.java:725)
+	at org.apache.struts2.dispatcher.Dispatcher.serviceAction(Dispatcher.java:485)
+	at org.apache.struts2.dispatcher.ng.ExecuteOperations.executeAction(ExecuteOperations.java:77)
+	at org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter.doFilter(StrutsPrepareAndExecuteFilter.java:76)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.ServletRequestDispatcher.invoke(ServletRequestDispatcher.java:623)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.ServletRequestDispatcher.forwardInternal(ServletRequestDispatcher.java:370)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.handleNotFound(HttpRequestHandler.java:1041)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.doProcessRequest(HttpRequestHandler.java:911)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.processRequest(HttpRequestHandler.java:453)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.serveOneRequest(HttpRequestHandler.java:221)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.run(HttpRequestHandler.java:122)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.run(HttpRequestHandler.java:111)
+	at oracle.oc4j.network.ServerSocketReadHandler$SafeRunnable.run(ServerSocketReadHandler.java:260)
+	at oracle.oc4j.network.ServerSocketAcceptHandler.procClientSocket(ServerSocketAcceptHandler.java:239)
+	at oracle.oc4j.network.ServerSocketAcceptHandler.access$700(ServerSocketAcceptHandler.java:34)
+	at oracle.oc4j.network.ServerSocketAcceptHandler$AcceptHandlerHorse.run(ServerSocketAcceptHandler.java:880)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].util.ReleasableResourcePooledExecutor$MyWorker.run(ReleasableResourcePooledExecutor.java:303)
+	at java.lang.Thread.run(Thread.java:595)
+09/06/15 21:50:25.183 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/15 21:50:25.183 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/15 21:50:25.183 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/15 22:10:00.108 10.1.3.3.0 Started
+09/06/15 22:10:04.280 prjWeb: 10.1.3.3.0 Started
+09/06/15 22:12:09.993 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/06/15 22:12:09.993 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
