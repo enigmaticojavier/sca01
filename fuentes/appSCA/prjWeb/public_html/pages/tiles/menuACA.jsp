@@ -23,7 +23,12 @@
                     
                     <tr>
                       <td width="4%">&nbsp;</td>
-                      <td width="96%"><a href="index.php?idTipoElementoInformacion=14">Preparación / Envío de Información Periódica</a></td>
+                      <td width="96%">
+                        <s:url action="upload" id="urlUpload">
+                            <s:param name="parametro.idParametro" value="idUpload"/>
+                        </s:url>
+                        <a href="<s:property value="#urlUpload"/>">Preparación / Envío de Información Periódica</a>
+                      </td>
                     </tr>
                     <tr>
                       <td colspan="2"><img src="public/img/web/fondo_menu.jpg" width="220" height="1" /></td>
