@@ -24,10 +24,10 @@
             frm.submit();
         }
         
-        function cargarArchivoAdjunto(){
+        function cargarArchivoAdjunto(docId){
           var frm=document.frmArchivo;
           var periodoSeleccionado=document.getElementById("periodoSeleccionado").value;
-          frm.action="adjunto!cargaArchivoAdjunto?periodoSeleccionado="+periodoSeleccionado;
+          frm.action="adjunto!cargaArchivoAdjunto?periodoSeleccionado="+periodoSeleccionado+"&docId="+docId;
           if (validarArchivo(frm.archAdjunto)){
              try{
                 frm.submit();
@@ -109,7 +109,7 @@
                 <tr>
                     <td align="center">
                         <s:url action="upload" id="urlUpload">
-                            <s:param name="parametro.idParametro" value="idUpload"/>
+                            <s:param name="periodoSeleccionado" value="periodoSeleccionado"/>
                         </s:url>
                         <h3 align="left"><a href="<s:property value="#urlUpload"/>">Carga de Operaciones</a></h3>
                     </td>
@@ -118,7 +118,7 @@
                     </td>
                     <td align="center">
                         <s:url action="adjunto" id="urlAdjunto">
-                            <s:param name="parametro.idParametro" value="idAdjunto"/>
+                            <s:param name="periodoSeleccionado" value="periodoSeleccionado"/>
                         </s:url>
                         <h3 align="left"><a href="<s:property value="#urlAdjunto"/>">Envio de Documentos Adjuntos</a></h3>
                     </td>
@@ -144,11 +144,12 @@
                     </table>
                 </display:column>
                 <display:column title="" style="width:5"> 
-                    <input type="button" name="cargar" readonly="true" size="1" value="cargar" onclick="cargarArchivoAdjunto('<c:out value="{expedienteDocumento.documento.docId}"/>'>");"/>
+                    <input type="button" name="cargar" readonly="true" size="1" value="cargar"                  
+                    onclick="cargarArchivoAdjunto('<c:out value="${expedienteDocumento.documento.docId}"/>')" />
                 </display:column>
                 <display:column title="Archivos" style="width:40%"> 
                     <c:forEach var="imagen" items="${expedienteDocumento.documento.lstImagenDocumento}" varStatus="rowCounter">
-                        <a href="<%=request.getContextPath()%>/DescargaServlet?file=<c:out value="${imagen.txtRutaImagen}"/>">Ver</a>
+                        <a href="<%=request.getContextPath()%>/DescargaServlet?file=<c:out value="${imagen.txtRutaImagen}"/>"><c:out value="${imagen.txtNomArchivo}"/></a>
                     </c:forEach>
                 </display:column>
             </display:table>

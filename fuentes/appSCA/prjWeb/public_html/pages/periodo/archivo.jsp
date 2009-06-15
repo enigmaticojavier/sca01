@@ -13,6 +13,7 @@
 <head>
     <title><s:text name="label.proyecto.titulo"/></title>
     
+    <LINK HREF="styles/displaytagsca.css" REL="stylesheet" TYPE="text/css">
     <link href="<%= request.getContextPath() %>/public/css/web/template_css.css" rel="stylesheet" type="text/css">
     <link href="<%= request.getContextPath() %>/public/css/web/acordionv2.css" rel="stylesheet" type="text/css">
     
@@ -134,7 +135,7 @@
                     <tr>
                         <td align="center">
                             <s:url action="upload" id="urlUpload">
-                                <s:param name="parametro.idParametro" value="idUpload"/>
+                                <s:param name="periodoSeleccionado" value="periodoSeleccionado"/>
                             </s:url>
                             <h3 align="left"><a href="<s:property value="#urlUpload"/>">Carga de Operaciones</a></h3>
                         </td>
@@ -143,7 +144,7 @@
                         </td>
                         <td align="center">
                             <s:url action="adjunto" id="urlAdjunto">
-                                <s:param name="parametro.idParametro" value="idAdjunto"/>
+                                <s:param name="periodoSeleccionado" value="periodoSeleccionado"/>
                             </s:url>
                             <h3 align="left"><a href="<s:property value="#urlAdjunto"/>">Envio de Documentos Adjuntos</a></h3>
                         </td>
