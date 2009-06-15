@@ -61,6 +61,7 @@ public class ExcelGenerador{
     public Object[] leerCelda(HSSFWorkbook workBook, HSSFCell cell){
         Object[] obj = new Object[2]; // col0 tipo col1 valor 
         if (cell!=null){
+            System.out.println("Tipazo--->" + cell.getCellType());
             switch (cell.getCellType())
             {
                 case HSSFCell.CELL_TYPE_NUMERIC:
@@ -82,6 +83,7 @@ public class ExcelGenerador{
                 {
                     
                     FormulaEvaluator evaluator = workBook.getCreationHelper().createFormulaEvaluator();
+                    System.out.println("evaluator-->"+evaluator.evaluateInCell(cell));
                     switch (evaluator.evaluateInCell(cell).getCellType()) {
                         case HSSFCell.CELL_TYPE_BOOLEAN:
                             obj[0] = HSSFCell.CELL_TYPE_BOOLEAN;
@@ -312,7 +314,14 @@ public class ExcelGenerador{
                         return beanRetorno;
                     } 
                 }
-                objLectura = leerCelda(workBook, cell);
+                try{
+                    objLectura = leerCelda(workBook, cell);
+                }catch(Exception ex){
+                    ex.printStackTrace();
+                    beanRetorno.setCodError(ConstantesSistema.CONST_RETORNO_ERROR_MSG);
+                    beanRetorno.setDscError("Error leyendo fila-->" + fila + " columna-->" + columnaProceso );
+                    return beanRetorno;
+                }
                 if (objLectura[0].toString().equals(""+HSSFCell.CELL_TYPE_NUMERIC)){
                    valor = "" + ((Double)objLectura[1]).intValue();
                 }else if (objLectura[0].toString().toString().equals(""+HSSFCell.CELL_TYPE_STRING)){

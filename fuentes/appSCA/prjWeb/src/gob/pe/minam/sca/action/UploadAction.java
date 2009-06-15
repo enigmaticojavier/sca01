@@ -165,7 +165,7 @@ public class UploadAction extends AccionSoporte implements Preparable {
                     // Procesar Archivo
                     if (copiado){
                         try{
-                           ExcelGenerador xls = new ExcelGenerador(false,true,9);
+                           ExcelGenerador xls = new ExcelGenerador(false,true,ConstantesSistema.COLUMNA_PROCESO_PROPONENTE);
                            beanRetLectExcel = xls.leerArchivo(nombreArchivo);
                         }catch(Exception e){
                             e.printStackTrace();
@@ -253,7 +253,7 @@ public class UploadAction extends AccionSoporte implements Preparable {
                     // Procesar Archivo
                     if (copiado){
                         try{
-                           ExcelGenerador xls = new ExcelGenerador(false,true,9);
+                           ExcelGenerador xls = new ExcelGenerador(false,true,ConstantesSistema.COLUMNA_PROCESO_PROYECTO);
                            beanRetLectExcel = xls.leerArchivo(nombreArchivo);
                         }catch(Exception e){
                             e.printStackTrace();
@@ -271,12 +271,12 @@ public class UploadAction extends AccionSoporte implements Preparable {
                                     controlEnvio=new ControlEnvio();
                                     controlEnvio.setPersonaId(this.personaId);
                                     controlEnvio.setPeriodo(tmpPeriodo);
-                                    controlEnvio.setEstEnvioPro(ConstantesSistema.ENVIO_ENVIADO_OK);
-                                    controlEnvio.setFchEnvioPro(new Date());
+                                    controlEnvio.setEstEnvioPry(ConstantesSistema.ENVIO_ENVIADO_OK);
+                                    controlEnvio.setFchEnvioPry(new Date());
                                 }else{
                                     log.info("update CONTROL ENVIO");
-                                    controlEnvio.setEstEnvioPro(ConstantesSistema.ENVIO_ENVIADO_OK);
-                                    controlEnvio.setFchEnvioPro(new Date());
+                                    controlEnvio.setEstEnvioPry(ConstantesSistema.ENVIO_ENVIADO_OK);
+                                    controlEnvio.setFchEnvioPry(new Date());
                                 }
                                 log.info("this.controlEnvioSENT-->"+this.controlEnvio.getPeriodo());
                                 cntrEnvio.guardarControlEnvio(controlEnvio);
@@ -341,7 +341,7 @@ public class UploadAction extends AccionSoporte implements Preparable {
                     // Procesar Archivo
                     if (copiado){
                         try{
-                           ExcelGenerador xls = new ExcelGenerador(false,true,9);
+                           ExcelGenerador xls = new ExcelGenerador(false,true,ConstantesSistema.COLUMNA_PROCESO_EXPEDIENTE);
                            beanRetLectExcel = xls.leerArchivo(nombreArchivo);
                         }catch(Exception e){
                             e.printStackTrace();
@@ -359,12 +359,12 @@ public class UploadAction extends AccionSoporte implements Preparable {
                                     controlEnvio=new ControlEnvio();
                                     controlEnvio.setPersonaId(this.personaId);
                                     controlEnvio.setPeriodo(tmpPeriodo);
-                                    controlEnvio.setEstEnvioPro(ConstantesSistema.ENVIO_ENVIADO_OK);
-                                    controlEnvio.setFchEnvioPro(new Date());
+                                    controlEnvio.setEstEnvioExp(ConstantesSistema.ENVIO_ENVIADO_OK);
+                                    controlEnvio.setFchEnvioExp(new Date());
                                 }else{
                                     log.info("update CONTROL ENVIO");
-                                    controlEnvio.setEstEnvioPro(ConstantesSistema.ENVIO_ENVIADO_OK);
-                                    controlEnvio.setFchEnvioPro(new Date());
+                                    controlEnvio.setEstEnvioExp(ConstantesSistema.ENVIO_ENVIADO_OK);
+                                    controlEnvio.setFchEnvioExp(new Date());
                                 }
                                 log.info("this.controlEnvioSENT-->"+this.controlEnvio.getPeriodo());
                                 cntrEnvio.guardarControlEnvio(controlEnvio);

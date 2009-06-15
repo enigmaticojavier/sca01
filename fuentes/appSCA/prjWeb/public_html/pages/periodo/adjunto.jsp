@@ -117,10 +117,10 @@
                         &nbsp;
                     </td>
                     <td align="center">
-                        <s:url action="adjunto" id="urlAdjunto">
+                        <s:url action="adjunto" id="urlAdjuntos">
                             <s:param name="periodoSeleccionado" value="periodoSeleccionado"/>
                         </s:url>
-                        <h3 align="left"><a href="<s:property value="#urlAdjunto"/>">Envio de Documentos Adjuntos</a></h3>
+                        <h3 align="left"><a href="<s:property value="#urlAdjuntos"/>">Envio de Documentos Adjuntos</a></h3>
                     </td>
                 </tr>
             </table>

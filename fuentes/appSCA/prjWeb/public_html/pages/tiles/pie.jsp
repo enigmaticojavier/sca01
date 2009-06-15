@@ -1,4 +1,6 @@
-
+<%
+    session.setAttribute("mensajeError",null);
+%>
 <table summary="Footer Table for Terms links and Top of page link" border="0" cellpadding="0" cellspacing="0" width="100%">
       <tr>
         <td width="239" align="center" valign="middle" bgcolor="#7DBB3B">&nbsp;</td>
