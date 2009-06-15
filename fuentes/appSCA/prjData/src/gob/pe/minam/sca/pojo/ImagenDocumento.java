@@ -68,11 +68,16 @@ public class ImagenDocumento {
     public static void grabarImagenDocumento(ImagenDocumento imagenDocumento) throws NegocioException{
        try{  
          ImagenDocumentoDao imagenDocumentoDao = ProyectoService.getInstance().getImagenDocumentoDao();
-         System.out.println("docId-->"+imagenDocumento.getDocumento().getDocId());
-         boolean existe = imagenDocumentoDao.existeImagenDocumento(imagenDocumento.getDocumento().getDocId());
+         int docId = imagenDocumento.getDocumento().getDocId();
+         System.out.println("docId-->"+docId);
+         boolean existe = imagenDocumentoDao.existeImagenDocumento(docId);
          System.out.println("existe-->"+existe);
          if (existe){
-             imagenDocumentoDao.updateImagenDocumento(imagenDocumento);
+             ImagenDocumento imaDoc = (ImagenDocumento)imagenDocumentoDao.buscarImgXDoc(docId).get(0);
+             System.out.println("---------------------------->imaDoc.getNsecuencia()-->"+imaDoc.getNsecuencia()+"imagenDocumento.getTxtNomArchivo()"+imagenDocumento.getTxtNomArchivo());
+             imaDoc.setTxtNomArchivo(imagenDocumento.getTxtNomArchivo());
+             imaDoc.setTxtRutaImagen(imagenDocumento.getTxtRutaImagen());
+             imagenDocumentoDao.updateImagenDocumento(imaDoc);
          }else{
              imagenDocumentoDao.insertImagenDocumento(imagenDocumento);
          }

@@ -107,6 +107,10 @@ public class Prueba {
         controlEnvio.setFchEnvioExp(new Date());
         controlEnvio.guardarControlEnvio(controlEnvio);
         
+        System.out.println("StringBuffer");
+        StringBuffer variable = new StringBuffer(60);
+        System.out.println("variable-->"+variable+1);
+        
     }catch(Exception ex){
       ex.printStackTrace(); 
     }    

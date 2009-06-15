@@ -3,6 +3,7 @@ package gob.pe.minam.sca.data.daosql;
 import com.ibatis.dao.client.DaoException;
 import com.ibatis.dao.client.DaoManager;
 
+import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapException;
 
 import gob.pe.minam.sca.data.BaseSqlMapDao;

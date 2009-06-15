@@ -51,4 +51,5 @@ public class Proponente implements Serializable{
     public Persona getPersona() {
         return persona;
     }
+    
 }

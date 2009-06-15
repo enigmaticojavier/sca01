@@ -1,5 +1,7 @@
 package gob.pe.minam.sca.util;
 
+import gob.pe.minam.sca.framework.ConstantesSistema;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
@@ -34,4 +36,14 @@ public class Utilitarios {
         Date date = new Date();    
         return formatter.format(date);
     }
+    
+    public static String pintaError(String mensaje){
+        if (mensaje!=null && mensaje.equals("")){
+            if (mensaje.length()>ConstantesSistema.TAMANO_MENSAJE_ERROR){
+                mensaje.substring(0,ConstantesSistema.TAMANO_MENSAJE_ERROR);
+            }
+        }
+        return mensaje;
+    }
+    
 }
