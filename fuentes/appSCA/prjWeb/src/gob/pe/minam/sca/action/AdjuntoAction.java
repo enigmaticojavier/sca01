@@ -11,7 +11,7 @@ import gob.pe.minam.sca.pojo.ExpedienteDocumento;
 import gob.pe.minam.sca.pojo.ImagenDocumento;
 import gob.pe.minam.sca.pojo.Parametro;
 import gob.pe.minam.sca.pojo.Periodo;
-import gob.pe.minam.sca.util.ExcelGenerador;
+import gob.pe.minam.sca.util.excel.ExcelGenerador;
 import gob.pe.minam.sca.util.Utilitarios;
 import gob.pe.minam.sca.util.bean.BeanRetorno;
 
@@ -125,6 +125,7 @@ public class AdjuntoAction extends AccionSoporte implements Preparable {
                     if (copiado){
                         // Actualizar Archivo Imagen
                         this.docId=Integer.parseInt(getParameterValue("docId").equals("")?"0":getParameterValue("docId"));
+                        this.imagenDocumento=new ImagenDocumento();
                         Documento doc = new Documento();
                         doc.setDocId(this.docId);
                         this.imagenDocumento.setDocumento(doc);

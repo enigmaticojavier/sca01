@@ -3,7 +3,7 @@
  * Author:  Danny Espíritu
  * Purpose: FiltroDescarga
  ***********************************************************************/
-package gob.mimdes.sime.filtro;
+package gob.pe.minam.sca.filtro;
 
 import java.io.BufferedInputStream;
 import java.io.File;

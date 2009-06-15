@@ -8,9 +8,14 @@ import gob.pe.minam.sca.pojo.ControlEnvio;
 import gob.pe.minam.sca.pojo.Expediente;
 import gob.pe.minam.sca.pojo.Parametro;
 import gob.pe.minam.sca.pojo.Periodo;
-import gob.pe.minam.sca.util.ExcelGenerador;
+import gob.pe.minam.sca.proceso.ProcesoExpediente;
+import gob.pe.minam.sca.proceso.ProcesoProponente;
+import gob.pe.minam.sca.proceso.ProcesoProyecto;
+import gob.pe.minam.sca.util.excel.ExcelGenerador;
 import gob.pe.minam.sca.util.Utilitarios;
 import gob.pe.minam.sca.util.bean.BeanRetorno;
+
+import gob.pe.minam.sca.util.bean.BeanRetornoData;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -32,6 +37,7 @@ public class UploadAction extends AccionSoporte implements Preparable {
     private String estadoCargaProponente;
     private String estadoCargaProyecto;
     private String estadoCargaExpediente;
+    private int personaId;
     
     // Proponente
     private File archProponente;//The actual file
@@ -138,7 +144,6 @@ public class UploadAction extends AccionSoporte implements Preparable {
             ControlEnvio cntrEnvio=new ControlEnvio();
             this.controlEnvio=cntrEnvio.obtenerControlEnvioXPeriodo(tmpPeriodo);
             log.info(this.controlEnvio==null?"this.controlEnvio Read":"this.controlEnvio Read"+this.controlEnvio.getPeriodo());
-            int personaId=3;
             String carpeta = "";
             Parametro par=new Parametro();
             List l = par.buscarParametroXTipoParametro(ConstantesSistema.CARPETA_TEMPORAL);
@@ -160,27 +165,37 @@ public class UploadAction extends AccionSoporte implements Preparable {
                     // Procesar Archivo
                     if (copiado){
                         try{
-                           ExcelGenerador xls = new ExcelGenerador();
-                           beanRetLectExcel = xls.leerArchivo(personaId,9,false,nombreArchivo);
+                           ExcelGenerador xls = new ExcelGenerador(false,true,9);
+                           beanRetLectExcel = xls.leerArchivo(nombreArchivo);
                         }catch(Exception e){
                             e.printStackTrace();
                             this.setearMensajeError("1","Error en la lectura del Archivo");
                         }
+                        // Procesar Carga
+                        int resProceso=0;
                         if (beanRetLectExcel.getCodError()==ConstantesSistema.CONST_RETORNO_EXITO){
-                            if (controlEnvio==null){
-                                log.info("INSERT CONTROL ENVIO");
-                                controlEnvio=new ControlEnvio();
-                                controlEnvio.setPersonaId(3);
-                                controlEnvio.setPeriodo(tmpPeriodo);
-                                controlEnvio.setEstEnvioPro(ConstantesSistema.ENVIO_ENVIADO_OK);
-                                controlEnvio.setFchEnvioPro(new Date());
+                            ProcesoProponente procesoProponente = new ProcesoProponente();  
+                            this.personaId=4;
+                            BeanRetornoData beanRetornoData=procesoProponente.procesar(personaId, this.periodoSeleccionado, beanRetLectExcel.getLstData());
+                            if (beanRetornoData.getCodError()==ConstantesSistema.CONST_RETORNO_EXITO){
+                                if (controlEnvio==null){
+                                    log.info("INSERT CONTROL ENVIO");
+                                    controlEnvio=new ControlEnvio();
+                                    controlEnvio.setPersonaId(this.personaId);
+                                    controlEnvio.setPeriodo(tmpPeriodo);
+                                    controlEnvio.setEstEnvioPro(ConstantesSistema.ENVIO_ENVIADO_OK);
+                                    controlEnvio.setFchEnvioPro(new Date());
+                                }else{
+                                    log.info("update CONTROL ENVIO");
+                                    controlEnvio.setEstEnvioPro(ConstantesSistema.ENVIO_ENVIADO_OK);
+                                    controlEnvio.setFchEnvioPro(new Date());
+                                }
+                                log.info("this.controlEnvioSENT-->"+this.controlEnvio.getPeriodo());
+                                cntrEnvio.guardarControlEnvio(controlEnvio);
                             }else{
-                                log.info("update CONTROL ENVIO");
-                                controlEnvio.setEstEnvioPro(ConstantesSistema.ENVIO_ENVIADO_OK);
-                                controlEnvio.setFchEnvioPro(new Date());
+                                this.setearMensajeError("1","Error Procesando Archivo " + beanRetornoData.getDscError());
+                                log.error("Error Procesando Archivo  ");
                             }
-                            log.info("this.controlEnvioSENT-->"+this.controlEnvio.getPeriodo());
-                            cntrEnvio.guardarControlEnvio(controlEnvio);
                         }else{
                             this.setearMensajeError("1","Error en la lectura del Archivo " + beanRetLectExcel.getDscError());
                             log.error("Error en la lectura del Archivo " + beanRetLectExcel.getDscError());
@@ -217,7 +232,6 @@ public class UploadAction extends AccionSoporte implements Preparable {
             ControlEnvio cntrEnvio=new ControlEnvio();
             this.controlEnvio=cntrEnvio.obtenerControlEnvioXPeriodo(tmpPeriodo);
             log.info(this.controlEnvio==null?"this.controlEnvio Read":"this.controlEnvio Read"+this.controlEnvio.getPeriodo());
-            int personaId=3;
             String carpeta = "";
             Parametro par=new Parametro();
             List l = par.buscarParametroXTipoParametro(ConstantesSistema.CARPETA_TEMPORAL);
@@ -239,26 +253,37 @@ public class UploadAction extends AccionSoporte implements Preparable {
                     // Procesar Archivo
                     if (copiado){
                         try{
-                           ExcelGenerador xls = new ExcelGenerador();
-                           beanRetLectExcel = xls.leerArchivo(personaId,9,false,nombreArchivo);
+                           ExcelGenerador xls = new ExcelGenerador(false,true,9);
+                           beanRetLectExcel = xls.leerArchivo(nombreArchivo);
                         }catch(Exception e){
                             e.printStackTrace();
                             this.setearMensajeError("1","Error en la lectura del Archivo");
                         }
+                        // Procesar Carga
+                        int resProceso=0;
                         if (beanRetLectExcel.getCodError()==ConstantesSistema.CONST_RETORNO_EXITO){
-                            if (controlEnvio==null){
-                                log.info("NULAZO");
-                                controlEnvio=new ControlEnvio();
-                                controlEnvio.setPersonaId(3);
-                                controlEnvio.setPeriodo(tmpPeriodo);
-                                controlEnvio.setEstEnvioPry(ConstantesSistema.ENVIO_ENVIADO_OK);
-                                controlEnvio.setFchEnvioPry(new Date());
+                            ProcesoProyecto procesoProyecto = new ProcesoProyecto();  
+                            this.personaId=4;
+                            BeanRetornoData beanRetornoData=procesoProyecto.procesar(personaId, this.periodoSeleccionado, beanRetLectExcel.getLstData());
+                            if (beanRetornoData.getCodError()==ConstantesSistema.CONST_RETORNO_EXITO){
+                                if (controlEnvio==null){
+                                    log.info("INSERT CONTROL ENVIO");
+                                    controlEnvio=new ControlEnvio();
+                                    controlEnvio.setPersonaId(this.personaId);
+                                    controlEnvio.setPeriodo(tmpPeriodo);
+                                    controlEnvio.setEstEnvioPro(ConstantesSistema.ENVIO_ENVIADO_OK);
+                                    controlEnvio.setFchEnvioPro(new Date());
+                                }else{
+                                    log.info("update CONTROL ENVIO");
+                                    controlEnvio.setEstEnvioPro(ConstantesSistema.ENVIO_ENVIADO_OK);
+                                    controlEnvio.setFchEnvioPro(new Date());
+                                }
+                                log.info("this.controlEnvioSENT-->"+this.controlEnvio.getPeriodo());
+                                cntrEnvio.guardarControlEnvio(controlEnvio);
                             }else{
-                                controlEnvio.setEstEnvioPry(ConstantesSistema.ENVIO_ENVIADO_OK);
-                                controlEnvio.setFchEnvioPry(new Date());
+                                this.setearMensajeError("1","Error Procesando Archivo " + beanRetornoData.getDscError());
+                                log.error("Error Procesando Archivo  ");
                             }
-                            log.info("this.controlEnvioSENT-->"+this.controlEnvio.getPeriodo());
-                            cntrEnvio.guardarControlEnvio(controlEnvio);
                         }else{
                             this.setearMensajeError("1","Error en la lectura del Archivo " + beanRetLectExcel.getDscError());
                             log.error("Error en la lectura del Archivo " + beanRetLectExcel.getDscError());
@@ -295,7 +320,6 @@ public class UploadAction extends AccionSoporte implements Preparable {
             ControlEnvio cntrEnvio=new ControlEnvio();
             this.controlEnvio=cntrEnvio.obtenerControlEnvioXPeriodo(tmpPeriodo);
             log.info(this.controlEnvio==null?"this.controlEnvio Read":"this.controlEnvio Read"+this.controlEnvio.getPeriodo());
-            int personaId=3;
             String carpeta = "";
             Parametro par=new Parametro();
             List l = par.buscarParametroXTipoParametro(ConstantesSistema.CARPETA_TEMPORAL);
@@ -317,26 +341,37 @@ public class UploadAction extends AccionSoporte implements Preparable {
                     // Procesar Archivo
                     if (copiado){
                         try{
-                           ExcelGenerador xls = new ExcelGenerador();
-                           beanRetLectExcel = xls.leerArchivo(personaId,9,false,nombreArchivo);
+                           ExcelGenerador xls = new ExcelGenerador(false,true,9);
+                           beanRetLectExcel = xls.leerArchivo(nombreArchivo);
                         }catch(Exception e){
                             e.printStackTrace();
                             this.setearMensajeError("1","Error en la lectura del Archivo");
                         }
+                        // Procesar Carga
+                        int resProceso=0;
                         if (beanRetLectExcel.getCodError()==ConstantesSistema.CONST_RETORNO_EXITO){
-                            if (controlEnvio==null){
-                                log.info("NULAZO");
-                                controlEnvio=new ControlEnvio();
-                                controlEnvio.setPersonaId(3);
-                                controlEnvio.setPeriodo(tmpPeriodo);
-                                controlEnvio.setEstEnvioExp(ConstantesSistema.ENVIO_ENVIADO_OK);
-                                controlEnvio.setFchEnvioExp(new Date());
+                            ProcesoExpediente procesoExpediente = new ProcesoExpediente();  
+                            this.personaId=4;
+                            BeanRetornoData beanRetornoData=procesoExpediente.procesar(personaId, this.periodoSeleccionado, beanRetLectExcel.getLstData());
+                            if (beanRetornoData.getCodError()==ConstantesSistema.CONST_RETORNO_EXITO){
+                                if (controlEnvio==null){
+                                    log.info("INSERT CONTROL ENVIO");
+                                    controlEnvio=new ControlEnvio();
+                                    controlEnvio.setPersonaId(this.personaId);
+                                    controlEnvio.setPeriodo(tmpPeriodo);
+                                    controlEnvio.setEstEnvioPro(ConstantesSistema.ENVIO_ENVIADO_OK);
+                                    controlEnvio.setFchEnvioPro(new Date());
+                                }else{
+                                    log.info("update CONTROL ENVIO");
+                                    controlEnvio.setEstEnvioPro(ConstantesSistema.ENVIO_ENVIADO_OK);
+                                    controlEnvio.setFchEnvioPro(new Date());
+                                }
+                                log.info("this.controlEnvioSENT-->"+this.controlEnvio.getPeriodo());
+                                cntrEnvio.guardarControlEnvio(controlEnvio);
                             }else{
-                                controlEnvio.setEstEnvioExp(ConstantesSistema.ENVIO_ENVIADO_OK);
-                                controlEnvio.setFchEnvioExp(new Date());
+                                this.setearMensajeError("1","Error Procesando Archivo " + beanRetornoData.getDscError());
+                                log.error("Error Procesando Archivo  ");
                             }
-                            log.info("this.controlEnvioSENT-->"+this.controlEnvio.getPeriodo());
-                            cntrEnvio.guardarControlEnvio(controlEnvio);
                         }else{
                             this.setearMensajeError("1","Error en la lectura del Archivo " + beanRetLectExcel.getDscError());
                             log.error("Error en la lectura del Archivo " + beanRetLectExcel.getDscError());
@@ -361,7 +396,7 @@ public class UploadAction extends AccionSoporte implements Preparable {
        }
        return SUCCESS;
     }
-
+    
     public void setArchExpediente(File archExpediente) {
         this.archExpediente = archExpediente;
     }
@@ -480,6 +515,14 @@ public class UploadAction extends AccionSoporte implements Preparable {
 
     public String getArchProyectoFileName() {
         return archProyectoFileName;
+    }
+
+    public void setPersonaId(int personaId) {
+        this.personaId = personaId;
+    }
+
+    public int getPersonaId() {
+        return personaId;
     }
 }
 
