@@ -9,8 +9,8 @@
 .dataTable th {
 	border-right: 1px solid #E4DADA;
 	padding-left: 2px;
-	padding-right:12px;
-	font-family: arial, helvetica, sans-serif;
+	padding-right:9px;
+	font-family: Trebuchet MS;
 	font-weight: bold;
 	color: white; /*Color Fuente*/
 	background-color: green; /*Color Titulo*/
@@ -19,7 +19,7 @@
 }
 
 .dataTable  td {
-	font-family: verdana, arial, helvetica, sans-serif;
+	font-family: Trebuchet MS;
 	padding-left: 2px;
 }
 
@@ -143,6 +143,7 @@ span.rtf {
 	background-color: #E4DADA;
 }
 
+/*
 html,body {
 	width: 100%;
 	height: 100%;
@@ -150,6 +151,7 @@ html,body {
 	font-family: verdana, helvetica, sans-serif;
 	font-size: 8pt;
 }
+*/
 
 .pageHeader {
 	height: 60px;

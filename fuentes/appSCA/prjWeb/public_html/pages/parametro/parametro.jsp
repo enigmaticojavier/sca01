@@ -41,7 +41,6 @@
             <td bgcolor="Green" colspan="2">
                 <font color="White"><s:text name="label.parametro.titulo"/></font>
             </td>
-            
           </tr>
           <tr> 
             <td colspan="2">
