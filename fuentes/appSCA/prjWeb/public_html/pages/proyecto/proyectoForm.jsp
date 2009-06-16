@@ -91,7 +91,7 @@
                 <table>    
                 <tr>
                     <td bgcolor="Green">
-                        <font color="White"><s:text name="label.proyecto.titulo"/></font>
+                        <font color="White">1. Proyecto</font>
                     </td>
                 </tr>
                 <tr><td align="center">
@@ -101,7 +101,8 @@
                             <s:label value="%{getText('label.proyecto.txtDescripcion')}"/>
                         </td>    
                         <td>
-                            <s:textfield name="proyecto.txtDescripcion" value="%{proyecto.txtDescripcion}" size="40" readonly="true"/>
+                            <!--s:textfield name="proyecto.txtDescripcion" value="%{proyecto.txtDescripcion}" size="100" readonly="true"/-->
+                            <s:textarea rows="3" cols="60" name="proyecto.txtDescripcion" value="%{proyecto.txtDescripcion}" readonly="true" width="100" />
                         </td>
                       </tr>   
                       <tr> 
@@ -126,7 +127,7 @@
                       </tr>  
                       <tr> 
                         <td>    
-                            <s:label value="Institución" />
+                            <s:label value="ACAE" />
                         </td>    
                         <td>    
                             <s:textfield name="proyecto.dscClsSector" value="%{proyecto.dscClsSector}" size="40" readonly="true"/>
@@ -140,10 +141,15 @@
                             <s:textfield name="proyecto.dscClsSubSector" value="%{proyecto.dscClsSubSector}" size="40" readonly="true"/>
                         </td>    
                       </tr>  
-                    <!--/table>   
+                    </table>   
                 </td></tr>
+                <tr>
+                    <td bgcolor="Green">
+                        <font color="White">2. Datos del Proponente</font>
+                    </td>
+                </tr>
                 <tr><td align="center">
-                    <table-->
+                    <table>
                       <tr> 
                         <td>    
                             <s:label value="RUC" />
@@ -168,6 +174,11 @@
                       </tr>  
                     </table>   
                 </td></tr>
+                <tr>
+                    <td bgcolor="Green">
+                        <font color="White">3. Información sobre los expedientes</font>
+                    </td>
+                </tr>
                 <tr><td>
                     
                     <display:table name="expedienteDocumentos" requestURI="proyectoForm" class="dataTable" id="expedienteDocumento" pagesize="10" style="width:620">
@@ -176,8 +187,8 @@
                         <display:column title="Fecha Transacción"> 
                             <fmt:formatDate value="${expedienteDocumento.expedientePaso.expediente.fchExpediente}" pattern="dd/MM/yyyy"/> 
                         </display:column>
-                        <display:column property="documento.dscTipoDocumento" title="Tipo Documento" style="width:40%"  />
                         <display:column property="expedientePaso.dscTipPaso" title="Descripción" style="width:40%"  />
+                        <display:column property="documento.dscTipoDocumento" title="Tipo Documento" style="width:40%"  />
                         <display:column property="documento.codDocumento" title="Nro Documento" style="width:40%"  />
                         <display:column title="Archivos" style="width:40%"> 
                             <c:forEach var="imagen" items="${expedienteDocumento.documento.lstImagenDocumento}" varStatus="rowCounter">

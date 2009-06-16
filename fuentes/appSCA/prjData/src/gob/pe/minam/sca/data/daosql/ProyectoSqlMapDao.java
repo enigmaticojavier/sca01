@@ -68,6 +68,8 @@ public class ProyectoSqlMapDao extends BaseSqlMapDao implements ProyectoDao {
           System.out.println("clsTipificacion"+clsTipificacion);
           System.out.println("fchExpedienteDesde"+fchExpedienteDesde);
           System.out.println("fchExpedienteHasta"+fchExpedienteHasta);
+          System.out.println("estadoTramite"+estadoTramite);
+          System.out.println("tipoAcae"+tipoAcae);
           System.out.println("clsSector"+clsSector);
           System.out.println("clsSubSector"+clsSubSector);
           queryForObject("PQ_PROYECTO.BUSCAR", map);

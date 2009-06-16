@@ -83,11 +83,11 @@
                 <br />
                 <table border="1" cellpadding="0" cellspacing="0" width="90%">
                     <tr>
-                        <td>Autoridad Sectorial:</td>
+                        <td>ACAE:</td>
                         <td><s:property value="acae.txtValor"/>&nbsp;</td>
                     </tr>
                     <tr>
-                        <td>Institución / Dependencia:</td>
+                        <td>Dependencia:</td>
                         <td><s:property value="acae.txtSubSector"/>&nbsp;</td>
                     </tr>
                     <tr>

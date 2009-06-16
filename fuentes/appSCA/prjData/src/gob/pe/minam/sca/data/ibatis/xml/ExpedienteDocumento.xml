@@ -36,8 +36,9 @@
   <select id="BuscarExpDocXPry" resultMap="ExpedienteDocumentoXProyectoResult" parameterClass="int">
         select ep.expid, ep.nsecuencia, doc.docid, ex.numexpediente, 
              ex.fchexpediente, tdo.txtvalor, doc.coddocumento
-        from expediente ex, expedientepaso ep, expedientedocumento ed, documento doc, parametro tdo
-        where ex.expid = ep.expid and ep.expid = ed.expid(+) and ep.nsecuencia = ed.nsecuencia(+)
+        from expediente ex, expedientepaso ep, expedientedocumento ed, documento doc, parametro tdo, parametro tippas
+        where ex.expid = ep.expid and ep.tippaso=tippas.codparametro and tippas.tipparametro='TRX'
+        and ep.expid = ed.expid(+) and ep.nsecuencia = ed.nsecuencia(+)
         and ed.docid = doc.docid(+) and doc.tipodocumento = tdo.codparametro(+) and  tdo.tipparametro(+) = 'DOC'
         and ex.pryId=#param#
   </select>
