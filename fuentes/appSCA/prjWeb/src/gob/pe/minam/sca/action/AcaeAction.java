@@ -97,7 +97,7 @@ public class AcaeAction extends ActionSupport  {
            this.ubiProvincia = ubigeo.listarProvincia(ubigeo);            
            this.ubiDistrito = ubigeo.listarDistrito(ubigeo);
           System.out.println("ParametroAction.List<----");
-          //return SUCCESS;
+
         } catch(Exception ex){
               ex.printStackTrace();
         }
