@@ -9,7 +9,7 @@
 <head>
     <link href="<%= request.getContextPath() %>/public/css/web/template_css.css" rel="stylesheet" type="text/css">
     <link href="<%= request.getContextPath() %>/public/css/web/acordionv2.css" rel="stylesheet" type="text/css">
-    <!--LINK HREF="styles/displaytagsca.css" REL="stylesheet" TYPE="text/css"-->
+    <LINK HREF="styles/displaytagsca.css" REL="stylesheet" TYPE="text/css">
     <title><s:text name="label.proyecto.titulo"/></title>
     <script language="javascript">
         function listarEstadistica(){
@@ -53,10 +53,12 @@
     </s:if>
         <s:form theme="simple">
                 
-            <table>    
-            <tr><td align="center">
-                <h3 align="left"><s:text name="label.estadistica.titulo"/></h3>        
-            </td></tr>
+            <table width="100%">    
+            <tr>
+                <td bgcolor="Green">
+                    <font color="White"><s:text name="label.estadistica.titulo"/></font>
+                </td>
+            </tr>
             <tr><td align="center">
                 <table>
                   <tr>

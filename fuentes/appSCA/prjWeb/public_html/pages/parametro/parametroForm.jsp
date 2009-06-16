@@ -55,12 +55,16 @@
         <td width="560" valign="top">
     <!-- Copia Skeleton Fin -->    
     
-    <h1><s:text name="label.parametro.titulo"/></h1>
-    <h1><s:property value="#title"/></h1>
+    <!--h1><s:property value="#title"/></h1-->
     <s:actionerror />
     <s:actionmessage />   
     <s:form theme="simple" method="post" name="frmParametro">
         <table>    
+            <tr>
+                <td bgcolor="Green" colspan="2">
+                    <font color="White"><s:text name="label.parametro.titulo"/></font>
+                </td>
+            </tr>
             <tr>
                 <td>
                     <s:label value="%{getText('label.parametro.idParametro')}"/>
@@ -81,7 +85,7 @@
                 <td>
                     <s:textfield name="parametro.tipParametro" readonly="true" value="%{parametro.tipParametro}" size="20"/>
                 </td>    
-            </tr>    
+            </tr>
             <tr>
                 <td >
                     <s:label value="%{getText('label.parametro.txtParametro')}"/>

@@ -38,9 +38,10 @@
         <s:form theme="simple" name="frmParametro">
         <table width="100%">
           <tr> 
-            <td colspan="2">
-                <h1 align="left"><s:text name="label.parametro.titulo"/></h1>  
+            <td bgcolor="Green" colspan="2">
+                <font color="White"><s:text name="label.parametro.titulo"/></font>
             </td>
+            
           </tr>
           <tr> 
             <td colspan="2">

@@ -93,9 +93,12 @@
             </s:if>
             <s:form name="frmProyecto" theme="simple" method="POST">
                 <table>    
-                <tr><td align="center">
-                    <h1 align="left"><s:text name="label.proyecto.titulo"/></h1>        
-                </td></tr>
+                <tr>
+                    <td bgcolor="Green">
+                        <font color="White"><s:text name="label.proyecto.titulo"/></font>
+                    </td>
+                </tr>
+                
                 <tr><td align="center">
                     <table>
                       <tr>
