@@ -71,6 +71,7 @@ public class LoginAction extends ActionSupport {
                 acae = Acae.getAcaeByKey(acae);
                 this.ponerSesion(usuario);
                 sReturn = "ACA";
+                this.ponerSesion(usuario);
             }			
         } else {
             addActionError("Usuario o Clave no válidos.");

@@ -9,6 +9,7 @@ import gob.pe.minam.sca.pojo.ControlEnvio;
 import gob.pe.minam.sca.pojo.Expediente;
 import gob.pe.minam.sca.pojo.Parametro;
 import gob.pe.minam.sca.pojo.Periodo;
+import gob.pe.minam.sca.pojo.Usuario;
 import gob.pe.minam.sca.proceso.ProcesoExpediente;
 import gob.pe.minam.sca.proceso.ProcesoProponente;
 import gob.pe.minam.sca.proceso.ProcesoProyecto;
@@ -79,9 +80,12 @@ public class UploadAction extends AccionSoporte implements Preparable {
     public String list(){
       try{
         log.info("[UploadAction.list][Ini]");
-        if (this.getVarSession("usuario")!=null){
+        Usuario usuario =  (Usuario)this.getVarSession("Usuario");
+        if (usuario!=null){
+            log.info("Session no Nulo");
+            log.info("usuario.getPersonaId().intValue()"+usuario.getPersonaId().intValue());
             this.acae=new Acae();
-            this.personaId=((Integer)this.getVarSession("personaId")).intValue();
+            this.personaId=((Usuario)this.getVarSession("Usuario")).getPersonaId().intValue();
             this.acae.setPersonaId(this.personaId);
             this.acae = Acae.getAcaeByKey(this.acae);
             Expediente exp = new Expediente();
@@ -93,6 +97,7 @@ public class UploadAction extends AccionSoporte implements Preparable {
             log.info("[UploadAction.list][Fin]");
             return SUCCESS;
         }else{
+            log.info("Session Nulo");
             return "login";
         }
       }catch(Exception ex){

@@ -4,6 +4,7 @@ import com.opensymphony.xwork2.Preparable;
 
 import gob.pe.minam.sca.framework.AccionSoporte;
 import gob.pe.minam.sca.framework.ConstantesSistema;
+import gob.pe.minam.sca.pojo.Acae;
 import gob.pe.minam.sca.pojo.ControlEnvio;
 import gob.pe.minam.sca.pojo.Documento;
 import gob.pe.minam.sca.pojo.Expediente;
@@ -11,6 +12,7 @@ import gob.pe.minam.sca.pojo.ExpedienteDocumento;
 import gob.pe.minam.sca.pojo.ImagenDocumento;
 import gob.pe.minam.sca.pojo.Parametro;
 import gob.pe.minam.sca.pojo.Periodo;
+import gob.pe.minam.sca.pojo.Usuario;
 import gob.pe.minam.sca.util.excel.ExcelGenerador;
 import gob.pe.minam.sca.util.Utilitarios;
 import gob.pe.minam.sca.util.bean.BeanRetorno;
@@ -38,6 +40,7 @@ public class AdjuntoAction extends AccionSoporte implements Preparable {
     private ImagenDocumento imagenDocumento;
     private List expedienteDocumentos;
     private List parPeriodos;
+    private Acae acae;
     
     // Adjunto
     private File archAdjunto;//The actual file
@@ -47,6 +50,10 @@ public class AdjuntoAction extends AccionSoporte implements Preparable {
     public void prepare() throws Exception {
         try{
             log.info("[AdjuntoAction.prepare][Ini]");
+            this.acae=new Acae();
+            this.personaId=((Usuario)this.getVarSession("Usuario")).getPersonaId().intValue();
+            this.acae.setPersonaId(this.personaId);
+            this.acae = Acae.getAcaeByKey(this.acae);
             /*Tipo de Acae*/
             Parametro par = new Parametro();
             /*Periodo*/
@@ -235,6 +242,14 @@ public class AdjuntoAction extends AccionSoporte implements Preparable {
 
     public int getPersonaId() {
         return personaId;
+    }
+
+    public void setAcae(Acae acae) {
+        this.acae = acae;
+    }
+
+    public Acae getAcae() {
+        return acae;
     }
 }
 
