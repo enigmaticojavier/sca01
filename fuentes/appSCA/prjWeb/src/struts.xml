@@ -46,14 +46,20 @@
             	<result name="ACA">/pages/login/loginSuccessACA.jsp</result>
             </action>
             <action name="doLogout" class="gob.pe.minam.sca.action.LogoutAction">
-                    <result name="success" type="redirect">/index.jsp</result>
+                <result name="success" type="redirect">/index.jsp</result>
             </action>
             <action name="acaeForm" class="gob.pe.minam.sca.action.AcaeAction" method="{0}">
                 <result name="success">/pages/acae/acaeForm.jsp</result>
                 <result name="creado">/pages/acae/acaeSuccess.jsp</result>
                 <result name="error">/pages/acae/acaeError.jsp</result>
                 <interceptor-ref name="basicStack"/>
-            </action>       		
+            </action>
+            <action name="acaeModifica" class="gob.pe.minam.sca.action.AcaeModificaAction" method="{0}">
+                <result name="success">/pages/acae/acaeBusqueda.jsp</result>
+                <result name="verBusqueda">/pages/acae/acaeModificaForm.jsp</result>
+                <result name="modificado">/pages/acae/acaeModificadoSucces.jsp</result>
+                <interceptor-ref name="basicStack"/>
+            </action>
 	</package>
         
         <package name="pckproyecto" extends="struts-default">
