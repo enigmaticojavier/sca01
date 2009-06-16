@@ -58,7 +58,7 @@
       </tr>
       <tr>
         <td width="240" align="left" valign="top">
-          <%@ include file="/pages/tiles/menu.jsp"%>
+          <%@ include file="/pages/tiles/menuACA.jsp"%>
         </td>
         <td width="800" valign="top">
     <!-- Copia Skeleton Fin -->
@@ -75,6 +75,12 @@
                         </td>
                    </tr>
                 </table>   
+                <table width="90%" class="titulo" align="center" cellspacing="0" cellpadding="0" height="36">
+                <tr>
+                    <td align="center" bgcolor="#F2FEE6" class="titulo">Bienvenidos al Sistema de Registro de Certificaciones Ambientales - SCA </td>
+                </tr>
+                </table>
+                <br />
                 <table border="1" cellpadding="0" cellspacing="0" width="90%">
                     <tr>
                         <td>Autoridad Sectorial:</td>
@@ -117,10 +123,10 @@
                         &nbsp;
                     </td>
                     <td align="center">
-                        <s:url action="adjunto" id="urlAdjuntos">
+                        <s:url action="adjunto" id="urlAdjunto">
                             <s:param name="periodoSeleccionado" value="periodoSeleccionado"/>
                         </s:url>
-                        <h3 align="left"><a href="<s:property value="#urlAdjuntos"/>">Envio de Documentos Adjuntos</a></h3>
+                        <h3 align="left"><a href="<s:property value="#urlAdjunto"/>">Envio de Documentos Adjuntos</a></h3>
                     </td>
                 </tr>
             </table>
