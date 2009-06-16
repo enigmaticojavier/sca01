@@ -4,6 +4,7 @@ import com.opensymphony.xwork2.Preparable;
 
 import gob.pe.minam.sca.framework.AccionSoporte;
 import gob.pe.minam.sca.framework.ConstantesSistema;
+import gob.pe.minam.sca.pojo.Acae;
 import gob.pe.minam.sca.pojo.ControlEnvio;
 import gob.pe.minam.sca.pojo.Expediente;
 import gob.pe.minam.sca.pojo.Parametro;
@@ -33,6 +34,7 @@ public class UploadAction extends AccionSoporte implements Preparable {
     static Logger log = Logger.getLogger("UploadAction.class");
     private String periodoSeleccionado;
     private ControlEnvio controlEnvio;
+    private Acae acae;
     private List parPeriodos;
     private String estadoCargaProponente;
     private String estadoCargaProyecto;
@@ -77,14 +79,22 @@ public class UploadAction extends AccionSoporte implements Preparable {
     public String list(){
       try{
         log.info("[UploadAction.list][Ini]");
-        Expediente exp = new Expediente();
-        String tmpPeriodo=this.periodoSeleccionado.substring(0,4) + this.periodoSeleccionado.substring(5,7);
-        log.info("tmpPeriodo"+tmpPeriodo);
-        ControlEnvio contEnv=new ControlEnvio();
-        this.controlEnvio=contEnv.obtenerControlEnvioXPeriodo(tmpPeriodo);
-        setearEstado(this.controlEnvio);
-        log.info("[UploadAction.list][Fin]");
-        return SUCCESS;
+        if (this.getVarSession("usuario")!=null){
+            this.acae=new Acae();
+            this.personaId=((Integer)this.getVarSession("personaId")).intValue();
+            this.acae.setPersonaId(this.personaId);
+            this.acae = Acae.getAcaeByKey(this.acae);
+            Expediente exp = new Expediente();
+            String tmpPeriodo=this.periodoSeleccionado.substring(0,4) + this.periodoSeleccionado.substring(5,7);
+            log.info("tmpPeriodo"+tmpPeriodo);
+            ControlEnvio contEnv=new ControlEnvio();
+            this.controlEnvio=contEnv.obtenerControlEnvioXPeriodo(tmpPeriodo);
+            setearEstado(this.controlEnvio);
+            log.info("[UploadAction.list][Fin]");
+            return SUCCESS;
+        }else{
+            return "login";
+        }
       }catch(Exception ex){
         ex.printStackTrace();
       }  
@@ -523,6 +533,14 @@ public class UploadAction extends AccionSoporte implements Preparable {
 
     public int getPersonaId() {
         return personaId;
+    }
+
+    public void setAcae(Acae acae) {
+        this.acae = acae;
+    }
+
+    public Acae getAcae() {
+        return acae;
     }
 }
 

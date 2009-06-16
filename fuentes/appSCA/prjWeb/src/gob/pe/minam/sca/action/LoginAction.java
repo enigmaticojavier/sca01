@@ -69,9 +69,9 @@ public class LoginAction extends ActionSupport {
             } else if (usuario.getTipUsuario().equals(ConstantesSistema.TIPO_USUARIO_ACAE)){				
                 acae.setPersonaId(usuario.getPersonaId());
                 acae = Acae.getAcaeByKey(acae);
+                this.ponerSesion(usuario);
                 sReturn = "ACA";
             }			
-			
         } else {
             addActionError("Usuario o Clave no válidos.");
             return ERROR;
