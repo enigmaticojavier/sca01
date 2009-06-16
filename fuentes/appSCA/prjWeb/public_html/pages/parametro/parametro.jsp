@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=ISO-8859-1" language="java" pageEncoding="ISO-8859-1"%>
+<!--%@ page contentType="text/html;charset=ISO-8859-1" language="java" pageEncoding="ISO-8859-1"%-->
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 <html>
@@ -31,7 +31,7 @@
       </tr>
       <tr>
         <td width="240" align="left" valign="top">
-          <%@ include file="/pages/tiles/menu.jsp"%>
+          <%@ include file="/pages/tiles/menuADM.jsp"%>
         </td>
         <td width="560" valign="top">
     <!-- Copia Skeleton Fin -->
