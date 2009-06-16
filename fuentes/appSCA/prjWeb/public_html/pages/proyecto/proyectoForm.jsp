@@ -183,13 +183,13 @@
                     
                     <display:table name="expedienteDocumentos" requestURI="proyectoForm" class="dataTable" id="expedienteDocumento" pagesize="10" style="width:620">
                         <display:column property="expedientePaso.expediente.expId" title="Id" style="width:1%"  />
-                        <display:column property="expedientePaso.expediente.numExpediente" title="Nro Exp" style="width:40%"  />
-                        <display:column title="Fecha Transacción"> 
+                        <display:column property="expedientePaso.expediente.numExpediente" title="Nro Exp" style="width:10%" />
+                        <display:column title="Fec Transac" style="width:10%"> 
                             <fmt:formatDate value="${expedienteDocumento.expedientePaso.expediente.fchExpediente}" pattern="dd/MM/yyyy"/> 
                         </display:column>
                         <display:column property="expedientePaso.dscTipPaso" title="Descripción" style="width:40%"  />
-                        <display:column property="documento.dscTipoDocumento" title="Tipo Documento" style="width:40%"  />
-                        <display:column property="documento.codDocumento" title="Nro Documento" style="width:40%"  />
+                        <display:column property="documento.dscTipoDocumento" title="Tipo Documento" style="width:20%"  />
+                        <display:column property="documento.codDocumento" title="Nro Documento" style="width:10%"  />
                         <display:column title="Archivos" style="width:40%"> 
                             <c:forEach var="imagen" items="${expedienteDocumento.documento.lstImagenDocumento}" varStatus="rowCounter">
                                 <a href="<%=request.getContextPath()%>/DescargaServlet?file=<c:out value="${imagen.txtRutaImagen}"/>">Ver</a>
