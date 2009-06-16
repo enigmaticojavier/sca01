@@ -16,6 +16,8 @@
       <result property="expedientePaso.expediente.fchExpediente" column="fchexpediente"/>
       <result property="documento.dscTipoDocumento" column="txtvalor"/>
       <result property="documento.codDocumento" column="coddocumento"/>
+      <result property="expedientePaso.dscTipPaso" column="dsctippas"/>
+      
   </resultMap>
   
   <resultMap id="ExpedienteDocumentoXPeriodoPersonaResult" class="ExpedienteDocumento">
@@ -35,7 +37,8 @@
   
   <select id="BuscarExpDocXPry" resultMap="ExpedienteDocumentoXProyectoResult" parameterClass="int">
         select ep.expid, ep.nsecuencia, doc.docid, ex.numexpediente, 
-             ex.fchexpediente, tdo.txtvalor, doc.coddocumento
+             ex.fchexpediente, tdo.txtvalor, doc.coddocumento,
+             tippas.txtvalor dsctippas
         from expediente ex, expedientepaso ep, expedientedocumento ed, documento doc, parametro tdo, parametro tippas
         where ex.expid = ep.expid and ep.tippaso=tippas.codparametro and tippas.tipparametro='TRX'
         and ep.expid = ed.expid(+) and ep.nsecuencia = ed.nsecuencia(+)
