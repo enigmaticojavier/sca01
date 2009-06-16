@@ -10,14 +10,26 @@
 %>
 
 <html>
-<head>
+  <head>    
     <title><s:text name="label.proyecto.titulo"/></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<meta name="Description" content="-- MINAM PERU Ministerio del Medio Ambiente (MINAM).">
+	<META NAME="Keywords" CONTENT="PERU,  MINAM ,  Perú, economy, MINISTERIO, AMBIENTE, Statistical , Ministerio del Ambiente, estadisticas, Indicadores, Indicadores Ambientales">
+	<link href="<%= request.getContextPath() %>/public/css/web/template_css.css" rel="stylesheet" type="text/css">
+	<link href="<%= request.getContextPath() %>/public/css/web/acordionv2.css" rel="stylesheet" type="text/css">
+        
+        <!--LINK HREF="styles/displaytagsca.css" REL="stylesheet" TYPE="text/css"-->
+        
+        <script type="text/javascript" src="<%= request.getContextPath() %>/public/js/web/includes/acordeon/accordian.pack.js"></script>
+	<script>
+	function MM_openBrWindow(theURL,winName,features) { //v2.0
+	  window.open(theURL,winName,features);
+	}
+	</script>
+    	
+    	<script type="text/javascript" src="<%= request.getContextPath() %>/public/js/ajax/ajax.js"></script>
     
-    <LINK HREF="styles/displaytagsca.css" REL="stylesheet" TYPE="text/css">
-    <link href="<%= request.getContextPath() %>/public/css/web/template_css.css" rel="stylesheet" type="text/css">
-    <link href="<%= request.getContextPath() %>/public/css/web/acordionv2.css" rel="stylesheet" type="text/css">
-    
-    <script language="javascript">
+        <script language="javascript">
         function buscarCargarPeriodo(){
             var frm=document.frmArchivo;
             frm.action="upload!list";
@@ -84,7 +96,7 @@
       </tr>
       <tr>
         <td width="240" align="left" valign="top">
-          <%@ include file="/pages/tiles/menu.jsp"%>
+          <%@ include file="/pages/tiles/menuACA.jsp"%>
         </td>
         <td width="800" valign="top">
     <!-- Copia Skeleton Fin -->
@@ -100,7 +112,13 @@
                             </s:if>
                         </td>
                    </tr>
-                </table>   
+                </table>  
+                <table width="90%" class="titulo" align="center" cellspacing="0" cellpadding="0" height="36">
+                <tr>
+                    <td align="center" bgcolor="#F2FEE6" class="titulo">Bienvenidos al Sistema de Registro de Certificaciones Ambientales - SCA </td>
+                </tr>
+                </table>
+                <br />
                 <table border="1" cellpadding="0" cellspacing="0" width="90%">
                     <tr>
                         <td>Autoridad Sectorial:</td>
@@ -131,7 +149,7 @@
                 </table>
             </s:form>
             <s:form name="frmArchivo"  theme="simple" action="archivo!cargaArchivoProponente" method="POST" enctype="multipart/form-data">
-                <table>
+                <table >
                     <tr>
                         <td align="center">
                             <s:url action="upload" id="urlUpload">
@@ -150,25 +168,28 @@
                         </td>
                     </tr>
                 </table>
-                <table>    
+                <table border="1" cellpadding="0" cellspacing="0">
                     <tr>
                         <td align="center">
                                 <table border="1">
                                   <tr>
-                                    <td>
-                                        <s:label value="No"/>
+                                    <td colspan="5" bgcolor="Green"><font color="White">Carga de Operaciones</font></td>
+                                  </tr>
+                                  <tr>
+                                    <td bgcolor="Green">
+                                        <font color="White"><s:label value="No"/></font>
                                     </td>
-                                    <td >
-                                        <s:label value="Archivo"/>
+                                    <td bgcolor="Green">
+                                        <font color="White"><s:label value="Archivo"/></font>
                                     </td>    
-                                    <td>
-                                        <s:label value="Ubicación"/>
+                                    <td bgcolor="Green">
+                                        <font color="White"><s:label value="Ubicación"/></font>
                                     </td>
-                                    <td>
-                                        <s:label value="Fecha Carga"/>
+                                    <td bgcolor="Green">
+                                        <font color="White"><s:label value="Fecha Carga"/></font>
                                     </td>
-                                    <td>
-                                        <s:label value="Estado"/>
+                                    <td bgcolor="Green">
+                                        <font color="White"><s:label value="Estado"/></font>
                                     </td>
                                   </tr>
                                   <tr>
