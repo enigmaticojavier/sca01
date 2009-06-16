@@ -1,7 +1,11 @@
 package gob.pe.minam.sca;
 
+
+import gob.pe.minam.sca.pojo.Acae;
+
 import gob.pe.minam.sca.framework.ConstantesSistema;
 import gob.pe.minam.sca.pojo.ControlEnvio;
+
 import gob.pe.minam.sca.pojo.Expediente;
 import gob.pe.minam.sca.pojo.ExpedienteDocumento;
 import gob.pe.minam.sca.pojo.ImagenDocumento;
@@ -33,17 +37,21 @@ public class Prueba {
     Persona persona =  new Persona();
     Persona persona2;
     Ubigeo ubigeo = new Ubigeo();
-    
+    Acae acae = new Acae();
+    Acae acae2;
     try{
         Integer id = new Integer(0);
         persona.setPersonaId(id);
         persona2 = persona.getPersonaByKey(persona);
-        System.out.println("persona2="+persona2);
-        persona.setTxtRazonSocial("BARRICK");
+        System.out.println("persona2="+persona2);        
         List lstDpto = ubigeo.listarDepartamento();
         System.out.println("lstDpto"+lstDpto.size());
-        List lstPersonas = persona.getPersonaByNombre(persona);
+        acae.setTxtRazonSocial("AMBIENTE");
+        List lstPersonas = acae.getAcaeByNombre(acae);
         System.out.println("lstPersonas"+lstPersonas.size());
+        acae.setPersonaId(new Integer(1));
+        acae2 = acae.getAcaeBusqueda(acae);
+        System.out.println("acae2="+acae2);
         DateFormat myDateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date d1 = myDateFormat.parse("01/05/1994");
         Date d2 = myDateFormat.parse("01/05/1995");
