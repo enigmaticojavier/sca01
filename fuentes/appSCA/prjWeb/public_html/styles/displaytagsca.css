@@ -1,6 +1,6 @@
 .dataTable{
 	background-color: white;
-	border: 1px solid #008080;/*Color*/
+	border: 1px solid green;/*Color*/
 	font-size : 9pt;
 	margin:	5px;
 	width:100%;
@@ -12,8 +12,8 @@
 	padding-right:12px;
 	font-family: arial, helvetica, sans-serif;
 	font-weight: bold;
-	color: #FFFFFF; /*Color Fuente*/
-	background-color: #008080; /*Color Titulo*/
+	color: white; /*Color Fuente*/
+	background-color: green; /*Color Titulo*/
 	margin-right: 10px;
 	white-space: nowrap;
 }
@@ -232,15 +232,16 @@ html,body {
 	border: 1px solid black;
 }
 
+/*
 a:link {
-	color: #008080; /*Enlaces Default*/
+	color: #008080; Enlaces Default
 	text-decoration: none;
 	background-color: transparent;
 	font-weight: bold;
 }
 
 a:visited {
-	color: #88BC6F; /*Enlaces Visitados*/
+	color: #88BC6F; Enlaces Visitados
 	text-decoration: none;
 	background-color: transparent;
 	font-weight: bold;
@@ -255,10 +256,10 @@ a:hover {
 img {
 	border: 0px;
 }
-
+*/
 
 /*Others*/
-
+/*
 html, body  {
     margin-left: 10px;
     margin-right: 10px;
@@ -280,3 +281,4 @@ html, body  {
     border:1px solid #88BC6F;
 }
 h1 { font-weight:bold; color: 88BC6F; font-size:15px; text-align:center;}
+*/
