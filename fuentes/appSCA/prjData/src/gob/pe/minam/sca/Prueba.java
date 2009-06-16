@@ -147,6 +147,9 @@ public class Prueba {
         ex.printStackTrace();
         System.out.println("Error-->"+ex.toString());
       }
+      String query="";
+      query=query.substring(0,query.length()-1);
+      System.out.println(query);
   }  
   
 }

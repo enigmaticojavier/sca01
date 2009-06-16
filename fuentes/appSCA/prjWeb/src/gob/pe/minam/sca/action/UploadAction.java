@@ -173,9 +173,9 @@ public class UploadAction extends AccionSoporte implements Preparable {
                         copiado=false;
                         FileUtils.copyFile(archProponente, theFile);
                         copiado=true;
-                    }catch(FileNotFoundException e){
-                        e.printStackTrace();
-                        this.setearMensajeError("1","Archivo No existe");
+                    }catch(FileNotFoundException ex){
+                        ex.printStackTrace();
+                        this.setearMensajeError("1","Archivo No existe o se encuentre ocupado " + Utilitarios.pintaError(ex.toString()));
                     }    
                     // Procesar Archivo
                     if (copiado){

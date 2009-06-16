@@ -16,7 +16,7 @@
    <filter>  
         <filter-name>FiltroDescarga</filter-name>  
         <filter-class>  
-            gob.mimdes.sime.filtro.FiltroDescarga
+            gob.pe.minam.sca.filtro.FiltroDescarga
         </filter-class>  
         <init-param>  
             <param-name>parametroFiltroDescarga</param-name>  

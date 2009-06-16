@@ -41,10 +41,16 @@ public class ProcesoProponente {
             String sql = "";
             Statement stm = conn.createStatement();
             for (int i=0;i<lstProceso.size();i++){
-                fila=i+1;
+                fila=i+2; //Fila en el Excel 
                 query = (String)lstProceso.get(i);
                 query=query.replace("***",""+personaId);
-                query=query.substring(0,query.length()-1);
+                if (query.length()>=1){
+                    query=query.substring(0,query.length()-1);
+                }else{
+                    beanRetornoData.setCodError(ConstantesSistema.CONST_RETORNO_ERROR_MSG); 
+                    beanRetornoData.setDscError("Error procesando fila " + fila + " se encuentra vacía");
+                    return beanRetornoData;
+                }
                 System.out.println("query-->"+query);
                 try{
                     stm.execute(query);

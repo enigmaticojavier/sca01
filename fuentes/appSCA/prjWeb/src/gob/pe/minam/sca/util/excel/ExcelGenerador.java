@@ -61,7 +61,7 @@ public class ExcelGenerador{
     public Object[] leerCelda(HSSFWorkbook workBook, HSSFCell cell){
         Object[] obj = new Object[2]; // col0 tipo col1 valor 
         if (cell!=null){
-            System.out.println("Tipazo--->" + cell.getCellType());
+            //System.out.println("Tipazo--->" + cell.getCellType());
             switch (cell.getCellType())
             {
                 case HSSFCell.CELL_TYPE_NUMERIC:
@@ -133,95 +133,6 @@ public class ExcelGenerador{
         }
         return obj;
     }
-    
-    /*
-    public BeanRetorno leerArchivo (int personaId, int columnaProceso, String rutaArchivo) throws Exception{
-        int i=0;
-        int filaComienzo=retornaFilaComienzo();
-        boolean columnaPresente=false;
-        BeanRetorno beanRetorno = new BeanRetorno();
-        InputStream inputStream = null;
-        List lstBeanRet = new ArrayList();
-        try
-        {
-            inputStream = new FileInputStream (rutaArchivo);
-        }
-        catch (FileNotFoundException e)
-        {
-            beanRetorno.setCodError(ConstantesSistema.CONST_RETORNO_ERROR_MSG);
-            beanRetorno.setDscError("Archivo no encontrado.");
-            e.printStackTrace ();
-            return beanRetorno;
-        }
-
-        POIFSFileSystem fileSystem = null;
-        try
-        {
-            fileSystem = new POIFSFileSystem (inputStream);
-        }
-        catch (IOException e)
-        {
-            beanRetorno.setCodError(ConstantesSistema.CONST_RETORNO_ERROR_MSG);
-            beanRetorno.setDscError("Archivo no es un Formato de Excel válido");
-            e.printStackTrace ();
-            return beanRetorno;
-        }
-        try{
-            HSSFWorkbook      workBook = new HSSFWorkbook (fileSystem);
-            HSSFSheet         sheet    = workBook.getSheetAt (0);
-            Iterator<HSSFRow> rows     = sheet.rowIterator();
-            Object[] objLectura = null;
-            String valor="";
-            HSSFCell cell = null;
-            
-            log.info("HSSFCell.CELL_TYPE_BLANK-->"+HSSFCell.CELL_TYPE_BLANK);
-            log.info("HSSFCell.CELL_TYPE_BOOLEAN-->"+HSSFCell.CELL_TYPE_BOOLEAN);
-            log.info("HSSFCell.CELL_TYPE_STRING-->"+HSSFCell.CELL_TYPE_STRING);
-            log.info("HSSFCell.CELL_TYPE_NUMERIC-->"+HSSFCell.CELL_TYPE_NUMERIC);
-            log.info("HSSFCell.CELL_TYPE_FORMULA-->"+HSSFCell.CELL_TYPE_FORMULA);
-            
-            int fila=0;
-            if (rows.hasNext ()){
-                while (rows.hasNext ())
-                {
-                    HSSFRow row = rows.next ();
-                    fila++;
-                    if (fila>filaComienzo){
-                        // La numeracion de las columnas empieza en cero
-                        columnaPresente=true;
-                        cell = row.getCell(columnaProceso-1);
-                        if (cell==null && columnaPresente){
-                            beanRetorno.setCodError(ConstantesSistema.CONST_RETORNO_ERROR_MSG);
-                            beanRetorno.setDscError("Columna " + columnaProceso  + " es obligatoria y no presenta valor en la fila " + fila + ", verifique!!");
-                            return beanRetorno;
-                        } 
-                        objLectura = leerCelda(workBook, cell);
-                        if (objLectura[0].toString().equals(""+HSSFCell.CELL_TYPE_NUMERIC)){
-                           valor = "" + ((Double)objLectura[1]).intValue();
-                        }else if (objLectura[0].toString().toString().equals(""+HSSFCell.CELL_TYPE_STRING)){
-                           valor = (String)objLectura[1];
-                        }
-                        log.info("valor-->" + valor);
-                        // Procesar Informacion Enviada
-                    }   
-                }
-                beanRetorno.setLstData(lstBeanRet);
-                beanRetorno.setCodError(ConstantesSistema.CONST_RETORNO_EXITO);
-            }else{
-                beanRetorno.setCodError(ConstantesSistema.CONST_RETORNO_ERROR_MSG);
-                beanRetorno.setDscError("Archivo no presenta Filas");
-            }
-        }
-        catch (Exception e)
-        {
-            beanRetorno.setCodError(ConstantesSistema.CONST_RETORNO_ERROR_MSG);
-            beanRetorno.setDscError("Error en la lectura del Archivo");
-            e.printStackTrace();
-            return beanRetorno;
-        }
-        return beanRetorno;
-    }
-    */
     
     public BeanRetorno leerArchivo(String rutaArchivo) throws Exception{
         BeanRetorno beanRetorno = new BeanRetorno();
@@ -300,6 +211,7 @@ public class ExcelGenerador{
         Object[] objLectura = null;
         List lstBeanRet = new ArrayList();
         String valor="";
+        log.info("Tipos Datos:CELL_TYPE_NUMERIC-->"+HSSFCell.CELL_TYPE_NUMERIC+"-->CELL_TYPE_STRING-->"+HSSFCell.CELL_TYPE_STRING+"-->CELL_TYPE_BLANK-->"+HSSFCell.CELL_TYPE_BLANK+"-->CELL_TYPE_ERROR-->"+HSSFCell.CELL_TYPE_ERROR);
         while (rows.hasNext ())
         {
             HSSFRow row = rows.next ();
@@ -308,7 +220,7 @@ public class ExcelGenerador{
                 // La numeracion de las columnas empieza en cero
                 cell = row.getCell(columnaProceso-1);
                 if (this.veriColProceso && this.columnaProceso!=0){
-                    if (cell==null){
+                    if (cell==null || cell.getCellType()==HSSFCell.CELL_TYPE_BLANK){
                         beanRetorno.setCodError(ConstantesSistema.CONST_RETORNO_ERROR_MSG);
                         beanRetorno.setDscError("Columna " + columnaProceso  + " es obligatoria y no presenta valor en la fila " + fila + ", verifique!!");
                         return beanRetorno;

@@ -36,7 +36,13 @@ public class ProcesoProyecto {
                 fila=i+1;
                 query = (String)lstProceso.get(i);
                 query=query.replace("***",""+personaId);
-                query=query.substring(0,query.length()-1);
+                if (query.length()>=1){
+                    query=query.substring(0,query.length()-1);
+                }else{
+                    beanRetornoData.setCodError(ConstantesSistema.CONST_RETORNO_ERROR_MSG); 
+                    beanRetornoData.setDscError("Error procesando fila " + fila + " se encuentra vacía");
+                    return beanRetornoData;
+                }
                 System.out.println("query-->"+query);
                 try{
                     stm.execute(query);
