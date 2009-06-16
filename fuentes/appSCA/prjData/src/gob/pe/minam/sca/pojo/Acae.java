@@ -143,13 +143,23 @@ public class Acae extends Persona {
         ProyectoService proyectoService = ProyectoService.getInstance();
         AcaeDao acaeDao = proyectoService.getAcaeDao();
         acaeDao.insertAcae(acae);		
-        //return acaeDao.getAcaeByKey(acae);
     }
     
     public static void updateAcae(Acae acae) throws DAOException{
         ProyectoService proyectoService = ProyectoService.getInstance();
         AcaeDao acaeDao = proyectoService.getAcaeDao();
         acaeDao.updateAcae(acae);
-        //return acaeDao.getAcaeByKey(acae);
+    }
+    
+    public static List getAcaeByNombre(Acae acae) throws DAOException{
+        ProyectoService proyectoService = ProyectoService.getInstance();
+        AcaeDao acaeDao = proyectoService.getAcaeDao();
+        return acaeDao.getAcaeByNombre(acae);
+    }
+    
+    public static Acae getAcaeBusqueda(Acae acae) throws DAOException{
+        ProyectoService proyectoService = ProyectoService.getInstance();
+        AcaeDao acaeDao = proyectoService.getAcaeDao();
+        return acaeDao.getAcaeBusqueda(acae);
     }
 }

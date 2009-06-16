@@ -36,6 +36,8 @@ public class Persona {
    /** @pdOid 75e794b2-f524-4c1d-9c7d-0b5db4986946 */
    private String fax;
    private String ubigeoId;
+   private Usuario usuario;
+   private Ubigeo ubigeo;
    
    /** @pdOid 90e22fa9-7b4c-4542-8c93-53056e5bd89d
        @pdRoleInfo migr=yes name=DocumentoPersona assc=Association14 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Composition */
@@ -69,45 +71,45 @@ public class Persona {
    public String getTipPersona() {
 	  return tipPersona;
    }
-	public void setTipPersona(String tipPersona) {
-		this.tipPersona = tipPersona;
-	}
-	public String getTxtRazonSocial() {
-		return txtRazonSocial;
-	}
-	public void setTxtRazonSocial(String txtRazonSocial) {
-		this.txtRazonSocial = txtRazonSocial;
-	}
-	public String getTxtDomicilio() {
-		return txtDomicilio;
-	}
-	public void setTxtDomicilio(String txtDomicilio) {
-		this.txtDomicilio = txtDomicilio;
-	}
-	public String getTelefono() {
-		return telefono;
-	}
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
-	}
-	public String getTxtEmail() {
-		return txtEmail;
-	}
-	public void setTxtEmail(String txtEmail) {
-		this.txtEmail = txtEmail;
-	}
-	public String getFax() {
-		return fax;
-	}
-	public void setFax(String fax) {
-		this.fax = fax;
-	}
-	public List<DocumentoPersona> getDocumentoPersona() {
-		return documentoPersona;
-	}
-	public void setDocumentoPersona(List<DocumentoPersona> documentoPersona) {
-		this.documentoPersona = documentoPersona;
-	}
+    public void setTipPersona(String tipPersona) {
+            this.tipPersona = tipPersona;
+    }
+    public String getTxtRazonSocial() {
+            return txtRazonSocial;
+    }
+    public void setTxtRazonSocial(String txtRazonSocial) {
+            this.txtRazonSocial = txtRazonSocial;
+    }
+    public String getTxtDomicilio() {
+            return txtDomicilio;
+    }
+    public void setTxtDomicilio(String txtDomicilio) {
+            this.txtDomicilio = txtDomicilio;
+    }
+    public String getTelefono() {
+            return telefono;
+    }
+    public void setTelefono(String telefono) {
+            this.telefono = telefono;
+    }
+    public String getTxtEmail() {
+            return txtEmail;
+    }
+    public void setTxtEmail(String txtEmail) {
+            this.txtEmail = txtEmail;
+    }
+    public String getFax() {
+            return fax;
+    }
+    public void setFax(String fax) {
+            this.fax = fax;
+    }
+    public List<DocumentoPersona> getDocumentoPersona() {
+            return documentoPersona;
+    }
+    public void setDocumentoPersona(List<DocumentoPersona> documentoPersona) {
+            this.documentoPersona = documentoPersona;
+    }
 
     public void setUbigeoId(String ubigeoId) {
         this.ubigeoId = ubigeoId;
@@ -116,6 +118,16 @@ public class Persona {
     public String getUbigeoId() {
         return ubigeoId;
     }
+    
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+    
+        
     public static Persona getPersonaByKey(Persona persona){
         ProyectoService proyectoService = ProyectoService.getInstance();
         PersonaDao personaDao = proyectoService.getPersonaDao();
@@ -128,15 +140,17 @@ public class Persona {
            return personaDao.getNextItem();
        }
 
-   public static void insertPersona(Persona persona) throws DAOException {
+    public static void insertPersona(Persona persona) throws DAOException {
        ProyectoService proyectoService = ProyectoService.getInstance();
        PersonaDao personaDao = proyectoService.getPersonaDao();
        personaDao.insertPersona(persona);
-   }
-   
-   public static List getPersonaByNombre(Persona persona){
-       ProyectoService proyectoService = ProyectoService.getInstance();
-       PersonaDao personaDao = proyectoService.getPersonaDao();
-       return personaDao.getPersonaByNombre(persona);
-   }
+    }
+
+    public void setUbigeo(Ubigeo ubigeo) {
+        this.ubigeo = ubigeo;
+    }
+
+    public Ubigeo getUbigeo() {
+        return ubigeo;
+    }
 }
