@@ -28,7 +28,7 @@
                       <td width="96%"><a href="index.php?idTipoElementoInformacion=14">Qu&eacute; son Certificaciones Ambientales</a></td>
                     </tr>
                     <tr>
-                      <td colspan="2"><img src="public/img/web/fondo_menu.jpg" width="220" height="1" /></td>
+                      <td colspan="2"><img src="<%= request.getContextPath() %>/public/img/web/fondo_menu.jpg" width="220" height="1" /></td>
                     </tr>
                     
                     <tr>
@@ -36,7 +36,7 @@
                       <td width="96%"><a href="index.php?idTipoElementoInformacion=10">Normas Legales</a></td>
                     </tr>
                     <tr>
-                      <td colspan="2"><img src="public/img/web/fondo_menu.jpg" width="220" height="1" /></td>
+                      <td colspan="2"><img src="<%= request.getContextPath() %>/public/img/web/fondo_menu.jpg" width="220" height="1" /></td>
                     </tr>
                     
                     <tr>
@@ -47,7 +47,7 @@
                       <td width="96%"><a href="<s:property value="#urlProyecto"/>">Consultas</a></td>
                     </tr>
                     <tr>
-                      <td colspan="2"><img src="public/img/web/fondo_menu.jpg" width="220" height="1" /></td>
+                      <td colspan="2"><img src="<%= request.getContextPath() %>/public/img/web/fondo_menu.jpg" width="220" height="1" /></td>
                     </tr>
                     
                     <tr>
@@ -58,7 +58,7 @@
                       <td width="96%"><a href="<s:property value="#urlEstadistica"/>">Estadistica</a></td>
                     </tr>
                     <tr>
-                      <td colspan="2"><img src="public/img/web/fondo_menu.jpg" width="220" height="1" /></td>
+                      <td colspan="2"><img src="<%= request.getContextPath() %>/public/img/web/fondo_menu.jpg" width="220" height="1" /></td>
                     </tr>
                   </table>
                 </div>

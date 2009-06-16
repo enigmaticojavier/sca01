@@ -15,7 +15,7 @@
 	}
 	</script>
     	
-    	<script type="text/javascript" src="public/js/ajax/ajax.js"></script>
+    	<script type="text/javascript" src="<%= request.getContextPath() %>/public/js/ajax/ajax.js"></script>
   </head>
   <body onload="new Accordian('basic-accordian',5,'header_highlight');">
     <table summary="Main Table for Techshelp" border="0" cellpadding="0" cellspacing="0" width="1000">
@@ -33,7 +33,7 @@
         </td>
       </tr>
       <tr>
-        <td colspan="2" align="left" background="public/img/web/cool-blue_r9_c8.jpg" valign="top">        
+        <td colspan="2" align="left" background="<%= request.getContextPath() %>/public/img/web/cool-blue_r9_c8.jpg" valign="top">        
           <%@ include file="pages/tiles/pie.jsp" %>
         </td>
       </tr>
