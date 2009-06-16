@@ -22,6 +22,33 @@
     <result property="telefonoGer" column="TELEFONOGER"/>
   </resultMap>
   
+  <resultMap id="AcaeNombreRSMap" class="Acae">
+    <result property="personaId" column="PERSONAID"/>
+    <result property="txtRazonSocial" column="TXTRAZONSOCIAL"/>
+    <result property="txtValor" column="TXTVALOR"/>
+  </resultMap>
+  
+  <resultMap id="AcaeBusquedaRSMap" class="Acae">
+    <result property="personaId" column="PERSONAID"/>
+    <result property="ubigeoId" column="UBIGEOID"/>
+    <result property="ubigeo.ubigeoId" column="UBIGEOID"/>
+    <result property="ubigeo.codDepartamento" column="CODDEPARTAMENTO"/>
+    <result property="ubigeo.codProvincia" column="CODPROVINCIA"/>
+    <result property="ubigeo.codDistrito" column="CODDISTRITO"/>
+    <result property="txtRazonSocial" column="TXTRAZONSOCIAL"/>
+    <result property="txtDomicilio" column="TXTDOMICILIO"/>
+    <result property="telefono" column="TELEFONO"/>
+    <result property="fax" column="FAX"/>
+    <result property="txtEmail" column="TXTEMAIL"/>
+    <result property="tipAcae" column="TIPACAE"/>
+    <result property="clsSector" column="CLSSECTOR"/>
+    <result property="clsSubSector" column="CLSSUBSECTOR"/>
+    <result property="telefonoGer" column="TELEFONOGER"/>
+    <result property="txtApellidosNombres" column="TXTAPELLIDOSNOMBRES"/>
+    <result property="txtCargo" column="TXTCARGO"/>
+    <result property="usuario.usuario" column="USUARIO"/>
+    <result property="usuario.codClave" column="CODCLAVE"/>
+  </resultMap>
   <select id="getAcae" resultClass="Acae" parameterClass="Acae" resultMap="AcaeRSMap">
     select 
       	*  
@@ -48,5 +75,25 @@
         TXTAPELLIDOSNOMBRES=#txtApellidosNombres#, TXTCARGO=#txtCargo#, TELEFONOGER=#telefonoGer#)
         WHERE PERSONAID=#personaId#
    </update>
-
+   <select id="getAcaeByNombre" parameterClass="Acae" resultMap="AcaeNombreRSMap">
+    SELECT A.PERSONAID, PR.TXTVALOR||'-'||P.TXTRAZONSOCIAL as TXTRAZONSOCIAL,PR.TXTVALOR
+    FROM PERSONA P, ACAE A, PARAMETRO PR 
+    WHERE P.PERSONAID=A.PERSONAID 
+    AND PR.TIPPARAMETRO=A.TIPACAE 
+    AND PR.CODPARAMETRO=A.CLSSECTOR 
+    AND P.TXTRAZONSOCIAL LIKE '%' || #txtRazonSocial# || '%'
+   </select>
+    <select id="getAcaeBusqueda" parameterClass="Acae" resultMap="AcaeBusquedaRSMap">
+   SELECT P.PERSONAID, P.UBIGEOID, SUBSTR(P.UBIGEOID,0,2)||'0000' as codDepartamento, 
+    SUBSTR(P.UBIGEOID,0,4)||'00' as codProvincia,
+    P.UBIGEOID as codDistrito,
+    P.TXTRAZONSOCIAL, P.TXTDOMICILIO, P.TELEFONO, P.TXTEMAIL, 
+    P.FAX, A.TIPACAE, A.CLSSECTOR, A.CLSSUBSECTOR, A.TELEFONOGER, A.TXTAPELLIDOSNOMBRES, A.TXTCARGO, 
+    U.USUARIO, U.CODCLAVE
+    FROM PERSONA P, ACAE A, USUARIO U
+    WHERE P.PERSONAID = A.PERSONAID
+    AND P.PERSONAID = U.PERSONAID
+    AND A.PERSONAID = U.PERSONAID
+    AND A.PERSONAID = #personaId#
+    </select>
 </sqlMap>

@@ -7,7 +7,6 @@ import com.ibatis.dao.client.DaoManager;
 import gob.pe.minam.sca.data.BaseSqlMapDao;
 import gob.pe.minam.sca.data.dao.AcaeDao;
 import gob.pe.minam.sca.framework.exception.DAOException;
-import gob.pe.minam.sca.framework.exception.NegocioException;
 import gob.pe.minam.sca.pojo.Acae;
 
 public class AcaeSqlMapDao extends BaseSqlMapDao implements AcaeDao {
@@ -36,4 +35,11 @@ public class AcaeSqlMapDao extends BaseSqlMapDao implements AcaeDao {
         delete("deleteAcae", acae);
    }
 
+    public List getAcaeByNombre(Acae acae) {
+        return (List) queryForList("getAcaeByNombre",acae);
+    }
+
+    public Acae getAcaeBusqueda(Acae acae) {
+        return (Acae) queryForObject("getAcaeBusqueda",acae);
+    }
 }

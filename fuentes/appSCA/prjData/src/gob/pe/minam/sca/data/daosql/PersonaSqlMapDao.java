@@ -35,8 +35,5 @@ public class PersonaSqlMapDao  extends BaseSqlMapDao implements PersonaDao {
     public void updatePersona(Persona persona) {
         update("updatePersona", persona);
     }
-
-    public List getPersonaByNombre(Persona persona ) {
-        return queryForList("getPersonaByNombre",persona);
-    }
+    
 }

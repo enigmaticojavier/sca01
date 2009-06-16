@@ -13,14 +13,17 @@ import gob.pe.minam.sca.pojo.Acae;
 
 public interface AcaeDao {
 
-      public Acae getAcaeByKey(Acae acae) throws DAOException;
+    public Acae getAcaeByKey(Acae acae) throws DAOException;
+    
+    public List getAcae(Acae acae) throws DAOException;
+    
+    public void insertAcae(Acae acae) throws DAOException;
+    
+    public void updateAcae(Acae acae) throws DAOException;
+    
+    public void deleteAcae(Acae acae) throws DAOException;
 
-      public List getAcae(Acae acae) throws DAOException;
-
-      public void insertAcae(Acae acae) throws DAOException;
-
-      public void updateAcae(Acae acae) throws DAOException;
-
-      public void deleteAcae(Acae acae) throws DAOException;
-
+    public List getAcaeByNombre(Acae acae) throws DAOException;
+    
+    public Acae getAcaeBusqueda(Acae acae) throws DAOException;
 }
