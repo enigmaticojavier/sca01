@@ -1,9 +1,10 @@
-<!--%@ page contentType="text/html;charset=ISO-8859-1" language="java" pageEncoding="ISO-8859-1"%-->
+<%@ page contentType="text/html;charset=ISO-8859-1" language="java" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 <!--%@ taglib prefix="fmt" uri="/WEB-INF/tld/fmt.tld" %-->
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:useBean id="date" class="java.util.Date"/>
+<%@page import="gob.pe.minam.sca.pojo.Usuario"%>
 
 
 
@@ -80,7 +81,12 @@
       </tr>
       <tr>
         <td width="240" align="left" valign="top">
-          <%@ include file="/pages/tiles/menuADM.jsp"%>
+           <% Usuario usuario =  (Usuario)session.getAttribute("Usuario");
+           if (usuario!=null && usuario.getTipUsuario().equals("ACA")){%>
+                 <%@ include file="/pages/tiles/menuACA.jsp"%>
+           <%}else{%>
+                <%@ include file="/pages/tiles/menu.jsp"%>
+           <%}%>
         </td>
         <td width="800" valign="top">
     <!-- Copia Skeleton Fin -->

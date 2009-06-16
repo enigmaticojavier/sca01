@@ -31,6 +31,7 @@
       </tr>
       <tr>
         <td width="240" align="left" valign="top">
+         
           <%@ include file="/pages/tiles/menuADM.jsp"%>
         </td>
         <td width="560" valign="top">
