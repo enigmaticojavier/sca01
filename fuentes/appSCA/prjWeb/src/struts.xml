@@ -41,7 +41,8 @@
 	    </action>
 	    <action name="doLogin" class="gob.pe.minam.sca.action.LoginAction">            
             	<result name="input">/pages/layout/mainLayout.jsp</result>
-            	<result name="error">/pages/layout/mainLayout.jsp</result>
+            	<!--result name="error">/pages/layout/mainLayout.jsp</result-->
+                <result name="error">/index.jsp</result>
             	<result name="ADM">/pages/login/loginSuccessADM.jsp</result>
             	<!--result name="ACA">/pages/login/loginSuccessACA.jsp</result-->
                 <result name="ACA" type="redirect">upload!list</result>
@@ -104,7 +105,7 @@
             <default-interceptor-ref name="paramsPrepareParamsStack"/>
             <action name="upload" class="gob.pe.minam.sca.action.UploadAction" method="list">
                 <result name="success">/pages/periodo/archivo.jsp</result>
-                <result name="login">/pages/layout/mainLayout.jsp</result>
+                <result name="login">/index.jsp</result>
                 <interceptor-ref name="defaultStack"/>
             </action>
 	</package>
