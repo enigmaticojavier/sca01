@@ -75,7 +75,7 @@ public class ProcesoProponente {
             cs.registerOutParameter(3, Types.INTEGER);
             cs.execute();
             resProc=cs.getInt(3);
-            System.out.println(resProc);
+            System.out.println("resProc-->"+resProc);
             if (resProc == -2){
                 beanRetornoData.setCodError(ConstantesSistema.CONST_RETORNO_ERROR_MSG); 
                 beanRetornoData.setDscError("Error ejecutando procedimiento " + ConstantesSistema.PROC_CARGA_PROPONENTE );
