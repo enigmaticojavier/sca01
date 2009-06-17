@@ -80,7 +80,10 @@ public class AdjuntoAction extends AccionSoporte implements Preparable {
         String tmpPeriodo=this.periodoSeleccionado.substring(0,4) + this.periodoSeleccionado.substring(5,7);
         log.info("tmpPeriodo"+tmpPeriodo);
         ExpedienteDocumento expdoc = new ExpedienteDocumento();
-        this.personaId=4;
+        this.acae=new Acae();
+        this.personaId=((Usuario)this.getVarSession("Usuario")).getPersonaId().intValue();
+        this.acae.setPersonaId(this.personaId);
+        this.acae = Acae.getAcaeByKey(this.acae);
         this.expedienteDocumentos=expdoc.buscarExpDocPeriodoPersona(tmpPeriodo,personaId);
         setearEstado(this.controlEnvio);
         log.info("[AdjuntoAction.list][Fin]");
@@ -106,7 +109,10 @@ public class AdjuntoAction extends AccionSoporte implements Preparable {
             ControlEnvio cntrEnvio=new ControlEnvio();
             this.controlEnvio=cntrEnvio.obtenerControlEnvioXPeriodo(tmpPeriodo);
             log.info(this.controlEnvio==null?"this.controlEnvio Read":"this.controlEnvio Read"+this.controlEnvio.getPeriodo());
-            this.personaId=4;
+            this.acae=new Acae();
+            this.personaId=((Usuario)this.getVarSession("Usuario")).getPersonaId().intValue();
+            this.acae.setPersonaId(this.personaId);
+            this.acae = Acae.getAcaeByKey(this.acae);
             String carpeta = "";
             Parametro par=new Parametro();
             List l = par.buscarParametroXTipoParametro(ConstantesSistema.CARPETA_IMAGENES);
