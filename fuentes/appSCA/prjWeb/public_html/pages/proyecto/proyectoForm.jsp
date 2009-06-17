@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:useBean id="date" class="java.util.Date"/>
-
+<%@page import="gob.pe.minam.sca.pojo.Usuario"%>
 
 
 <html>
@@ -77,7 +77,14 @@
       </tr>
       <tr>
         <td width="240" align="left" valign="top">
-          <%@ include file="/pages/tiles/menuADM.jsp"%>
+          <% Usuario usuario =  (Usuario)session.getAttribute("Usuario");
+           if (usuario!=null && usuario.getTipUsuario().equals("ACA")){%>
+                 <%@ include file="/pages/tiles/menuACA.jsp"%>
+          <%}else if (usuario!=null && usuario.getTipUsuario().equals("ADM")){%>
+                 <%@ include file="/pages/tiles/menuADM.jsp"%>
+          <%}else{%>
+                <%@ include file="/pages/tiles/menu.jsp"%>
+          <%}%>
         </td>
         <td width="800" valign="top">
     <!-- Copia Skeleton Fin -->
