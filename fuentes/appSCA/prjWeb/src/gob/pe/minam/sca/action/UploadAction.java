@@ -154,6 +154,10 @@ public class UploadAction extends AccionSoporte implements Preparable {
             this.periodoSeleccionado=getParameterValue("periodoSeleccionado");
             String tmpPeriodo=this.periodoSeleccionado.substring(0,4) + this.periodoSeleccionado.substring(5,7);
             log.info("PeriodoSeleccionado-->"+this.periodoSeleccionado+"tmpPeriodo-->"+tmpPeriodo);
+            this.acae=new Acae();
+            this.personaId=((Usuario)this.getVarSession("Usuario")).getPersonaId().intValue();
+            this.acae.setPersonaId(this.personaId);
+            this.acae = Acae.getAcaeByKey(this.acae);
             boolean copiado=false;
             BeanRetorno beanRetLectExcel=null;
             ControlEnvio cntrEnvio=new ControlEnvio();
@@ -190,7 +194,6 @@ public class UploadAction extends AccionSoporte implements Preparable {
                         int resProceso=0;
                         if (beanRetLectExcel.getCodError()==ConstantesSistema.CONST_RETORNO_EXITO){
                             ProcesoProponente procesoProponente = new ProcesoProponente();  
-                            this.personaId=4;
                             BeanRetornoData beanRetornoData=procesoProponente.procesar(personaId, this.periodoSeleccionado, beanRetLectExcel.getLstData());
                             if (beanRetornoData.getCodError()==ConstantesSistema.CONST_RETORNO_EXITO){
                                 if (controlEnvio==null){
@@ -242,6 +245,10 @@ public class UploadAction extends AccionSoporte implements Preparable {
             this.periodoSeleccionado=getParameterValue("periodoSeleccionado");
             String tmpPeriodo=this.periodoSeleccionado.substring(0,4) + this.periodoSeleccionado.substring(5,7);
             log.info("PeriodoSeleccionado-->"+this.periodoSeleccionado+"tmpPeriodo-->"+tmpPeriodo);
+            this.acae=new Acae();
+            this.personaId=((Usuario)this.getVarSession("Usuario")).getPersonaId().intValue();
+            this.acae.setPersonaId(this.personaId);
+            this.acae = Acae.getAcaeByKey(this.acae);
             boolean copiado=false;
             BeanRetorno beanRetLectExcel=null;
             ControlEnvio cntrEnvio=new ControlEnvio();
@@ -278,7 +285,6 @@ public class UploadAction extends AccionSoporte implements Preparable {
                         int resProceso=0;
                         if (beanRetLectExcel.getCodError()==ConstantesSistema.CONST_RETORNO_EXITO){
                             ProcesoProyecto procesoProyecto = new ProcesoProyecto();  
-                            this.personaId=4;
                             BeanRetornoData beanRetornoData=procesoProyecto.procesar(personaId, this.periodoSeleccionado, beanRetLectExcel.getLstData());
                             if (beanRetornoData.getCodError()==ConstantesSistema.CONST_RETORNO_EXITO){
                                 if (controlEnvio==null){
@@ -330,6 +336,10 @@ public class UploadAction extends AccionSoporte implements Preparable {
             this.periodoSeleccionado=getParameterValue("periodoSeleccionado");
             String tmpPeriodo=this.periodoSeleccionado.substring(0,4) + this.periodoSeleccionado.substring(5,7);
             log.info("PeriodoSeleccionado-->"+this.periodoSeleccionado+"tmpPeriodo-->"+tmpPeriodo);
+            this.acae=new Acae();
+            this.personaId=((Usuario)this.getVarSession("Usuario")).getPersonaId().intValue();
+            this.acae.setPersonaId(this.personaId);
+            this.acae = Acae.getAcaeByKey(this.acae);
             boolean copiado=false;
             BeanRetorno beanRetLectExcel=null;
             ControlEnvio cntrEnvio=new ControlEnvio();
@@ -366,7 +376,6 @@ public class UploadAction extends AccionSoporte implements Preparable {
                         int resProceso=0;
                         if (beanRetLectExcel.getCodError()==ConstantesSistema.CONST_RETORNO_EXITO){
                             ProcesoExpediente procesoExpediente = new ProcesoExpediente();  
-                            this.personaId=4;
                             BeanRetornoData beanRetornoData=procesoExpediente.procesar(personaId, this.periodoSeleccionado, beanRetLectExcel.getLstData());
                             if (beanRetornoData.getCodError()==ConstantesSistema.CONST_RETORNO_EXITO){
                                 if (controlEnvio==null){
