@@ -42,7 +42,7 @@ td.valorB {
 }
 
 td,tr,p,div {
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: Trebuchet MS, Helvetica, sans-serif;
 	font-size: 12px;
 	color: #333333;
 }
@@ -97,17 +97,17 @@ td.warning{
 	top: 0;
 }
 h4 {
-	color: #86a7e7; font-family: Arial, Helvetica, sans-serif;
+	color: #86a7e7; font-family: Trebuchet MS, Helvetica, sans-serif;
 	font-size: 15px; font-weight: bold;
 	}
 
 h5 {
-	color: #86a7e7; font-family: Arial, Helvetica, sans-serif;
+	color: #86a7e7; font-family: Trebuchet MS, Helvetica, sans-serif;
 	font-size: 13px; font-weight: bold;
 	}
 
 h6 {
-	color: #86a7e7; font-family: Arial, Helvetica, sans-serif;
+	color: #86a7e7; font-family: Trebuchet MS, Helvetica, sans-serif;
 	font-size: 12px; font-weight: bold;
 	}
 
@@ -115,11 +115,11 @@ h6 {
 /* Links */
 a:link, a:visited {
 	font-size: 12px; color: #000000; text-decoration: none;
-	font-family:  Arial, Helvetica, sans-serif;
+	font-family:  Trebuchet MS, Helvetica, sans-serif;
 }
 .link {
 	font-size: 12px; color: #5B9ABB; text-decoration: none;
-	font-family:  Arial, Helvetica, sans-serif;
+	font-family:  Trebuchet MS, Helvetica, sans-serif;
 }
 
 a:hover {
@@ -210,7 +210,7 @@ a.contentpagetitle:hover {
 	}
 
 .contentheading {
-	font-family: Times new roman, Arial, Helvetica, sans-serif;
+	font-family: Times new roman, Trebuchet MS, Helvetica, sans-serif;
 	font-size: 16px;
 	font-weight: normal;
  	color: #86a7e7;
@@ -236,14 +236,14 @@ table.contenttoc {
     }
 
 table.contenttoc td {
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: Trebuchet MS, Helvetica, sans-serif;
     font-size: 8pt;
     font-weight: normal;
     text-align:left;
 }
 
 .contentdescription {
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: Trebuchet MS, Helvetica, sans-serif;
 	font-size: 12px;
 	color: #364414;
 	text-align: left;
@@ -252,7 +252,7 @@ table.contenttoc td {
 /* Links */
 a.blogsection:link, a.blogsection:visited {
 	color: #5092B5; text-decoration: none; font-weight: normal;
-	font-family:  Arial, Helvetica, sans-serif;
+	font-family:  Trebuchet MS, Helvetica, sans-serif;
 	font-size: 10px;
 	}
 
@@ -264,7 +264,7 @@ a.blogsection:hover {
 
 a.weblinks:link, a.weblinks:visited {
 	color: #000000; text-decoration: none; font-weight: normal; /* #5696B9*/
-	font-family:  Arial, Helvetica, sans-serif;
+	font-family:  Trebuchet MS, Helvetica, sans-serif;
 	}
 
 a.weblinks:hover {
@@ -274,7 +274,7 @@ a.weblinks:hover {
 a.readon:link, a.readon:visited {
 	color: #5193B6;
 	text-decoration: none;
-	font-family:  Arial, Helvetica, sans-serif;
+	font-family:  Trebuchet MS, Helvetica, sans-serif;
 	font-size: 10px;
 	list-style: inside url(../../img/web/arrow.gif);
 	list-style-type: disc;
@@ -287,7 +287,7 @@ a.readon:hover {
 	color: #585755;
 	text-decoration: underline;
 	font-weight: normal;
-	font-family:  Arial, Helvetica, sans-serif;
+	font-family:  Trebuchet MS, Helvetica, sans-serif;
 	font-size: 10px;
 	list-style: inside url(../../img/web/arrow.gif);
 	list-style-type: disc;
@@ -309,7 +309,7 @@ table.moduletable {
 	}
 
 table.moduletable th {
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: Trebuchet MS, Helvetica, sans-serif;
 	font-size: 10px;
 	font-weight: bold;
 	color: #498DB2;
@@ -324,13 +324,13 @@ table.moduletable th {
 	}
 
 table.moduletable td {
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: Trebuchet MS, Helvetica, sans-serif;
 	font-size: 10px;
 	font-weight: normal;
 	}
 
 .componentheading {
-	font-family: "Times new roman", Arial, Helvetica, sans-serif;
+	font-family: "Times new roman", Trebuchet MS, Helvetica, sans-serif;
 	font-size: 16px;
 	font-weight: normal;
  	color: #4B8FB2;
@@ -346,14 +346,14 @@ table.moduletable td {
 .button {
 	color: #5696B9;
 	text-align: center;
-	font: bold normal 10px arial, Verdana, Geneva, Helvetica, serif;
+	font: bold normal 10px Trebuchet MS, Verdana, Geneva, Helvetica, serif;
 	background: #E7E7E7;
 	border: 1px solid #649FBF;
 		height: 15px;
 	}
 
 .inputbox {
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: Trebuchet MS, Helvetica, sans-serif;
 	font-size: 10px;
 	font-weight: normal;
 	color: #000000;
@@ -376,7 +376,7 @@ a.pathway:hover {
 /** category text format and links **/
 .category {
 	color: #000000;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: Trebuchet MS, Helvetica, sans-serif;
 	font-size: 12px;
 	font-weight: bold;
 	text-decoration: none;
@@ -392,7 +392,7 @@ a.category:hover {
 	}
 
 .poll {
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: Trebuchet MS, Helvetica, sans-serif;
 	font-size: 10px;
 	color: #4E90B3;
 	line-height: 14px
@@ -415,7 +415,7 @@ a.category:hover {
 }
 
 .small {
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: Trebuchet MS, Helvetica, sans-serif;
 	font-size: 10px;
 	color: #5193B6;
 	text-decoration: none;
@@ -423,7 +423,7 @@ a.category:hover {
 	}
 
 .smalldark {
-        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-family: Verdana, Trebuchet MS, Helvetica, sans-serif;
         font-size: 10px;
         color: #333333;
         text-decoration: none;
@@ -432,7 +432,7 @@ a.category:hover {
 
 
 .newsfeedheading {
-        font-family: Arial, Helvetica, sans-serif;
+        font-family: Trebuchet MS, Helvetica, sans-serif;
         font-size: 12px;
         font-weight: bold;
         color: #4E90B3;
@@ -440,14 +440,14 @@ a.category:hover {
         }
 
 .newsfeeddate {
-	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-family: Verdana, Trebuchet MS, Helvetica, sans-serif;
 	font-size: 10px;
 	color: #5193B6;
 	font-weight: normal;
 }
 
 .createdate {
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: Trebuchet MS, Helvetica, sans-serif;
 	font-size: 9px;
 	color: #333333;
 	text-decoration: none;
@@ -455,7 +455,7 @@ a.category:hover {
 	}
 
 .modifydate {
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: Trebuchet MS, Helvetica, sans-serif;
 	font-size: 9px;
 	color: #498DB2;
 	text-decoration: none;
@@ -472,7 +472,7 @@ li {
 	}
 
 .fase4rdf {
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: Trebuchet MS, Helvetica, sans-serif;
 	font-size: 12px; color: #666666; font-weight: normal;
 	}
 
@@ -503,7 +503,7 @@ table.contact td.details {
 	}
 
 .pagenav {
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: Trebuchet MS, Helvetica, sans-serif;
 	font-size: 9px;
 	font-weight: normal;
 	color: #585755;
@@ -538,7 +538,7 @@ a.pagenav:hover {
 a.bar:link, a.bar:visited {
         color: #4E90B3;
 		  text-decoration: none;
-        font: normal 9px Arial, Helvetica, sans-serif;
+        font: normal 9px Trebuchet MS, Helvetica, sans-serif;
         }
 
 a.bar:hover {
@@ -547,7 +547,7 @@ a.bar:hover {
         }
 
 		  .searchbox {
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: Trebuchet MS, Helvetica, sans-serif;
 	font-size: 10px;
 	font-weight: normal;
 	color: #4F91B4;
@@ -569,7 +569,7 @@ a.bar:hover {
 
 /* Text passed with mosmsg url parameter */
 .message {
-	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-family : Verdana, Trebuchet MS, Helvetica, sans-serif;
 	font-weight: bold;
 	font-size : 10pt;
 	color : #4E90B3;
@@ -577,12 +577,12 @@ a.bar:hover {
 }
 
 .pathway {
-        font-family: Arial, Helvetica, sans-serif;
+        font-family: Trebuchet MS, Helvetica, sans-serif;
         font-size: 10px;
          color: #4F91B4;
 }
 .date {
-        font-family: Arial, Helvetica, sans-serif;
+        font-family: Trebuchet MS, Helvetica, sans-serif;
         font-size: 11px;
          color: #ffffff;
 }
