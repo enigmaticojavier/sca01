@@ -194,7 +194,7 @@ public class UploadAction extends AccionSoporte implements Preparable {
                         int resProceso=0;
                         if (beanRetLectExcel.getCodError()==ConstantesSistema.CONST_RETORNO_EXITO){
                             ProcesoProponente procesoProponente = new ProcesoProponente();  
-                            BeanRetornoData beanRetornoData=procesoProponente.procesar(personaId, this.periodoSeleccionado, beanRetLectExcel.getLstData());
+                            BeanRetornoData beanRetornoData=procesoProponente.procesar(personaId, tmpPeriodo, beanRetLectExcel.getLstData());
                             if (beanRetornoData.getCodError()==ConstantesSistema.CONST_RETORNO_EXITO){
                                 if (controlEnvio==null){
                                     log.info("INSERT CONTROL ENVIO");
@@ -285,7 +285,7 @@ public class UploadAction extends AccionSoporte implements Preparable {
                         int resProceso=0;
                         if (beanRetLectExcel.getCodError()==ConstantesSistema.CONST_RETORNO_EXITO){
                             ProcesoProyecto procesoProyecto = new ProcesoProyecto();  
-                            BeanRetornoData beanRetornoData=procesoProyecto.procesar(personaId, this.periodoSeleccionado, beanRetLectExcel.getLstData());
+                            BeanRetornoData beanRetornoData=procesoProyecto.procesar(personaId, tmpPeriodo, beanRetLectExcel.getLstData());
                             if (beanRetornoData.getCodError()==ConstantesSistema.CONST_RETORNO_EXITO){
                                 if (controlEnvio==null){
                                     log.info("INSERT CONTROL ENVIO");
@@ -376,7 +376,7 @@ public class UploadAction extends AccionSoporte implements Preparable {
                         int resProceso=0;
                         if (beanRetLectExcel.getCodError()==ConstantesSistema.CONST_RETORNO_EXITO){
                             ProcesoExpediente procesoExpediente = new ProcesoExpediente();  
-                            BeanRetornoData beanRetornoData=procesoExpediente.procesar(personaId, this.periodoSeleccionado, beanRetLectExcel.getLstData());
+                            BeanRetornoData beanRetornoData=procesoExpediente.procesar(personaId, tmpPeriodo, beanRetLectExcel.getLstData());
                             if (beanRetornoData.getCodError()==ConstantesSistema.CONST_RETORNO_EXITO){
                                 if (controlEnvio==null){
                                     log.info("INSERT CONTROL ENVIO");
