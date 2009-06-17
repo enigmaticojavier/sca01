@@ -71,6 +71,7 @@ public class ProcesoProponente {
             cs = conn.prepareCall("{call " + ConstantesSistema.PROC_CARGA_PROPONENTE  + "(?,?,?)}");
             cs.setInt(1, personaId);
             cs.setString(2, periodo);
+            System.out.println("Ejecuta Proceso " + ConstantesSistema.PROC_CARGA_PROPONENTE + " personaId:"+personaId+"-->periodo:"+periodo);
             cs.registerOutParameter(3, Types.INTEGER);
             cs.execute();
             resProc=cs.getInt(3);
