@@ -68,8 +68,7 @@ public class LoginAction extends ActionSupport {
                 this.ponerSesion(usuario);
             } else if (usuario.getTipUsuario().equals(ConstantesSistema.TIPO_USUARIO_ACAE)){				
                 acae.setPersonaId(usuario.getPersonaId());
-                acae = Acae.getAcaeByKey(acae);
-                this.ponerSesion(usuario);
+                acae = Acae.getAcaeByKey(acae);                
                 sReturn = "ACA";
                 this.ponerSesion(usuario);
             }			
