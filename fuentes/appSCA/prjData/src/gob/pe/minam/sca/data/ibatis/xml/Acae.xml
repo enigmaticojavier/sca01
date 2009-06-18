@@ -72,7 +72,7 @@
    </insert>
    <update id="updateAcae" parameterClass="Acae">
         UPDATE ACAE SET TIPACAE=#tipAcae#, CLSSECTOR=#clsSector#, CLSSUBSECTOR=#clsSubSector#,
-        TXTAPELLIDOSNOMBRES=#txtApellidosNombres#, TXTCARGO=#txtCargo#, TELEFONOGER=#telefonoGer#)
+        TXTAPELLIDOSNOMBRES=#txtApellidosNombres#, TXTCARGO=#txtCargo#, TELEFONOGER=#telefonoGer#
         WHERE PERSONAID=#personaId#
    </update>
    <select id="getAcaeByNombre" parameterClass="Acae" resultMap="AcaeNombreRSMap">
