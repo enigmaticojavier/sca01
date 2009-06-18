@@ -21,14 +21,20 @@
     select pry.clssector, ins.txtvalor dscclssector, tes.codparametro clstipificacion, 
            tes.txtvalor dscclstipificacion, et.tipestadotramite, count(*) contexp
     from proyecto pry, parametro ins, parametro tac, parametro tes,
-         expediente e, expedientepaso ep, estadostupa et 
+         expediente e, expedientepaso ep, estadostupa et,
+         (SELECT expid, MAX(nsecuencia) nsecmax
+          FROM expedientepaso
+          WHERE #periodo#>=to_char(fchpaso,'YYYYMM')
+          GROUP BY expid) pasomax
     where ins.tipparametro=tac.codparametro and tac.tipparametro='TAC' and pry.clssector=ins.codparametro 
     and tes.tipparametro='IGA' and tes.codparametro=pry.clstipificacion
     and pry.pryid = e.pryid and e.expid = ep.expid
-    and #periodo#>=to_char(ep.fchpaso,'YYYYMM') and e.tiptramite=et.tiptramite
+    and e.tiptramite=et.tiptramite
     and ep.tippaso=et.tippaso and tac.codparametro=#tipAcae#
+    AND e.expid = pasomax.expid
+    AND pasomax.nsecmax = ep.nsecuencia
     group by pry.clssector, ins.txtvalor, tes.codparametro, et.tipestadotramite, tes.txtvalor
-    order by clssector, clstipificacion  
+    order by clssector, clstipificacion 
   </select>
   
 </sqlMap>

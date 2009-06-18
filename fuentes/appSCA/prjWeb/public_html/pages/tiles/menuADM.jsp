@@ -23,7 +23,7 @@
                     
                     <tr>
                       <td width="4%">&nbsp;</td>
-                      <td width="96%"><a href="<%= request.getContextPath() %>/acaeForm!list">Inscripción del ACAE</a></td>
+                      <td width="96%"><a href="<%= request.getContextPath() %>/acaeForm!list">Inscripción de dependencia de la ACAE</a></td>
                     </tr>
                     <tr>
                       <td colspan="2"><img src="public/img/web/fondo_menu.jpg" width="220" height="1" /></td>
@@ -31,7 +31,7 @@
                     
                     <tr>
                       <td width="4%">&nbsp;</td>
-                      <td width="96%"><a href="<%= request.getContextPath() %>/acaeModifica!doMuestra">Consulta/Modificación de Datos de las ACAE</a></td>
+                      <td width="96%"><a href="<%= request.getContextPath() %>/acaeModifica!doMuestra">Consulta/Modificación de Datos de dependencia de la ACAE</a></td>
                     </tr>
                     <tr>
                       <td colspan="2"><img src="public/img/web/fondo_menu.jpg" width="220" height="1" /></td>
