@@ -24,24 +24,24 @@ public class AcaeAction extends ActionSupport  {
     static Logger log = Logger.getLogger("AcaeAction.class");
     public static String COMBO_TXT_SELECCIONAR="SELECCIONAR";
     public static String COMBO_COD_SELECCIONAR="0";	
-    private String tipoAcae;
-    private String ubigeoId; /*departamento*/
-    private String codDepartamento;
-    private String codProvincia;
-    private String codDistrito;
-    private String clsSector; /*Institución*/
-    private String clsSubSector; /*Dependencia*/
-    private List parTipoAcae;
-    private List parInstitucion;
-    private List parDependencia;
-    private List ubiDepartamentos;
-    private List ubiProvincia;
-    private List ubiDistrito;
+    protected String tipoAcae;
+    protected String ubigeoId; /*departamento*/
+    protected String codDepartamento;
+    protected String codProvincia;
+    protected String codDistrito;
+    protected String clsSector; /*Institución*/
+    protected String clsSubSector; /*Dependencia*/
+    protected List parTipoAcae;
+    protected List parInstitucion;
+    protected List parDependencia;
+    protected List ubiDepartamentos;
+    protected List ubiProvincia;
+    protected List ubiDistrito;
     
-    private Persona persona;
-    private Acae acae; 
-    private Usuario usuario;
-    private String codClave2;
+    protected Persona persona;
+    protected Acae acae; 
+    protected Usuario usuario;
+    protected String codClave2;
 
     private static final long serialVersionUID = -8873103128650016222L;
    
