@@ -145,7 +145,13 @@ public class Persona {
        PersonaDao personaDao = proyectoService.getPersonaDao();
        personaDao.insertPersona(persona);
     }
-
+    
+    public static void updatePersona(Persona persona) throws DAOException {
+        ProyectoService proyectoService = ProyectoService.getInstance();
+        PersonaDao personaDao = proyectoService.getPersonaDao();
+        personaDao.updatePersona(persona);
+    }
+    
     public void setUbigeo(Ubigeo ubigeo) {
         this.ubigeo = ubigeo;
     }

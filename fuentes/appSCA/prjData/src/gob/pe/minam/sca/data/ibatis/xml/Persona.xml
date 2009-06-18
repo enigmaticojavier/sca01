@@ -52,7 +52,7 @@
    </insert>
 
   <select id="getNextItem" resultClass="java.lang.Integer" parameterClass="int">
-        select PERSONAID_SEQUENCE.NEXTVAL from dual
+        select SQ_PERSONA.NEXTVAL from dual     
    </select>
 
 </sqlMap>
