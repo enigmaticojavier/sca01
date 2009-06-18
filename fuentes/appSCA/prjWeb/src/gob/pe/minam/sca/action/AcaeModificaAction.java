@@ -89,7 +89,7 @@ public class AcaeModificaAction extends AcaeAction {
         } catch (DAOException e) {
             e.printStackTrace();
         }
-        return "actualizado";
+        return "modificado";
     }
     public String getParameterValue(String param) {
       Object varr = ActionContext.getContext().getParameters().get(param);
