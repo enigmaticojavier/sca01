@@ -118,7 +118,7 @@
                             <s:label value="Departamento"/>
                         </td>    
                         <td align="left">    
-                            <s:select name="ubigeoId" value="ubigeoId" list="ubiDepartamentos" listKey="ubigeoId" listValue="txtDescripcion"/>
+                            <s:select name="ubigeoId" value="ubigeoId" list="ubiDepartamentos" listKey="codDepartamento" listValue="txtDescripcion"/>
                         </td>
                       </tr>    
                       <tr> 
