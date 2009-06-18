@@ -57,8 +57,8 @@
                 <interceptor-ref name="basicStack"/>
             </action>
             <action name="acaeModifica" class="gob.pe.minam.sca.action.AcaeModificaAction" method="{0}">
-                <result name="success">/pages/acae/acaeBusqueda.jsp</result>
-                <result name="verBusqueda">/pages/acae/acaeModificaForm.jsp</result>
+                <result name="busqueda">/pages/acae/acaeBusqueda.jsp</result>
+                <result name="success">/pages/acae/acaeModificaForm.jsp</result>
                 <result name="modificado">/pages/acae/acaeModificadoSucces.jsp</result>
                 <interceptor-ref name="basicStack"/>
             </action>
