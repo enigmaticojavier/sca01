@@ -20,9 +20,9 @@
     select anio, mes, peractual, estado, anio || '-' || lpad(mes,2,'0') periodo from periodo order by anio desc, mes desc
   </select>
   
-  <select id="SelectPeriodoReporte" resultMap="PeriodoResult">
+  <select id="SelectPeriodoReporte" resultMap="PeriodoResult" parameterClass="int">
     select anio, mes, peractual, estado, anio || '-' || lpad(mes,2,'0') periodo from periodo 
-    where anio || lpad(mes,2,0) not in ( select periodo from controlenvio where nvl(estenvioexp,'')='EOK' )
+    where anio || lpad(mes,2,0) not in ( select periodo from controlenvio where nvl(estenvioexp,'')='EOK' and personaid=#param# )
     order by anio asc, mes asc
   </select>
   
