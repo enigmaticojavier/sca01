@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      ORACLE Version 10g                           */
-/* Created on:     12/06/2009 04:48:02 p.m.                     */
+/* Created on:     19/06/2009 01:27:26 a.m.                     */
 /*==============================================================*/
 
 
@@ -148,15 +148,15 @@ COMMENT ON TABLE CONSULTOR IS
 /* Table: CONTROLENVIO                                          */
 /*==============================================================*/
 CREATE TABLE CONTROLENVIO  (
-   PERSONAID            INTEGER                         NOT NULL,
    PERIODO              VARCHAR2(6)                     NOT NULL,
+   PERSONAID            INTEGER                         NOT NULL,
    ESTENVIOPRY          VARCHAR2(6),
    FCHENVIOPRY          DATE,
    ESTENVIOPRO          VARCHAR2(6),
    FCHENVIOPRO          DATE,
    ESTENVIOEXP          VARCHAR2(6),
    FCHENVIOEXP          DATE,
-   CONSTRAINT PK_CONTROLENVIO PRIMARY KEY (PERIODO)
+   CONSTRAINT PK_CONTROLENVIO PRIMARY KEY (PERIODO, PERSONAID)
 );
 
 /*==============================================================*/
@@ -179,10 +179,10 @@ COMMENT ON TABLE DOCUMENTO IS
 /* Table: DOCUMENTOPERSONA                                      */
 /*==============================================================*/
 CREATE TABLE DOCUMENTOPERSONA  (
-   PERSONAID            INTEGER                         NOT NULL,
    DOCID                INTEGER                         NOT NULL,
+   PERSONAID            INTEGER                         NOT NULL,
    TIPODOCPERSONA       VARCHAR2(6)                     NOT NULL,
-   CONSTRAINT PK_DOCUMENTOPERSONA PRIMARY KEY (PERSONAID, DOCID, TIPODOCPERSONA)
+   CONSTRAINT PK_DOCUMENTOPERSONA PRIMARY KEY (DOCID, PERSONAID, TIPODOCPERSONA)
 );
 
 /*==============================================================*/
@@ -399,7 +399,7 @@ CREATE TABLE TCATALOGOTIPOS  (
 /*==============================================================*/
 CREATE TABLE TEXPEDIENTE  (
    NUMACAE              INTEGER                         NOT NULL,
-   CODPROY              VARCHAR2(6)                     NOT NULL,
+   CODPROY              VARCHAR2(50)                    NOT NULL,
    NUMEXPD              VARCHAR2(10)                    NOT NULL,
    TIPTRAN              VARCHAR2(3)                     NOT NULL,
    PERIODO              VARCHAR2(6)                     NOT NULL,
@@ -424,6 +424,9 @@ CREATE TABLE TPROPONENTE  (
    NOMBRRL              VARCHAR2(255),
    DOMPROP              VARCHAR2(255),
    UBIGEOG              VARCHAR2(6),
+   TELEFON              VARCHAR2(50),
+   TELEFAX              VARCHAR2(50),
+   CORREOE              VARCHAR2(50),
    CONSTRAINT PK_TPROPONENTE PRIMARY KEY (NUMACAE, RUCPROP, PERIODO)
 );
 
@@ -432,7 +435,7 @@ CREATE TABLE TPROPONENTE  (
 /*==============================================================*/
 CREATE TABLE TPROYECTO  (
    NUMACAE              INTEGER                         NOT NULL,
-   CODPROY              VARCHAR2(6)                     NOT NULL,
+   CODPROY              VARCHAR2(50)                    NOT NULL,
    PERIODO              VARCHAR2(6)                     NOT NULL,
    NOMPROY              VARCHAR2(255)                   NOT NULL,
    TIPOCAT              VARCHAR2(3),
