@@ -77,14 +77,14 @@
    </update>
    
    <select id="getAcaeByNombre" parameterClass="Acae" resultMap="AcaeNombreRSMap">
-    SELECT A.PERSONAID, PR.TXTVALOR||'-'||P.TXTRAZONSOCIAL as TXTRAZONSOCIAL,PR.TXTVALOR
+    SELECT A.PERSONAID, P.TXTRAZONSOCIAL as TXTRAZONSOCIAL,PR.TXTVALOR
     FROM PERSONA P, ACAE A, PARAMETRO PR 
     WHERE P.PERSONAID=A.PERSONAID 
     AND PR.TIPPARAMETRO=A.TIPACAE 
     AND PR.CODPARAMETRO=A.CLSSECTOR 
     <isNotNull property="txtRazonSocial">
         <isNotEmpty property="txtRazonSocial">
-            AND P.TXTRAZONSOCIAL LIKE '%' || #txtRazonSocial# || '%'
+            AND PR.TXTVALOR LIKE '%' || #txtRazonSocial# || '%'
         </isNotEmpty>
     </isNotNull>    
    </select>

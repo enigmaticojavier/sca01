@@ -44,6 +44,7 @@
         and ep.expid = ed.expid(+) and ep.nsecuencia = ed.nsecuencia(+)
         and ed.docid = doc.docid(+) and doc.tipodocumento = tdo.codparametro(+) and  tdo.tipparametro(+) = 'DOC'
         and ex.pryId=#param#
+        order by ep.nsecuencia
   </select>
   
   <select id="BuscarExpDocXPeriodoPersonaId" resultMap="ExpedienteDocumentoXPeriodoPersonaResult" parameterClass="ExpedienteDocumento">
