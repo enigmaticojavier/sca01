@@ -1119,6 +1119,7 @@ create or replace package body PQ_PROYECTO is
          and e.tiptramite = et.tiptramite
          and ep.tippaso = et.tippaso
          and et.tipestadotramite=par.codparametro
+         and par.tipparametro='EST'
          and (ep.expid, ep.nsecuencia) in
              (select ep.expid, max(ep.nsecuencia)
                 from expedientepaso ep, expediente e
