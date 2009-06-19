@@ -133,7 +133,7 @@ public class Prueba {
         }
         
         ControlEnvio controlEnvio=new ControlEnvio();
-        controlEnvio=controlEnvio.obtenerControlEnvioXPeriodo("200912");
+        controlEnvio=controlEnvio.obtenerControlEnvioXPeriodo("200912",4);
         if (controlEnvio==null){
             System.out.println("Nulo");
         }else{

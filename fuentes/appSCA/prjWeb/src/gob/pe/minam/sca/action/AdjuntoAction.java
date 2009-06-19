@@ -103,16 +103,17 @@ public class AdjuntoAction extends AccionSoporte implements Preparable {
             log.info("[AdjuntoAction.cargaArchivoProponente][Ini]");
             this.periodoSeleccionado=getParameterValue("periodoSeleccionado");
             String tmpPeriodo=this.periodoSeleccionado.substring(0,4) + this.periodoSeleccionado.substring(5,7);
-            log.info("PeriodoSeleccionado-->"+this.periodoSeleccionado+"tmpPeriodo-->"+tmpPeriodo);
-            boolean copiado=false;
-            BeanRetorno beanRetLectExcel=null;
-            ControlEnvio cntrEnvio=new ControlEnvio();
-            this.controlEnvio=cntrEnvio.obtenerControlEnvioXPeriodo(tmpPeriodo);
-            log.info(this.controlEnvio==null?"this.controlEnvio Read":"this.controlEnvio Read"+this.controlEnvio.getPeriodo());
             this.acae=new Acae();
             this.personaId=((Usuario)this.getVarSession("Usuario")).getPersonaId().intValue();
             this.acae.setPersonaId(this.personaId);
             this.acae = Acae.getAcaeByKey(this.acae);
+            log.info("PeriodoSeleccionado-->"+this.periodoSeleccionado+"tmpPeriodo-->"+tmpPeriodo+"-->personaId"+this.personaId);
+            boolean copiado=false;
+            BeanRetorno beanRetLectExcel=null;
+            ControlEnvio cntrEnvio=new ControlEnvio();
+            this.controlEnvio=cntrEnvio.obtenerControlEnvioXPeriodo(tmpPeriodo,this.personaId);
+            log.info(this.controlEnvio==null?"this.controlEnvio Read":"this.controlEnvio Read"+this.controlEnvio.getPeriodo());
+            
             String carpeta = "";
             Parametro par=new Parametro();
             List l = par.buscarParametroXTipoParametro(ConstantesSistema.CARPETA_IMAGENES);

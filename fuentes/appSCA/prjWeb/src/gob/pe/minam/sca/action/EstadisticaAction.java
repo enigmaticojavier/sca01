@@ -70,7 +70,11 @@ public class EstadisticaAction extends AccionSoporte implements Preparable {
             log.info("[EstadisticaAction.prepare][Ini]");
             /*Tipo de Acae*/
             Parametro par = new Parametro();
-            this.parTipoAcae=par.buscarParametroXTipoParametro("TAC");
+            List lstTipAcae = par.buscarParametroXTipoParametro("TAC"); 
+            par.setCodParametro(COMBO_COD_ALL);
+            par.setTxtValor(COMBO_TXT_ALL);
+            lstTipAcae.add(par);
+            this.parTipoAcae=lstTipAcae;
             /*Periodo*/
             Periodo per = new Periodo();
             this.parPeriodos=per.listarPeriodo();

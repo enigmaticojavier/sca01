@@ -93,7 +93,7 @@ public class UploadAction extends AccionSoporte implements Preparable {
             String tmpPeriodo=this.periodoSeleccionado.substring(0,4) + this.periodoSeleccionado.substring(5,7);
             log.info("tmpPeriodo"+tmpPeriodo);
             ControlEnvio contEnv=new ControlEnvio();
-            this.controlEnvio=contEnv.obtenerControlEnvioXPeriodo(tmpPeriodo);
+            this.controlEnvio=contEnv.obtenerControlEnvioXPeriodo(tmpPeriodo,this.personaId);
             setearEstado(this.controlEnvio);
             log.info("[UploadAction.list][Fin]");
             return SUCCESS;
@@ -162,7 +162,7 @@ public class UploadAction extends AccionSoporte implements Preparable {
             boolean copiado=false;
             BeanRetorno beanRetLectExcel=null;
             ControlEnvio cntrEnvio=new ControlEnvio();
-            this.controlEnvio=cntrEnvio.obtenerControlEnvioXPeriodo(tmpPeriodo);
+            this.controlEnvio=cntrEnvio.obtenerControlEnvioXPeriodo(tmpPeriodo,this.personaId);
             log.info(this.controlEnvio==null?"this.controlEnvio Read":"this.controlEnvio Read"+this.controlEnvio.getPeriodo());
             String carpeta = "";
             Parametro par=new Parametro();
@@ -253,7 +253,7 @@ public class UploadAction extends AccionSoporte implements Preparable {
             boolean copiado=false;
             BeanRetorno beanRetLectExcel=null;
             ControlEnvio cntrEnvio=new ControlEnvio();
-            this.controlEnvio=cntrEnvio.obtenerControlEnvioXPeriodo(tmpPeriodo);
+            this.controlEnvio=cntrEnvio.obtenerControlEnvioXPeriodo(tmpPeriodo,this.personaId);
             log.info(this.controlEnvio==null?"this.controlEnvio Read":"this.controlEnvio Read"+this.controlEnvio.getPeriodo());
             String carpeta = "";
             Parametro par=new Parametro();
@@ -344,7 +344,7 @@ public class UploadAction extends AccionSoporte implements Preparable {
             boolean copiado=false;
             BeanRetorno beanRetLectExcel=null;
             ControlEnvio cntrEnvio=new ControlEnvio();
-            this.controlEnvio=cntrEnvio.obtenerControlEnvioXPeriodo(tmpPeriodo);
+            this.controlEnvio=cntrEnvio.obtenerControlEnvioXPeriodo(tmpPeriodo,this.personaId);
             log.info(this.controlEnvio==null?"this.controlEnvio Read":"this.controlEnvio Read"+this.controlEnvio.getPeriodo());
             String carpeta = "";
             Parametro par=new Parametro();

@@ -85,10 +85,10 @@ public class ControlEnvio {
         return estEnvioExp;
     }
     
-    public ControlEnvio obtenerControlEnvioXPeriodo(String periodo) throws NegocioException{
+    public ControlEnvio obtenerControlEnvioXPeriodo(String periodo, int personaId) throws NegocioException{
         try{
           ControlEnvioDao controlEnvioDao = ProyectoService.getInstance().getControlEnvioDao();
-          return controlEnvioDao.obtenerControlEnvioXPeriodo(periodo);
+          return controlEnvioDao.obtenerControlEnvioXPeriodo(periodo, personaId);
         }catch(DAOException ex){
           throw new NegocioException(ex.toString(),ex.getCodigoMensajeUsuario());
         }catch(Exception ex){
@@ -100,7 +100,7 @@ public class ControlEnvio {
         try{
             System.out.println("periodo1-->" + controlEnvio.getPeriodo());
             ControlEnvioDao controlEnvioDao = ProyectoService.getInstance().getControlEnvioDao();
-            boolean existe = controlEnvioDao.existeControlEnvio(controlEnvio.getPeriodo());
+            boolean existe = controlEnvioDao.existeControlEnvio(controlEnvio.getPeriodo(),controlEnvio.getPersonaId());
             System.out.println("periodo2-->" + controlEnvio.getPeriodo());
             System.out.println("existe-->" + existe  );
             if (existe){

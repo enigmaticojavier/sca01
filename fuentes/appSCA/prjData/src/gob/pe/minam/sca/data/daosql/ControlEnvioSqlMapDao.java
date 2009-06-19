@@ -15,29 +15,35 @@ public class ControlEnvioSqlMapDao extends BaseSqlMapDao implements ControlEnvio
       super(daoManager);
     }    
     
-    public ControlEnvio obtenerControlEnvioXPeriodo(String periodo) throws DAOException{
+    public ControlEnvio obtenerControlEnvioXPeriodo(String periodo, int personaId) throws DAOException{
         try{
-          return (ControlEnvio)queryForObject("SelectControlEnvio",periodo);
+            ControlEnvio cntEnv = new ControlEnvio();
+            cntEnv.setPeriodo(periodo);
+            cntEnv.setPersonaId(personaId);
+            return (ControlEnvio)queryForObject("SelectControlEnvio",cntEnv);
         }catch(SqlMapException ex){
-          throw new DAOException(ex.toString(),"Error producido en BD : No se puede ejecutar la Obtención de Control Envio");
+            throw new DAOException(ex.toString(),"Error producido en BD : No se puede ejecutar la Obtención de Control Envio");
         }catch(DaoException ex){
-          throw new DAOException(ex.toString(),"Error producido en BD : Obtención de Control Envio presenta problemas");
+            throw new DAOException(ex.toString(),"Error producido en BD : Obtención de Control Envio presenta problemas");
         }catch(Exception ex){
-          throw new DAOException(ex.toString(),"Error producido en la Carga de Obtención de Control Envio");
+            throw new DAOException(ex.toString(),"Error producido en la Carga de Obtención de Control Envio");
         } 
     }
     
-    public boolean existeControlEnvio(String periodo) throws DAOException{
+    public boolean existeControlEnvio(String periodo, int personaId) throws DAOException{
         try{
-          int cont = ((Integer)queryForObject("existeControlEnvio",periodo)).intValue();
-          if (cont>0) return true;
-          else return false;
+            ControlEnvio cntEnv = new ControlEnvio();
+            cntEnv.setPeriodo(periodo);
+            cntEnv.setPersonaId(personaId);
+            int cont = ((Integer)queryForObject("existeControlEnvio",cntEnv)).intValue();
+            if (cont>0) return true;
+            else return false;
         }catch(SqlMapException ex){
-          throw new DAOException(ex.toString(),"Error producido en BD : No se puede ejecutar la Inserción de ControlEnvio");
+            throw new DAOException(ex.toString(),"Error producido en BD : No se puede ejecutar la Inserción de ControlEnvio");
         }catch(DaoException ex){
-          throw new DAOException(ex.toString(),"Error producido en BD : Inserción de ControlEnvio presenta problemas");
+            throw new DAOException(ex.toString(),"Error producido en BD : Inserción de ControlEnvio presenta problemas");
         }catch(Exception ex){
-          throw new DAOException(ex.toString(),"Error producido en la Inserción de ControlEnvio");
+            throw new DAOException(ex.toString(),"Error producido en la Inserción de ControlEnvio");
         }
     }
     

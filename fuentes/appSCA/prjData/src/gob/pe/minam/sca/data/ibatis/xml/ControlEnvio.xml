@@ -18,11 +18,12 @@
     <result property="fchEnvioExp" column="FCHENVIOEXP"/>
   </resultMap>
   
-  <select id="SelectControlEnvio" parameterClass="string" resultMap="ControlEnvioResult">
+  <select id="SelectControlEnvio" parameterClass="ControlEnvio" resultMap="ControlEnvioResult">
     select periodo, personaid, estenviopro, fchenviopro, 
     estenviopry, fchenviopry, estenvioexp, fchenvioexp
     from controlenvio
-    where periodo = #param#
+    where periodo = #periodo#
+    and personaid = #personaId#
   </select>
   
   <insert id="insertControlEnvio" parameterClass="ControlEnvio">
@@ -47,10 +48,11 @@
     where periodo = #periodo#
   </update>
   
-  <select id="existeControlEnvio" parameterClass="string" resultClass="int">
+  <select id="existeControlEnvio" parameterClass="ControlEnvio" resultClass="int">
     select count(*) cont
     from controlenvio
-    where periodo = #param#
+    where periodo = #periodo#
+    and personaid = #personaId#
   </select>
   
 </sqlMap>

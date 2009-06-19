@@ -30,7 +30,8 @@
     and tes.tipparametro='IGA' and tes.codparametro=pry.clstipificacion
     and pry.pryid = e.pryid and e.expid = ep.expid
     and e.tiptramite=et.tiptramite
-    and ep.tippaso=et.tippaso and tac.codparametro=#tipAcae#
+    and ep.tippaso=et.tippaso 
+    and ins.tipparametro=decode(#tipAcae#,'0',ins.tipparametro,#tipAcae#)
     AND e.expid = pasomax.expid
     AND pasomax.nsecmax = ep.nsecuencia
     group by pry.clssector, ins.txtvalor, tes.codparametro, et.tipestadotramite, tes.txtvalor
