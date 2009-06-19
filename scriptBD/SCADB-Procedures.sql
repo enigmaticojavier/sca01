@@ -1,9 +1,26 @@
 ---------------------------------------------------
--- Export file for user SCA1                     --
--- Created by JORGE on 13/06/2009, 05:33:17 p.m. --
+-- Export file for user SCA2                     --
+-- Created by JORGE on 19/06/2009, 01:59:50 a.m. --
 ---------------------------------------------------
 
-spool procedures.log
+spool 3PROCS-VIEW-TRIG.log
+
+prompt
+prompt Creating view VPROYECTOESTADO
+prompt =============================
+prompt
+CREATE OR REPLACE VIEW VPROYECTOESTADO AS
+SELECT EX.PRYID, EP."EXPID",EP."NSECUENCIA",EP."TIPPASO",EP."FCHPASO",EP."PERIODO", ET.TIPESTADOTRAMITE
+FROM EXPEDIENTEPASO EP,
+		 ESTADOSTUPA ET,
+     EXPEDIENTE EX
+WHERE (EP.EXPID, EP.NSECUENCIA) IN
+        (SELECT A.EXPID, MAX(NSECUENCIA)
+        	FROM EXPEDIENTEPASO A
+        	GROUP BY A.EXPID) AND
+       EP.TIPPASO = ET.TIPPASO AND
+       EX.EXPID		= EP.EXPID
+WITH READ ONLY;
 
 prompt
 prompt Creating package PQ_PROYECTO
@@ -28,6 +45,33 @@ create or replace package PQ_PROYECTO is
   FUNCTION GETDEPARTAMENTO(p_cUbigeoid VARCHAR2) RETURN VARCHAR2;
 
 end PQ_PROYECTO;
+/
+
+prompt
+prompt Creating procedure USP_000_LIMPIA_TABLAT
+prompt ========================================
+prompt
+CREATE OR REPLACE PROCEDURE USP_000_LIMPIA_TABLAT (as_archivo	varchar2, al_numacae	INTEGER, as_periodo	VARCHAR2)
+IS
+BEGIN
+---PRP
+---PRY
+---EXP
+--- Para el parámetro as_archivo, puedes pasar el valor de codparametro que corresponde
+	IF as_archivo = 'PRP' THEN
+  	DELETE TPROPONENTE WHERE numacae = al_numacae AND periodo = as_periodo;
+  END IF;
+
+	IF as_archivo = 'PRY' THEN
+  	DELETE TPROYECTO WHERE numacae = al_numacae AND periodo = as_periodo;
+  END IF;
+
+	IF as_archivo = 'EXP' THEN
+  	DELETE TPROYECTO WHERE numacae = al_numacae AND periodo = as_periodo;
+  END IF;
+
+	COMMIT;
+END;
 /
 
 prompt
@@ -330,7 +374,7 @@ BEGIN
 		
     FOR cu_proponente IN ctproponente LOOP
 ---      SELECT NVL(MAX(personaid), 0) + 1 INTO lnidpersona FROM persona;
-			SELECT PARAMETROID_SEQUENCE.NEXTVAL INTO lnidpersona FROM DUAL;
+			SELECT SQ_PERSONA.NEXTVAL INTO lnidpersona FROM DUAL;
 /*			SELECT COUNT(1) FROM SCA1.persona a
       WHERE a.tipdocumentoper = 'RUC' AND
       			a.numdocumentoper = cu_proponente.rucprop*/
@@ -351,9 +395,9 @@ BEGIN
               'PRO',
               cu_proponente.razsoci,
               cu_proponente.domprop,
-              NULL,
-              NULL,
-              NULL,
+              cu_proponente.telefon,
+              cu_proponente.correoe,
+              cu_proponente.telefax,
               'RUC',
               cu_proponente.rucprop);
         EXCEPTION
@@ -384,6 +428,7 @@ BEGIN
 
     END LOOP;
 
+		COMMIT;
 END;
 
 END;
@@ -497,6 +542,7 @@ BEGIN
 
     END LOOP;
 
+		COMMIT;
 END;
 
 END;
@@ -856,6 +902,7 @@ BEGIN
      END IF;*/
 
     END LOOP;
+    COMMIT;
 
 END;
 
@@ -1127,6 +1174,31 @@ BEGIN
 
   END;
 END;
+/
+
+prompt
+prompt Creating trigger TIUEXPEDIENTE
+prompt ==============================
+prompt
+create or replace trigger TIUEXPEDIENTE
+  after INSERT OR UPDATE on expediente  
+  for each row
+declare
+  lclssector		proyecto.clssector%TYPE;
+  lclssubsector	proyecto.clssubsector%TYPE;
+BEGIN
+
+	SELECT t.clssector, t.clssubsector
+    INTO lclssector, lclssubsector
+  	FROM ACAE t
+   WHERE t.personaid = :new.personaid;
+   
+  UPDATE PROYECTO
+     SET clssector 		= lclssector,
+     		 clssubsector = lclssubsector
+   WHERE pryid = :new.pryid;
+  
+end TIUEXPEDIENTE;
 /
 
 
