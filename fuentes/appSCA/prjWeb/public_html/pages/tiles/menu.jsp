@@ -25,7 +25,7 @@
                     
                     <tr>
                       <td width="4%">&nbsp;</td>
-                      <td width="96%"><a href="index.php?idTipoElementoInformacion=14">Qu&eacute; son Certificaciones Ambientales</a></td>
+                      <td width="96%"><a href="<%= request.getContextPath() %>/queSonCA">Qu&eacute; son Certificaciones Ambientales</a></td>
                     </tr>
                     <tr>
                       <td colspan="2"><img src="<%= request.getContextPath() %>/public/img/web/fondo_menu.jpg" width="220" height="1" /></td>
