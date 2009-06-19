@@ -24,10 +24,10 @@ public class AcaeModificaAction extends AcaeAction {
     }
     public String doBuscarAcae() throws DAOException {       
         
-        if (this.acae.getTxtRazonSocial()!=null && !this.acae.getTxtRazonSocial().equals("")) {
+        if (this.acae.getTxtRazonSocial()!=null ) {
             log.info("acae="+this.acae.getTxtRazonSocial());
-            acae.setTxtRazonSocial(this.acae.getTxtRazonSocial().toUpperCase());
-            acaes = acae.getAcaeByNombre(acae);            
+            acae.setTxtRazonSocial(this.acae.getTxtRazonSocial().trim().toUpperCase());
+            acaes = acae.getAcaeByNombre(acae);
         }        
                
         return "busqueda";
