@@ -127,7 +127,7 @@ public class Prueba {
     }    
       try{
         Periodo periodo1 = new Periodo();
-        List l =periodo1.listarPeriodoReporte();
+        List l =periodo1.listarPeriodoReporte(4);
         for (int i=0;i<l.size();i++){
           System.out.println("Periodo " + ((Periodo)l.get(i)).getPeriodo() );  
         }
