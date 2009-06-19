@@ -17,8 +17,7 @@
 	<META NAME="Keywords" CONTENT="PERU,  MINAM ,  Perú, economy, MINISTERIO, AMBIENTE, Statistical , Ministerio del Ambiente, estadisticas, Indicadores, Indicadores Ambientales">
 	<link href="<%= request.getContextPath() %>/public/css/web/template_css.css" rel="stylesheet" type="text/css">
 	<link href="<%= request.getContextPath() %>/public/css/web/acordionv2.css" rel="stylesheet" type="text/css">
-        <LINK HREF="styles/displaytagsca.css" REL="stylesheet" TYPE="text/css"> 
-        <!--LINK HREF="styles/displaytagsca.css" REL="stylesheet" TYPE="text/css"-->
+        <LINK HREF="styles/displaytagsca.css" REL="stylesheet" TYPE="text/css">
         
         <script type="text/javascript" src="<%= request.getContextPath() %>/public/js/web/includes/acordeon/accordian.pack.js"></script>
 	<script>
@@ -223,7 +222,7 @@
                                         </s:textfield>
                                     </td>
                                     <td width="10">
-                                        <s:if test="estadoCargaProponente!=null">
+                                        <%/*s:if test="estadoCargaProponente!=null">
                                             <s:if test="estadoCargaProponente.equals('true')">
                                                 <s:checkbox name="chkEstado" disabled="true" value="true"/>
                                             </s:if>
@@ -233,7 +232,8 @@
                                         </s:if>
                                         <s:else>
                                             &nbsp;
-                                        </s:else>
+                                        </s:else*/%>
+                                        <s:textfield name="txtDescripcion" value="%{controlEnvio.estEnvioPro}" size="5" readonly="true"/>
                                     </td>
                                   </tr>
                                   
@@ -268,7 +268,7 @@
                                         </s:textfield>
                                     </td>
                                     <td width="10">
-                                        <s:if test="estadoCargaProyecto!=null">
+                                        <% /*s:if test="estadoCargaProyecto!=null">
                                             <s:if test="estadoCargaProyecto.equals('true')">
                                                 <s:checkbox name="chkEstado" disabled="true" value="true"/>
                                             </s:if>
@@ -278,7 +278,8 @@
                                         </s:if>
                                         <s:else>
                                             &nbsp;
-                                        </s:else>
+                                        </s:else*/%>
+                                        <s:textfield name="txtDescripcion" value="%{controlEnvio.estEnvioPry}" size="5" readonly="true"/>
                                     </td>
                                   </tr>
                             
@@ -313,7 +314,7 @@
                                         </s:textfield>
                                     </td>
                                     <td width="10">
-                                        <s:if test="estadoCargaExpediente!=null">
+                                        <%/*s:if test="estadoCargaExpediente!=null">
                                             <s:if test="estadoCargaExpediente.equals('true')">
                                                 <s:checkbox name="chkEstado" disabled="true" value="true"/>
                                             </s:if>
@@ -323,7 +324,8 @@
                                         </s:if>
                                         <s:else>
                                             &nbsp;
-                                        </s:else>
+                                        </s:else*/%>
+                                        <s:textfield name="txtDescripcion" value="%{controlEnvio.estEnvioExp}" size="5" readonly="true"/>
                                     </td>
                                   </tr>  
                                   
