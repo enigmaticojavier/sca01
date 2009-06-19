@@ -33,7 +33,7 @@
                     
                     <tr>
                       <td width="4%">&nbsp;</td>
-                      <td width="96%"><a href="index.php?idTipoElementoInformacion=10">Normas Legales</a></td>
+                      <td width="96%"><a href="<%= request.getContextPath() %>/normasLegales">Normas Legales</a></td>
                     </tr>
                     <tr>
                       <td colspan="2"><img src="<%= request.getContextPath() %>/public/img/web/fondo_menu.jpg" width="220" height="1" /></td>
