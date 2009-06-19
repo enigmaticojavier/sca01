@@ -6,8 +6,6 @@
 <jsp:useBean id="date" class="java.util.Date"/>
 <%@page import="gob.pe.minam.sca.pojo.Usuario"%>
 
-
-
 <html>
 <head>
     <link href="<%= request.getContextPath() %>/public/css/web/template_css.css" rel="stylesheet" type="text/css">
@@ -229,8 +227,6 @@
       </tr>
       </table>
     <!-- Copia Skeleton Fin -->
-    
-    
     
 </body>
 </html>
