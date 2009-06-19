@@ -28,6 +28,7 @@ public class ProyectoAction extends AccionSoporte implements Preparable {
     private String tipoAcae;
     private String clsSector; /*Institución*/
     private String clsSubSector; /*Dependencia*/
+    private String ubigeoSeleccionado;
     
     private Proyecto proyecto;
     private List proyectos;
@@ -43,6 +44,7 @@ public class ProyectoAction extends AccionSoporte implements Preparable {
             log.info("[ProyectoAction.prepare][Ini]");
             llenaParametrosIniciales();
             log.info("pryId "+this.pryId);
+            System.out.println("ubigeoId-->"+ubigeoId+"-->ubigeoSeleccionado"+ubigeoSeleccionado);
             log.info("[ProyectoAction.prepare][Fin]");
         }catch(Exception ex){
             ex.printStackTrace();
@@ -200,6 +202,7 @@ public class ProyectoAction extends AccionSoporte implements Preparable {
         try{
             log.info("[ProyectoAction.buscarProyecto][Ini]");
             log.info("tipoAcae-->"+this.tipoAcae+"-->clsSector-->"+this.clsSector+"-->clsSubSector-->"+this.clsSubSector);
+            System.out.println("ubigeoId-->"+ubigeoId+"-->ubigeoSeleccionado"+ubigeoSeleccionado);
             Parametro par = new Parametro();
             SubSector sub = new SubSector();
             List lstIns = new ArrayList();
@@ -375,4 +378,11 @@ public class ProyectoAction extends AccionSoporte implements Preparable {
         return parDependencia;
     }
 
+    public void setUbigeoSeleccionado(String ubigeoSeleccionado) {
+        this.ubigeoSeleccionado = ubigeoSeleccionado;
+    }
+
+    public String getUbigeoSeleccionado() {
+        return ubigeoSeleccionado;
+    }
 }
