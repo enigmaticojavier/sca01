@@ -39,7 +39,13 @@
 	    <action name="showLogin">
                 <result>/index.jsp</result>
 	    </action>
-	    <action name="doLogin" class="gob.pe.minam.sca.action.LoginAction">            
+	    <action name="queSonCA">
+                <result>/queSonCA.jsp</result>
+	    </action>
+            <action name="normasLegales">
+                <result>/normasLegales.jsp</result>
+	    </action>
+            <action name="doLogin" class="gob.pe.minam.sca.action.LoginAction">            
             	<result name="input">/pages/layout/mainLayout.jsp</result>
             	<!--result name="error">/pages/layout/mainLayout.jsp</result-->
                 <result name="error">/index.jsp</result>
