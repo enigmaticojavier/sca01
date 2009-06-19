@@ -58,7 +58,7 @@ public class AdjuntoAction extends AccionSoporte implements Preparable {
             Parametro par = new Parametro();
             /*Periodo*/
             Periodo per = new Periodo();
-            this.parPeriodos=per.listarPeriodoReporte();
+            this.parPeriodos=per.listarPeriodoReporte(this.personaId);
             this.parPeriodos=this.parPeriodos==null?new ArrayList():this.parPeriodos;
             if (this.periodoSeleccionado==null){
                 if (this.parPeriodos.size()>0)

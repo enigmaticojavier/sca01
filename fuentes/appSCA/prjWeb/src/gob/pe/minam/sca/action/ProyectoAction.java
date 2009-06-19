@@ -44,7 +44,6 @@ public class ProyectoAction extends AccionSoporte implements Preparable {
             log.info("[ProyectoAction.prepare][Ini]");
             llenaParametrosIniciales();
             log.info("pryId "+this.pryId);
-            System.out.println("ubigeoId-->"+ubigeoId+"-->ubigeoSeleccionado"+ubigeoSeleccionado);
             log.info("[ProyectoAction.prepare][Fin]");
         }catch(Exception ex){
             ex.printStackTrace();
@@ -202,7 +201,6 @@ public class ProyectoAction extends AccionSoporte implements Preparable {
         try{
             log.info("[ProyectoAction.buscarProyecto][Ini]");
             log.info("tipoAcae-->"+this.tipoAcae+"-->clsSector-->"+this.clsSector+"-->clsSubSector-->"+this.clsSubSector);
-            System.out.println("ubigeoId-->"+ubigeoId+"-->ubigeoSeleccionado"+ubigeoSeleccionado);
             Parametro par = new Parametro();
             SubSector sub = new SubSector();
             List lstIns = new ArrayList();
