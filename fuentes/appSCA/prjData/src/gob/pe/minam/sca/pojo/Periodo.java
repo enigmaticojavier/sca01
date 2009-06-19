@@ -69,10 +69,10 @@ public class Periodo implements Serializable {
        }
     }
     
-    public List listarPeriodoReporte() throws NegocioException{
+    public List listarPeriodoReporte(int personaId) throws NegocioException{
        try{  
          PeriodoDao periodoDao = ProyectoService.getInstance().getPeriodoDao();
-         return periodoDao.listarPeriodoReporte();
+         return periodoDao.listarPeriodoReporte(personaId);
        }catch(DAOException ex){
          ex.printStackTrace();
          throw new NegocioException(ex.toString(),ex.getCodigoMensajeUsuario());
