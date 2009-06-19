@@ -17,7 +17,7 @@
 	<META NAME="Keywords" CONTENT="PERU,  MINAM ,  Perú, economy, MINISTERIO, AMBIENTE, Statistical , Ministerio del Ambiente, estadisticas, Indicadores, Indicadores Ambientales">
 	<link href="<%= request.getContextPath() %>/public/css/web/template_css.css" rel="stylesheet" type="text/css">
 	<link href="<%= request.getContextPath() %>/public/css/web/acordionv2.css" rel="stylesheet" type="text/css">
-        
+        <LINK HREF="styles/displaytagsca.css" REL="stylesheet" TYPE="text/css"> 
         <!--LINK HREF="styles/displaytagsca.css" REL="stylesheet" TYPE="text/css"-->
         
         <script type="text/javascript" src="<%= request.getContextPath() %>/public/js/web/includes/acordeon/accordian.pack.js"></script>

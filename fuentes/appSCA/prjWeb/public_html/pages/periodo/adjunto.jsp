@@ -138,8 +138,8 @@
                 <display:column title="Fec Trans" style="width:1"> 
                     <fmt:formatDate value="${expedienteDocumento.expedientePaso.expediente.fchExpediente}" pattern="dd/MM/yyyy"/>
                 </display:column>
-                <display:column property="expedientePaso.tipPaso" title="Doc" style="width:5"/>
-                <display:column title="Archivos" style="width:80"> 
+                <display:column property="documento.tipoDocumento" title="Doc" style="width:5"/>
+                <display:column title="Ubicación" style="width:80"> 
                     <table>
                         <tr>
                             <td>
