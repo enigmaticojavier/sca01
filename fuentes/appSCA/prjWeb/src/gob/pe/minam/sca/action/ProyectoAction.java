@@ -18,6 +18,7 @@ import org.apache.log4j.Logger;
 public class ProyectoAction extends AccionSoporte implements Preparable {
     static Logger log = Logger.getLogger("ProyectoAction.class");
     /*Parámetros Búsqueda*/
+    private boolean showMsgFind; 
     private Integer pryId;
     private String txtDescripcion; /*nombreProyecto*/
     private String ubigeoId; /*departamento*/
@@ -77,6 +78,7 @@ public class ProyectoAction extends AccionSoporte implements Preparable {
         lstDep.add(sub);
         this.parDependencia=lstDep;
         this.setVarSession("mensajeError",null);
+        this.showMsgFind=false;
         log.info("[ProyectoAction.list][Fin]");
         return SUCCESS;
       }catch(Exception ex){
@@ -89,13 +91,14 @@ public class ProyectoAction extends AccionSoporte implements Preparable {
       try{
           log.info("[ProyectoAction.llenaParametrosIniciales][Ini]");
           Parametro pr = new Parametro(); 
-          Ubigeo ubigeo = new Ubigeo();
+          Ubigeo ubi = new Ubigeo();
           /*Departamentos*/          
-          ubigeo.setUbigeoId(COMBO_COD_ALL);
+          Ubigeo ubigeo = new Ubigeo();
+          ubigeo.setCodDepartamento(COMBO_COD_ALL);
           ubigeo.setTxtDescripcion(COMBO_TXT_ALL);
-          this.ubiDepartamentos=ubigeo.listarDepartamento();
-          ubiDepartamentos.add(ubigeo);
-          if (this.ubigeoId==null) ubigeoId=COMBO_COD_ALL;
+          this.ubiDepartamentos=ubi.listarDepartamento();
+          this.ubiDepartamentos.add(ubigeo);
+          if (this.ubigeoId==null) this.ubigeoId=COMBO_COD_ALL;
           /*Categoria del Proyecto*/
           List lstCatPry=pr.buscarParametroXTipoParametro("IGA");
           Parametro par = new Parametro();
@@ -232,6 +235,7 @@ public class ProyectoAction extends AccionSoporte implements Preparable {
             lstDep.add(sub);
             this.parDependencia=lstDep;
             this.proyectos=Proyecto.buscarProyecto(this.txtDescripcion,this.ubigeoId,this.clsTipificacion,this.fchExpedienteDesde,this.fchExpedienteHasta,this.estadoTramite, this.tipoAcae, this.clsSector,this.clsSubSector);  
+            this.showMsgFind=true;
             log.info(this.proyectos==null?"this.proyectos.size=0":"this.proyectos.size="+this.proyectos.size());
             log.info("[ProyectoAction.buscarProyecto][Fin]");
         }catch(Exception ex){
@@ -382,5 +386,13 @@ public class ProyectoAction extends AccionSoporte implements Preparable {
 
     public String getUbigeoSeleccionado() {
         return ubigeoSeleccionado;
+    }
+
+    public void setShowMsgFind(boolean showMsgFind) {
+        this.showMsgFind = showMsgFind;
+    }
+
+    public boolean isShowMsgFind() {
+        return showMsgFind;
     }
 }

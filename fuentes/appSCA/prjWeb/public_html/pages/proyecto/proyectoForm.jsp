@@ -189,8 +189,8 @@
                 <tr><td>
                     
                     <display:table name="expedienteDocumentos" requestURI="proyectoForm" class="dataTable" id="expedienteDocumento" pagesize="10" style="width:620">
-                        <display:column property="expedientePaso.expediente.expId" title="Id" style="width:1%"  />
-                        <display:column property="expedientePaso.expediente.numExpediente" title="Nro Exp" style="width:10%" />
+                        <display:column property="expedientePaso.expediente.expId" title="Id" style="width:1%" media="csv" />
+                        <display:column property="expedientePaso.expediente.numExpediente" title="Nro Exp" style="width:1%" media="csv"/>
                         <display:column title="Fec Transac" style="width:10%"> 
                             <fmt:formatDate value="${expedienteDocumento.expedientePaso.expediente.fchExpediente}" pattern="dd/MM/yyyy"/> 
                         </display:column>

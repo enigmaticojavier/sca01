@@ -31,7 +31,8 @@
         <script language="javascript">
         function buscarCargarPeriodo(){
             var frm=document.frmArchivo;
-            frm.action="upload!list";
+            var periodoSeleccionado=document.getElementById("periodoSeleccionado").value;
+            frm.action="upload!list?periodoSeleccionado="+periodoSeleccionado;
             frm.submit();
         }
         
@@ -136,7 +137,7 @@
                             Periodo a informar:
                         </td>    
                         <td>
-                            <s:select name="periodoSeleccionado" value="periodoSeleccionado" list="parPeriodos" listKey="periodo" listValue="periodo"/>
+                            <s:select name="periodoSeleccionado" value="periodoSeleccionado" list="parPeriodos" listKey="periodo" listValue="periodo" onchange="buscarCargarPeriodo()"/>
                         </td>
                     </tr>
                     <tr>

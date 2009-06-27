@@ -2,16 +2,17 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 <!--%@ taglib prefix="fmt" uri="/WEB-INF/tld/fmt.tld" %-->
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<jsp:useBean id="date" class="java.util.Date"/>
 <%@page import="gob.pe.minam.sca.pojo.Usuario"%>
+<%@page import="java.util.Date"%>
 
 <html>
 <head>
     <link href="<%= request.getContextPath() %>/public/css/web/template_css.css" rel="stylesheet" type="text/css">
     <link href="<%= request.getContextPath() %>/public/css/web/acordionv2.css" rel="stylesheet" type="text/css">
     <LINK HREF="<%= request.getContextPath() %>/styles/displaytagsca.css" REL="stylesheet" TYPE="text/css">
-    
+  
     <!--LINK HREF="styles/fecha.css" REL="stylesheet" TYPE="text/css"-->
     <!--LINK HREF="styles/DatePicker.css" REL="stylesheet" TYPE="text/css"-->
     <!--script src="script/fecha.js"></script-->
@@ -71,6 +72,8 @@
 <body align="center" leftmargin="0" topmargin="0" width="600">
     
     <!-- Copia Skeleton Ini -->
+    <jsp:useBean id="fecIni" class="java.util.Date"/>
+        
     <table summary="Main Table for Techshelp" border="0" cellpadding="0" cellspacing="0" width="1000">
       <tr>
         <td colspan="2">
@@ -189,16 +192,16 @@
                 <tr><td>
                     
                     <s:set name="proyectos" value="proyectos" scope="request" />
-                    <s:if test="%{proyectos==null || proyectos.size()==0}">
+                    <s:if test="%{showMsgFind==true && (proyectos==null || proyectos.size()==0)}">
                         No existen proyectos que cumplan el criterio de búsqueda
                     </s:if>
                     <s:else>
-                        <display:table name="proyectos" requestURI="proyecto!buscarProyecto" excludedParams="*" class="dataTable" id="proyecto" pagesize="10" style="width:800" export="true">
+                        <display:table name="proyectos" requestURI="proyecto!buscarProyecto?txtDescripcion=${txtDescripcion}&ubigeoId=${ubigeoId}&clsTipificacion=${clsTipificacion}&fchExpedienteDesde=${d}&fchExpedienteHasta=${d2}&estadoTramite=${estadoTramite}&tipoAcae=${tipoAcae}&clsSector=${clsSector}&clsSubSector=${clsSubSector}" excludedParams="*" class="dataTable" id="proyecto" pagesize="10" style="width:800" export="true">
                             <display:setProperty name="export.csv" value="false" /> 
                             <display:setProperty name="export.xls" value="true" />
                             <display:setProperty name="export.xml" value="false" />
                             <display:setProperty name="export.xls.filename" value="proyecto.xls"/> 
-                            <display:column property="pryId" title="" style="width:5"  media="html" />
+                            <display:column property="pryId" title="" style="width:1"  media="csv" />
                             <display:column property="txtDescripcion" title="Nombre del Proyecto" style="width:600" media="html excel csv" />
                             <display:column property="dscClsTipificacion" title="Clasificación" style="width:50" media="html excel csv"/>
                             <display:column property="proponente.persona.txtRazonSocial" title="Proponente" style="width:70" media="html excel csv"/>
