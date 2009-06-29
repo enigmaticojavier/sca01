@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      ORACLE Version 10g                           */
-/* Created on:     29/06/2009 01:37:18 p.m.                     */
+/* Created on:     29/06/2009 03:27:26 p.m.                     */
 /*==============================================================*/
 
 
@@ -123,6 +123,7 @@ CREATE TABLE ACAE  (
    TXTAPELLIDOSNOMBRES  VARCHAR2(1000),
    TXTCARGO             VARCHAR2(255),
    TELEFONOGER          VARCHAR2(50),
+   ANEXOGER             VARCHAR2(6),
    CONSTRAINT PK_ACAE PRIMARY KEY (PERSONAID)
 );
 
