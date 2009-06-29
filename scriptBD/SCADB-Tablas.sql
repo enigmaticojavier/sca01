@@ -1,11 +1,8 @@
 /*==============================================================*/
 /* DBMS name:      ORACLE Version 10g                           */
-/* Created on:     19/06/2009 01:27:26 a.m.                     */
+/* Created on:     29/06/2009 01:37:18 p.m.                     */
 /*==============================================================*/
 
-
-ALTER TABLE ACAE
-   DROP CONSTRAINT FK_ACAE_ASSOCIATI_SUBSECTO;
 
 ALTER TABLE ACAE
    DROP CONSTRAINT FK_ACAE_GENERALIZ_PERSONA;
@@ -119,9 +116,8 @@ DROP TABLE USUARIO CASCADE CONSTRAINTS;
 /*==============================================================*/
 CREATE TABLE ACAE  (
    PERSONAID            INTEGER                         NOT NULL,
-   CLSSECTOR            VARCHAR2(6)                     NOT NULL,
-   CLSSUBSECTOR         VARCHAR2(6)                     NOT NULL,
    TIPACAE              VARCHAR2(6),
+   CLSSECTOR            VARCHAR2(6),
    TIPDOCUMENTOGER      VARCHAR2(6),
    CODDOCUMENTOGER      VARCHAR2(50),
    TXTAPELLIDOSNOMBRES  VARCHAR2(1000),
@@ -493,10 +489,6 @@ WITH READ ONLY;
 
  COMMENT ON TABLE VPROYECTOESTADO IS
 'Estados de cada Proyecto (en verdad es la situación del trámite de solicitud de certificación ambiental de los proyectos)';
-
-ALTER TABLE ACAE
-   ADD CONSTRAINT FK_ACAE_ASSOCIATI_SUBSECTO FOREIGN KEY (CLSSECTOR, CLSSUBSECTOR)
-      REFERENCES SUBSECTOR (CLSSECTOR, CLSSUBSECTOR);
 
 ALTER TABLE ACAE
    ADD CONSTRAINT FK_ACAE_GENERALIZ_PERSONA FOREIGN KEY (PERSONAID)
