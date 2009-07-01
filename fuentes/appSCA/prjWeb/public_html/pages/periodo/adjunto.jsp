@@ -132,31 +132,39 @@
             </table>
                 
             <display:table name="expedienteDocumentos" requestURI="adjunto" class="dataTable" id="expedienteDocumento" pagesize="20" style="width:720">
-                <display:column property="expedientePaso.expediente.expId" title="Id" style="width:1%"/>
-                <display:column property="documento.docId" title="docId" style="width:1%" media="html excel csv"/>
-                <display:column property="expedientePaso.expediente.proyecto.txtDescripcion" title="Proyecto" style="width:500"/>
-                <display:column property="expedientePaso.tipPaso" title="Tran" style="width:1"/>
+                <display:column property="expedientePaso.expediente.expId" title="Id" style="width:1%" media="cvs"/>
+                <display:column property="documento.docId" title="docId" style="width:1%" media="csv"/>
+                <display:column property="expedientePaso.expediente.proyecto.txtDescripcion" title="Proyecto" style="width:90%"/>
+                <display:column property="expedientePaso.tipPaso" title="Tra" style="width:1"/>
                 <display:column title="Fec Trans" style="width:1"> 
                     <fmt:formatDate value="${expedienteDocumento.expedientePaso.expediente.fchExpediente}" pattern="dd/MM/yyyy"/>
                 </display:column>
-                <display:column property="documento.tipoDocumento" title="Doc" style="width:5"/>
-                <display:column title="Ubicación" style="width:80"> 
+                <display:column property="documento.tipoDocumento" title="Doc" style="width:1"/>
+                <display:column title="Ubicación" style="width:10"> 
                     <table>
                         <tr>
                             <td>
-                                <s:file name="archAdjunto" disabled="false" size="25"/>
+                                <s:file name="archAdjunto" disabled="false" size="15"/>
                             </td>
                         </tr>
                     </table>
                 </display:column>
-                <display:column title="" style="width:5"> 
+                <display:column title="" style="width:1"> 
                     <input type="button" name="cargar" readonly="true" size="1" value="cargar"                  
                     onclick="cargarArchivoAdjunto('<c:out value="${expedienteDocumento.documento.docId}"/>')" />
                 </display:column>
-                <display:column title="Archivos" style="width:40%"> 
-                    <c:forEach var="imagen" items="${expedienteDocumento.documento.lstImagenDocumento}" varStatus="rowCounter">
-                        <a href="<%=request.getContextPath()%>/DescargaServlet?file=<c:out value="${imagen.txtRutaImagen}"/>"><c:out value="${imagen.txtNomArchivo}"/></a>
-                    </c:forEach>
+                <display:column title="Archivos" style="width:1"> 
+                    <table>
+                        <tr>
+                            <td>
+                                <div>
+                                <c:forEach var="imagen" items="${expedienteDocumento.documento.lstImagenDocumento}" varStatus="rowCounter">
+                                    <a href="<%=request.getContextPath()%>/DescargaServlet?file=<c:out value="${imagen.txtRutaImagen}"/>"><font size="1"><c:out value="${imagen.txtNomArchivo}"/></font></a>
+                                </c:forEach>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
                 </display:column>
             </display:table>
             </s:form>

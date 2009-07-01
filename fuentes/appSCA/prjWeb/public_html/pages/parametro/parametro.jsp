@@ -68,7 +68,7 @@
                     <display:setProperty name="export.xls" value="false" />
                     <display:setProperty name="export.xml" value="false" />
                     <display:setProperty name="export.xls.filename" value="parametro.xls"/> 
-                    <display:column property="idParametro" title="Id" style="width:10"  />
+                    <display:column property="idParametro" title="Id" style="width:10" media="cvs"/>
                     <display:column property="txtValor" title="Descripción del Parámetro" style="width:400"  />
                     <display:column property="codParametro" title="Valor del Parámetro" style="width:50"  />
                     <display:column href="parametro!input" paramId="idParametro" paramProperty="idParametro" title="Detalle" style="width:15" >Detalle</display:column>

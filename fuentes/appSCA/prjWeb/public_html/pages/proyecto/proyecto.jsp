@@ -203,13 +203,13 @@
                             <display:setProperty name="export.xls.filename" value="proyecto.xls"/> 
                             <display:column property="pryId" title="" style="width:1"  media="csv" />
                             <display:column property="txtDescripcion" title="Nombre del Proyecto" style="width:600" media="html excel csv" />
-                            <display:column property="dscClsTipificacion" title="Clasificación" style="width:50" media="html excel csv"/>
+                            <display:column property="dscClsTipificacion" title="Clasi<br>fica" style="width:50" media="html excel csv"/>
                             <display:column property="proponente.persona.txtRazonSocial" title="Proponente" style="width:70" media="html excel csv"/>
-                            <display:column title="Fec Presen" style="width:10" media="html excel csv">
+                            <display:column title="Fec Pres" style="width:10" media="html excel csv">
                                 <fmt:formatDate value="${proyecto.fchExpediente}" pattern="dd/MM/yyyy"/> 
                             </display:column> 
                             <display:column property="ubigeo.txtDescripcion" title="Departamento" style="width:15" media="html excel csv"/>
-                            <display:column property="estadoTramite" title="Est. Act. Trámite" style="width:10" media="html excel csv"/>
+                            <display:column property="estadoTramite" title="Est. Act.<br>Trámite" style="width:10" media="html excel csv"/>
                             <display:column href="proyectoForm!input" paramId="pryId" paramProperty="pryId" title="Detalle" style="width:5%" media="html">
                                 Detalle
                             </display:column>

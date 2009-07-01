@@ -67,14 +67,16 @@
             </tr>
             <tr>
                 <td>
-                    <s:label value="%{getText('label.parametro.idParametro')}"/>
+                    <!--s:label value="%{getText('label.parametro.idParametro')}"/-->
                 </td>
                 <td>
                     <s:if test="parametro==null || parametro.idParametro == null">
-                        <s:textfield name="parametro.idParametro" disabled="true" value="%{parametro.idParametro}" size="10"/>
+                        <s:hidden name="parametro.idParametro" value="%{parametro.idParametro}"/>
+                        <!--s:textfield name="parametro.idParametro" disabled="true" value="%{parametro.idParametro}" size="10"/-->
                     </s:if>
                     <s:else>
-                        <s:textfield name="parametro.idParametro" readonly="true" value="%{parametro.idParametro}" label="%{getText('label.parametro.idParametro')}" size="10"/>
+                        <s:hidden name="parametro.idParametro" value="%{parametro.idParametro}"/>
+                        <!--s:textfield name="parametro.idParametro" readonly="true" value="%{parametro.idParametro}" label="%{getText('label.parametro.idParametro')}" size="10"/-->
                     </s:else>
                 </td>
             </tr>    

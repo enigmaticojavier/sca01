@@ -70,6 +70,7 @@
     select * 
     from parametro
     where tipparametro=#tipParametro#
+    order by txtValor
   </select>
   
   <select id="findParametroXParametro" parameterClass="Parametro" resultMap="ParametroResult">

@@ -108,7 +108,6 @@
                             <s:label value="%{getText('label.proyecto.txtDescripcion')}"/>
                         </td>    
                         <td>
-                            <!--s:textfield name="proyecto.txtDescripcion" value="%{proyecto.txtDescripcion}" size="100" readonly="true"/-->
                             <s:textarea rows="3" cols="60" name="proyecto.txtDescripcion" value="%{proyecto.txtDescripcion}" readonly="true" width="100" />
                         </td>
                       </tr>   
@@ -122,7 +121,7 @@
                       </tr>  
                       <tr> 
                         <td>    
-                            <s:label value="Fecha Inicio"/>
+                            <s:label value="Fecha de Inicio del Trámite"/>
                         </td>    
                         <td>    
                             <s:textfield name="proyecto.fchExpediente" value="%{proyecto.fchExpediente}" size="10" readonly="true">
@@ -177,6 +176,30 @@
                         </td>    
                         <td>    
                             <s:textfield name="proyecto.proponente.txtNombresRl" value="%{proyecto.proponente.txtNombresRl}" size="40" readonly="true"/>
+                        </td>    
+                      </tr>  
+                      <tr> 
+                        <td>    
+                            <s:label value="Teléfono" />
+                        </td>    
+                        <td>    
+                            <s:textfield name="proyecto.proponente.persona.telefono" value="%{proyecto.proponente.persona.telefono}" size="40" readonly="true"/>
+                        </td>    
+                      </tr>  
+                      <tr> 
+                        <td>    
+                            <s:label value="Email" />
+                        </td>    
+                        <td>    
+                            <s:textfield name="proyecto.proponente.persona.txtEmail" value="%{proyecto.proponente.persona.txtEmail}" size="40" readonly="true"/>
+                        </td>    
+                      </tr>  
+                      <tr> 
+                        <td>    
+                            <s:label value="Fax" />
+                        </td>    
+                        <td>    
+                            <s:textfield name="proyecto.proponente.persona.fax" value="%{proyecto.proponente.persona.fax}" size="40" readonly="true"/>
                         </td>    
                       </tr>  
                     </table>   

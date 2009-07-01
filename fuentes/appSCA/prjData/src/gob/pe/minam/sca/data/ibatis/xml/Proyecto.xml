@@ -82,6 +82,9 @@
     <result property="proponente.persona.numDocumentoPer" column="NUMDOCUMENTOPER"/>
     <result property="proponente.persona.txtRazonSocial" column="TXTRAZONSOCIAL"/>
     <result property="proponente.txtNombresRl" column="TXTNOMBRESRL"/>
+    <result property="proponente.persona.telefono" column="TELEFONO"/>
+    <result property="proponente.persona.txtEmail" column="TXTEMAIL"/>
+    <result property="proponente.persona.fax" column="FAX"/>
   </resultMap>
   
   <select id="ObtenerProyecto" resultMap="ObtenerProyectoResult" parameterClass="int">
@@ -93,7 +96,10 @@
            pry.clssubsector,
            per.numdocumentoper,
            per.txtrazonsocial,
-           prp.txtnombresrl
+           prp.txtnombresrl,
+           per.telefono,
+           per.txtemail,
+           per.fax
     from proyecto pry, parametro cat, proponente prp, persona per
     where pry.clstipificacion = cat.codparametro(+) and cat.tipparametro(+)='IGA'
     and pry.personaid = prp.personaid and prp.personaid = per.personaid
