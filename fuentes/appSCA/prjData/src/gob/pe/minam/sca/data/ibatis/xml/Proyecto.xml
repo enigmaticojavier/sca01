@@ -66,7 +66,7 @@
     <parameter property="p_cEstadoTramite" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
     <parameter property="p_cTipoAcae" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
     <parameter property="p_cClsSector" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
-    <parameter property="p_cClsSubSector" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+    <parameter property="p_cClsSubSector" jdbcType="NUMBER" javaType="java.lang.Integer" mode="IN"/>
   </parameterMap>
   <procedure id="PQ_PROYECTO.BUSCAR" parameterMap="ParametersBuscarProyecto">
      { call PQ_PROYECTO.BUSCAR(?,?,?,?,?,?,?,?,?,?) }

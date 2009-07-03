@@ -157,6 +157,7 @@ public class UploadAction extends AccionSoporte implements Preparable {
             log.info("PeriodoSeleccionado-->"+this.periodoSeleccionado+"tmpPeriodo-->"+tmpPeriodo);
             this.acae=new Acae();
             this.personaId=((Usuario)this.getVarSession("Usuario")).getPersonaId().intValue();
+            log.info("this.personaId"+this.personaId);
             this.acae.setPersonaId(this.personaId);
             this.acae = Acae.getAcaeByKey(this.acae);
             boolean copiado=false;
@@ -194,6 +195,8 @@ public class UploadAction extends AccionSoporte implements Preparable {
                         // Procesar Carga
                         int resProceso=0;
                         if (beanRetLectExcel.getCodError()==ConstantesSistema.CONST_RETORNO_EXITO){
+                            ControlEnvio controlEnvio = new ControlEnvio();
+                            controlEnvio.controlEnvioLimpiaTabla("PRP",this.personaId,tmpPeriodo);
                             ProcesoProponente procesoProponente = new ProcesoProponente();  
                             BeanRetornoData beanRetornoData=procesoProponente.procesar(personaId, tmpPeriodo, beanRetLectExcel.getLstData());
                             if (beanRetornoData.getCodError()==ConstantesSistema.CONST_RETORNO_EXITO){
@@ -248,6 +251,7 @@ public class UploadAction extends AccionSoporte implements Preparable {
             log.info("PeriodoSeleccionado-->"+this.periodoSeleccionado+"tmpPeriodo-->"+tmpPeriodo);
             this.acae=new Acae();
             this.personaId=((Usuario)this.getVarSession("Usuario")).getPersonaId().intValue();
+            log.info("this.personaId"+this.personaId);
             this.acae.setPersonaId(this.personaId);
             this.acae = Acae.getAcaeByKey(this.acae);
             boolean copiado=false;
@@ -285,6 +289,8 @@ public class UploadAction extends AccionSoporte implements Preparable {
                         // Procesar Carga
                         int resProceso=0;
                         if (beanRetLectExcel.getCodError()==ConstantesSistema.CONST_RETORNO_EXITO){
+                            ControlEnvio controlEnvio = new ControlEnvio();
+                            controlEnvio.controlEnvioLimpiaTabla("PRY",this.personaId,tmpPeriodo);
                             ProcesoProyecto procesoProyecto = new ProcesoProyecto();  
                             BeanRetornoData beanRetornoData=procesoProyecto.procesar(personaId, tmpPeriodo, beanRetLectExcel.getLstData());
                             if (beanRetornoData.getCodError()==ConstantesSistema.CONST_RETORNO_EXITO){
@@ -339,6 +345,7 @@ public class UploadAction extends AccionSoporte implements Preparable {
             log.info("PeriodoSeleccionado-->"+this.periodoSeleccionado+"tmpPeriodo-->"+tmpPeriodo);
             this.acae=new Acae();
             this.personaId=((Usuario)this.getVarSession("Usuario")).getPersonaId().intValue();
+            log.info("this.personaId"+this.personaId);
             this.acae.setPersonaId(this.personaId);
             this.acae = Acae.getAcaeByKey(this.acae);
             boolean copiado=false;
@@ -376,6 +383,8 @@ public class UploadAction extends AccionSoporte implements Preparable {
                         // Procesar Carga
                         int resProceso=0;
                         if (beanRetLectExcel.getCodError()==ConstantesSistema.CONST_RETORNO_EXITO){
+                            ControlEnvio controlEnvio = new ControlEnvio();
+                            controlEnvio.controlEnvioLimpiaTabla("EXP",this.personaId,tmpPeriodo);
                             ProcesoExpediente procesoExpediente = new ProcesoExpediente();  
                             BeanRetornoData beanRetornoData=procesoExpediente.procesar(personaId, tmpPeriodo, beanRetLectExcel.getLstData());
                             if (beanRetornoData.getCodError()==ConstantesSistema.CONST_RETORNO_EXITO){

@@ -15,4 +15,5 @@ public interface ControlEnvioDao{
     public void insertControlEnvio(ControlEnvio controlEnvio) throws DAOException;
     public void updateControlEnvio(ControlEnvio controlEnvio) throws DAOException;
     public boolean existeControlEnvio(String periodo, int personaId) throws DAOException;
+    public void controlEnvioLimpiaTabla(String tipoArchivo, int numAcae, String periodo) throws DAOException;
 }

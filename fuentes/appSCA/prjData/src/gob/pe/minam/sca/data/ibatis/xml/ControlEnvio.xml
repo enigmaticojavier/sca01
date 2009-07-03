@@ -38,14 +38,14 @@
   
   <update id="updateControlEnvio" parameterClass="ControlEnvio">
     update controlenvio
-    set personaid=#personaId#, 
-        estenviopro=#estEnvioPro#, 
-        fchenviopro=#fchEnvioPro#, 
-        estenviopry=#estEnvioPry#, 
+    set estenviopro=#estEnvioPro#,
+        fchenviopro=#fchEnvioPro#,
+        estenviopry=#estEnvioPry#,
         fchenviopry=#fchEnvioPry#,
-        estenvioexp=#estEnvioExp#, 
+        estenvioexp=#estEnvioExp#,
         fchenvioexp=#fchEnvioExp#
     where periodo = #periodo#
+          and personaid=#personaId#
   </update>
   
   <select id="existeControlEnvio" parameterClass="ControlEnvio" resultClass="int">
@@ -54,5 +54,14 @@
     where periodo = #periodo#
     and personaid = #personaId#
   </select>
+  
+  <parameterMap id="controlEnvioLimpiaTabla" class="map" >
+    <parameter property="as_archivo" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+    <parameter property="al_numacae" jdbcType="NUMBER" javaType="java.lang.Integer" mode="IN"/>
+    <parameter property="as_periodo" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+  </parameterMap>
+  <procedure id="USP_000_LIMPIA_TABLAT" parameterMap="controlEnvioLimpiaTabla">
+     { call USP_000_LIMPIA_TABLAT(?,?,?) }
+  </procedure>
   
 </sqlMap>

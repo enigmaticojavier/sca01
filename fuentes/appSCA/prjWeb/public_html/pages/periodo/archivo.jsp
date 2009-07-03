@@ -143,7 +143,7 @@
                     <tr>
                         <td colspan="2" align="center">
                             <!--input type="button" value="Buscar" onclick="buscarCargarPeriodo()"-->
-                            <s:submit value="%{getText('button.label.buscar')}" onclick="buscarCargarPeriodo()"/>        
+                            <!--s:submit value="%{getText('button.label.buscar')}" onclick="buscarCargarPeriodo()"/-->        
                         </td>    
                     </tr>
                 </table>

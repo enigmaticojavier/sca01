@@ -178,7 +178,8 @@
                             <s:label value="Dependencia"/>
                         </td>    
                         <td align="left">
-                            <s:select name="clsSubSector" value="clsSubSector" list="parDependencia" listKey="clsSubSector" listValue="txtSubSector"/>        
+                            <!--s:select name="clsSubSector" value="clsSubSector" list="parDependencia" listKey="clsSubSector" listValue="txtSubSector"/-->
+                            <s:select name="clsSubSector" value="clsSubSector" list="parDependencia" listKey="personaId" listValue="txtRazonSocial"/>
                         </td>
                       </tr> 
                       <tr>

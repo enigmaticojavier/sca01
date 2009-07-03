@@ -102,4 +102,18 @@
     AND A.PERSONAID = U.PERSONAID
     AND A.PERSONAID = #personaId#
     </select>
+    
+    
+    <resultMap id="AcaeResult" class="Acae">
+    <result property="personaId" column="PERSONAID"/>
+    <result property="txtRazonSocial" column="TXTRAZONSOCIAL"/>
+    </resultMap>
+  <select id="listarDependencia" parameterClass="Acae" resultMap="AcaeResult">
+    SELECT PERSONA.PERSONAID, PERSONA.TXTRAZONSOCIAL
+    FROM ACAE, PERSONA
+    WHERE ACAE.PERSONAID = PERSONA.PERSONAID
+    AND TIPACAE = #tipAcae#
+    AND CLSSECTOR = #clsSector#
+  </select>
+    
 </sqlMap>

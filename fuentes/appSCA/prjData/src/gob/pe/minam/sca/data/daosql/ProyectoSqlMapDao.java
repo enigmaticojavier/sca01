@@ -62,7 +62,7 @@ public class ProyectoSqlMapDao extends BaseSqlMapDao implements ProyectoDao {
           map.put("p_cEstadoTramite",estadoTramite);
           map.put("p_cTipoAcae",tipoAcae);
           map.put("p_cClsSector",clsSector);
-          map.put("p_cClsSubSector",clsSubSector);
+          map.put("p_cClsSubSector",Integer.parseInt(clsSubSector));
           System.out.println("txtDescripcion"+txtDescripcion);
           System.out.println("ubigeoId"+ubigeoId);
           System.out.println("clsTipificacion"+clsTipificacion);

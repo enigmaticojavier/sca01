@@ -3,6 +3,7 @@ package gob.pe.minam.sca.action;
 import com.opensymphony.xwork2.Preparable;
 
 import gob.pe.minam.sca.framework.AccionSoporte;
+import gob.pe.minam.sca.pojo.Acae;
 import gob.pe.minam.sca.pojo.Parametro;
 import gob.pe.minam.sca.pojo.Proyecto;
 import gob.pe.minam.sca.pojo.SubSector;
@@ -66,16 +67,20 @@ public class ProyectoAction extends AccionSoporte implements Preparable {
       try{
         log.info("[ProyectoAction.list][Ini]");
         Parametro par = new Parametro();
-        SubSector sub = new SubSector();
+        //SubSector sub = new SubSector();
+        Acae acae = new Acae();
         List lstIns = new ArrayList();
         List lstDep = new ArrayList();
         par.setCodParametro(COMBO_COD_ALL);
         par.setTxtValor(COMBO_TXT_ALL);
         lstIns.add(par);
         this.parInstitucion=lstIns;
-        sub.setClsSubSector(COMBO_COD_ALL);
-        sub.setTxtSubSector(COMBO_TXT_ALL);
-        lstDep.add(sub);
+        //sub.setClsSubSector(COMBO_COD_ALL);
+        //sub.setTxtSubSector(COMBO_TXT_ALL);
+        //lstDep.add(sub);
+        acae.setPersonaId(Integer.parseInt(COMBO_COD_ALL));
+        acae.setTxtRazonSocial(COMBO_TXT_ALL);
+        lstDep.add(acae);
         this.parDependencia=lstDep;
         this.setVarSession("mensajeError",null);
         this.showMsgFind=false;
@@ -131,7 +136,8 @@ public class ProyectoAction extends AccionSoporte implements Preparable {
       try{
           log.info("[ProyectoAction.buscarInstitucionXTipoAcae][Ini]");
           Parametro par = new Parametro(); 
-          SubSector sub = new SubSector();
+          //SubSector sub = new SubSector();
+          Acae acae=new Acae();
           List lstIns = new ArrayList();
           List lstDep = new ArrayList();
           if (this.tipoAcae!=null){
@@ -151,9 +157,12 @@ public class ProyectoAction extends AccionSoporte implements Preparable {
                   this.parInstitucion=lstIns;
                   this.clsSector=COMBO_COD_ALL;
               }
-              sub.setClsSubSector(COMBO_COD_ALL);
-              sub.setTxtSubSector(COMBO_TXT_ALL);
-              lstDep.add(sub);
+              //sub.setClsSubSector(COMBO_COD_ALL);
+              //sub.setTxtSubSector(COMBO_TXT_ALL);
+              //lstDep.add(sub);
+              acae.setPersonaId(Integer.parseInt(COMBO_COD_ALL));
+              acae.setTxtRazonSocial(COMBO_TXT_ALL);
+              lstDep.add(acae);
               this.parDependencia=lstDep;
               this.clsSubSector=COMBO_COD_ALL;
           }else{
@@ -170,7 +179,8 @@ public class ProyectoAction extends AccionSoporte implements Preparable {
       try{
           log.info("[ProyectoAction.buscarDependenciaXInstitucion][Ini]");
           Parametro par = new Parametro(); 
-          SubSector sub = new SubSector();
+          //SubSector sub = new SubSector();
+          Acae acae = new Acae();
           List lstIns = new ArrayList();
           List lstDep = new ArrayList();
           lstIns=par.buscarParametroXTipoParametro(this.tipoAcae);
@@ -180,14 +190,18 @@ public class ProyectoAction extends AccionSoporte implements Preparable {
           lstIns.add(par);
           this.parInstitucion=lstIns;
           if (this.clsSector!=null){
-              log.info("this.clsSector " + this.clsSector);
+              log.info("this.tipoAcae " + this.tipoAcae + "this.clsSector " + this.clsSector);
               if (!this.clsSector.equals(COMBO_COD_ALL)){
-                  lstDep=sub.buscarSubsectorXSector(this.clsSector);
+                  lstDep=acae.listarDependencia(this.tipoAcae, this.clsSector);
+                  //lstDep=sub.buscarSubsectorXSector(this.clsSector);
                   if (lstDep==null) lstDep=new ArrayList();
               }
-              sub.setClsSubSector(COMBO_COD_ALL);
-              sub.setTxtSubSector(COMBO_TXT_ALL);
-              lstDep.add(sub);
+              //sub.setClsSubSector(COMBO_COD_ALL);
+              //sub.setTxtSubSector(COMBO_TXT_ALL);
+              //lstDep.add(sub);
+              acae.setPersonaId(Integer.parseInt(COMBO_COD_ALL));
+              acae.setTxtRazonSocial(COMBO_TXT_ALL);
+              lstDep.add(acae);
               this.parDependencia=lstDep;
               this.clsSubSector=COMBO_COD_ALL;
           }else{
@@ -205,7 +219,8 @@ public class ProyectoAction extends AccionSoporte implements Preparable {
             log.info("[ProyectoAction.buscarProyecto][Ini]");
             log.info("tipoAcae-->"+this.tipoAcae+"-->clsSector-->"+this.clsSector+"-->clsSubSector-->"+this.clsSubSector);
             Parametro par = new Parametro();
-            SubSector sub = new SubSector();
+            //SubSector sub = new SubSector();
+            Acae acae=new Acae();
             List lstIns = new ArrayList();
             List lstDep = new ArrayList();
             /*Institucion*/
@@ -228,11 +243,15 @@ public class ProyectoAction extends AccionSoporte implements Preparable {
                this.clsSubSector=COMBO_COD_ALL;
             }
             if (!this.clsSector.equals(COMBO_COD_ALL)){
-             lstDep=sub.buscarSubsectorXSector(this.clsSector) ;
+             //lstDep=sub.buscarSubsectorXSector(this.clsSector) ;
+             lstDep=acae.listarDependencia(this.tipoAcae, this.clsSector);
             }
-            sub.setClsSubSector(COMBO_COD_ALL);
-            sub.setTxtSubSector(COMBO_TXT_ALL);
-            lstDep.add(sub);
+            //sub.setClsSubSector(COMBO_COD_ALL);
+            //sub.setTxtSubSector(COMBO_TXT_ALL);
+            //lstDep.add(sub);
+            acae.setPersonaId(Integer.parseInt(COMBO_COD_ALL));
+            acae.setTxtRazonSocial(COMBO_TXT_ALL);
+            lstDep.add(acae);
             this.parDependencia=lstDep;
             this.proyectos=Proyecto.buscarProyecto(this.txtDescripcion,this.ubigeoId,this.clsTipificacion,this.fchExpedienteDesde,this.fchExpedienteHasta,this.estadoTramite, this.tipoAcae, this.clsSector,this.clsSubSector);  
             this.showMsgFind=true;

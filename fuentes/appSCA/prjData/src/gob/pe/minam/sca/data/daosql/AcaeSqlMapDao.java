@@ -42,4 +42,11 @@ public class AcaeSqlMapDao extends BaseSqlMapDao implements AcaeDao {
     public Acae getAcaeBusqueda(Acae acae) {
         return (Acae) queryForObject("getAcaeBusqueda",acae);
     }
+    
+    public List listarDependencia(String tipAcae, String clsSector) throws DAOException{
+        Acae acae = new Acae();
+        acae.setTipAcae(tipAcae);
+        acae.setClsSector(clsSector);
+        return queryForList("listarDependencia",acae);
+    }
 }

@@ -162,4 +162,11 @@ public class Acae extends Persona {
         AcaeDao acaeDao = proyectoService.getAcaeDao();
         return acaeDao.getAcaeBusqueda(acae);
     }
+    
+    public static List listarDependencia(String tipAcae, String clsSector) throws DAOException{
+        ProyectoService proyectoService = ProyectoService.getInstance();
+        AcaeDao acaeDao = proyectoService.getAcaeDao();
+        return acaeDao.listarDependencia(tipAcae, clsSector);
+    }
+    
 }

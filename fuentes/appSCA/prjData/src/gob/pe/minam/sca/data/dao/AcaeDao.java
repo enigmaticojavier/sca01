@@ -26,4 +26,6 @@ public interface AcaeDao {
     public List getAcaeByNombre(Acae acae) throws DAOException;
     
     public Acae getAcaeBusqueda(Acae acae) throws DAOException;
+    
+    public List listarDependencia(String tipAcae, String clsSector) throws DAOException;
 }

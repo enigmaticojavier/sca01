@@ -150,8 +150,20 @@ public class Prueba {
         ex.printStackTrace();
         System.out.println("Error-->"+ex.toString());
       }
+      try{
+          System.out.println("Listar Dependencia");
+          Acae acae3 = new Acae();
+          List l = acae3.listarDependencia("GRE","001");
+          for (int i=0;l!=null&&i<l.size();i++){
+              System.out.println("personaId" + ((Acae)l.get(i)).getPersonaId() + " TxtRazonSocial " + ((Acae)l.get(i)).getTxtRazonSocial() );  
+          }
+      }catch(Throwable ex){
+        ex.printStackTrace();
+        System.out.println("Error-->"+ex.toString());
+      }
+      
       String query="";
-      query=query.substring(0,query.length()-1);
+      //query=query.substring(0,query.length()-1);
       System.out.println(query);
   }  
   

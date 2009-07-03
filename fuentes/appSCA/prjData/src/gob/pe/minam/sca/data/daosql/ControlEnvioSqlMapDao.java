@@ -8,6 +8,22 @@ import gob.pe.minam.sca.data.BaseSqlMapDao;
 import gob.pe.minam.sca.data.dao.ControlEnvioDao;
 import gob.pe.minam.sca.framework.exception.DAOException;
 import gob.pe.minam.sca.pojo.ControlEnvio;
+import gob.pe.minam.sca.pojo.Persona;
+import gob.pe.minam.sca.pojo.Proponente;
+import gob.pe.minam.sca.pojo.Proyecto;
+import gob.pe.minam.sca.pojo.Ubigeo;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.commons.beanutils.DynaBean;
 
 
 public class ControlEnvioSqlMapDao extends BaseSqlMapDao implements ControlEnvioDao {
@@ -69,5 +85,22 @@ public class ControlEnvioSqlMapDao extends BaseSqlMapDao implements ControlEnvio
         }catch(Exception ex){
           throw new DAOException(ex.toString(),"Error producido en la Inserción de ControlEnvio");
         }
+    }
+    
+    public void controlEnvioLimpiaTabla(String tipoArchivo, int numAcae, String periodo) throws DAOException{
+        try{
+          Map map = new HashMap();
+          map.put("as_archivo",tipoArchivo);
+          map.put("al_numacae",numAcae);
+          map.put("as_periodo",periodo);
+          queryForObject("USP_000_LIMPIA_TABLAT", map);
+        }catch(SqlMapException ex){
+          throw new DAOException(ex.toString(),"Error producido en BD : No se puede ejecutar controlEnvioLimpiaTabla");
+        }catch(DaoException ex){
+          throw new DAOException(ex.toString(),"Error producido en BD : controlEnvioLimpiaTabla presenta problemas");
+        }catch(Exception ex){
+          ex.printStackTrace();  
+          throw new DAOException(ex.toString(),"Error producido en controlEnvioLimpiaTabla");
+        }        
     }
 }

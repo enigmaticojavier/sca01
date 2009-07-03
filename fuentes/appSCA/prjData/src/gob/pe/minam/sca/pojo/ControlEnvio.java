@@ -115,4 +115,15 @@ public class ControlEnvio {
         }
     }
     
+    public void controlEnvioLimpiaTabla(String tipoArchivo, int numAcae, String periodo) throws NegocioException{
+        try{
+            ControlEnvioDao controlEnvioDao = ProyectoService.getInstance().getControlEnvioDao();
+            controlEnvioDao.controlEnvioLimpiaTabla(tipoArchivo, numAcae, periodo);
+        }catch(DAOException ex){
+          throw new NegocioException(ex.toString(),ex.getCodigoMensajeUsuario());
+        }catch(Exception ex){
+          throw new NegocioException(ex.toString(),"Error producido en Pojo");
+        }
+    }
+    
 }
