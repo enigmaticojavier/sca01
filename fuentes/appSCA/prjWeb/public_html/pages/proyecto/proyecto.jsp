@@ -13,10 +13,10 @@
     <link href="<%= request.getContextPath() %>/public/css/web/acordionv2.css" rel="stylesheet" type="text/css">
     <LINK HREF="<%= request.getContextPath() %>/styles/displaytagsca.css" REL="stylesheet" TYPE="text/css">
   
-    <!--LINK HREF="styles/fecha.css" REL="stylesheet" TYPE="text/css"-->
-    <!--LINK HREF="styles/DatePicker.css" REL="stylesheet" TYPE="text/css"-->
-    <!--script src="script/fecha.js"></script-->
-    <!--script src="script/DatePicker.js"></script-->
+    <script src="public/js/AnchorPosition.js"></script>
+    <script src="public/js/date.js"></script>
+    <script src="public/js/PopupWindow.js"></script>
+    <script src="public/js/CalendarPopup.js"></script>
     <title><s:text name="label.proyecto.titulo"/></title>
     <script language="javascript">
         function cambiarTipoAcae(){
@@ -68,6 +68,16 @@
             } 
         }
     </script>
+    
+    <SCRIPT LANGUAGE="JavaScript" ID="jscal">
+     var calDesde = new CalendarPopup("divCalendarDesde");
+     calDesde.showNavigationDropdowns();
+     var calHasta = new CalendarPopup("divCalendarHasta");
+     calHasta.showNavigationDropdowns();
+     document.write(getCalendarStyles());
+    </SCRIPT>
+    
+    
 </head>
 <body align="center" leftmargin="0" topmargin="0" width="600">
     
@@ -141,12 +151,16 @@
                                  <s:date name="fchExpedienteDesde" format="dd/MM/yyyy" />
                                </s:param>
                             </s:textfield>
+                            <DIV ID="divCalendarDesde" STYLE="position:absolute;visibility:hidden;background-color:white;layer-background-color:white;"></DIV>
+                            <A HREF="#" onClick="calDesde.select(document.getElementById('fchExpedienteDesde'),'anchorDesde','dd/MM/yyyy'); return false;" TITLE="calDesde.select(document.getElementById('fchExpedienteDesde'),'anchorDesde','dd/MM/yyyy'); return false;" NAME="anchorDesde" ID="anchorDesde">...</A>
                             <s:label value="Hasta"/>
                             <s:textfield name="fchExpedienteHasta" value="%{fchExpedienteHasta}" size="10" maxLength="10">
                                <s:param name="value">
                                  <s:date name="fchExpedienteHasta" format="dd/MM/yyyy" />
                                </s:param>
                             </s:textfield>
+                            <DIV ID="divCalendarHasta" STYLE="position:absolute;visibility:hidden;background-color:white;layer-background-color:white;"></DIV>
+                            <A HREF="#" onClick="calHasta.select(document.getElementById('fchExpedienteHasta'),'anchorHasta','dd/MM/yyyy'); return false;" TITLE="calHasta.select(document.getElementById('fchExpedienteHasta'),'anchorHasta','dd/MM/yyyy'); return false;" NAME="anchorHasta" ID="anchorHasta">...</A>
                         </td>    
                       </tr>  
                       <tr>
