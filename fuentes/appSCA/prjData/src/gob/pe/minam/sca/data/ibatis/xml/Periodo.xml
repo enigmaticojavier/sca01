@@ -23,8 +23,8 @@
     select anio, mes, peractual, estado, anio || '-' || lpad(mes,2,'0') periodo from periodo order by anio desc, mes desc
   </select>
   
-  <select id="SelectPeriodoReporte" resultMap="PeriodoComboResult">
-    select to_char(sysdate-4,'yyyy') || '-' || to_char(sysdate-4,'mm') periodo from dual 
+  <select id="SelectPeriodoReporte" resultMap="PeriodoComboResult" parameterClass="int">
+    select to_char(sysdate-#param#,'yyyy') || '-' || to_char(sysdate-#param#,'mm') periodo from dual 
     union
     select to_char(sysdate,'yyyy') || '-' || to_char(sysdate,'mm') periodo from dual 
   </select>
