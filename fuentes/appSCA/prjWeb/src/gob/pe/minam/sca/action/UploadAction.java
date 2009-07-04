@@ -63,7 +63,7 @@ public class UploadAction extends AccionSoporte implements Preparable {
             /*Periodo*/
             Periodo per = new Periodo();
             this.personaId=((Usuario)this.getVarSession("Usuario")).getPersonaId().intValue();
-            int nroDias=Integer.parseInt(((Parametro)par.buscarParametroXTipoParametro("PLZ")).getTxtValor());
+            int nroDias=Integer.parseInt(((Parametro)par.buscarParametroXTipoParametro("PLZ").get(0)).getTxtValor());
             this.parPeriodos=per.listarPeriodoReporte(nroDias);
             this.parPeriodos=this.parPeriodos==null?new ArrayList():this.parPeriodos;
             if (this.periodoSeleccionado==null){
