@@ -12,5 +12,5 @@ import java.util.List;
 
 public interface PeriodoDao {
     public List listarPeriodo() throws DAOException;
-    public List listarPeriodoReporte(int personaId) throws DAOException;
+    public List listarPeriodoReporte(int nroDias) throws DAOException;
 }
