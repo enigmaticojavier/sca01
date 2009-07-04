@@ -51,7 +51,7 @@ public class ProcesoProponente {
                     beanRetornoData.setDscError("Error procesando fila " + fila + " se encuentra vacía");
                     return beanRetornoData;
                 }
-                System.out.println("query-->"+query);
+                //System.out.println("query-->"+query);
                 try{
                     stm.execute(query);
                 }catch(Exception ex){
