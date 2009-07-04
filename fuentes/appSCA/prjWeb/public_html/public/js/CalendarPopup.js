@@ -200,9 +200,9 @@ function CalendarPopup() {
 	c.offsetY = 25;
 	c.autoHide();
 	// Calendar-specific properties
-	c.monthNames = new Array("January","February","March","April","May","June","July","August","September","October","November","December");
-	c.monthAbbreviations = new Array("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec");
-	c.dayHeaders = new Array("S","M","T","W","T","F","S");
+	c.monthNames = new Array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Setiembre","Octubre","Noviembre","Diciembre");
+	c.monthAbbreviations = new Array("Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Set","Oct","Nov","Dic");
+	c.dayHeaders = new Array("D","L","M","M","J","V","S");
 	c.returnFunction = "CP_tmpReturnFunction";
 	c.returnMonthFunction = "CP_tmpReturnMonthFunction";
 	c.returnQuarterFunction = "CP_tmpReturnQuarterFunction";
