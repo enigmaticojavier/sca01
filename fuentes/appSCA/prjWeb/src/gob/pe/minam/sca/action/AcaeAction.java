@@ -104,7 +104,7 @@ public class AcaeAction extends ActionSupport  {
         return SUCCESS;
     }
     public String doCrearAcae(){
-              
+        String sRetorno=null;
         try {        
             Integer personaId =  this.persona.getNextItem();
             this.persona.setPersonaId(personaId);            
@@ -114,18 +114,31 @@ public class AcaeAction extends ActionSupport  {
             this.acae.setClsSector(this.clsSector);
             this.acae.setClsSubSector(this.clsSubSector);
             this.persona.setUbigeoId(this.codDistrito);
-            System.out.println("acae.getTipAcae()="+this.tipoAcae);
-            System.out.println("acae.getClsSector()="+this.clsSector);
-            System.out.println("acae.getClsSubSector()="+this.clsSubSector);
-            System.out.println("this.codDistrito="+this.codDistrito);
-            persona.insertPersona(this.persona);
-            acae.insertAcae(this.acae);
-            usuario.insertUsuario(this.usuario);            
+            log.info("acae.getTipAcae()="+this.tipoAcae);
+            log.info("acae.getClsSector()="+this.clsSector);
+            log.info("acae.getClsSubSector()="+this.clsSubSector);
+            log.info("this.codDistrito="+this.codDistrito);
+            
+            if (usuario.getCodClave()!=null && 
+                !("".equals(usuario.getCodClave().trim())) && !("".equals(this.codClave2.trim())) ) {
+                if (usuario.getCodClave().equals(this.codClave2)) {
+                    persona.insertPersona(this.persona);
+                    acae.insertAcae(this.acae);
+                    usuario.insertUsuario(this.usuario);
+                    sRetorno="creado";
+                } else {
+                    //claves son diferentes
+                     addActionError("Las claves deben ser iguales.");
+                     sRetorno= ERROR;
+                }                
+            } else {
+                sRetorno=ERROR;
+            }
+            
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        
-        return "creado";
+        return sRetorno;
     }
     public String doCargarParametros(){
         try {

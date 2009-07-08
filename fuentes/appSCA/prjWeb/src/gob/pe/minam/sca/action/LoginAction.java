@@ -12,12 +12,14 @@ import gob.pe.minam.sca.pojo.Usuario;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
+import org.apache.log4j.Logger;
+
 /**
  * @author Dante
  *
  */
 public class LoginAction extends ActionSupport {
-		
+    static Logger log = Logger.getLogger("LoginAction.class");		
     private static final long serialVersionUID = 506117110998025792L;
     private String usuario=null;
     private String codClave=null;
@@ -56,8 +58,8 @@ public class LoginAction extends ActionSupport {
 	Usuario usuario = new Usuario();
 	usuario.setUsuario(getUsuario().toUpperCase());
         usuario.setCodClave(getCodClave().toUpperCase());
-        System.out.println("usuario="+getUsuario());
-        System.out.println("clave="+getCodClave());
+        log.info("usuario="+getUsuario());
+        log.info("clave="+getCodClave());
         
         usuario = Usuario.getUsuarioByKey(usuario);
                 
