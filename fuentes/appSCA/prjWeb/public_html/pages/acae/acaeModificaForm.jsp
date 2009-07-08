@@ -50,13 +50,15 @@
                 <s:property value="txtValor"/>
                 </div>
                 <br/>
-                <s:form action="acaeModifica!doActualizarAcae" method="POST">  
+                <s:form action="acaeModifica!doActualizarAcae" method="POST">
+                <s:actionerror />
+                <s:fielderror /> 
                 <tr>
                 <td colspan="2" bgcolor="Green"><font color="White">1. Datos de la Institución</font></td>
-                </tr>
+                </tr>                
+                <s:select label="Tipo ACAE" name="tipoAcae" value="tipoAcae" list="parTipoAcae" listKey="codParametro" listValue="txtValor" onchange="javascript:doCargarParametros()"/>
+                <s:select label="ACAE" name="clsSector" value="clsSector" list="parInstitucion" listKey="codParametro" listValue="txtValor" onchange="javascript:doCargarParametros()"/>
                 <s:textfield label="Denominación" name="persona.txtRazonSocial" value="%{persona.txtRazonSocial}" size="50" maxlength="255"/>
-                <s:select label="Tipo Acae" name="tipoAcae" value="tipoAcae" list="parTipoAcae" listKey="codParametro" listValue="txtValor" onchange="javascript:doCargarParametros()"/>
-                <s:select label="Institucion" name="clsSector" value="clsSector" list="parInstitucion" listKey="codParametro" listValue="txtValor" onchange="javascript:doCargarParametros()"/>
                 <s:select label="Dependencia" name="clsSubSector" value="clsSubSector" list="parDependencia" listKey="clsSubSector" listValue="txtSubSector"/>
                 <s:textfield label="Domicilio" name="persona.txtDomicilio" value="%{persona.txtDomicilio}" size="50" maxlength="255"/>
                 <s:select label="Departamento" name="codDepartamento" value="codDepartamento" list="ubiDepartamentos" listKey="codDepartamento" listValue="txtDescripcion" onchange="javascript:doCargarParametros()" emptyOption="SELECCCIONAR"/>
@@ -75,8 +77,8 @@
                 <td colspan="2" bgcolor="Green"><font color="White">3. Información para el Sistema</font></td>                
                 </tr>
                 <s:textfield label="Usuario" name="usuario.usuario" value="%{usuario.usuario}" size="50" maxlength="50"/>
-                <s:password label="Password" name="usuario.codClave" value="%{usuario.codClave}" size="50" maxlength="50" /> 
-                <s:password label="Repetir Password" name="codClave2" value="%{codClave2}" size="50" maxlength="50"/>
+                <s:password label="Clave" name="usuario.codClave" value="%{usuario.codClave}" size="50" maxlength="50" /> 
+                <s:password label="Repetir Clave" name="codClave2" value="%{codClave2}" size="50" maxlength="50"/>
                 <s:hidden name="usuario.tipUsuario" value="ACA"/>
                 <s:hidden name="persona.personaId" value="%{persona.personaId}"/>
                 <s:submit value="Aceptar" align="center"/>

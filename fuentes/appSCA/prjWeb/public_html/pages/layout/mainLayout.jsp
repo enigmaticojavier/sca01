@@ -1,7 +1,12 @@
 <%@ page contentType="text/html;charset=ISO-8859-1" language="java" pageEncoding="ISO-8859-1"%>
+<%
+response.setHeader("Cache-Control", "no-cache"); //HTTP 1.1
+response.setHeader("Pragma", "no-cache"); //HTTP 1.0
+response.setDateHeader("Expires", 0); //prevents caching at the proxy server
+%>
 <html>
   <head>    
-    <title>MINAM - SCA</title>
+    <title>MINAM - SCAXXX</title>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<meta name="Description" content="-- MINAM PERU Ministerio del Medio Ambiente (MINAM).">
 	<META NAME="Keywords" CONTENT="PERU,  MINAM ,  Perú, economy, MINISTERIO, AMBIENTE, Statistical , Ministerio del Ambiente, estadisticas, Indicadores, Indicadores Ambientales">

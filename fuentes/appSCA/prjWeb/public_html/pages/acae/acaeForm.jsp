@@ -22,7 +22,36 @@
             frm.action="acaeForm!doCargarParametros";
             frm.submit();  
         }
-        
+        function enviar(form){
+          if (validar(form)){  
+              //var frm=frmParametro;
+              //frm.action="parametro!save.action";
+              form.submit();
+          }    
+        }
+        function validar(form){
+          //var form=frmParametro;
+          var obj=document.getElementById('usuario.usuario');
+          if (obj.value==""){
+             alert("Ingrese Usuario");
+             obj.focus();
+             return false;
+          }
+          var obj=document.getElementById('usuario.codClave');
+          if (obj.value==""){
+             alert("Ingrese Clave");
+             obj.focus();
+             return false;
+          } else {
+            var obj2=document.getElementById('codClave2');
+            if (obj.value!=obj2.value) {
+                alert("Las claves deben ser iguales");
+                obj2.focus();
+                return false;
+            }
+          }          
+          return true;
+        } 
         </script>
   </head>
   <body onload="new Accordian('basic-accordian',5,'header_highlight');">
@@ -50,15 +79,18 @@
                 <s:property value="txtValor"/>
                 </div>
                 <br/>
-                <s:form action="acaeForm!doCrearAcae" method="POST">  
+                <s:form action="acaeForm!doCrearAcae" method="POST">
+                <s:actionerror />
+                <s:fielderror /> 
                 <tr>
                 <td colspan="2" bgcolor="Green"><font color="White">1. Datos de la Institución</font></td>
-                </tr>
+                </tr>                
+                <s:select label="Tipo ACAE" name="tipoAcae" value="tipoAcae" list="parTipoAcae" listKey="codParametro" listValue="txtValor" onchange="javascript:doCargarParametros()"/>
+                <s:select label="ACAE" name="clsSector" value="clsSector" list="parInstitucion" listKey="codParametro" listValue="txtValor" onchange="javascript:doCargarParametros()"/>
                 <s:textfield label="Denominación" name="persona.txtRazonSocial" value="%{persona.txtRazonSocial}" size="50" maxlength="255"/>
-                <s:select label="Tipo Acae" name="tipoAcae" value="tipoAcae" list="parTipoAcae" listKey="codParametro" listValue="txtValor" onchange="javascript:doCargarParametros()"/>
-                <s:select label="Institucion" name="clsSector" value="clsSector" list="parInstitucion" listKey="codParametro" listValue="txtValor" onchange="javascript:doCargarParametros()"/>
                 <s:select label="Dependencia" name="clsSubSector" value="clsSubSector" list="parDependencia" listKey="clsSubSector" listValue="txtSubSector"/>
-                <s:textfield label="Domicilio" name="persona.txtDomicilio" value="%{persona.txtDomicilio}"/>
+                
+                <s:textfield label="Domicilio" name="persona.txtDomicilio" value="%{persona.txtDomicilio}" size="50" maxlength="255"/>
                 <s:select label="Departamento" name="codDepartamento" value="codDepartamento" list="ubiDepartamentos" listKey="codDepartamento" listValue="txtDescripcion" onchange="javascript:doCargarParametros()" emptyOption="SELECCCIONAR"/>
                 <s:select label="Provincia" name="codProvincia" value="codProvincia" list="ubiProvincia" listKey="codProvincia" listValue="txtDescripcion" onchange="javascript:doCargarParametros()" emptyOption="SELECCCIONAR"/>
                 <s:select label="Distrito" name="codDistrito" value="codDistrito" list="ubiDistrito" listKey="codDistrito" listValue="txtDescripcion" emptyOption="SELECCCIONAR" />
@@ -75,10 +107,15 @@
                 <td colspan="2" bgcolor="Green"><font color="White">3. Información para el Sistema</font></td>                
                 </tr>
                 <s:textfield label="Usuario" name="usuario.usuario" value="%{usuario.usuario}" size="50" maxlength="50"/>
-                <s:password label="Password" name="usuario.codClave" value="%{usuario.codClave}" size="50" maxlength="50" /> 
-                <s:password label="Repetir Password" name="codClave2" value="%{codClave2}" size="50" maxlength="50"/>
+                <s:password label="Clave" name="usuario.codClave" value="%{usuario.codClave}" size="50" maxlength="50" /> 
+                <s:password label="Repetir Clave" name="codClave2" value="%{codClave2}" size="50" maxlength="50"/>
                 <s:hidden name="usuario.tipUsuario" value="ACA"/>
-                <s:submit value="Crear Acae" align="center"/>
+                <!--s:submit value="Crear" align="center"/-->
+                <tr>
+                <td>
+                <input type="button" value="Crear" onclick="javascript:enviar(this.form)"/>
+                </td>
+                </tr>
                 </s:form>
             </td>
         </tr>
