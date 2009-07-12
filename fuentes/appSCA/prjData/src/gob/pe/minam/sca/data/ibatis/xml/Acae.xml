@@ -11,15 +11,14 @@
   <resultMap id="AcaeRSMap" class="Acae">    
     <result property="personaId" column="PERSONAID"/>
     <result property="tipAcae" column="TIPACAE"/>
-    <result property="clsSector" column="CLSSECTOR"/>
-      
+    <result property="clsSector" column="CLSSECTOR"/>      
     <result property="txtApellidosNombres" column="TXTAPELLIDOSNOMBRES"/>
     <result property="txtCargo" column="TXTCARGO"/>    
     <result property="txtValor" column="TXTVALOR"/>
-
     <result property="tipDocumentoGer" column="TIPDOCUMENTOGER"/>
     <result property="codDocumentoGer" column="CODDOCUMENTOGER"/>
     <result property="telefonoGer" column="TELEFONOGER"/>
+    <result property="anexoGer" column="ANEXOGER"/>
   </resultMap>
   
   <resultMap id="AcaeNombreRSMap" class="Acae">
@@ -41,9 +40,9 @@
     <result property="fax" column="FAX"/>
     <result property="txtEmail" column="TXTEMAIL"/>
     <result property="tipAcae" column="TIPACAE"/>
-    <result property="clsSector" column="CLSSECTOR"/>
-    
+    <result property="clsSector" column="CLSSECTOR"/>    
     <result property="telefonoGer" column="TELEFONOGER"/>
+    <result property="anexoGer" column="ANEXOGER"/>
     <result property="txtApellidosNombres" column="TXTAPELLIDOSNOMBRES"/>
     <result property="txtCargo" column="TXTCARGO"/>
     <result property="usuario.usuario" column="USUARIO"/>
@@ -66,13 +65,14 @@
   </select>
   <insert id="insertAcae"  parameterClass="Acae">
        INSERT INTO ACAE 
-       ( PERSONAID, TIPACAE, CLSSECTOR, TXTAPELLIDOSNOMBRES, TXTCARGO, TELEFONOGER)
+       ( PERSONAID, TIPACAE, CLSSECTOR, TXTAPELLIDOSNOMBRES, TXTCARGO, TELEFONOGER, ANEXOGER)
        VALUES (#personaId#, #tipAcae#, #clsSector#, 
-       #txtApellidosNombres#, #txtCargo#, #telefonoGer# )
+       #txtApellidosNombres#, #txtCargo#, #telefonoGer#, #anexoGer# )
    </insert>
    <update id="updateAcae" parameterClass="Acae">
         UPDATE ACAE SET TIPACAE=#tipAcae#, CLSSECTOR=#clsSector#, 
-        TXTAPELLIDOSNOMBRES=#txtApellidosNombres#, TXTCARGO=#txtCargo#, TELEFONOGER=#telefonoGer#
+        TXTAPELLIDOSNOMBRES=#txtApellidosNombres#, TXTCARGO=#txtCargo#, TELEFONOGER=#telefonoGer#,
+        ANEXOGER=#anexoGer#
         WHERE PERSONAID=#personaId#
    </update>
    
@@ -94,7 +94,7 @@
     SUBSTR(P.UBIGEOID,0,4)||'00' as codProvincia,
     P.UBIGEOID as codDistrito,
     P.TXTRAZONSOCIAL, P.TXTDOMICILIO, P.TELEFONO, P.TXTEMAIL, 
-    P.FAX, A.TIPACAE, A.CLSSECTOR, A.TELEFONOGER, A.TXTAPELLIDOSNOMBRES, A.TXTCARGO, 
+    P.FAX, A.TIPACAE, A.CLSSECTOR, A.TELEFONOGER, A.ANEXOGER, A.TXTAPELLIDOSNOMBRES, A.TXTCARGO, 
     U.USUARIO, U.CODCLAVE
     FROM PERSONA P, ACAE A, USUARIO U
     WHERE P.PERSONAID = A.PERSONAID
