@@ -30,7 +30,7 @@ public class AcaeAction extends ActionSupport  {
     protected String codProvincia;
     protected String codDistrito;
     protected String clsSector; /*Institución*/
-    protected String clsSubSector; /*Dependencia*/
+    //protected String clsSubSector; /*Dependencia*/
     protected List parTipoAcae;
     protected List parInstitucion;
     protected List parDependencia;
@@ -67,7 +67,7 @@ public class AcaeAction extends ActionSupport  {
         try{
             llenaParametrosIniciales();
           Parametro pr = new Parametro();
-          SubSector sb = new SubSector();
+          //SubSector sb = new SubSector();
           /*Institucion*/
           if (this.parTipoAcae!=null && this.parTipoAcae.size()>0){
             System.out.println("-->this.parTipoAcae.size()"+parTipoAcae.size());
@@ -77,12 +77,13 @@ public class AcaeAction extends ActionSupport  {
             this.parInstitucion=new ArrayList();
           }   
           /*Dependencia*/
+          /**
           if (this.parInstitucion!=null && this.parInstitucion.size()>0){
            this.parDependencia=sb.buscarSubsectorXSector(((Parametro)this.parInstitucion.get(0)).getCodParametro()) ;
           }else{
            this.parDependencia=new ArrayList();
           }
-          
+          **/
           //Departamento
           Ubigeo ubigeo = new Ubigeo();
           if (this.codDepartamento!=null) {
@@ -112,11 +113,10 @@ public class AcaeAction extends ActionSupport  {
             this.usuario.setPersonaId(personaId);
             this.acae.setTipAcae(this.tipoAcae);
             this.acae.setClsSector(this.clsSector);
-            this.acae.setClsSubSector(this.clsSubSector);
+            //this.acae.setClsSubSector(this.clsSubSector);
             this.persona.setUbigeoId(this.codDistrito);
             log.info("acae.getTipAcae()="+this.tipoAcae);
-            log.info("acae.getClsSector()="+this.clsSector);
-            log.info("acae.getClsSubSector()="+this.clsSubSector);
+            log.info("acae.getClsSector()="+this.clsSector);            
             log.info("this.codDistrito="+this.codDistrito);
             
             if (usuario.getCodClave()!=null && 
@@ -144,7 +144,7 @@ public class AcaeAction extends ActionSupport  {
         try {
             llenaParametrosIniciales();
             buscarInstitucionXTipoAcae();
-            buscarDependenciaXInstitucion(); 
+            //buscarDependenciaXInstitucion(); 
             log.info("codDepartamento="+this.codDepartamento);
             if (this.codDepartamento!=null && !this.codDepartamento.equals("0")){
                 buscarProvincia();
@@ -196,17 +196,19 @@ public class AcaeAction extends ActionSupport  {
       try{
           System.out.println("buscarInstitucionXTipoAcae Ini");
           Parametro pr = new Parametro(); 
-          SubSector sb = new SubSector();
+          //SubSector sb = new SubSector();
           if (this.tipoAcae!=null){
               System.out.println("this.parInstitucion " + this.tipoAcae);
               System.out.println("===>this.parTipoAcae.size()"+this.parTipoAcae.size());
               System.out.println("===>this.parTipoAcae.get(0)"+this.parTipoAcae.get(0));
               this.parInstitucion=pr.buscarParametroXTipoParametro(this.tipoAcae);
+              /**
               if (this.parInstitucion!=null && this.parInstitucion.size()>0){
                   this.parDependencia=sb.buscarSubsectorXSector(((Parametro)this.parInstitucion.get(0)).getCodParametro()) ;
               }else{
                   this.parInstitucion=new ArrayList();
               }
+              **/
           }else{
               this.parInstitucion=new ArrayList();
           }   
@@ -216,7 +218,7 @@ public class AcaeAction extends ActionSupport  {
       } 
       
     }
-    
+    /**
     public void buscarDependenciaXInstitucion(){
       try{
           Parametro pr = new Parametro();
@@ -239,7 +241,7 @@ public class AcaeAction extends ActionSupport  {
       } 
       
     }
-
+    **/
     public void setTipoAcae(String tipoAcae) {
         this.tipoAcae = tipoAcae;
     }
@@ -255,7 +257,7 @@ public class AcaeAction extends ActionSupport  {
     public String getClsSector() {
         return clsSector;
     }
-
+    /**
     public void setClsSubSector(String clsSubSector) {
         this.clsSubSector = clsSubSector;
     }
@@ -263,7 +265,7 @@ public class AcaeAction extends ActionSupport  {
     public String getClsSubSector() {
         return clsSubSector;
     }
-
+    **/
     public void setParTipoAcae(List parTipoAcae) {
         this.parTipoAcae = parTipoAcae;
     }

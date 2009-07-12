@@ -16,7 +16,6 @@ import org.apache.log4j.Logger;
 
 public class AcaeModificaAction extends AcaeAction {
     static Logger log = Logger.getLogger("AcaeAction.class");
-    //private Acae acae = new Acae();    
     private List acaes;
     
     public String doMuestra(){
@@ -48,7 +47,7 @@ public class AcaeModificaAction extends AcaeAction {
                 this.llenaParametrosIniciales();
                 this.tipoAcae = acae.getTipAcae();
                 this.clsSector = acae.getClsSector();
-                this.clsSubSector = acae.getClsSubSector();
+                //this.clsSubSector = acae.getClsSubSector();
                 this.persona.setTxtRazonSocial(acae.getTxtRazonSocial());
                 this.persona.setTxtDomicilio(acae.getTxtDomicilio());
                 this.codDepartamento= acae.getUbigeo().getCodDepartamento();
@@ -60,7 +59,7 @@ public class AcaeModificaAction extends AcaeAction {
                 this.usuario.setUsuario(acae.getUsuario().getUsuario());
                 this.usuario.setCodClave(acae.getUsuario().getCodClave());
                 this.buscarInstitucionXTipoAcae();
-                this.buscarDependenciaXInstitucion();
+                //this.buscarDependenciaXInstitucion();
                 this.buscarProvincia();
             }
         } catch (DAOException e) {
@@ -73,13 +72,13 @@ public class AcaeModificaAction extends AcaeAction {
         
         try {
         log.info("personaId="+this.persona.getPersonaId());
-        //this.persona.setPersonaId(personaId);
+        
         this.acae.setPersonaId(this.persona.getPersonaId());
         this.usuario.setPersonaId(this.persona.getPersonaId());
         
         this.acae.setTipAcae(this.tipoAcae);
         this.acae.setClsSector(this.clsSector);
-        this.acae.setClsSubSector(this.clsSubSector);
+        //this.acae.setClsSubSector(this.clsSubSector);
         this.persona.setUbigeoId(this.codDistrito);
         
         acae.updateAcae(acae);
