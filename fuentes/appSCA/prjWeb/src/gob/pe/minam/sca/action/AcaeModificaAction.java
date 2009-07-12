@@ -17,6 +17,7 @@ import org.apache.log4j.Logger;
 public class AcaeModificaAction extends AcaeAction {
     static Logger log = Logger.getLogger("AcaeAction.class");
     private List acaes;
+    private boolean buscar=false;
     
     public String doMuestra(){
         return "busqueda";
@@ -27,7 +28,10 @@ public class AcaeModificaAction extends AcaeAction {
             log.info("acae="+this.acae.getTxtRazonSocial());
             acae.setTxtRazonSocial(this.acae.getTxtRazonSocial().trim().toUpperCase());
             acaes = acae.getAcaeByNombre(acae);
-        }        
+            this.buscar=true;
+        } else {
+            addActionError("Debe ingresar nombre de ACAE.");
+        }
                
         return "busqueda";
     }
@@ -109,5 +113,13 @@ public class AcaeModificaAction extends AcaeAction {
 
     public List getAcaes() {
         return acaes;
+    }
+
+    public void setBuscar(boolean buscar) {
+        this.buscar = buscar;
+    }
+
+    public boolean isBuscar() {
+        return buscar;
     }
 }
