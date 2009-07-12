@@ -53,11 +53,13 @@
                 </div>
                 <br/>
                 <s:form action="acaeModifica!doBuscarAcae" method="POST">
+                    <s:actionerror />
                     <s:textfield label="Nombre de la ACAE a consultar" name="acae.txtRazonSocial" value="%{persona.txtRazonSocial}" size="50" maxlength="255"/>
                     <s:submit value="Consultar" align="center"/>                   
                 </s:form>
-                 <s:set name="acaes" value="acaes" scope="request" />
-                    <s:if test="%{acaes==null || acaes.size()==0}">
+                <s:set name="acaes" value="acaes" scope="request" />
+                <s:set name="buscar" value="buscar" scope="request" />
+                    <s:if test="%{buscar==true && (acaes==null || acaes.size()==0)}">
                         No existen ACAEs que cumplan el criterio de búsqueda
                     </s:if>
                     <s:else>
