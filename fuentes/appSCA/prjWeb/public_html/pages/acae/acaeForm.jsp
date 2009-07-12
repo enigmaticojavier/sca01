@@ -88,7 +88,6 @@
                 <s:select label="Tipo ACAE" name="tipoAcae" value="tipoAcae" list="parTipoAcae" listKey="codParametro" listValue="txtValor" onchange="javascript:doCargarParametros()"/>
                 <s:select label="ACAE" name="clsSector" value="clsSector" list="parInstitucion" listKey="codParametro" listValue="txtValor" onchange="javascript:doCargarParametros()"/>
                 <s:textfield label="Denominación" name="persona.txtRazonSocial" value="%{persona.txtRazonSocial}" size="50" maxlength="255"/>
-                <s:select label="Dependencia" name="clsSubSector" value="clsSubSector" list="parDependencia" listKey="clsSubSector" listValue="txtSubSector"/>
                 
                 <s:textfield label="Domicilio" name="persona.txtDomicilio" value="%{persona.txtDomicilio}" size="50" maxlength="255"/>
                 <s:select label="Departamento" name="codDepartamento" value="codDepartamento" list="ubiDepartamentos" listKey="codDepartamento" listValue="txtDescripcion" onchange="javascript:doCargarParametros()" emptyOption="SELECCCIONAR"/>
