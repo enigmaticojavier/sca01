@@ -70,6 +70,7 @@
                 <td colspan="2" bgcolor="Green"><font color="White">2. Datos del personal responsable</font></td>                
                 </tr>
                 <s:textfield label="Teléfono" name="acae.telefonoGer" value="%{acae.telefonoGer}" size="10" maxlength="15"/>
+                <s:textfield label="Anexo" name="acae.anexoGer" value="%{acae.anexoGer}" size="10" maxlength="15"/>
                 <s:textfield label="Email" name="persona.txtEmail" value="%{persona.txtEmail}" size="50"/>
                 <s:textfield label="Apellidos y Nombres" name="acae.txtApellidosNombres" value="%{acae.txtApellidosNombres}" size="50" maxlength="500"/>
                 <s:textfield label="Cargo" name="acae.txtCargo" value="%{acae.txtCargo}" size="50" maxlength="255"/>
