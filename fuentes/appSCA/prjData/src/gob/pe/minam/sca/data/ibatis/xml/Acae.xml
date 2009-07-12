@@ -12,11 +12,11 @@
     <result property="personaId" column="PERSONAID"/>
     <result property="tipAcae" column="TIPACAE"/>
     <result property="clsSector" column="CLSSECTOR"/>
-    <result property="clsSubSector" column="CLSSUBSECTOR"/>    
+      
     <result property="txtApellidosNombres" column="TXTAPELLIDOSNOMBRES"/>
     <result property="txtCargo" column="TXTCARGO"/>    
     <result property="txtValor" column="TXTVALOR"/>
-    <result property="txtSubSector" column="TXTSUBSECTOR"/>
+
     <result property="tipDocumentoGer" column="TIPDOCUMENTOGER"/>
     <result property="codDocumentoGer" column="CODDOCUMENTOGER"/>
     <result property="telefonoGer" column="TELEFONOGER"/>
@@ -42,7 +42,7 @@
     <result property="txtEmail" column="TXTEMAIL"/>
     <result property="tipAcae" column="TIPACAE"/>
     <result property="clsSector" column="CLSSECTOR"/>
-    <result property="clsSubSector" column="CLSSUBSECTOR"/>
+    
     <result property="telefonoGer" column="TELEFONOGER"/>
     <result property="txtApellidosNombres" column="TXTAPELLIDOSNOMBRES"/>
     <result property="txtCargo" column="TXTCARGO"/>
@@ -56,22 +56,22 @@
   </select>
   
   <select id="getAcaeByKey" resultClass="Acae" parameterClass="Acae" >
-	SELECT A.PERSONAID, A.TIPACAE, A.CLSSECTOR, A.CLSSUBSECTOR, A.TXTAPELLIDOSNOMBRES, A.TXTCARGO,
-	P.TXTVALOR, S.TXTSUBSECTOR
-	FROM ACAE A, PARAMETRO P, SUBSECTOR S
+	SELECT A.PERSONAID, A.TIPACAE, A.CLSSECTOR, A.TXTAPELLIDOSNOMBRES, A.TXTCARGO,
+	P.TXTVALOR
+	FROM ACAE A, PARAMETRO P
 	WHERE A.CLSSECTOR = P.CODPARAMETRO 
-	AND P.TIPPARAMETRO='MIN'
-	AND A.CLSSECTOR = S.CLSSECTOR AND A.CLSSUBSECTOR = S.CLSSUBSECTOR
-	AND A.PERSONAID=#personaId#
+	AND P.TIPPARAMETRO IN (SELECT CODPARAMETRO FROM PARAMETRO WHERE TIPPARAMETRO = 'TAC')
+        AND A.PERSONAID=#personaId#
+      
   </select>
   <insert id="insertAcae"  parameterClass="Acae">
        INSERT INTO ACAE 
-       ( PERSONAID, TIPACAE, CLSSECTOR, CLSSUBSECTOR, TXTAPELLIDOSNOMBRES, TXTCARGO, TELEFONOGER)
-       VALUES (#personaId#, #tipAcae#, #clsSector#, #clsSubSector#, 
+       ( PERSONAID, TIPACAE, CLSSECTOR, TXTAPELLIDOSNOMBRES, TXTCARGO, TELEFONOGER)
+       VALUES (#personaId#, #tipAcae#, #clsSector#, 
        #txtApellidosNombres#, #txtCargo#, #telefonoGer# )
    </insert>
    <update id="updateAcae" parameterClass="Acae">
-        UPDATE ACAE SET TIPACAE=#tipAcae#, CLSSECTOR=#clsSector#, CLSSUBSECTOR=#clsSubSector#,
+        UPDATE ACAE SET TIPACAE=#tipAcae#, CLSSECTOR=#clsSector#, 
         TXTAPELLIDOSNOMBRES=#txtApellidosNombres#, TXTCARGO=#txtCargo#, TELEFONOGER=#telefonoGer#
         WHERE PERSONAID=#personaId#
    </update>
@@ -94,7 +94,7 @@
     SUBSTR(P.UBIGEOID,0,4)||'00' as codProvincia,
     P.UBIGEOID as codDistrito,
     P.TXTRAZONSOCIAL, P.TXTDOMICILIO, P.TELEFONO, P.TXTEMAIL, 
-    P.FAX, A.TIPACAE, A.CLSSECTOR, A.CLSSUBSECTOR, A.TELEFONOGER, A.TXTAPELLIDOSNOMBRES, A.TXTCARGO, 
+    P.FAX, A.TIPACAE, A.CLSSECTOR, A.TELEFONOGER, A.TXTAPELLIDOSNOMBRES, A.TXTCARGO, 
     U.USUARIO, U.CODCLAVE
     FROM PERSONA P, ACAE A, USUARIO U
     WHERE P.PERSONAID = A.PERSONAID
