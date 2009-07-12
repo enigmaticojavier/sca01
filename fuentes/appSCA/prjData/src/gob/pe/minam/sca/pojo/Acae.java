@@ -29,7 +29,7 @@ public class Acae extends Persona {
    /** @pdOid b660a22b-788f-4a39-8173-e4b05499a326 */
    private java.lang.String clsSector;
    /** @pdOid e6fd48bc-fb1e-44b6-9ac8-1be15cf36bd4 */
-   private java.lang.String clsSubSector;
+   //private java.lang.String clsSubSector;
    
    private String txtValor;
    private String txtSubSector;
@@ -92,7 +92,7 @@ public class Acae extends Persona {
     public void setClsSector(java.lang.String clsSector) {
             this.clsSector = clsSector;
     }
-    
+    /**
     public java.lang.String getClsSubSector() {
             return clsSubSector;
     }
@@ -100,7 +100,7 @@ public class Acae extends Persona {
     public void setClsSubSector(java.lang.String clsSubSector) {
             this.clsSubSector = clsSubSector;
     }
-    
+    **/
     public String getTxtValor() {
             return txtValor;
     }
