@@ -30,7 +30,7 @@ public class Acae extends Persona {
    private java.lang.String clsSector;
    /** @pdOid e6fd48bc-fb1e-44b6-9ac8-1be15cf36bd4 */
    //private java.lang.String clsSubSector;
-   
+   private String anexoGer;
    private String txtValor;
    private String txtSubSector;
    private String fechaActual = DateUtil.fechaActualString();
@@ -101,6 +101,7 @@ public class Acae extends Persona {
             this.clsSubSector = clsSubSector;
     }
     **/
+    
     public String getTxtValor() {
             return txtValor;
     }
@@ -132,7 +133,7 @@ public class Acae extends Persona {
     public String getFechaActual() {
             return fechaActual;
     }
-
+    
     public static Acae getAcaeByKey(Acae acae) throws DAOException{
         ProyectoService proyectoService = ProyectoService.getInstance();
         AcaeDao acaeDao = proyectoService.getAcaeDao(); 
@@ -162,11 +163,20 @@ public class Acae extends Persona {
         AcaeDao acaeDao = proyectoService.getAcaeDao();
         return acaeDao.getAcaeBusqueda(acae);
     }
-    
+    /**
     public static List listarDependencia(String tipAcae, String clsSector) throws DAOException{
         ProyectoService proyectoService = ProyectoService.getInstance();
         AcaeDao acaeDao = proyectoService.getAcaeDao();
         return acaeDao.listarDependencia(tipAcae, clsSector);
     }
-    
+    **/
+
+ 
+    public void setAnexoGer(String anexoGer) {
+        this.anexoGer = anexoGer;
+    }
+
+    public String getAnexoGer() {
+        return anexoGer;
+    }
 }
