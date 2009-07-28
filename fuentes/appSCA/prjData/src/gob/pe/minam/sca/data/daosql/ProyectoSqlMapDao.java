@@ -23,6 +23,8 @@ import gob.pe.minam.sca.pojo.Proyecto;
 
 import gob.pe.minam.sca.pojo.Ubigeo;
 
+import gob.pe.minam.sca.util.Utilitarios;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
@@ -49,16 +51,16 @@ public class ProyectoSqlMapDao extends BaseSqlMapDao implements ProyectoDao {
   }
 
     public List buscarProyecto (String txtDescripcion, String ubigeoId,
-                                String clsTipificacion, Date fchExpedienteDesde, 
-                                Date fchExpedienteHasta, String estadoTramite, 
+                                String clsTipificacion, String fchExpedienteDesde, 
+                                String fchExpedienteHasta, String estadoTramite, 
                                 String tipoAcae, String clsSector, String clsSubSector) throws DAOException{
         try{
           Map map = new HashMap(); 
           map.put("p_cDescripcion",txtDescripcion);
           map.put("p_cUbigeoId",ubigeoId);
           map.put("p_cClsTipificacion",clsTipificacion);
-          map.put("p_dFchExpedienteDesde",fchExpedienteDesde);
-          map.put("p_dFchExpedienteHasta",fchExpedienteHasta);
+          map.put("p_dFchExpedienteDesde",Utilitarios.convierteTextoAFecha(fchExpedienteDesde));
+          map.put("p_dFchExpedienteHasta",Utilitarios.convierteTextoAFecha(fchExpedienteHasta));
           map.put("p_cEstadoTramite",estadoTramite);
           map.put("p_cTipoAcae",tipoAcae);
           map.put("p_cClsSector",clsSector);

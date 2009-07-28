@@ -9634,3 +9634,72 @@ Caused by: com.ibatis.sqlmap.client.SqlMapException: There is no result map name
 09/07/04 22:44:17.515 prjWeb: 10.1.3.3.0 Started
 09/07/28 01:01:04.941 10.1.3.3.0 Started
 09/07/28 01:01:09.855 prjWeb: 10.1.3.3.0 Started
+09/07/28 02:19:40.874 10.1.3.3.0 Started
+09/07/28 02:19:49.405 prjWeb: 10.1.3.3.0 Started
+09/07/28 02:19:52.181 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/07/28 02:19:52.182 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/07/28 02:37:36.195 10.1.3.3.0 Started
+09/07/28 02:37:40.473 prjWeb: 10.1.3.3.0 Started
+09/07/28 02:40:49.449 prjWeb: JspServlet: No se ha podido distribuir a la página solicitada: oracle.jsp.parse.JspParseException: /pages/proyecto/proyecto.jsp: Número de Línea 152,                                </s:param--> 
+Error: Se ha encontrado la etiqueta final </s:param--> sin la etiqueta inicial correspondiente.
+	at oracle.jsp.parse.JspParseTag.parseNextTag(JspParseTag.java:1049)
+	at oracle.jsp.parse.JspParseTag.parseBody(JspParseTag.java:1345)
+	at oracle.jsp.parse.OpenJspTagHandler.parseBody(OpenJspTagHandler.java:725)
+	at oracle.jsp.parse.JspParseTag.parse(JspParseTag.java:1455)
+	at oracle.jsp.parse.OpenJspTagHandler.parse(OpenJspTagHandler.java:816)
+	at oracle.jsp.parse.JspParseTag.parseNextTag(JspParseTag.java:1019)
+	at oracle.jsp.parse.JspParseTag.parseBody(JspParseTag.java:1345)
+	at oracle.jsp.parse.OpenJspTagHandler.parseBody(OpenJspTagHandler.java:725)
+	at oracle.jsp.parse.JspParseTag.parse(JspParseTag.java:1455)
+	at oracle.jsp.parse.OpenJspTagHandler.parse(OpenJspTagHandler.java:816)
+	at oracle.jsp.parse.JspParseTag.parseNextTag(JspParseTag.java:1019)
+	at oracle.jsp.parse.JspParseTagFile.parse(JspParseTagFile.java:250)
+	at oracle.jsp.parse.OracleJsp2Java.transform(OracleJsp2Java.java:479)
+	at oracle.jsp.runtimev2.JspPageCompiler.attemptCompilePage(JspPageCompiler.java:670)
+	at oracle.jsp.runtimev2.JspPageCompiler.compileBothModes(JspPageCompiler.java:456)
+	at oracle.jsp.runtimev2.JspPageCompiler.compilePage(JspPageCompiler.java:413)
+	at oracle.jsp.runtimev2.JspPageInfo.compileAndLoad(JspPageInfo.java:705)
+	at oracle.jsp.runtimev2.JspPageTable.compileAndServe(JspPageTable.java:694)
+	at oracle.jsp.runtimev2.JspPageTable.service(JspPageTable.java:414)
+	at oracle.jsp.runtimev2.JspServlet.internalService(JspServlet.java:594)
+	at oracle.jsp.runtimev2.JspServlet.service(JspServlet.java:518)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:856)
+	at com.evermind.server.http.ServletRequestDispatcher.invoke(ServletRequestDispatcher.java:713)
+	at com.evermind.server.http.ServletRequestDispatcher.forwardInternal(ServletRequestDispatcher.java:370)
+	at com.evermind.server.http.ServletRequestDispatcher.unprivileged_forward(ServletRequestDispatcher.java:259)
+	at com.evermind.server.http.ServletRequestDispatcher.access$100(ServletRequestDispatcher.java:51)
+	at com.evermind.server.http.ServletRequestDispatcher$2.oc4jRun(ServletRequestDispatcher.java:193)
+	at oracle.oc4j.security.OC4JSecurity.doPrivileged(OC4JSecurity.java:283)
+	at com.evermind.server.http.ServletRequestDispatcher.forward(ServletRequestDispatcher.java:198)
+	at org.apache.struts2.dispatcher.ServletDispatcherResult.doExecute(ServletDispatcherResult.java:154)
+	at org.apache.struts2.dispatcher.StrutsResultSupport.execute(StrutsResultSupport.java:186)
+	at com.opensymphony.xwork2.DefaultActionInvocation.executeResult(DefaultActionInvocation.java:361)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:265)
+	at com.opensymphony.xwork2.interceptor.ParametersInterceptor.doIntercept(ParametersInterceptor.java:195)
+	at com.opensymphony.xwork2.interceptor.MethodFilterInterceptor.intercept(MethodFilterInterceptor.java:87)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:236)
+	at com.opensymphony.xwork2.interceptor.PrepareInterceptor.doIntercept(PrepareInterceptor.java:138)
+	at com.opensymphony.xwork2.interceptor.MethodFilterInterceptor.intercept(MethodFilterInterceptor.java:87)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:236)
+	at org.apache.struts2.impl.StrutsActionProxy.execute(StrutsActionProxy.java:52)
+	at org.apache.struts2.dispatcher.Dispatcher.serviceAction(Dispatcher.java:468)
+	at org.apache.struts2.dispatcher.ng.ExecuteOperations.executeAction(ExecuteOperations.java:77)
+	at org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter.doFilter(StrutsPrepareAndExecuteFilter.java:76)
+	at com.evermind.server.http.ServletRequestDispatcher.invoke(ServletRequestDispatcher.java:623)
+	at com.evermind.server.http.ServletRequestDispatcher.forwardInternal(ServletRequestDispatcher.java:370)
+	at com.evermind.server.http.HttpRequestHandler.handleNotFound(HttpRequestHandler.java:1041)
+	at com.evermind.server.http.HttpRequestHandler.doProcessRequest(HttpRequestHandler.java:911)
+	at com.evermind.server.http.HttpRequestHandler.processRequest(HttpRequestHandler.java:453)
+	at com.evermind.server.http.HttpRequestHandler.serveOneRequest(HttpRequestHandler.java:221)
+	at com.evermind.server.http.HttpRequestHandler.run(HttpRequestHandler.java:122)
+	at com.evermind.server.http.HttpRequestHandler.run(HttpRequestHandler.java:111)
+	at oracle.oc4j.network.ServerSocketReadHandler$SafeRunnable.run(ServerSocketReadHandler.java:260)
+	at oracle.oc4j.network.ServerSocketAcceptHandler.procClientSocket(ServerSocketAcceptHandler.java:239)
+	at oracle.oc4j.network.ServerSocketAcceptHandler.access$700(ServerSocketAcceptHandler.java:34)
+	at oracle.oc4j.network.ServerSocketAcceptHandler$AcceptHandlerHorse.run(ServerSocketAcceptHandler.java:880)
+	at com.evermind.util.ReleasableResourcePooledExecutor$MyWorker.run(ReleasableResourcePooledExecutor.java:303)
+	at java.lang.Thread.run(Thread.java:595)
+
+09/07/28 02:42:54.568 prjWeb: 10.1.3.3.0 Stopped
+09/07/28 02:42:55.379 10.1.3.3.0 Started
+09/07/28 02:42:59.934 prjWeb: 10.1.3.3.0 Started

@@ -58,7 +58,7 @@ public class Prueba {
         DateFormat myDateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date d1 = myDateFormat.parse("01/05/1994");
         Date d2 = myDateFormat.parse("01/05/1995");
-        List l = p.buscarProyecto("PROY","020106","CA3",d1,d2,"Est","MIN","EYM","EYM1");
+        List l = p.buscarProyecto("PROY","020106","CA3","01/05/1994","01/05/1995","Est","MIN","EYM","EYM1");
         //List l = p.buscarProyecto("PROY","020106","CA3",null,null,"Est","EYM","EYM1");
         System.out.println("tam"+l.size());
         for (int i=0;i<l.size();i++){

@@ -147,17 +147,17 @@
                         <td align="left">
                             <s:label value="Desde"/>
                             <s:textfield name="fchExpedienteDesde" value="%{fchExpedienteDesde}" size="10" maxLength="10">
-                               <s:param name="value">
+                               <%/*s:param name="value">
                                  <s:date name="fchExpedienteDesde" format="dd/MM/yyyy" />
-                               </s:param>
+                               </s:param*/%>
                             </s:textfield>
                             <DIV ID="divCalendarDesde" STYLE="position:absolute;visibility:hidden;background-color:white;layer-background-color:white;"></DIV>
                             <A HREF="#" onClick="calDesde.select(document.getElementById('fchExpedienteDesde'),'anchorDesde','dd/MM/yyyy'); return false;" TITLE="calDesde.select(document.getElementById('fchExpedienteDesde'),'anchorDesde','dd/MM/yyyy'); return false;" NAME="anchorDesde" ID="anchorDesde">...</A>
                             <s:label value="Hasta"/>
                             <s:textfield name="fchExpedienteHasta" value="%{fchExpedienteHasta}" size="10" maxLength="10">
-                               <s:param name="value">
+                               <%/*s:param name="value">
                                  <s:date name="fchExpedienteHasta" format="dd/MM/yyyy" />
-                               </s:param>
+                               </s:param*/%>
                             </s:textfield>
                             <DIV ID="divCalendarHasta" STYLE="position:absolute;visibility:hidden;background-color:white;layer-background-color:white;"></DIV>
                             <A HREF="#" onClick="calHasta.select(document.getElementById('fchExpedienteHasta'),'anchorHasta','dd/MM/yyyy'); return false;" TITLE="calHasta.select(document.getElementById('fchExpedienteHasta'),'anchorHasta','dd/MM/yyyy'); return false;" NAME="anchorHasta" ID="anchorHasta">...</A>
@@ -211,7 +211,7 @@
                         No existen proyectos que cumplan el criterio de búsqueda
                     </s:if>
                     <s:else>
-                        <display:table name="proyectos" requestURI="proyecto!buscarProyecto?txtDescripcion=${txtDescripcion}&ubigeoId=${ubigeoId}&clsTipificacion=${clsTipificacion}&fchExpedienteDesde=${d}&fchExpedienteHasta=${d2}&estadoTramite=${estadoTramite}&tipoAcae=${tipoAcae}&clsSector=${clsSector}&clsSubSector=${clsSubSector}" excludedParams="*" class="dataTable" id="proyecto" pagesize="10" style="width:800" export="true">
+                        <display:table name="proyectos" requestURI="proyecto!buscarProyecto?txtDescripcion=${txtDescripcion}&ubigeoId=${ubigeoId}&clsTipificacion=${clsTipificacion}&fchExpedienteDesde=${fchExpedienteDesde}&fchExpedienteHasta=${fchExpedienteHasta}&estadoTramite=${estadoTramite}&tipoAcae=${tipoAcae}&clsSector=${clsSector}&clsSubSector=${clsSubSector}" excludedParams="*" class="dataTable" id="proyecto" pagesize="10" style="width:800" export="true">
                             <display:setProperty name="export.csv" value="false" /> 
                             <display:setProperty name="export.xls" value="true" />
                             <display:setProperty name="export.xml" value="false" />

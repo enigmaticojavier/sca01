@@ -21,8 +21,8 @@ import java.util.List;
 public interface ProyectoDao {
   
   public List buscarProyecto (String txtDescripcion, String ubigeoId,
-                              String clsTipificacion, Date fchExpedienteDesde, 
-                              Date fchExpedienteHasta, String estadoTramite, 
+                              String clsTipificacion, String fchExpedienteDesde, 
+                              String fchExpedienteHasta, String estadoTramite, 
                               String tipoAcae, String clsSector, String clsSubSector) throws DAOException;
 
   public Proyecto ObtenerProyecto(Integer prjId) throws DAOException;

@@ -24,8 +24,8 @@ public class ProyectoAction extends AccionSoporte implements Preparable {
     private String txtDescripcion; /*nombreProyecto*/
     private String ubigeoId; /*departamento*/
     private String clsTipificacion; /*categoria*/
-    private Date fchExpedienteDesde; /*Fecha de Presentación Desde*/
-    private Date fchExpedienteHasta; /*Fecha de Presentación Desde*/
+    private String fchExpedienteDesde; /*Fecha de Presentación Desde*/
+    private String fchExpedienteHasta; /*Fecha de Presentación Desde*/
     private String estadoTramite; /*Estado Tramite*/
     private String tipoAcae;
     private String clsSector; /*Institución*/
@@ -287,19 +287,19 @@ public class ProyectoAction extends AccionSoporte implements Preparable {
         return clsTipificacion;
     }
 
-    public void setFchExpedienteDesde(Date fchExpedienteDesde) {
+    public void setFchExpedienteDesde(String fchExpedienteDesde) {
         this.fchExpedienteDesde = fchExpedienteDesde;
     }
 
-    public Date getFchExpedienteDesde() {
+    public String getFchExpedienteDesde() {
         return fchExpedienteDesde;
     }
 
-    public void setFchExpedienteHasta(Date fchExpedienteHasta) {
+    public void setFchExpedienteHasta(String fchExpedienteHasta) {
         this.fchExpedienteHasta = fchExpedienteHasta;
     }
 
-    public Date getFchExpedienteHasta() {
+    public String getFchExpedienteHasta() {
         return fchExpedienteHasta;
     }
 

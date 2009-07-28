@@ -172,8 +172,8 @@ public class Proyecto implements Serializable{
     }
     
     public static List buscarProyecto(String txtDescripcion,/*nombreProyecto*/ String ubigeoId, /*departamento*/
-                                      String clsTipificacion,/*categoria*/ Date fchExpedienteDesde, /*Fecha de Presentación Desde*/
-                                      Date fchExpedienteHasta,/*Fecha de Presentación Desde*/ String estadoTramite, /*Estado Tramite*/
+                                      String clsTipificacion,/*categoria*/ String fchExpedienteDesde, /*Fecha de Presentación Desde*/
+                                      String fchExpedienteHasta,/*Fecha de Presentación Desde*/ String estadoTramite, /*Estado Tramite*/
                                       String tipoAcae, String clsSector, /*Institución*/ String clsSubSector /*Dependencia*/) throws NegocioException{
        try{  
          ProyectoDao proyectoDao = ProyectoService.getInstance().getProyectoDao();

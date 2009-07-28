@@ -3,6 +3,7 @@ package gob.pe.minam.sca.util;
 import gob.pe.minam.sca.framework.ConstantesSistema;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import java.util.Date;
@@ -44,6 +45,17 @@ public class Utilitarios {
             }
         }
         return mensaje;
+    }
+    
+    public static Date convierteTextoAFecha(String strFecha){
+        SimpleDateFormat formatoDelTexto = new SimpleDateFormat("dd/MM/yyyy");
+        Date fecha = null;
+        try {
+            fecha = formatoDelTexto.parse(strFecha);
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+        }
+        return fecha;
     }
     
 }
