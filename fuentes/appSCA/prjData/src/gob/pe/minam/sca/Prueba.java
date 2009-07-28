@@ -153,7 +153,7 @@ public class Prueba {
       try{
           System.out.println("Listar Dependencia");
           Acae acae3 = new Acae();
-          List l = acae3.listarDependencia("GRE","001");
+          List l = null;//acae3.listarDependencia("GRE","001");
           for (int i=0;l!=null&&i<l.size();i++){
               System.out.println("personaId" + ((Acae)l.get(i)).getPersonaId() + " TxtRazonSocial " + ((Acae)l.get(i)).getTxtRazonSocial() );  
           }
