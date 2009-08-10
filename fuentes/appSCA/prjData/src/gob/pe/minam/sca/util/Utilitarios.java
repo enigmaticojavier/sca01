@@ -51,7 +51,9 @@ public class Utilitarios {
         SimpleDateFormat formatoDelTexto = new SimpleDateFormat("dd/MM/yyyy");
         Date fecha = null;
         try {
-            fecha = formatoDelTexto.parse(strFecha);
+            if (!strFecha.equals("")){
+               fecha = formatoDelTexto.parse(strFecha);
+            }
         } catch (ParseException ex) {
             ex.printStackTrace();
         }

@@ -74,7 +74,7 @@ public class Prueba {
         System.out.println(su.getTxtSubSector());
         
         ExpedienteDocumento ed = new ExpedienteDocumento();
-        l=ed.buscarExpDocXPry(1);
+        l=ed.buscarExpDocXPry(1,true);
         System.out.println("ExpedienteDocumento--------------->");
         for (int i=0;i<l.size();i++){
           System.out.println("ExpedienteDocumento expId" + ((ExpedienteDocumento)l.get(i)).getExpedientePaso().getExpediente().getExpId() );  

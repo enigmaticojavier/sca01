@@ -1,12 +1,17 @@
 package gob.pe.minam.sca.action;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.Preparable;
 
 import gob.pe.minam.sca.framework.AccionSoporte;
 import gob.pe.minam.sca.pojo.ExpedienteDocumento;
 import gob.pe.minam.sca.pojo.Proyecto;
 
+import gob.pe.minam.sca.pojo.Usuario;
+
 import java.util.List;
+
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 
@@ -31,6 +36,14 @@ public class ProyectoExpedienteAction extends AccionSoporte implements Preparabl
     public String input() {
         try{
             log.info("[ExpedienteProyectoAction.input][Ini]");
+            boolean acceso;
+            Map session = ActionContext.getContext().getSession();
+            Usuario usuario =  (Usuario)session.get("Usuario");
+            if (usuario!=null && usuario.getTipUsuario().equals("ACA")){
+                acceso=true;
+            }else{
+                acceso=false;
+            }
             Integer tmpPryId=Integer.valueOf(this.getParameterValue("pryId"));
             System.out.println(tmpPryId);
             Proyecto pry = new Proyecto();
@@ -38,7 +51,7 @@ public class ProyectoExpedienteAction extends AccionSoporte implements Preparabl
             this.proyecto=pry.obtenerProyecto(tmpPryId);
             log.info("resultado"+this.proyecto.getPryId());
             ExpedienteDocumento ed = new ExpedienteDocumento();
-            this.expedienteDocumentos = ed.buscarExpDocXPry(tmpPryId);
+            this.expedienteDocumentos = ed.buscarExpDocXPry(tmpPryId,acceso);
             log.info("[ExpedienteProyectoAction.input][Fin]");
         }catch(Exception ex){
             ex.printStackTrace();
@@ -52,7 +65,7 @@ public class ProyectoExpedienteAction extends AccionSoporte implements Preparabl
         Integer tmpPryId=Integer.valueOf(this.getParameterValue("pryId"));
         log.info("tmpPryId " + tmpPryId);
         ExpedienteDocumento ed = new ExpedienteDocumento();
-        this.expedienteDocumentos = ed.buscarExpDocXPry(tmpPryId);
+        this.expedienteDocumentos = ed.buscarExpDocXPry(tmpPryId, true);
         log.info("[ExpedienteProyectoAction.list][Fin]");
         return SUCCESS;
       }catch(Exception ex){

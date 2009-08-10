@@ -20,9 +20,12 @@ public class ExpedienteDocumentoSqlMapDao extends BaseSqlMapDao implements Exped
       super(daoManager);
     }
     
-    public List buscarExDocXProy (Integer pryId) throws DAOException{
+    public List buscarExDocXProy (Integer pryId, boolean acceso) throws DAOException{
         try{
-          return queryForList("BuscarExpDocXPry",pryId);
+          if (acceso)
+             return queryForList("BuscarExpDocXPry",pryId);
+          else
+             return queryForList("BuscarExpDocXPryLogout",pryId); 
         }catch(SqlMapException ex){
           throw new DAOException(ex.toString(),"Error producido en BD : No se puede ejecutar la ExpedienteDocumento de Proyecto");
         }catch(DaoException ex){

@@ -47,6 +47,20 @@
         order by ep.nsecuencia
   </select>
   
+  <select id="BuscarExpDocXPryLogout" resultMap="ExpedienteDocumentoXProyectoResult" parameterClass="int">
+        select ep.expid, ep.nsecuencia, doc.docid, ex.numexpediente, 
+             ex.fchexpediente, tdo.txtvalor, doc.coddocumento,
+             tippas.txtvalor dsctippas
+        from expediente ex, expedientepaso ep, expedientedocumento ed, documento doc, parametro tdo, parametro tippas
+        where ex.expid = ep.expid and ep.tippaso=tippas.codparametro and tippas.tipparametro='TRX'
+        and ep.expid = ed.expid(+) and ep.nsecuencia = ed.nsecuencia(+)
+        and ed.docid = doc.docid(+) and doc.tipodocumento = tdo.codparametro(+) and  tdo.tipparametro(+) = 'DOC'
+        and tippas.codparametro in (select codparametro from parametro tippas where tippas.tipparametro='TXU')
+        and ex.pryId=#param#
+        order by ep.nsecuencia
+  </select>
+  
+  
   <select id="BuscarExpDocXPeriodoPersonaId" resultMap="ExpedienteDocumentoXPeriodoPersonaResult" parameterClass="ExpedienteDocumento">
         select ep.expid, ep.nsecuencia, doc.docid, pry.pryid,
                pry.txtdescripcion, ep.tippaso, ep.fchpaso, ex.numexpediente,

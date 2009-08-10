@@ -50,11 +50,11 @@ public class ExpedienteDocumento {
         return documento;
     }
     
-    public static List buscarExpDocXPry(Integer pryId) throws NegocioException{
+    public static List buscarExpDocXPry(Integer pryId, boolean acceso) throws NegocioException{
        try{  
          System.out.println("pryId " + pryId);
          ExpedienteDocumentoDao expedienteDocumentoDao= ProyectoService.getInstance().getExpedienteDocumentoDao();
-         List lstExpDoc = expedienteDocumentoDao.buscarExDocXProy(pryId);
+         List lstExpDoc = expedienteDocumentoDao.buscarExDocXProy(pryId, acceso);
          List lstExpDocIma=new ArrayList();
          for (int i=0;i<lstExpDoc.size();i++){
              ExpedienteDocumento expDoc = (ExpedienteDocumento)lstExpDoc.get(i);
