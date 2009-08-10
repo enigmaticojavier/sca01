@@ -1,8 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
-<%@ taglib prefix="fmt" uri="/WEB-INF/tld/fmt.tld" %>
-
+<%
+response.addHeader("Pragma","no-cache"); 
+response.setHeader("Cache-Control","no-cache,no-store,must-revalidate"); 
+response.addHeader("Cache-Control","pre-check=0,post-check=0"); 
+response.setDateHeader("Expires",-1); 
+%>
 <html>
   <head>    
     <title>MINAM - SCA</title>

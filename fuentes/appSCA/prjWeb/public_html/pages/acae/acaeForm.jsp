@@ -1,9 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%
+response.setHeader("Pragma","no-cache"); 
+response.setHeader("Cache-Control","no-cache,no-store"); 
+//response.addHeader("Cache-Control","pre-check=0,post-check=0"); 
+response.setHeader("Expires","0"); 
+%>
 <html>
   <head>    
-    <title>MINAM - SCA</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>MINAM - SCA</title>        
+        <meta http-equiv="Expires" content="0"> 
+        <meta http-equiv="Last-Modified" content="0"> 
+        <meta http-equiv="Cache-Control" content="no-cache, no-store"> 
+        <meta http-equiv="Pragma" content="no-cache"> 
+        <META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"> 
 	<meta name="Description" content="-- MINAM PERU Ministerio del Medio Ambiente (MINAM).">
 	<META NAME="Keywords" CONTENT="PERU,  MINAM ,  Perú, economy, MINISTERIO, AMBIENTE, Statistical , Ministerio del Ambiente, estadisticas, Indicadores, Indicadores Ambientales">
 	<link href="<%= request.getContextPath() %>/public/css/web/template_css.css" rel="stylesheet" type="text/css">
@@ -24,13 +34,10 @@
         }
         function enviar(form){
           if (validar(form)){  
-              //var frm=frmParametro;
-              //frm.action="parametro!save.action";
               form.submit();
           }    
         }
-        function validar(form){
-          //var form=frmParametro;
+        function validar(form){          
           var obj=document.getElementById('usuario.usuario');
           if (obj.value==""){
              alert("Ingrese Usuario");
@@ -113,7 +120,7 @@
                 <!--s:submit value="Crear" align="center"/-->
                 <tr>
                 <td>
-                <input type="button" value="Crear" onclick="javascript:enviar(this.form)"/>
+                <input type="button" value="Crear" onclick="javascript:enviar(this.form)" align="center"/>
                 </td>
                 </tr>
                 </s:form>

@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%
+response.addHeader("Pragma","no-cache"); 
+response.setHeader("Cache-Control","no-cache,no-store,must-revalidate"); 
+response.addHeader("Cache-Control","pre-check=0,post-check=0"); 
+response.setDateHeader("Expires",0); 
+%>
 <html>
   <head>    
     <title>MINAM - SCA</title>
@@ -22,7 +28,33 @@
             frm.action="acaeModifica!doCargarParametros";
             frm.submit();  
         }
-        
+        function enviar(form){
+          if (validar(form)){  
+              form.submit();
+          }    
+        }
+        function validar(form){          
+          var obj=document.getElementById('usuario.usuario');
+          if (obj.value==""){
+             alert("Ingrese Usuario");
+             obj.focus();
+             return false;
+          }
+          var obj=document.getElementById('usuario.codClave');
+          if (obj.value==""){
+             alert("Ingrese Clave");
+             obj.focus();
+             return false;
+          } else {
+            var obj2=document.getElementById('codClave2');
+            if (obj.value!=obj2.value) {
+                alert("Las claves deben ser iguales");
+                obj2.focus();
+                return false;
+            }
+          }          
+          return true;
+        } 
         </script>
   </head>
   <body onload="new Accordian('basic-accordian',5,'header_highlight');">
@@ -82,7 +114,12 @@
                 <s:password label="Repetir Clave" name="codClave2" value="%{codClave2}" size="50" maxlength="50"/>
                 <s:hidden name="usuario.tipUsuario" value="ACA"/>
                 <s:hidden name="persona.personaId" value="%{persona.personaId}"/>
-                <s:submit value="Aceptar" align="center"/>
+                <tr>
+                <td>
+                <input type="button" value="Aceptar" onclick="javascript:enviar(this.form)" align="center"/>
+                </td>
+                </tr>
+                
                 </s:form>
             </td>
         </tr>
