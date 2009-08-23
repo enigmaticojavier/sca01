@@ -1,14 +1,16 @@
 <!--%@ page contentType="text/html;charset=ISO-8859-1" language="java" pageEncoding="ISO-8859-1"%-->
 <%@ taglib prefix="s" uri="/struts-tags" %>
-<%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <jsp:useBean id="date" class="java.util.Date"/>
 
 <%
     String rutaServer=request.getContextPath();
 %>
-
+<%
+response.setHeader("Cache-Control", "no-cache"); //HTTP 1.1
+response.setHeader("Pragma", "no-cache"); //HTTP 1.0
+response.setDateHeader("Expires", 0); //prevents caching at the proxy server
+%>
 <html>
   <head>    
     <title><s:text name="label.proyecto.titulo"/></title>

@@ -1,6 +1,11 @@
 <%@ page contentType="text/html;charset=ISO-8859-1" language="java" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
+<%
+response.setHeader("Cache-Control", "no-cache"); //HTTP 1.1
+response.setHeader("Pragma", "no-cache"); //HTTP 1.0
+response.setDateHeader("Expires", 0); //prevents caching at the proxy server
+%>
 <html>
 <head>
     <link href="<s:url value='/css/main.css'/>" rel="stylesheet" type="text/css"/>

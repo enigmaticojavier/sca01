@@ -1,5 +1,10 @@
 <!--%@ page contentType="text/html;charset=ISO-8859-1" language="java" pageEncoding="ISO-8859-1"%-->
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%
+response.setHeader("Cache-Control", "no-cache"); //HTTP 1.1
+response.setHeader("Pragma", "no-cache"); //HTTP 1.0
+response.setDateHeader("Expires", 0); //prevents caching at the proxy server
+%>
 <s:if test="parametro==null || parametro.idParametro == null">
     <s:set name="title" value="%{'Nuevo Parametro'}"/>
 </s:if>
@@ -39,9 +44,7 @@
     </script>
 </head>
 <body>
- 
-    
-        <!-- Copia Skeleton Ini -->
+    <!-- Copia Skeleton Ini -->
     <table summary="Main Table for Techshelp" border="0" cellpadding="0" cellspacing="0" width="1000">
       <tr>
         <td colspan="2">
