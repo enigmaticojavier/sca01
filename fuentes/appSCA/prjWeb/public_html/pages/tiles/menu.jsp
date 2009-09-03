@@ -1,7 +1,6 @@
 <!--%@ page contentType="text/html;charset=ISO-8859-1" language="java" pageEncoding="ISO-8859-1"%-->
 <%@ taglib prefix="s" uri="/struts-tags" %>
-<html>
-<body>
+
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
 	<tr>
 	<td>			  
@@ -108,5 +107,3 @@
        </td>
        </tr>
 </table>           
-</body>
-</html>
