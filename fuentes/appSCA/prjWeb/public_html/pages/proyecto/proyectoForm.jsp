@@ -105,6 +105,11 @@ response.setDateHeader("Expires", 0); //prevents caching at the proxy server
                         <font color="White">1. Proyecto</font>
                     </td>
                 </tr>
+                <tr>
+                    <td align="right">
+                        <input type="button" name="imprimir" value="Imprimir" onclick="window.print();">                        
+                    </td>
+                </tr>
                 <tr><td align="center">
                     <table>
                       <tr>

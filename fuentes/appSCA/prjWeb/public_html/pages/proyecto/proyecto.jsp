@@ -2,6 +2,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page import="gob.pe.minam.sca.pojo.Usuario"%>
 <%@page import="java.util.Date"%>
 <%
@@ -115,7 +116,11 @@ response.setDateHeader("Expires", 0); //prevents caching at the proxy server
                         <font color="White"><s:text name="label.proyecto.titulo"/></font>
                     </td>
                 </tr>
-                
+                <tr>
+                    <td align="right">
+                        <input type="button" name="imprimir" value="Imprimir" onclick="window.print();">                        
+                    </td>
+                </tr>
                 <tr><td align="center">
                     <table>
                       <tr>
@@ -207,18 +212,27 @@ response.setDateHeader("Expires", 0); //prevents caching at the proxy server
                     </table>   
                 </td></tr>
                 <tr><td>
-                    
+                    <s:hidden name="tipoAcae2" value="%{tipoAcae}" />
+                    <s:hidden name="clsSector2" value="%{clsSector}" />
                     <s:set name="proyectos" value="proyectos" scope="request" />
                     <s:if test="%{showMsgFind==true && (proyectos==null || proyectos.size()==0)}">
                         No existen proyectos que cumplan el criterio de búsqueda
                     </s:if>
-                    <s:else>
-                        <display:table name="proyectos" requestURI="proyecto!buscarProyecto?txtDescripcion=${txtDescripcion}&ubigeoId=${ubigeoId}&clsTipificacion=${clsTipificacion}&fchExpedienteDesde=${fchExpedienteDesde}&fchExpedienteHasta=${fchExpedienteHasta}&estadoTramite=${estadoTramite}&tipoAcae=${tipoAcae}&clsSector=${clsSector}&clsSubSector=${clsSubSector}" excludedParams="*" class="dataTable" id="proyecto" pagesize="10" style="width:800" export="true">
+                    <s:else>                    
+                        
+                        <display:table name="proyectos" requestURI="proyecto!buscarProyecto?txtDescripcion=${txtDescripcion}&ubigeoId=${ubigeoId}&clsTipificacion=${clsTipificacion}&fchExpedienteDesde=${fchExpedienteDesde}&fchExpedienteHasta=${fchExpedienteHasta}&estadoTramite=${estadoTramite}&tipoAcae=${tipoAcae}&clsSector=${clsSector}&clsSubSector=${clsSubSector}" excludedParams="*" class="dataTable" id="proyecto" pagesize="10" style="width:800" export="true" >
                             <display:setProperty name="export.csv" value="false" /> 
                             <display:setProperty name="export.xls" value="true" />
                             <display:setProperty name="export.xml" value="false" />
                             <display:setProperty name="export.xls.filename" value="proyecto.xls"/> 
                             <display:column property="pryId" title="" style="width:1"  media="csv" />
+                            <s:if test="%{tipoAcae==null || tipoAcae==0}">
+                                <display:column property="tipoAcae" title="Tipo ACAE" style="width:50" media="html excel csv" />
+                            </s:if>
+                            <s:if test="%{clsSector==null || clsSector==0}">
+                                <display:column property="institucion" title="Institución" style="width:150" media="html excel csv" />
+                            </s:if>
+                            
                             <display:column property="txtDescripcion" title="Nombre del Proyecto" style="width:600" media="html excel csv" />
                             <display:column property="dscClsTipificacion" title="Clasi<br>fica" style="width:50" media="html excel csv"/>
                             <display:column property="proponente.persona.txtRazonSocial" title="Proponente" style="width:70" media="html excel csv"/>
