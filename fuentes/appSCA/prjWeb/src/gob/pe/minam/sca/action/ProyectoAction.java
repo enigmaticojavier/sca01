@@ -142,6 +142,7 @@ public class ProyectoAction extends AccionSoporte implements Preparable {
           List lstDep = new ArrayList();
           if (this.tipoAcae!=null){
               log.info("this.tipoAcae " + this.tipoAcae);
+              acae.setTipAcae(this.tipoAcae);
               if (!this.tipoAcae.equals(COMBO_COD_ALL)){
                   lstIns=par.buscarParametroXTipoParametro(this.tipoAcae);
                   if (lstIns==null) lstIns = new ArrayList();
@@ -191,6 +192,7 @@ public class ProyectoAction extends AccionSoporte implements Preparable {
           this.parInstitucion=lstIns;
           if (this.clsSector!=null){
               log.info("this.tipoAcae " + this.tipoAcae + "this.clsSector " + this.clsSector);
+              
               if (!this.clsSector.equals(COMBO_COD_ALL)){
                   lstDep=acae.listarDependencia(this.tipoAcae, this.clsSector);
                   //lstDep=sub.buscarSubsectorXSector(this.clsSector);
@@ -199,6 +201,8 @@ public class ProyectoAction extends AccionSoporte implements Preparable {
               //sub.setClsSubSector(COMBO_COD_ALL);
               //sub.setTxtSubSector(COMBO_TXT_ALL);
               //lstDep.add(sub);
+              acae.setTipAcae(this.tipoAcae);
+              acae.setClsSector(this.clsSector);
               acae.setPersonaId(Integer.parseInt(COMBO_COD_ALL));
               acae.setTxtRazonSocial(COMBO_TXT_ALL);
               lstDep.add(acae);
@@ -249,6 +253,8 @@ public class ProyectoAction extends AccionSoporte implements Preparable {
             //sub.setClsSubSector(COMBO_COD_ALL);
             //sub.setTxtSubSector(COMBO_TXT_ALL);
             //lstDep.add(sub);
+             acae.setTipAcae(this.tipoAcae);
+             acae.setClsSector(this.clsSector);
             acae.setPersonaId(Integer.parseInt(COMBO_COD_ALL));
             acae.setTxtRazonSocial(COMBO_TXT_ALL);
             lstDep.add(acae);
