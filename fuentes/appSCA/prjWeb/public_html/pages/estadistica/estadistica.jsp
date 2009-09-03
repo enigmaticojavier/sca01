@@ -52,7 +52,7 @@ response.setDateHeader("Expires", 0); //prevents caching at the proxy server
                 <%@ include file="/pages/tiles/menu.jsp"%>
            <%}%>
         </td>
-        <td width="560" valign="top">
+        <td width="600" valign="top">
     <!-- Copia Skeleton Fin -->
     
     <s:if test="mensajeError.codigo!=null">
@@ -62,10 +62,15 @@ response.setDateHeader("Expires", 0); //prevents caching at the proxy server
     </s:if>
         <s:form theme="simple">
                 
-            <table width="100%">    
+            <table border="1">    
             <tr>
                 <td bgcolor="Green">
                     <font color="White"><s:text name="label.estadistica.titulo"/></font>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    <input type="button" name="imprimir" value="Imprimir" onclick="window.print();">                        
                 </td>
             </tr>
             <tr><td align="center">
