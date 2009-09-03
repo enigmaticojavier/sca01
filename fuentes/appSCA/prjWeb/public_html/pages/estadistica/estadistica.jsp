@@ -62,7 +62,7 @@ response.setDateHeader("Expires", 0); //prevents caching at the proxy server
     </s:if>
         <s:form theme="simple">
                 
-            <table border="1">    
+            <table border="0">    
             <tr>
                 <td bgcolor="Green">
                     <font color="White"><s:text name="label.estadistica.titulo"/></font>
