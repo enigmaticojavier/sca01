@@ -1,23 +1,3 @@
-create or replace package PQ_PROYECTO is
-  TYPE curType IS REF CURSOR;
-  PROCEDURE BUSCAR(p_rsProyecto          OUT curType,
-                   p_cDescripcion        VARCHAR2,
-                   p_cUbigeoId           VARCHAR2,
-                   p_cClsTipificacion    VARCHAR2,
-                   p_dFchExpedienteDesde DATE,
-                   p_dFchExpedienteHasta DATE,
-                   p_cEstadoTramite      VARCHAR2,
-                   p_cTipoAcae           VARCHAR2,
-                   p_cClsSector          VARCHAR2,
-                   p_cClsSubSector       NUMBER);
-  FUNCTION PARAMETRO_BUSCAR(p_cTipParametro VARCHAR2,
-                            p_cCodParametro VARCHAR2) RETURN VARCHAR2;
-  FUNCTION GETESTADOTRAMITE(p_cPryId VARCHAR2) RETURN VARCHAR2;
-  FUNCTION GETESTADOTRAMITETXT(p_cPryId VARCHAR2) RETURN VARCHAR2;
-  FUNCTION GETDEPARTAMENTO(p_cUbigeoid VARCHAR2) RETURN VARCHAR2;
-
-end PQ_PROYECTO;
-/
 create or replace package body PQ_PROYECTO is
   PROCEDURE BUSCAR(p_rsProyecto          OUT curType,
                    p_cDescripcion        VARCHAR2,
@@ -93,10 +73,17 @@ create or replace package body PQ_PROYECTO is
                pr.personaid personaid,
                pe.txtrazonsocial,
                TO_CHAR(fchexpediente, 'dd/mm/yyyy') fchexpediente,
-               GETESTADOTRAMITETXT(pryid) esttram
-          from proyecto pr, persona pe, ubigeo u
-         where pr.personaid = pe.personaid(+)
-           and pr.ubigeoid = u.ubigeoid(+)
+               GETESTADOTRAMITETXT(pryid) esttram,
+               pr.clssector,
+               p1.txtvalor tipoacae,                 
+               PARAMETRO_BUSCAR(p1.codparametro,pr.clssector) institucion
+            from persona pe, ubigeo u, proyecto pr
+            inner join parametro p1 on p1.tipparametro='TAC' 
+            and p1.codparametro = p_cTipoAcae  --TIPO ACAE SELECIONADA
+            inner join parametro p2 on p1.codparametro=p2.tipparametro            
+            and p2.codparametro=pr.clssector
+            where pr.personaid = pe.personaid
+            and pr.ubigeoid = u.ubigeoid
            and (nDescripcion = 0 or
                UPPER(pr.txtdescripcion) like '%' || UPPER(p_cDescripcion) || '%') --'PRJ'
            and (nUbigeoId = 0 or
@@ -117,17 +104,24 @@ create or replace package body PQ_PROYECTO is
          open p_rsProyecto for
           select pryid,
                UPPER(pr.txtdescripcion) AS txtdescripcion,
-                 u.ubigeoid,
-                 GETDEPARTAMENTO(u.ubigeoid) DSCUBIGEO,
-                 clstipificacion,
-                 PARAMETRO_BUSCAR('IGA', clstipificacion) dsctipificacion,
-                 pr.personaid personaid,
-                 pe.txtrazonsocial,
-                 TO_CHAR(fchexpediente, 'dd/mm/yyyy') fchexpediente,
-                 GETESTADOTRAMITETXT(pryid) esttram
-            from proyecto pr, persona pe, ubigeo u
-           where pr.personaid = pe.personaid(+)
-             and pr.ubigeoid = u.ubigeoid(+)
+               u.ubigeoid,
+               GETDEPARTAMENTO(u.ubigeoid) DSCUBIGEO,
+               clstipificacion,
+               PARAMETRO_BUSCAR('IGA', clstipificacion) dsctipificacion,
+               pr.personaid personaid,
+               pe.txtrazonsocial,
+               TO_CHAR(fchexpediente, 'dd/mm/yyyy') fchexpediente,
+               GETESTADOTRAMITETXT(pryid) esttram,
+               pr.clssector,
+               p1.txtvalor tipoacae,                 
+               PARAMETRO_BUSCAR(p1.codparametro,pr.clssector) institucion
+            from persona pe, ubigeo u, proyecto pr
+            inner join parametro p1 on p1.tipparametro='TAC' 
+            and p1.codparametro = p_cTipoAcae  --TIPO ACAE SELECIONADA
+            inner join parametro p2 on p1.codparametro=p2.tipparametro            
+            and p2.codparametro=pr.clssector
+            where pr.personaid = pe.personaid
+            and pr.ubigeoid = u.ubigeoid
              and (nDescripcion = 0 or
                  UPPER(pr.txtdescripcion) like '%' || UPPER(p_cDescripcion) || '%') --'PRJ'
              and (nUbigeoId = 0 or
@@ -141,14 +135,15 @@ create or replace package body PQ_PROYECTO is
              and (nClsSector = 0 or clssector = p_cClsSector) --'AGR'
              --and (nClsSubSector = 0 or clssubsector = p_cClsSubSector); --'AGR1';
              and (nClsSubSector = 0 or pr.pryid in (
-                                                    select proyecto.pryid 
+                                                    select proyecto.pryid
                                                     from expediente, proyecto
                                                     where expediente.pryid = proyecto.pryid
-                                                    and expediente.personaid=p_cClsSubSector) 
+                                                    and expediente.personaid=p_cClsSubSector)
                                                     );
       ELSE
          open p_rsProyecto for
-          select pryid,
+         
+          select p1.codparametro, pryid,
                UPPER(pr.txtdescripcion) AS txtdescripcion,
                  u.ubigeoid,
                  GETDEPARTAMENTO(u.ubigeoid) DSCUBIGEO,
@@ -157,10 +152,16 @@ create or replace package body PQ_PROYECTO is
                  pr.personaid personaid,
                  pe.txtrazonsocial,
                  TO_CHAR(fchexpediente, 'dd/mm/yyyy') fchexpediente,
-                 GETESTADOTRAMITETXT(pryid) esttram
-            from proyecto pr, persona pe, ubigeo u
-           where pr.personaid = pe.personaid(+)
-             and pr.ubigeoid = u.ubigeoid(+)
+                 GETESTADOTRAMITETXT(pryid) esttram,
+                 pr.clssector,
+                 p1.txtvalor tipoacae,                 
+                 PARAMETRO_BUSCAR(p1.codparametro,pr.clssector) institucion
+            from persona pe, ubigeo u, proyecto pr
+            inner join parametro p1 on p1.tipparametro='TAC' 
+            inner join parametro p2 on p1.codparametro=p2.tipparametro            
+            and p2.codparametro=pr.clssector
+            where pr.personaid = pe.personaid
+            and pr.ubigeoid = u.ubigeoid
              and (nDescripcion = 0 or
                  UPPER(pr.txtdescripcion) like '%' || UPPER(p_cDescripcion) || '%') --'PRJ'
              and (nUbigeoId = 0 or
@@ -175,11 +176,11 @@ create or replace package body PQ_PROYECTO is
              and (nClsSector = 0 or clssector = p_cClsSector) --'AGR'
              --and (nClsSubSector = 0 or clssubsector = p_cClsSubSector) --'AGR1';
              and (nClsSubSector = 0 or pr.pryid in (
-                                      select proyecto.pryid 
+                                      select proyecto.pryid
                                       from expediente, proyecto
                                       where expediente.pryid = proyecto.pryid
-                                      and expediente.personaid=p_cClsSubSector) 
-                                      );
+                                      and expediente.personaid=p_cClsSubSector)
+                                      );             
       END IF;
     END IF;
   END BUSCAR;
