@@ -42,6 +42,7 @@ public class Proyecto implements Serializable{
    
    private String tipoAcae;
    private String institucion;
+   private String actividad;
 
    void Proyecto(){
    } 
@@ -174,7 +175,29 @@ public class Proyecto implements Serializable{
         return estadoTramite;
     }
     
-    
+    public void setTipoAcae(String tipoAcae) {
+        this.tipoAcae = tipoAcae;
+    }
+
+    public String getTipoAcae() {
+        return tipoAcae;
+    }
+
+    public void setInstitucion(String institucion) {
+        this.institucion = institucion;
+    }
+
+    public String getInstitucion() {
+        return institucion;
+    }
+
+    public void setActividad(String actividad) {
+        this.actividad = actividad;
+    }
+
+    public String getActividad() {
+        return actividad;
+    }
     public static List buscarProyecto(String txtDescripcion,/*nombreProyecto*/ String ubigeoId, /*departamento*/
                                       String clsTipificacion,/*categoria*/ String fchExpedienteDesde, /*Fecha de Presentación Desde*/
                                       String fchExpedienteHasta,/*Fecha de Presentación Desde*/ String estadoTramite, /*Estado Tramite*/
@@ -207,19 +230,5 @@ public class Proyecto implements Serializable{
        }
     }
 
-    public void setTipoAcae(String tipoAcae) {
-        this.tipoAcae = tipoAcae;
-    }
-
-    public String getTipoAcae() {
-        return tipoAcae;
-    }
-
-    public void setInstitucion(String institucion) {
-        this.institucion = institucion;
-    }
-
-    public String getInstitucion() {
-        return institucion;
-    }
+   
 }
