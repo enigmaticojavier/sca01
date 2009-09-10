@@ -232,7 +232,9 @@ response.setDateHeader("Expires", 0); //prevents caching at the proxy server
                             <s:if test="%{clsSector==null || clsSector==0}">
                                 <display:column property="institucion" title="Institución" style="width:150" media="html excel csv" />
                             </s:if>
-                            
+                            <s:if test="%{clsSubSector==null || clsSubSector==0}">
+                                <display:column property="actividad" title="Actividad" style="width:150" media="html excel csv" />
+                            </s:if>
                             <display:column property="txtDescripcion" title="Nombre del Proyecto" style="width:600" media="html excel csv" />
                             <display:column property="dscClsTipificacion" title="Clasi<br>fica" style="width:50" media="html excel csv"/>
                             <display:column property="proponente.persona.txtRazonSocial" title="Proponente" style="width:70" media="html excel csv"/>
