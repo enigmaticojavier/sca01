@@ -76,7 +76,8 @@ create or replace package body PQ_PROYECTO is
                GETESTADOTRAMITETXT(pryid) esttram,
                pr.clssector,
                p1.txtvalor tipoacae,                 
-               PARAMETRO_BUSCAR(p1.codparametro,pr.clssector) institucion
+               PARAMETRO_BUSCAR(p1.codparametro,pr.clssector) institucion,
+               PARAMETRO_BUSCAR('ACT',substr(pr.codproyecto,0,3)) actividad
             from persona pe, ubigeo u, proyecto pr
             inner join parametro p1 on p1.tipparametro='TAC' 
             and p1.codparametro = p_cTipoAcae  --TIPO ACAE SELECIONADA
@@ -114,7 +115,8 @@ create or replace package body PQ_PROYECTO is
                GETESTADOTRAMITETXT(pryid) esttram,
                pr.clssector,
                p1.txtvalor tipoacae,                 
-               PARAMETRO_BUSCAR(p1.codparametro,pr.clssector) institucion
+               PARAMETRO_BUSCAR(p1.codparametro,pr.clssector) institucion,
+               PARAMETRO_BUSCAR('ACT',substr(pr.codproyecto,0,3)) actividad
             from persona pe, ubigeo u, proyecto pr
             inner join parametro p1 on p1.tipparametro='TAC' 
             and p1.codparametro = p_cTipoAcae  --TIPO ACAE SELECIONADA
@@ -155,7 +157,8 @@ create or replace package body PQ_PROYECTO is
                  GETESTADOTRAMITETXT(pryid) esttram,
                  pr.clssector,
                  p1.txtvalor tipoacae,                 
-                 PARAMETRO_BUSCAR(p1.codparametro,pr.clssector) institucion
+                 PARAMETRO_BUSCAR(p1.codparametro,pr.clssector) institucion,
+                 PARAMETRO_BUSCAR('ACT',substr(pr.codproyecto,0,3)) actividad
             from persona pe, ubigeo u, proyecto pr
             inner join parametro p1 on p1.tipparametro='TAC' 
             inner join parametro p2 on p1.codparametro=p2.tipparametro            
