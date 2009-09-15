@@ -15,10 +15,11 @@
       <result property="dscClsTipificacion" column="DSCCLSTIPIFICACION"/>
       <result property="tipEstadoTramite" column="TIPESTADOTRAMITE"/>
       <result property="contExp" column="CONTEXP"/>
+      <result property="actividad" column="ACTIVIDAD"/>
   </resultMap>
   
   <select id="ListarEstadistica" resultMap="EstadisticaResult" parameterClass="EstadisticaVo">
-    select pry.clssector, ins.txtvalor dscclssector, tes.codparametro clstipificacion, 
+    select PQ_PROYECTO.PARAMETRO_BUSCAR('ACT',substr(pry.codproyecto,0,3)) actividad, pry.clssector, ins.txtvalor dscclssector, tes.codparametro clstipificacion, 
            tes.txtvalor dscclstipificacion, et.tipestadotramite, count(*) contexp
     from proyecto pry, parametro ins, parametro tac, parametro tes,
          expediente e, expedientepaso ep, estadostupa et,
@@ -34,8 +35,8 @@
     and ins.tipparametro=decode(#tipAcae#,'0',ins.tipparametro,#tipAcae#)
     AND e.expid = pasomax.expid
     AND pasomax.nsecmax = ep.nsecuencia
-    group by pry.clssector, ins.txtvalor, tes.codparametro, et.tipestadotramite, tes.txtvalor
-    order by clssector, clstipificacion 
+    group by PQ_PROYECTO.PARAMETRO_BUSCAR('ACT',substr(pry.codproyecto,0,3)), pry.clssector, ins.txtvalor, tes.codparametro, et.tipestadotramite, tes.txtvalor
+    order by PQ_PROYECTO.PARAMETRO_BUSCAR('ACT',substr(pry.codproyecto,0,3)), clssector, clstipificacion 
   </select>
   
 </sqlMap>
