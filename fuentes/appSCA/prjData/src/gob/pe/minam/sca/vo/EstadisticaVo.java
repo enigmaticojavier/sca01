@@ -17,6 +17,7 @@ public class EstadisticaVo implements Serializable{
     private int anulado;
     private int desistido;
     private int total;
+    private String actividad;
 
     public void setClsSector(String clsSector) {
         this.clsSector = clsSector;
@@ -128,5 +129,13 @@ public class EstadisticaVo implements Serializable{
 
     public String getPeriodo() {
         return periodo;
+    }
+
+    public void setActividad(String actividad) {
+        this.actividad = actividad;
+    }
+
+    public String getActividad() {
+        return actividad;
     }
 }
