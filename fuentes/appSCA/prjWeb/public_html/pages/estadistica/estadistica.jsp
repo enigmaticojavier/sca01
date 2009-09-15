@@ -101,8 +101,9 @@ response.setDateHeader("Expires", 0); //prevents caching at the proxy server
                 </table>   
             </td></tr>
             <tr><td>
-                <display:table name="estadisticas" requestURI="index" class="dataTable" id="estadistica" pagesize="10" style="width:500">
+                <display:table name="estadisticas" requestURI="index" class="dataTable" id="estadistica" pagesize="30" style="width:500">
                     <display:column property="dscClsSector" title="Institución" style="width:5%" group="1"/>
+                    <display:column property="actividad" title="Actividad" style="width:5%" group="2"/>
                     <display:column property="dscClsTipificacion" title="Tipo de Estudio" style="width:40%" />
                     <display:column property="evaluacion" title="Evaluacion" style="width:0%" />
                     <display:column property="aprobado" title="Aprobado" style="width:15%" />
