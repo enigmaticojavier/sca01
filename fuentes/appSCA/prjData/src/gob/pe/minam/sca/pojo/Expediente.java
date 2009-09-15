@@ -109,7 +109,7 @@ public class Expediente {
             evaluacion=aprobado=desaprobado=anulado=desistido=todos=0;
             ExpedienteDao expedienteDao = ProyectoService.getInstance().getExpedienteDao();
             List lstEstadistica = expedienteDao.listarEstadistica(tipAcae, periodo);
-            String tmpClsSector="", tmpClsTipificacion="", tmpDscClsSector="", tmpDscClsTipificacion="";
+            String tmpClsSector="", tmpClsTipificacion="", tmpDscClsSector="", tmpDscClsTipificacion="", tmpActividad="";
             EstadisticaVo estRes = null;
             List lstEstRes = new ArrayList();
             for (int i=0;i<lstEstadistica.size();i++){
@@ -119,6 +119,7 @@ public class Expediente {
                     tmpClsTipificacion=est.getClsTipificacion();
                     tmpDscClsSector=est.getDscClsSector();
                     tmpDscClsTipificacion=est.getDscClsTipificacion();
+                    tmpActividad=est.getActividad();
                 }
                 System.out.println("tmpClsSector " + tmpClsSector + " tmpClsTipificacion " + tmpClsTipificacion + " tmpDscClsSector " + tmpDscClsSector + " tmpDscClsTipificacion " + tmpDscClsTipificacion);
                 System.out.println("est.getClsSector() " + est.getClsSector() + " est.getClsTipificacion() " + est.getClsTipificacion() + " est.getTipEstadoTramite() " + est.getTipEstadoTramite());
@@ -140,6 +141,7 @@ public class Expediente {
                     estRes.setClsTipificacion(tmpClsTipificacion);
                     estRes.setDscClsSector(tmpDscClsSector);
                     estRes.setDscClsTipificacion(tmpDscClsTipificacion);
+                    estRes.setActividad(tmpActividad);
                     estRes.setEvaluacion(evaluacion);
                     estRes.setAprobado(aprobado);
                     estRes.setDesaprobado(desaprobado);
@@ -171,6 +173,7 @@ public class Expediente {
                     estRes.setClsTipificacion(tmpClsTipificacion);
                     estRes.setDscClsSector(tmpDscClsSector);
                     estRes.setDscClsTipificacion(tmpDscClsTipificacion);
+                    estRes.setActividad(tmpActividad);
                     estRes.setEvaluacion(evaluacion);
                     estRes.setAprobado(aprobado);
                     estRes.setDesaprobado(desaprobado);
