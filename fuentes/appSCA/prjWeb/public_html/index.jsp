@@ -7,7 +7,7 @@ response.setDateHeader("Expires", 0); //prevents caching at the proxy server
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
   <head>    
-        <title>MINAM - SCA</title> 
+        <title>MINAM - RCA</title> 
         <META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <META HTTP-EQUIV="Cache-Control" CONTENT ="no-cache">
         <META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
@@ -37,11 +37,45 @@ response.setDateHeader("Expires", 0); //prevents caching at the proxy server
           <%@ include file="pages/tiles/menu.jsp" %>
         </td>
         <td width="800" valign="top">
-          <%@ include file="pages/tiles/cuerpo.jsp" %>
+        <table width="90%" class="titulo" align="center" cellspacing="0" cellpadding="0" height="36">
+        <tr>
+            <td align="center" bgcolor="#F2FEE6" class="titulo">Bienvenidos al Registro de Certificaciones Ambientales - RCA </td>
+        </tr>
+        </table>
+        <br />
+        
+        <img src="<%= request.getContextPath() %>/public/img/web/Foto_CA.jpg" align="right" border="2">
+          <font color="Green">¿Qué son Certificaciones Ambientales?</font>
+          <br/>
+            <div>
+                Las Certificaciones Ambientales son las resoluciones que aprueban el instrumento de gestión ambiental emitida 
+                por la Autoridad Competente de Administración y Ejecución -ACAE, mediante la cual se aprueba la DIA o el EIA 
+                respectivos, al haber cumplido el proyecto o la actividad con los requisitos de forma y fondo establecidos en 
+                el SEIA, y en el que se establecen los compromisos que debe cumplir el proponente para prevenir, mitigar, corregir, 
+                compensar y manejar los impactos ambientales negativos del proyecto o actividad.
+            </div>
+            <p/>
+            <font color="Green">¿Para qué tipo de actividades o proyectos se deben gestionar las Certificaciones Ambientales?</font>
+            <br/>
+            <div>
+                Todos aquellos relacionados a las políticas, planes y programas de nivel nacional, regional y local que puedan 
+                originar implicaciones ambientales significativas, así como los proyectos de inversión pública, privada o de capital 
+                mixto, que impliquen actividades, construcciones, obras, y otras actividades comerciales y de servicios que puedan 
+                causar impactos ambientales negativos significativos. (Artículo 2º del D.L. 1078).
+            </div>
+            <p/>
+            <font color="Green">¿Es obligatoria la Certificación Ambiental?</font>
+            <br/>
+            <div>
+            No podrá iniciarse la ejecución de proyectos ni actividades de servicios y comercio referidos en el punto anterior y 
+            ninguna autoridad nacional, sectorial, regional o local, podrán aprobarlas, autorizarlas, permitirlas, concederlas o 
+            habilitarlas si no cuentan previamente con la Certificación Ambiental contenida en la resolución expedida por la respectiva 
+            autoridad competente. (Artículo 3º del D.L. 1078).
+            </div>
         </td>
       </tr>
       <tr>
-        <td colspan="2" align="left" background="<%= request.getContextPath() %>/public/img/web/cool-blue_r9_c8.jpg" valign="top">        
+        <td colspan="2" align="left" background="public/img/web/cool-blue_r9_c8.jpg" valign="top">        
           <%@ include file="pages/tiles/pie.jsp" %>
         </td>
       </tr>

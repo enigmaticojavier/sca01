@@ -7,7 +7,7 @@ response.setDateHeader("Expires", 0); //prevents caching at the proxy server
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
   <head>    
-    <title>MINAM - SCA</title>
+    <title>MINAM - RCA</title>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<meta name="Description" content="-- MINAM PERU Ministerio del Medio Ambiente (MINAM).">
 	<META NAME="Keywords" CONTENT="PERU,  MINAM ,  Perú, economy, MINISTERIO, AMBIENTE, Statistical , Ministerio del Ambiente, estadisticas, Indicadores, Indicadores Ambientales">
@@ -36,7 +36,7 @@ response.setDateHeader("Expires", 0); //prevents caching at the proxy server
         <td width="800" valign="top">
         <table width="90%" class="titulo" align="center" cellspacing="0" cellpadding="0" height="36">
         <tr>
-            <td align="center" bgcolor="#F2FEE6" class="titulo">Bienvenidos al Sistema de Registro de Certificaciones Ambientales - SCA </td>
+            <td align="center" bgcolor="#F2FEE6" class="titulo">Bienvenidos al Registro de Certificaciones Ambientales - RCA </td>
         </tr>
         </table>
         <br />
