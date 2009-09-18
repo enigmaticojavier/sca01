@@ -8,7 +8,7 @@ response.setHeader("Expires","0");
 %>
 <html>
   <head>    
-    <title>MINAM - SCA</title>        
+    <title>MINAM - RCA</title>        
         <meta http-equiv="Expires" content="0"> 
         <meta http-equiv="Last-Modified" content="0"> 
         <meta http-equiv="Cache-Control" content="no-cache, no-store"> 
@@ -75,7 +75,7 @@ response.setHeader("Expires","0");
         <td width="800" valign="top">
         <table width="90%" class="titulo" align="center" cellspacing="0" cellpadding="0" height="36">
         <tr>
-            <td align="center" bgcolor="#F2FEE6" class="titulo">Bienvenidos al Sistema de Registro de Certificaciones Ambientales - SCA </td>
+            <td align="center" bgcolor="#F2FEE6" class="titulo">Bienvenidos al Registro de Certificaciones Ambientales - RCA </td>
         </tr>
         </table>
         <br />
