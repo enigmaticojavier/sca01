@@ -154,6 +154,7 @@ public class Expediente {
                     tmpClsTipificacion=est.getClsTipificacion();
                     tmpDscClsSector=est.getDscClsSector();
                     tmpDscClsTipificacion=est.getDscClsTipificacion();
+                    tmpActividad=est.getActividad();
                     evaluacion=aprobado=desaprobado=anulado=desistido=todos=0; 
                     if (est.getTipEstadoTramite().equals("EVA")){
                         evaluacion+=est.getContExp(); 
