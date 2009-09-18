@@ -11,7 +11,7 @@
 	   <div id="basic-accordian" >
               <!--Parent of the Accordion-->
               <!--Start of each accordion item-->
-              <div id="test-header" class="accordion_headings header_highlight" ><a href="#0">SCA</a></div>
+              <div id="test-header" class="accordion_headings header_highlight" ><a href="#0">RCA</a></div>
 	      <!--Heading of the accordion ( clicked to show n hide ) -->
               <!--Prefix of heading (the DIV above this) and content (the DIV below this) to be same... eg. foo-header & foo-content-->
               
