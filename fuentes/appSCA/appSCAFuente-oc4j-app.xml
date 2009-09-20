@@ -1,6 +1,6 @@
 <?xml version = '1.0' encoding = 'windows-1252'?>
 <orion-application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://xmlns.oracle.com/oracleas/schema/orion-application-10_0.xsd">
-    <web-module id="prjWeb" path="file:/C:/software/java/eclipsewin32/wsSCA/fuentes/appSCA/prjWeb/public_html/"/>
+    <web-module id="prjWeb" path="file:/C:/software/java/eclipsewin32/WSMINAM/fuentes/appSCA/prjWeb/public_html/"/>
     <log>
         <file path="appSCAFuente-oc4j-app.log"/>
     </log>

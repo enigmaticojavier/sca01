@@ -13,6 +13,14 @@
         <servlet-name>DescargaServlet</servlet-name>
         <url-pattern>/DescargaServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>ReportServlet</servlet-name>
+        <servlet-class>gob.pe.minam.sca.servlet.ReportServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReportServlet</servlet-name>
+        <url-pattern>/ReportServlet</url-pattern>
+    </servlet-mapping>
    <filter>  
         <filter-name>FiltroDescarga</filter-name>  
         <filter-class>  

@@ -127,6 +127,14 @@ public class Persona {
         return usuario;
     }
     
+    public void setUbigeo(Ubigeo ubigeo) {
+        this.ubigeo = ubigeo;
+    }
+
+    public Ubigeo getUbigeo() {
+        return ubigeo;
+    }
+    
         
     public static Persona getPersonaByKey(Persona persona){
         ProyectoService proyectoService = ProyectoService.getInstance();
@@ -152,11 +160,9 @@ public class Persona {
         personaDao.updatePersona(persona);
     }
     
-    public void setUbigeo(Ubigeo ubigeo) {
-        this.ubigeo = ubigeo;
-    }
-
-    public Ubigeo getUbigeo() {
-        return ubigeo;
+    public List selectProponenteByTipDoc(String tipDoc) throws DAOException {
+        ProyectoService proyectoService = ProyectoService.getInstance();
+        PersonaDao personaDao = proyectoService.getPersonaDao();
+        return personaDao.selectProponenteByTipDoc(tipDoc);
     }
 }

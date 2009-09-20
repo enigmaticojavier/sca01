@@ -14,6 +14,8 @@ public interface PersonaDao {
     public void insertPersona(Persona persona) ;
     
     public void updatePersona(Persona persona) throws DAOException;
+    
+    public List selectProponenteByTipDoc(String tipDoc);
         
 }
 

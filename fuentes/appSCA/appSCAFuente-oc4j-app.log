@@ -9717,3 +9717,207 @@ Error: Se ha encontrado la etiqueta final </s:param--> sin la etiqueta inicial c
 09/08/10 02:23:37.917 prjWeb: 10.1.3.3.0 Started
 09/08/10 02:50:54.28 10.1.3.3.0 Started
 09/08/10 02:50:58.917 prjWeb: 10.1.3.3.0 Started
+09/09/20 01:37:37.29 10.1.3.3.0 Started
+09/09/20 01:37:42.234 prjWeb: 10.1.3.3.0 Started
+09/09/20 02:29:02.41 10.1.3.3.0 Started
+09/09/20 02:29:07.15 prjWeb: 10.1.3.3.0 Started
+09/09/20 02:29:48.564 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/09/20 02:29:48.565 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/09/20 02:33:05.681 prjWeb: 10.1.3.3.0 Stopped
+09/09/20 02:33:06.335 10.1.3.3.0 Started
+09/09/20 02:33:10.120 prjWeb: 10.1.3.3.0 Started
+09/09/20 02:33:12.706 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/09/20 02:33:12.706 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/09/20 02:36:33.771 10.1.3.3.0 Started
+09/09/20 02:36:37.973 prjWeb: 10.1.3.3.0 Started
+09/09/20 02:39:06.768 10.1.3.3.0 Started
+09/09/20 02:39:10.994 prjWeb: 10.1.3.3.0 Started
+09/09/20 02:47:26.757 10.1.3.3.0 Started
+09/09/20 02:47:30.861 prjWeb1: 10.1.3.3.0 Started
+09/09/20 02:50:48.608 10.1.3.3.0 Started
+09/09/20 02:50:53.8 prjWeb1: 10.1.3.3.0 Started
+09/09/20 02:50:56.411 prjWeb1: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/09/20 02:50:56.411 prjWeb1: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/09/20 02:59:55.79 10.1.3.3.0 Started
+09/09/20 02:59:59.212 prjWeb1: 10.1.3.3.0 Started
+09/09/20 03:29:12.773 10.1.3.3.0 Started
+09/09/20 03:29:22.302 prjWeb1: 10.1.3.3.0 Started
+09/09/20 03:29:49.879 prjWeb: 10.1.3.3.0 Started
+09/09/20 03:29:50.427 prjWeb: Servlet error
+Unable to load configuration. - bean - code-source:/C:/software/java/eclipsewin32/WSMINAM/fuentes/appSCA/LibreriaSCA/LibreriaWeb/struts2-core-2.1.6.jar!/struts-default.xml:29:72
+	at com.opensymphony.xwork2.config.ConfigurationManager.getConfiguration(ConfigurationManager.java:58)
+	at org.apache.struts2.dispatcher.Dispatcher.init_PreloadConfiguration(Dispatcher.java:360)
+	at org.apache.struts2.dispatcher.Dispatcher.init(Dispatcher.java:403)
+	at org.apache.struts2.dispatcher.ng.InitOperations.initDispatcher(InitOperations.java:69)
+	at org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter.init(StrutsPrepareAndExecuteFilter.java:48)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpApplication.getFilterConfig(HttpApplication.java:7585)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.ServletRequestDispatcher.invoke(ServletRequestDispatcher.java:515)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.ServletRequestDispatcher.forwardInternal(ServletRequestDispatcher.java:370)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.doProcessRequest(HttpRequestHandler.java:871)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.processRequest(HttpRequestHandler.java:453)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.serveOneRequest(HttpRequestHandler.java:221)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.run(HttpRequestHandler.java:122)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.run(HttpRequestHandler.java:111)
+	at oracle.oc4j.network.ServerSocketReadHandler$SafeRunnable.run(ServerSocketReadHandler.java:260)
+	at oracle.oc4j.network.ServerSocketAcceptHandler.procClientSocket(ServerSocketAcceptHandler.java:239)
+	at oracle.oc4j.network.ServerSocketAcceptHandler.access$700(ServerSocketAcceptHandler.java:34)
+	at oracle.oc4j.network.ServerSocketAcceptHandler$AcceptHandlerHorse.run(ServerSocketAcceptHandler.java:880)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].util.ReleasableResourcePooledExecutor$MyWorker.run(ReleasableResourcePooledExecutor.java:303)
+	at java.lang.Thread.run(Thread.java:595)
+Caused by: Unable to load bean: type: class:com.opensymphony.xwork2.ObjectFactory - bean - code-source:/C:/software/java/eclipsewin32/WSMINAM/fuentes/appSCA/LibreriaSCA/LibreriaWeb/struts2-core-2.1.6.jar!/struts-default.xml:29:72
+	at com.opensymphony.xwork2.config.providers.XmlConfigurationProvider.register(XmlConfigurationProvider.java:222)
+	at org.apache.struts2.config.StrutsXmlConfigurationProvider.register(StrutsXmlConfigurationProvider.java:101)
+	at com.opensymphony.xwork2.config.impl.DefaultConfiguration.reloadContainer(DefaultConfiguration.java:165)
+	at com.opensymphony.xwork2.config.ConfigurationManager.getConfiguration(ConfigurationManager.java:55)
+	... 18 more
+Caused by: Bean type class com.opensymphony.xwork2.ObjectFactory with the name xwork has already been loaded by bean - code-source:/C:/software/java/eclipsewin32/WSMINAM/fuentes/appSCA/prjWeb/public_html/WEB-INF/lib/struts2-core-2.1.6.jar!/struts-default.xml:29:72 - bean - code-source:/C:/software/java/eclipsewin32/WSMINAM/fuentes/appSCA/LibreriaSCA/LibreriaWeb/struts2-core-2.1.6.jar!/struts-default.xml:29:72
+	at com.opensymphony.xwork2.config.providers.XmlConfigurationProvider.register(XmlConfigurationProvider.java:206)
+	... 21 more
+09/09/20 03:30:23.731 10.1.3.3.0 Started
+09/09/20 03:30:28.274 prjWeb: 10.1.3.3.0 Started
+09/09/20 03:31:13.489 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/09/20 03:31:13.490 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/09/20 03:31:15.518 prjWeb: Servlet error
+java.lang.NoClassDefFoundError
+	at gob.pe.minam.sca.pojo.Ubigeo.listarDepartamento(Ubigeo.java:55)
+	at gob.pe.minam.sca.action.ProyectoAction.llenaParametrosIniciales(ProyectoAction.java:104)
+	at gob.pe.minam.sca.action.ProyectoAction.prepare(ProyectoAction.java:47)
+	at com.opensymphony.xwork2.interceptor.PrepareInterceptor.doIntercept(PrepareInterceptor.java:134)
+	at com.opensymphony.xwork2.interceptor.MethodFilterInterceptor.intercept(MethodFilterInterceptor.java:87)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:236)
+	at org.apache.struts2.impl.StrutsActionProxy.execute(StrutsActionProxy.java:52)
+	at org.apache.struts2.dispatcher.Dispatcher.serviceAction(Dispatcher.java:468)
+	at org.apache.struts2.dispatcher.ng.ExecuteOperations.executeAction(ExecuteOperations.java:77)
+	at org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter.doFilter(StrutsPrepareAndExecuteFilter.java:76)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.ServletRequestDispatcher.invoke(ServletRequestDispatcher.java:623)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.ServletRequestDispatcher.forwardInternal(ServletRequestDispatcher.java:370)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.handleNotFound(HttpRequestHandler.java:1041)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.doProcessRequest(HttpRequestHandler.java:911)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.processRequest(HttpRequestHandler.java:453)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.serveOneRequest(HttpRequestHandler.java:221)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.run(HttpRequestHandler.java:122)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.run(HttpRequestHandler.java:111)
+	at oracle.oc4j.network.ServerSocketReadHandler$SafeRunnable.run(ServerSocketReadHandler.java:260)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].util.ReleasableResourcePooledExecutor$MyWorker.run(ReleasableResourcePooledExecutor.java:303)
+	at java.lang.Thread.run(Thread.java:595)
+09/09/20 03:32:20.982 10.1.3.3.0 Started
+09/09/20 03:32:25.981 prjWeb1: 10.1.3.3.0 Started
+09/09/20 03:35:12.252 prjWeb1: Servlet error
+java.lang.ExceptionInInitializerError
+	at gob.pe.minam.sca.data.ProyectoService.$init$(ProyectoService.java:37)
+	at gob.pe.minam.sca.data.ProyectoService.<init>(ProyectoService.java:53)
+	at gob.pe.minam.sca.data.ProyectoService.<clinit>(ProyectoService.java:34)
+	at gob.pe.minam.sca.pojo.Parametro.buscarParametroXTipoParametro(Parametro.java:98)
+	at gob.pe.minam.sca.action.EstadisticaAction.prepare(EstadisticaAction.java:73)
+	at com.opensymphony.xwork2.interceptor.PrepareInterceptor.doIntercept(PrepareInterceptor.java:134)
+	at com.opensymphony.xwork2.interceptor.MethodFilterInterceptor.intercept(MethodFilterInterceptor.java:87)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:236)
+	at com.opensymphony.xwork2.interceptor.I18nInterceptor.intercept(I18nInterceptor.java:148)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:236)
+	at org.apache.struts2.interceptor.ServletConfigInterceptor.intercept(ServletConfigInterceptor.java:164)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:236)
+	at com.opensymphony.xwork2.interceptor.AliasInterceptor.intercept(AliasInterceptor.java:128)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:236)
+	at com.opensymphony.xwork2.interceptor.ExceptionMappingInterceptor.intercept(ExceptionMappingInterceptor.java:176)
+	at com.opensymphony.xwork2.DefaultActionInvocation.invoke(DefaultActionInvocation.java:236)
+	at org.apache.struts2.impl.StrutsActionProxy.execute(StrutsActionProxy.java:52)
+	at org.apache.struts2.dispatcher.Dispatcher.serviceAction(Dispatcher.java:468)
+	at org.apache.struts2.dispatcher.ng.ExecuteOperations.executeAction(ExecuteOperations.java:77)
+	at org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter.doFilter(StrutsPrepareAndExecuteFilter.java:76)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.ServletRequestDispatcher.invoke(ServletRequestDispatcher.java:623)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.ServletRequestDispatcher.forwardInternal(ServletRequestDispatcher.java:370)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.handleNotFound(HttpRequestHandler.java:1041)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.doProcessRequest(HttpRequestHandler.java:911)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.processRequest(HttpRequestHandler.java:453)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.serveOneRequest(HttpRequestHandler.java:221)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.run(HttpRequestHandler.java:122)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].server.http.HttpRequestHandler.run(HttpRequestHandler.java:111)
+	at oracle.oc4j.network.ServerSocketReadHandler$SafeRunnable.run(ServerSocketReadHandler.java:260)
+	at com.evermind[Oracle Containers for J2EE 10g (10.1.3.3.0) ].util.ReleasableResourcePooledExecutor$MyWorker.run(ReleasableResourcePooledExecutor.java:303)
+	at java.lang.Thread.run(Thread.java:595)
+Caused by: java.lang.RuntimeException: No se puede inicializar DaoConfig.  Causa: com.ibatis.dao.client.DaoException: Error while configuring DaoManager.  Cause: com.ibatis.common.exception.NestedRuntimeException: Error occurred.  Cause: com.ibatis.common.xml.NodeletException: Error parsing XML.  Cause: com.ibatis.common.exception.NestedRuntimeException: Error parsing XPath '/sqlMapConfig/sqlMap'.  Cause: com.ibatis.common.xml.NodeletException: Error parsing XML.  Cause: com.ibatis.common.exception.NestedRuntimeException: Error parsing XPath '/sqlMap/select'.  Cause: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.common.exception.NestedRuntimeException: Error parsing XPath '/sqlMap/select'.  Cause: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.common.xml.NodeletException: Error parsing XML.  Cause: com.ibatis.common.exception.NestedRuntimeException: Error parsing XPath '/sqlMap/select'.  Cause: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.common.exception.NestedRuntimeException: Error parsing XPath '/sqlMap/select'.  Cause: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.common.exception.NestedRuntimeException: Error parsing XPath '/sqlMapConfig/sqlMap'.  Cause: com.ibatis.common.xml.NodeletException: Error parsing XML.  Cause: com.ibatis.common.exception.NestedRuntimeException: Error parsing XPath '/sqlMap/select'.  Cause: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.common.exception.NestedRuntimeException: Error parsing XPath '/sqlMap/select'.  Cause: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.common.xml.NodeletException: Error parsing XML.  Cause: com.ibatis.common.exception.NestedRuntimeException: Error parsing XPath '/sqlMap/select'.  Cause: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.common.exception.NestedRuntimeException: Error parsing XPath '/sqlMap/select'.  Cause: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.common.xml.NodeletException: Error parsing XML.  Cause: com.ibatis.common.exception.NestedRuntimeException: Error parsing XPath '/sqlMapConfig/sqlMap'.  Cause: com.ibatis.common.xml.NodeletException: Error parsing XML.  Cause: com.ibatis.common.exception.NestedRuntimeException: Error parsing XPath '/sqlMap/select'.  Cause: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.common.exception.NestedRuntimeException: Error parsing XPath '/sqlMap/select'.  Cause: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.common.xml.NodeletException: Error parsing XML.  Cause: com.ibatis.common.exception.NestedRuntimeException: Error parsing XPath '/sqlMap/select'.  Cause: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.common.exception.NestedRuntimeException: Error parsing XPath '/sqlMap/select'.  Cause: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.common.exception.NestedRuntimeException: Error parsing XPath '/sqlMapConfig/sqlMap'.  Cause: com.ibatis.common.xml.NodeletException: Error parsing XML.  Cause: com.ibatis.common.exception.NestedRuntimeException: Error parsing XPath '/sqlMap/select'.  Cause: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.common.exception.NestedRuntimeException: Error parsing XPath '/sqlMap/select'.  Cause: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.common.xml.NodeletException: Error parsing XML.  Cause: com.ibatis.common.exception.NestedRuntimeException: Error parsing XPath '/sqlMap/select'.  Cause: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.common.exception.NestedRuntimeException: Error parsing XPath '/sqlMap/select'.  Cause: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.common.exception.NestedRuntimeException: Error occurred.  Cause: com.ibatis.common.xml.NodeletException: Error parsing XML.  Cause: com.ibatis.common.exception.NestedRuntimeException: Error parsing XPath '/sqlMapConfig/sqlMap'.  Cause: com.ibatis.common.xml.NodeletException: Error parsing XML.  Cause: com.ibatis.common.exception.NestedRuntimeException: Error parsing XPath '/sqlMap/select'.  Cause: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.common.exception.NestedRuntimeException: Error parsing XPath '/sqlMap/select'.  Cause: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.common.xml.NodeletException: Error parsing XML.  Cause: com.ibatis.common.exception.NestedRuntimeException: Error parsing XPath '/sqlMap/select'.  Cause: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.common.exception.NestedRuntimeException: Error parsing XPath '/sqlMap/select'.  Cause: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.common.exception.NestedRuntimeException: Error parsing XPath '/sqlMapConfig/sqlMap'.  Cause: com.ibatis.common.xml.NodeletException: Error parsing XML.  Cause: com.ibatis.common.exception.NestedRuntimeException: Error parsing XPath '/sqlMap/select'.  Cause: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.common.exception.NestedRuntimeException: Error parsing XPath '/sqlMap/select'.  Cause: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.common.xml.NodeletException: Error parsing XML.  Cause: com.ibatis.common.exception.NestedRuntimeException: Error parsing XPath '/sqlMap/select'.  Cause: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.common.exception.NestedRuntimeException: Error parsing XPath '/sqlMap/select'.  Cause: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.common.xml.NodeletException: Error parsing XML.  Cause: com.ibatis.common.exception.NestedRuntimeException: Error parsing XPath '/sqlMapConfig/sqlMap'.  Cause: com.ibatis.common.xml.NodeletException: Error parsing XML.  Cause: com.ibatis.common.exception.NestedRuntimeException: Error parsing XPath '/sqlMap/select'.  Cause: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.common.exception.NestedRuntimeException: Error parsing XPath '/sqlMap/select'.  Cause: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.common.xml.NodeletException: Error parsing XML.  Cause: com.ibatis.common.exception.NestedRuntimeException: Error parsing XPath '/sqlMap/select'.  Cause: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.common.exception.NestedRuntimeException: Error parsing XPath '/sqlMap/select'.  Cause: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.common.exception.NestedRuntimeException: Error parsing XPath '/sqlMapConfig/sqlMap'.  Cause: com.ibatis.common.xml.NodeletException: Error parsing XML.  Cause: com.ibatis.common.exception.NestedRuntimeException: Error parsing XPath '/sqlMap/select'.  Cause: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.common.exception.NestedRuntimeException: Error parsing XPath '/sqlMap/select'.  Cause: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.common.xml.NodeletException: Error parsing XML.  Cause: com.ibatis.common.exception.NestedRuntimeException: Error parsing XPath '/sqlMap/select'.  Cause: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.common.exception.NestedRuntimeException: Error parsing XPath '/sqlMap/select'.  Cause: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+Caused by: com.ibatis.sqlmap.client.SqlMapException: There is no result map named Persona.ProponenteRSMap in this SqlMap.
+	at gob.pe.minam.sca.data.DaoConfig.<clinit>(DaoConfig.java:19)
+	... 31 more
+09/09/20 03:44:40.458 10.1.3.3.0 Started
+09/09/20 03:44:45.837 prjWeb: 10.1.3.3.0 Started
+09/09/20 03:48:00.577 10.1.3.3.0 Started
+09/09/20 03:48:05.415 prjWeb: 10.1.3.3.0 Started
+09/09/20 03:54:28.743 prjWeb: 10.1.3.3.0 Stopped
+09/09/20 03:54:29.412 10.1.3.3.0 Started
+09/09/20 03:54:34.312 prjWeb: 10.1.3.3.0 Started
+09/09/20 04:15:37.751 prjWeb: 10.1.3.3.0 Stopped
+09/09/20 04:15:38.336 10.1.3.3.0 Started
+09/09/20 04:15:47.421 prjWeb: 10.1.3.3.0 Started
+09/09/20 04:40:08.882 10.1.3.3.0 Started
+09/09/20 04:40:13.479 prjWeb: 10.1.3.3.0 Started
+09/09/20 04:48:18.909 10.1.3.3.0 Started
+09/09/20 04:48:23.366 prjWeb: 10.1.3.3.0 Started
+09/09/20 04:51:16.241 10.1.3.3.0 Started
+09/09/20 04:51:21.206 prjWeb: 10.1.3.3.0 Started
+09/09/20 04:59:14.798 10.1.3.3.0 Started
+09/09/20 04:59:18.925 prjWeb: 10.1.3.3.0 Started
+09/09/20 05:03:16.401 10.1.3.3.0 Started
+09/09/20 05:03:20.461 prjWeb: 10.1.3.3.0 Started

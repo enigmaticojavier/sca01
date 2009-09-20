@@ -27,4 +27,21 @@ public interface ProyectoDao {
 
   public Proyecto ObtenerProyecto(Integer prjId) throws DAOException;
   
+  public List buscarRanking(String clsTipificacion,/*categoria*/ String estadoTramite, /*Estado Tramite*/
+                               String tipoPersoneria, String proponente,
+                               String tipoAcae, String clsSector, /*Institución*/ String clsSubSector, /*Dependencia*/
+                               String codDepartamento, String codProvincia, String codDistrito, 
+                               String anoPresentacion, String tipDocTramite) throws DAOException;
+                               
+  public List buscarRankingDetalle(String clsTipificacion,/*categoria*/ String estadoTramite, /*Estado Tramite*/
+                                  String proponente, String tipoAcae, String clsSector, /*Institución*/ String clsSubSector, /*Dependencia*/
+                                  String codDepartamento, String codProvincia, String codDistrito, 
+                                  String anoPresentacion, String tipDocTramite) throws DAOException;
+                                      
+  public List buscarRankingReporte( String clsTipificacion,/*categoria*/ String estadoTramite, /*Estado Tramite*/
+                                    String tipoPersoneria, String proponente,
+                                    String tipoAcae, String clsSector, /*Institución*/ String clsSubSector, /*Dependencia*/
+                                    String codDepartamento, String codProvincia, String codDistrito, 
+                                    String anoPresentacion, String tipDocTramite) throws DAOException;
+  
 }

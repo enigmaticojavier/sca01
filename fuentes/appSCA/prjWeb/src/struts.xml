@@ -125,5 +125,35 @@
             </action>
 	</package>
         
+        <package name="pckranking" extends="struts-default">
+            <interceptors>
+               <interceptor-stack name="defaultStack">
+                  <interceptor-ref name="prepare" />  
+                  <interceptor-ref name="params">
+                     <param name="acceptedParamNames">
+                       [[\p{Graph}\s]+[^,#:=]]* 
+                     </param>   
+                     <param name="excludeParams">
+                        _,d-\d+?-[sope]
+                     </param>
+                  </interceptor-ref>
+               </interceptor-stack>
+            </interceptors>
+            
+            <default-interceptor-ref name="defaultStack"/>
+            <action name="ranking" class="gob.pe.minam.sca.action.RankingAction" method="list">
+                <result name="success">/pages/ranking/ranking.jsp</result>
+                <interceptor-ref name="defaultStack"/>
+            </action>
+            <action name="rankingForm" class="gob.pe.minam.sca.action.RankingAction" method="input">
+                <result name="success" type="redirectAction">index</result>
+                <result name="input">/pages/ranking/rankingForm.jsp</result>
+                <result name="reporte">/ReportServlet</result>
+                <result name="error">error.jsp</result>
+                <interceptor-ref name="defaultStack"/>
+            </action>
+	</package>
+        
+        
         
 </struts>

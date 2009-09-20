@@ -29,4 +29,8 @@
     select to_char(sysdate,'yyyy') || '-' || to_char(sysdate,'mm') periodo from dual 
   </select>
   
+  <select id="SelectAnoPeriodo" resultMap="PeriodoComboResult">
+    select distinct anio periodo from periodo
+  </select>
+  
 </sqlMap>

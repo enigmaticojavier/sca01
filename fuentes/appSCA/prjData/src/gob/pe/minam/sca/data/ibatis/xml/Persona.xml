@@ -54,5 +54,26 @@
   <select id="getNextItem" resultClass="java.lang.Integer" parameterClass="int">
         select SQ_PERSONA.NEXTVAL from dual     
    </select>
+   
+  <resultMap id="ProponenteRSMap" class="Persona"> 
+    <result property="personaId" column="PERSONAID"/>
+    <result property="txtRazonSocial" column="TXTRAZONSOCIAL"/>
+  </resultMap> 
+  <select id="selectProponenteByTipDoc" resultMap="ProponenteRSMap" parameterClass="map"> 
+    select personaid, txtrazonsocial
+    from persona
+    where tippersona = 'PRO'
+    <isNotNull property="ruc">
+        <isNotEmpty property="ruc">
+            and tipdocumentoper='RUC'
+        </isNotEmpty>
+    </isNotNull>
+    <isNotNull property="noruc">
+        <isNotEmpty property="noruc">
+            and tipdocumentoper!='RUC'
+        </isNotEmpty>
+    </isNotNull>
+    order by txtrazonsocial asc
+  </select>
 
 </sqlMap>

@@ -33,5 +33,15 @@ public class ConstantesSistema {
     public final static String PROC_CARGA_PROPONENTE = "USP_001_CARGA_PROPONENTE";
     public final static String PROC_CARGA_PROYECTO = "USP_002_CARGA_PROYECTO";
     public final static String PROC_CARGA_EXPEDIENTE = "USP_003_CARGA_EXPEDIENTE";
+    
+    public final static String ORD_CAT_PROY = "CATPROY";
+    public final static String ORD_EST_TRAM = "ESTTRAM";
+    public final static String ORD_EMP_PROP = "EMPPROP";
+    public final static String ORD_TIP_ACAE = "TIPACAE";
+    public final static String ORD_ACAE     = "ACAE";
+    public final static String ORD_DEPEN    = "DEPEN";
+        
+    public final static String TIP_PER_PN = "PN";
+    public final static String TIP_PER_PJ = "PJ";
      
 }

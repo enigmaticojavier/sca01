@@ -84,6 +84,22 @@ public class Periodo implements Serializable {
          throw new NegocioException(ex.toString(),"Error producido en Pojo");
        }
     }
+    
+    public List listarAnoPeriodo() throws NegocioException{
+       try{  
+          PeriodoDao periodoDao = ProyectoService.getInstance().getPeriodoDao();
+          return periodoDao.listarAnoPeriodo();
+       }catch(DAOException ex){
+          ex.printStackTrace();
+          throw new NegocioException(ex.toString(),ex.getCodigoMensajeUsuario());
+       }catch(Exception ex){
+          ex.printStackTrace();
+          throw new NegocioException(ex.toString(),"Error producido en Pojo");
+       }catch(Throwable ex){
+          ex.printStackTrace();
+          throw new NegocioException(ex.toString(),"Error producido en Pojo");
+       }
+    }
 
     
 }

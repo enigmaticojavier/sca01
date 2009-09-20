@@ -39,6 +39,7 @@ public class Proyecto implements Serializable{
    private String dscClsSector;
    private String dscClsSubSector;
    private String estadoTramite;
+   private int contador;
    
    private String tipoAcae;
    private String institucion;
@@ -198,6 +199,15 @@ public class Proyecto implements Serializable{
     public String getActividad() {
         return actividad;
     }
+    
+    public void setContador(int contador) {
+        this.contador = contador;
+    }
+
+    public int getContador() {
+        return contador;
+    }
+    
     public static List buscarProyecto(String txtDescripcion,/*nombreProyecto*/ String ubigeoId, /*departamento*/
                                       String clsTipificacion,/*categoria*/ String fchExpedienteDesde, /*Fecha de Presentación Desde*/
                                       String fchExpedienteHasta,/*Fecha de Presentación Desde*/ String estadoTramite, /*Estado Tramite*/
@@ -230,5 +240,66 @@ public class Proyecto implements Serializable{
        }
     }
 
+    public static List buscarRanking( String clsTipificacion,/*categoria*/ String estadoTramite, /*Estado Tramite*/
+                                     String tipoPersoneria, String proponente,
+                                     String tipoAcae, String clsSector, /*Institución*/ String clsSubSector, /*Dependencia*/
+                                     String codDepartamento, String codProvincia, String codDistrito, 
+                                     String anoPresentacion, String tipDocTramite
+                                   ) throws NegocioException{
+      try{  
+        ProyectoDao proyectoDao = ProyectoService.getInstance().getProyectoDao();
+        return proyectoDao.buscarRanking( clsTipificacion, estadoTramite, 
+                                          tipoPersoneria, proponente,
+                                          tipoAcae, clsSector, clsSubSector,
+                                          codDepartamento, codProvincia, codDistrito, 
+                                          anoPresentacion, tipDocTramite);
+      }catch(DAOException ex){
+        throw new NegocioException(ex.toString(),ex.getCodigoMensajeUsuario());
+      }catch(Exception ex){
+        throw new NegocioException(ex.toString(),"Error producido en Pojo");
+      }
+   }
    
+   public static List buscarRankingDetalle(  String clsTipificacion,/*categoria*/ String estadoTramite, /*Estado Tramite*/
+                                             String proponente,
+                                             String tipoAcae, String clsSector, /*Institución*/ String clsSubSector, /*Dependencia*/
+                                             String codDepartamento, String codProvincia, String codDistrito, 
+                                             String anoPresentacion, String tipDocTramite
+                                           ) throws NegocioException{
+      try{  
+        ProyectoDao proyectoDao = ProyectoService.getInstance().getProyectoDao();
+        return proyectoDao.buscarRankingDetalle( clsTipificacion, estadoTramite, 
+                                                 proponente,
+                                                 tipoAcae, clsSector, clsSubSector,
+                                                 codDepartamento, codProvincia, codDistrito, 
+                                                 anoPresentacion, tipDocTramite);
+      }catch(DAOException ex){
+        throw new NegocioException(ex.toString(),ex.getCodigoMensajeUsuario());
+      }catch(Exception ex){
+        throw new NegocioException(ex.toString(),"Error producido en Pojo");
+      }
+   }
+   
+   public static List buscarRankingReporte(  String clsTipificacion,/*categoria*/ String estadoTramite, /*Estado Tramite*/
+                                             String tipoPersoneria, String proponente,
+                                             String tipoAcae, String clsSector, /*Institución*/ String clsSubSector, /*Dependencia*/
+                                             String codDepartamento, String codProvincia, String codDistrito, 
+                                             String anoPresentacion, String tipDocTramite
+                                   ) throws NegocioException{
+      try{  
+        ProyectoDao proyectoDao = ProyectoService.getInstance().getProyectoDao();
+        return proyectoDao.buscarRankingReporte( clsTipificacion, estadoTramite, 
+                                                 tipoPersoneria, proponente,
+                                                 tipoAcae, clsSector, clsSubSector,
+                                                 codDepartamento, codProvincia, codDistrito, 
+                                                 anoPresentacion, tipDocTramite);
+      }catch(DAOException ex){
+        throw new NegocioException(ex.toString(),ex.getCodigoMensajeUsuario());
+      }catch(Exception ex){
+        throw new NegocioException(ex.toString(),"Error producido en Pojo");
+      }
+   }
+      
+      
+    
 }

@@ -105,11 +105,11 @@
    <hash n="oracle.jdevimpl.config.JProjectLibraries">
       <list n="exportedReferences">
          <hash>
-            <value n="id" v="LibreriaWeb"/>
+            <value n="id" v="JSP Runtime"/>
             <value n="isJDK" v="false"/>
          </hash>
          <hash>
-            <value n="id" v="JSP Runtime"/>
+            <value n="id" v="LibreriaWe"/>
             <value n="isJDK" v="false"/>
          </hash>
       </list>
@@ -117,18 +117,29 @@
          <list n="libraryDefinitions">
             <hash>
                <list n="classPath">
-                  <url path="../LibreriaSCA/LibreriaWeb/commons-collections-3.1.jar" jar-entry=""/>
+                  <url path="../LibreriaSCA/LibreriaWeb/commons-beanutils-1.8.0.jar" jar-entry=""/>
+                  <url path="../LibreriaSCA/LibreriaWeb/commons-collections-3.2.1.jar" jar-entry=""/>
                   <url path="../LibreriaSCA/LibreriaWeb/commons-digester-1.7.jar" jar-entry=""/>
                   <url path="../LibreriaSCA/LibreriaWeb/commons-fileupload-1.2.1.jar" jar-entry=""/>
                   <url path="../LibreriaSCA/LibreriaWeb/commons-io-1.3.2.jar" jar-entry=""/>
                   <url path="../LibreriaSCA/LibreriaWeb/commons-lang-2.3.jar" jar-entry=""/>
                   <url path="../LibreriaSCA/LibreriaWeb/commons-logging-1.1.jar" jar-entry=""/>
+                  <url path="../LibreriaSCA/LibreriaWeb/commons-math-1.0.jar" jar-entry=""/>
+                  <url path="../LibreriaSCA/LibreriaWeb/core_ireport.jar" jar-entry=""/>
                   <url path="../LibreriaSCA/LibreriaWeb/displaytag-1.2.jar" jar-entry=""/>
+                  <url path="../LibreriaSCA/LibreriaWeb/displaytag-export-poi-1.1.jar" jar-entry=""/>
+                  <url path="../LibreriaSCA/LibreriaWeb/displaytag-export-poi-1.2-sources.jar" jar-entry=""/>
                   <url path="../LibreriaSCA/LibreriaWeb/freemarker-2.3.13.jar" jar-entry=""/>
+                  <url path="../LibreriaSCA/LibreriaWeb/groovy-all-1.5.5.jar" jar-entry=""/>
+                  <url path="../LibreriaSCA/LibreriaWeb/iText-2.1.0.jar" jar-entry=""/>
+                  <url path="../LibreriaSCA/LibreriaWeb/jasperreports-3.5.2.jar" jar-entry=""/>
+                  <url path="../LibreriaSCA/LibreriaWeb/jstl.jar" jar-entry=""/>
                   <url path="../LibreriaSCA/LibreriaWeb/junit-3.8.1.jar" jar-entry=""/>
                   <url path="../LibreriaSCA/LibreriaWeb/log4j-1.2.14.jar" jar-entry=""/>
                   <url path="../LibreriaSCA/LibreriaWeb/ognl-2.6.11.jar" jar-entry=""/>
+                  <url path="../LibreriaSCA/LibreriaWeb/poi-3.5-beta4-20081128.jar" jar-entry=""/>
                   <url path="../LibreriaSCA/LibreriaWeb/spring-test-2.5.6.jar" jar-entry=""/>
+                  <url path="../LibreriaSCA/LibreriaWeb/standard.jar" jar-entry=""/>
                   <url path="../LibreriaSCA/LibreriaWeb/struts2-core-2.1.6.jar" jar-entry=""/>
                   <url path="../LibreriaSCA/LibreriaWeb/struts2-tiles-plugin-2.1.6.jar" jar-entry=""/>
                   <url path="../LibreriaSCA/LibreriaWeb/tiles-api-2.1.2.jar" jar-entry=""/>
@@ -138,25 +149,19 @@
                   <url path="../LibreriaSCA/LibreriaWeb/tiles-portlet-2.1.2.jar" jar-entry=""/>
                   <url path="../LibreriaSCA/LibreriaWeb/tiles-servlet-2.1.2.jar" jar-entry=""/>
                   <url path="../LibreriaSCA/LibreriaWeb/xwork-2.1.2.jar" jar-entry=""/>
-                  <url path="../LibreriaSCA/LibreriaWeb/commons-beanutils-1.7.0.jar" jar-entry=""/>
-                  <url path="../LibreriaSCA/LibreriaWeb/displaytag-export-poi-1.1.jar" jar-entry=""/>
-                  <url path="../LibreriaSCA/LibreriaWeb/displaytag-export-poi-1.2-sources.jar" jar-entry=""/>
-                  <url path="../LibreriaSCA/LibreriaWeb/jstl.jar" jar-entry=""/>
-                  <url path="../LibreriaSCA/LibreriaWeb/standard.jar" jar-entry=""/>
-                  <url path="../LibreriaSCA/LibreriaWeb/poi-3.5-beta4-20081128.jar" jar-entry=""/>
                </list>
-               <value n="description" v="LibreriaWeb"/>
-               <value n="id" v="LibreriaWeb"/>
+               <value n="description" v="LibreriaWe"/>
+               <value n="id" v="LibreriaWe"/>
             </hash>
          </list>
       </hash>
       <list n="libraryReferences">
          <hash>
-            <value n="id" v="LibreriaWeb"/>
+            <value n="id" v="JSP Runtime"/>
             <value n="isJDK" v="false"/>
          </hash>
          <hash>
-            <value n="id" v="JSP Runtime"/>
+            <value n="id" v="LibreriaWe"/>
             <value n="isJDK" v="false"/>
          </hash>
       </list>
