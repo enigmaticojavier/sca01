@@ -152,6 +152,28 @@
                 return false;
             } 
         }
+        
+        function mostrarReporte(clsTipificacion,estadoTramite,tipoPersoneria,proponente,tipoAcae,clsSector,clsSubSector,codDepartamento,codProvincia,codDistrito,anoPeriodo,tipoDoc){
+            alert("HII");
+            var frm = document.frmProyecto;
+            var txtClsTipificacion = frm.clsTipificacion.options[frm.clsTipificacion.selectedIndex].text;
+            var txtEstadoTramite = frm.estadoTramite.options[frm.estadoTramite.selectedIndex].text;
+            var txtTipoPersoneria = frm.tipoPersoneria.options[frm.tipoPersoneria.selectedIndex].text;
+            var txtProponente = frm.proponente.options[frm.proponente.selectedIndex].text;
+            var txtTipoAcae = frm.tipoAcae.options[frm.tipoAcae.selectedIndex].text;
+            var txtClsSector = frm.clsSector.options[frm.clsSector.selectedIndex].text;
+            var txtClsSubSector = frm.clsSubSector.options[frm.clsSubSector.selectedIndex].text;
+            var txtCodDepartamento = frm.codDepartamento.options[frm.codDepartamento.selectedIndex].text;
+            var txtCodProvincia = frm.codProvincia.options[frm.codProvincia.selectedIndex].text;
+            var txtCodDistrito = frm.codDistrito.options[frm.codDistrito.selectedIndex].text;
+            var txtAnoPeriodo = frm.anoPeriodo.options[frm.anoPeriodo.selectedIndex].text;
+            var txtTipoDoc = frm.tipoDoc.options[frm.tipoDoc.selectedIndex].text;
+            frm.action="rankingForm!mostrarReporte?clsTipificacion="+clsTipificacion+"&estadoTramite="+estadoTramite+"&proponente="+proponente+"&tipoAcae="+tipoAcae+"&clsSector="+clsSector+"&clsSubSector="+clsSubSector+"&codDepartamento="+codDepartamento+"&codProvincia="+codProvincia+"&codDistrito="+codDistrito+"&anoPeriodo="+anoPeriodo+"&tipoDoc="+tipoDoc;
+            frm.action=frm.action+"&txtClsTipificacion="+txtClsTipificacion+"&txtEstadoTramite="+txtEstadoTramite+"&txtTipoPersoneria="+txtTipoPersoneria+"&txtProponente="+txtProponente+"&txtTipoAcae="+txtTipoAcae+"&txtClsSector="+txtClsSector+"&txtClsSubSector="+txtClsSubSector+"&txtCodDepartamento="+txtCodDepartamento+"&txtCodProvincia="+txtCodProvincia+"&txtCodDistrito="+txtCodDistrito+"&txtAnoPeriodo="+txtAnoPeriodo+"&txtTipoDoc="+txtTipoDoc;
+            frm.submit();
+        }
+        
+
     </script>
     
     <SCRIPT LANGUAGE="JavaScript" ID="jscal">
@@ -383,7 +405,8 @@
                     <s:if test="%{showMsgFind==true && (proyectosResumen==null || proyectosResumen.size()==0)}">
                     </s:if>
                     <s:else>                        
-                    <a target="_blank" href="rankingForm!mostrarReporte?clsTipificacion=${clsTipificacion}&estadoTramite=${estadoTramite}&tipoPersoneria=${tipoPersoneria}&proponente=${proponente}&tipoAcae=${tipoAcae}&clsSector=${clsSector}&clsSubSector=${clsSubSector}&codDepartamento=${codDepartamento}&codProvincia=${codProvincia}&codDistrito=${codDistrito}&anoPeriodo=${anoPeriodo}&tipoDoc=${tipoDoc}">
+                    <!--a target="_blank" href="rankingForm!mostrarReporte?clsTipificacion=${clsTipificacion}&estadoTramite=${estadoTramite}&tipoPersoneria=${tipoPersoneria}&proponente=${proponente}&tipoAcae=${tipoAcae}&clsSector=${clsSector}&clsSubSector=${clsSubSector}&codDepartamento=${codDepartamento}&codProvincia=${codProvincia}&codDistrito=${codDistrito}&anoPeriodo=${anoPeriodo}&tipoDoc=${tipoDoc}"-->
+                    <a target="_blank" href="" onclick="javascript:mostrarReporte('${clsTipificacion}','${estadoTramite}','${tipoPersoneria}','${proponente}','${tipoAcae}','${clsSector}','${clsSubSector}','${codDepartamento}','${codProvincia}','${codDistrito}','${anoPeriodo}','${tipoDoc}')">
                         Reporte
                     </a>
                     </s:else>
