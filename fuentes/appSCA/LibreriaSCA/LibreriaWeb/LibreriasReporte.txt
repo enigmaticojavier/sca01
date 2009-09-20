@@ -1,0 +1,9 @@
+groovy-all-1.5.5.jar
+iText-2.1.0.jar
+jasperreports-3.5.2.jar
+commons-beanutils-1.8.0.jar
+commons-collections-3.2.1.jar
+
+Reemplace estas librerias
+commons-beanutils-1.7.0
+commons-collections-3.1
