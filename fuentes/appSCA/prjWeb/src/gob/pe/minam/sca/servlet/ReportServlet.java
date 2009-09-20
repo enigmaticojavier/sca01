@@ -58,10 +58,9 @@ public class ReportServlet extends HttpServlet {
     }
 
     public void runReport(HttpServletRequest request, HttpServletResponse response) {
-        //String rutaRpteProyectoResumen = "/reportes/rpProyectoResumen1.jasper";
-        String rutaRpteProyectoResumen = "/reportes/reportnada2.jasper";
-        //String rutaSubRpteProyectoResumenFiltro =  "/reportes/rpProyectoResumenDetalle1.jasper";
-        String rutaSubRpteProyectoResumenFiltro =  "/reportes/subreportnada1.jasper";
+        String rutaRpteProyectoResumen = "/reportes/rpProyectoResumen.jasper";
+        String rutaSubRpteProyectoResumenFiltro =  "/reportes/rpProyectoResumenDetalle.jasper";
+        //String rutaSubRpteProyectoResumenFiltro =  "/reportes/subreportnada1.jasper";
          
         InputStream reportStream = null;
         OutputStream outstream = null;
@@ -78,8 +77,25 @@ public class ReportServlet extends HttpServlet {
             String codDepartamento = request.getParameter("codDepartamento");
             String codProvincia = request.getParameter("codProvincia");
             String codDistrito = request.getParameter("codDistrito");
-            String tipoDoc = request.getParameter("tipoDoc");
             String ano = request.getParameter("anoPeriodo");
+            String tipoDoc = request.getParameter("tipoDoc");
+            
+            String txtClsTipificacion = request.getParameter("txtClsTipificacion");
+            String txtEstadoTramite = request.getParameter("txtEstadoTramite");
+            String txtTipoPersoneria = request.getParameter("txtTipoPersoneria");
+            String txtProponente = request.getParameter("txtProponente");
+            String txtTipoAcae = request.getParameter("txtTipoAcae");
+            String txtClsSector = request.getParameter("txtClsSector");
+            String txtClsSubSector = request.getParameter("txtClsSubSector");
+            String txtCodDepartamento = request.getParameter("txtCodDepartamento");
+            String txtCodProvincia = request.getParameter("txtCodProvincia");
+            String txtCodDistrito = request.getParameter("txtCodDistrito");
+            String txtAnoPeriodo = request.getParameter("txtAnoPeriodo");
+            String txtTipoDoc = request.getParameter("txtTipoDoc");
+            
+            
+            //txtClsTipificacion="+txtClsTipificacion+"&txtEstadoTramite="+txtEstadoTramite+"&txtProponente="+txtProponente+"&txtTipoAcae="+txtTipoAcae+"&txtClsSector="+txtClsSector+"&txtClsSubSector="+txtClsSubSector+"&txtCodDepartamento="+txtCodDepartamento+"&txtCodProvincia="+txtCodProvincia+"&txtCodDistrito="+txtCodDistrito+"&txtAnoPeriodo="+txtAnoPeriodo+"&txtTipoDoc
+            
             
             System.out.println("--------------------------------------------------------------->");
             System.out.println("ReportServlet.clsTipificacion-->"+clsTipificacion);
@@ -108,18 +124,18 @@ public class ReportServlet extends HttpServlet {
             
             
             ProyectoReporteVo proyectoReporteVo = new ProyectoReporteVo();
-            proyectoReporteVo.setClsTipificacion((clsTipificacion==null || clsTipificacion.equals("0"))?null:clsTipificacion);
-            proyectoReporteVo.setEstadoTramite((estadoTramite==null || estadoTramite.equals("0"))?null:estadoTramite);
-            proyectoReporteVo.setTipoPersoneria((tipoPersoneria==null || tipoPersoneria.equals("0"))?null:tipoPersoneria);
-            proyectoReporteVo.setProponente((proponente==null || proponente.equals("0"))?null:proponente);
-            proyectoReporteVo.setTipoAcae((tipoAcae==null || tipoAcae.equals("0"))?null:tipoAcae);
-            proyectoReporteVo.setClsSector((clsSector==null || clsSector.equals("0"))?null:clsSector);
-            proyectoReporteVo.setClsSubSector((clsSubSector==null || clsSubSector.equals("0"))?null:clsSubSector);
-            proyectoReporteVo.setCodDepartamento((codDepartamento==null || codDepartamento.equals("0"))?null:codDepartamento);
-            proyectoReporteVo.setCodProvincia((codProvincia==null || codProvincia.equals("0"))?null:codProvincia);
-            proyectoReporteVo.setCodDistrito((codDistrito==null || codDistrito.equals("0"))?null:codDistrito);
-            proyectoReporteVo.setTipoDoc((tipoDoc==null || tipoDoc.equals("0"))?null:tipoDoc);
-            proyectoReporteVo.setAnoPeriodo(ano==null||ano.equals("0")?null:ano);
+            proyectoReporteVo.setClsTipificacion((clsTipificacion==null || clsTipificacion.equals("0"))?null:txtClsTipificacion);
+            proyectoReporteVo.setEstadoTramite((estadoTramite==null || estadoTramite.equals("0"))?null:txtEstadoTramite);
+            proyectoReporteVo.setTipoPersoneria((tipoPersoneria==null || tipoPersoneria.equals("0"))?null:txtTipoPersoneria);
+            proyectoReporteVo.setProponente((proponente==null || proponente.equals("0"))?null:txtProponente);
+            proyectoReporteVo.setTipoAcae((tipoAcae==null || tipoAcae.equals("0"))?null:txtTipoAcae);
+            proyectoReporteVo.setClsSector((clsSector==null || clsSector.equals("0"))?null:txtClsSector);
+            proyectoReporteVo.setClsSubSector((clsSubSector==null || clsSubSector.equals("0"))?null:txtClsSubSector);
+            proyectoReporteVo.setCodDepartamento((codDepartamento==null || codDepartamento.equals("0"))?null:txtCodDepartamento);
+            proyectoReporteVo.setCodProvincia((codProvincia==null || codProvincia.equals("0"))?null:txtCodProvincia);
+            proyectoReporteVo.setCodDistrito((codDistrito==null || codDistrito.equals("0"))?null:txtCodDistrito);
+            proyectoReporteVo.setTipoDoc((tipoDoc==null || tipoDoc.equals("0"))?null:txtTipoDoc);
+            proyectoReporteVo.setAnoPeriodo(ano==null||ano.equals("0")?null:txtAnoPeriodo);
             
             proyectoReporteVo.setLstResumen(lstProyectoResumen);
             reportStream = this.servletConfig.getServletContext().getResourceAsStream(rutaRpteProyectoResumen);
