@@ -582,31 +582,8 @@ public class RankingAction extends AccionSoporte implements Preparable {
 
     public String mostrarReporte() {
         try {
-            System.out.println("--------------------------------------------------------------->");
-            System.out.println("mostrarReporte.clsTipificacion-->"+this.clsTipificacion);
-            System.out.println("mostrarReporte.estadoTramite-->"+this.estadoTramite);
-            System.out.println("mostrarReporte.tipoPersoneria-->"+this.tipoPersoneria);
-            System.out.println("mostrarReporte.proponente-->"+this.proponente);
-            System.out.println("mostrarReporte.tipoAcae-->"+this.tipoAcae);
-            System.out.println("mostrarReporte.clsSector-->"+this.clsSector);
-            System.out.println("mostrarReporte.clsSubSector-->"+this.clsSubSector);
-            System.out.println("mostrarReporte.codDepartamento-->"+this.codDepartamento);
-            System.out.println("mostrarReporte.codProvincia-->"+this.codProvincia);
-            System.out.println("mostrarReporte.codDistrito-->"+this.codDistrito);
-            System.out.println("mostrarReporte.tipoDoc-->"+this.tipoDoc);
-            System.out.println("mostrarReporte.anoPeriodo-->"+this.anoPeriodo);
-            System.out.println("--------------------------------------------------------------->");
-            
-            String ano = this.anoPeriodo.equals(COMBO_TXT_ALL) ? "0" : this.anoPeriodo;
-            this.proyectosResumen = Proyecto.buscarRanking(this.clsTipificacion, 
-                                                           this.estadoTramite, 
-                                                           this.tipoPersoneria, 
-                                                           this.proponente, this.tipoAcae, 
-                                                           this.clsSector, this.clsSubSector, 
-                                                           this.codDepartamento, 
-                                                           this.codProvincia, this.codDistrito, 
-                                                           ano, this.tipoDoc);
-            ServletActionContext.getRequest().setAttribute("proyectosResumen",proyectosResumen);
+            System.out.println("mostrarReporte--------------------------------------------------------------->");
+            System.out.println("mostrarReporte---------------------------------------------------------------fin>");
         } catch (Exception ex) {
             ex.printStackTrace();
         }

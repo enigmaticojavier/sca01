@@ -139,9 +139,10 @@
     <parameter property="p_cCodDistrito" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
     <parameter property="p_cAnoPresentacion" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
     <parameter property="p_cTipDocTramite" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+    <parameter property="p_cOrdenRanking" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
   </parameterMap>
   <procedure id="PQ_PROYECTO.RANKING_DETALLE" parameterMap="ParametersRankingDetalle">
-     { call PQ_PROYECTO.RANKING_DETALLE(?,?,?,?,?,?,?,?,?,?,?,?) }
+     { call PQ_PROYECTO.RANKING_DETALLE(?,?,?,?,?,?,?,?,?,?,?,?,?) }
   </procedure>
   
   

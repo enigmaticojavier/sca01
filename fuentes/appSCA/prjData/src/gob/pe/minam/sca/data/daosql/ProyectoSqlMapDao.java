@@ -220,7 +220,7 @@ public class ProyectoSqlMapDao extends BaseSqlMapDao implements ProyectoDao {
                 map.put("p_cProponente",proponente);
                 map.put("p_cTipoAcae",tipoAcae);
                 map.put("p_cClsSector",clsSector);
-                map.put("p_cClsSubSector",Integer.parseInt(clsSubSector));
+                map.put("p_cClsSubSector",Integer.parseInt(clsSubSector!=null?clsSubSector:"0"));
                 map.put("p_cCodDepartamento",codDpto);
                 map.put("p_cCodProvincia",codProv);
                 map.put("p_cCodDistrito",codDist);
@@ -264,7 +264,7 @@ public class ProyectoSqlMapDao extends BaseSqlMapDao implements ProyectoDao {
         public List buscarRankingDetalle(String clsTipificacion,/*categoria*/ String estadoTramite, /*Estado Tramite*/
                                          String proponente, String tipoAcae, String clsSector, /*Institución*/ String clsSubSector, /*Dependencia*/
                                          String codDepartamento, String codProvincia, String codDistrito, 
-                                         String anoPresentacion, String tipDocTramite) throws DAOException{
+                                         String anoPresentacion, String tipDocTramite,String ordenRanking) throws DAOException{
             try{
                 String codDpto="";
                 String codProv="";
@@ -284,6 +284,7 @@ public class ProyectoSqlMapDao extends BaseSqlMapDao implements ProyectoDao {
                 map.put("p_cCodDistrito",codDist);
                 map.put("p_cAnoPresentacion",anoPresentacion);
                 map.put("p_cTipDocTramite",tipDocTramite);
+                map.put("p_cOrdenRanking",ordenRanking);
                 System.out.println("clsTipificacion"+clsTipificacion);
                 System.out.println("estadoTramite"+estadoTramite);
                 System.out.println("proponente"+proponente);
@@ -295,6 +296,7 @@ public class ProyectoSqlMapDao extends BaseSqlMapDao implements ProyectoDao {
                 System.out.println("codDistrito"+codDistrito);
                 System.out.println("anoPresentacion"+anoPresentacion);
                 System.out.println("tipDocTramite"+tipDocTramite);
+                System.out.println("ordenRanking"+ordenRanking);
                 queryForObject("PQ_PROYECTO.RANKING_DETALLE", map);
                 List rsProyecto=(List)map.get("p_rsProyecto");
                 Iterator itProyecto = rsProyecto.iterator();

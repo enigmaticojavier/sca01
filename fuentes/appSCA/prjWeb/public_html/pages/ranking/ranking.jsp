@@ -154,7 +154,6 @@
         }
         
         function mostrarReporte(clsTipificacion,estadoTramite,tipoPersoneria,proponente,tipoAcae,clsSector,clsSubSector,codDepartamento,codProvincia,codDistrito,anoPeriodo,tipoDoc){
-            alert("HII");
             var frm = document.frmProyecto;
             var txtClsTipificacion = frm.clsTipificacion.options[frm.clsTipificacion.selectedIndex].text;
             var txtEstadoTramite = frm.estadoTramite.options[frm.estadoTramite.selectedIndex].text;
@@ -170,7 +169,7 @@
             var txtTipoDoc = frm.tipoDoc.options[frm.tipoDoc.selectedIndex].text;
             frm.action="rankingForm!mostrarReporte?clsTipificacion="+clsTipificacion+"&estadoTramite="+estadoTramite+"&proponente="+proponente+"&tipoAcae="+tipoAcae+"&clsSector="+clsSector+"&clsSubSector="+clsSubSector+"&codDepartamento="+codDepartamento+"&codProvincia="+codProvincia+"&codDistrito="+codDistrito+"&anoPeriodo="+anoPeriodo+"&tipoDoc="+tipoDoc;
             frm.action=frm.action+"&txtClsTipificacion="+txtClsTipificacion+"&txtEstadoTramite="+txtEstadoTramite+"&txtTipoPersoneria="+txtTipoPersoneria+"&txtProponente="+txtProponente+"&txtTipoAcae="+txtTipoAcae+"&txtClsSector="+txtClsSector+"&txtClsSubSector="+txtClsSubSector+"&txtCodDepartamento="+txtCodDepartamento+"&txtCodProvincia="+txtCodProvincia+"&txtCodDistrito="+txtCodDistrito+"&txtAnoPeriodo="+txtAnoPeriodo+"&txtTipoDoc="+txtTipoDoc;
-            frm.submit();
+            window.open (frm.action,"Ranking","menubar=0,resizable=1,scrollbars=1,status=0,toolbar=0"); 
         }
         
 
@@ -406,7 +405,7 @@
                     </s:if>
                     <s:else>                        
                     <!--a target="_blank" href="rankingForm!mostrarReporte?clsTipificacion=${clsTipificacion}&estadoTramite=${estadoTramite}&tipoPersoneria=${tipoPersoneria}&proponente=${proponente}&tipoAcae=${tipoAcae}&clsSector=${clsSector}&clsSubSector=${clsSubSector}&codDepartamento=${codDepartamento}&codProvincia=${codProvincia}&codDistrito=${codDistrito}&anoPeriodo=${anoPeriodo}&tipoDoc=${tipoDoc}"-->
-                    <a target="_blank" href="" onclick="javascript:mostrarReporte('${clsTipificacion}','${estadoTramite}','${tipoPersoneria}','${proponente}','${tipoAcae}','${clsSector}','${clsSubSector}','${codDepartamento}','${codProvincia}','${codDistrito}','${anoPeriodo}','${tipoDoc}')">
+                    <a href="#" onclick="javascript:mostrarReporte('${clsTipificacion}','${estadoTramite}','${tipoPersoneria}','${proponente}','${tipoAcae}','${clsSector}','${clsSubSector}','${codDepartamento}','${codProvincia}','${codDistrito}','${anoPeriodo}','${tipoDoc}')">
                         Reporte
                     </a>
                     </s:else>
