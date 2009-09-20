@@ -63,7 +63,6 @@ public class ReportServlet extends HttpServlet {
         //String rutaSubRpteProyectoResumenFiltro =  "/reportes/rpProyectoResumenDetalle1.jasper";
         String rutaSubRpteProyectoResumenFiltro =  "/reportes/subreportnada1.jasper";
          
-        java.sql.Connection conn = null;
         InputStream reportStream = null;
         OutputStream outstream = null;
         byte[] buffer = null;
@@ -108,9 +107,6 @@ public class ReportServlet extends HttpServlet {
                                                                     ano, tipoDoc);
             
             
-            Class.forName("oracle.jdbc.driver.OracleDriver");
-            String url = "jdbc:oracle:thin:@localhost:1521:BDRIMAC";
-            conn = DriverManager.getConnection(url,"sca", "sca");
             ProyectoReporteVo proyectoReporteVo = new ProyectoReporteVo();
             proyectoReporteVo.setClsTipificacion((clsTipificacion==null || clsTipificacion.equals("0"))?null:clsTipificacion);
             proyectoReporteVo.setEstadoTramite((estadoTramite==null || estadoTramite.equals("0"))?null:estadoTramite);
@@ -125,7 +121,6 @@ public class ReportServlet extends HttpServlet {
             proyectoReporteVo.setTipoDoc((tipoDoc==null || tipoDoc.equals("0"))?null:tipoDoc);
             proyectoReporteVo.setAnoPeriodo(ano==null||ano.equals("0")?null:ano);
             
-            System.out.println("seteando fuente lstProyectoResumen-->"+lstProyectoResumen);
             proyectoReporteVo.setLstResumen(lstProyectoResumen);
             reportStream = this.servletConfig.getServletContext().getResourceAsStream(rutaRpteProyectoResumen);
             List lstDatosReporte = new ArrayList();
@@ -133,25 +128,10 @@ public class ReportServlet extends HttpServlet {
             ProyectoResumenDS proyectoResumenDS = new ProyectoResumenDS(lstDatosReporte);
             Map parametros = new HashMap();
             parametros.put("rutaSubRpteProyectoResumenFiltro",rutaSubRpteProyectoResumenFiltro);
-            System.out.println("-------------------------->lstProyectoResumen.size"+lstProyectoResumen.size());
-            //JasperPrint print = JasperFillManager.fillReport(reportStream, parametros, proyectoResumenDS); 
-            /*
-            System.setProperty( "jasper.reports.compile.class.path", 
-                                 request.getRealPath("/WEB-INF/lib/jasperreports-3.0.0.jar") + 
-                                 System.getProperty("path.separator") + 
-                                 request.getRealPath("/WEB-INF/classes/") 
-                                 );
-            */
-            System.out.println("***************Estableciendo carpeta a compilar **************");
-            //System.setProperty( "jasper.reports.compile.temp", request.getRealPath("/reportes/") ); 
-            
-            System.out.println("***************XXXX **************");
             JasperPrint print = JasperFillManager.fillReport(reportStream, parametros, proyectoResumenDS);   
-            System.out.println("***************XXXX1 **************");
             outstream = response.getOutputStream(); 
             JasperManager.printReportToPdfStream(print, outstream);
             response.addHeader("Cache-Control", "No-cache; No-store; Must-revalidate; Proxy-revalidate");
-            System.out.println("***************XXXX2 **************");
             response.addDateHeader( "Expires", 1L); 
             response.addHeader("Pragma", "No-cache");
             response.setContentType(CONTENT_TYPE_PDF);
@@ -162,16 +142,6 @@ public class ReportServlet extends HttpServlet {
             outstream.flush();
         } catch(Throwable e) {
             e.printStackTrace();
-        }finally{
-            try{
-                if(conn != null){
-                    conn.close();
-                }
-            } catch (Throwable ex2) {
-                System.out.println("*************MENSAJE ERROR = " + ex2.getMessage());
-                System.out.println("*************CAUSA ERROR = " + ex2.getMessage());
-            }
-        
         }
     }
 

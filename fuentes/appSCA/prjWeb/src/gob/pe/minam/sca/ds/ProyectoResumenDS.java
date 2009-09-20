@@ -56,20 +56,13 @@ public class ProyectoResumenDS implements JRDataSource{
             valor = proyectoReporteVo.getCodProvincia();
         }else if("codDistrito".equals(campo.getName())){
             valor = proyectoReporteVo.getCodDistrito();
+        }else if("anoPeriodo".equals(campo.getName())){
+            valor = proyectoReporteVo.getAnoPeriodo();
+            System.out.println("ano-->"+valor);
         }else if("tipoDoc".equals(campo.getName())){
             valor = proyectoReporteVo.getTipoDoc();
         } else if ("lstProyectoResumen".equals(campo.getName())) {
-           System.out.println("Danny-----------------ProyectoResumenDS----->1-->"+proyectoReporteVo.getLstResumen().size());
            valor = new JRBeanCollectionDataSource(proyectoReporteVo.getLstResumen());
-           JRBeanCollectionDataSource valor1=(JRBeanCollectionDataSource)valor;
-           System.out.println("Danny-----------------ProyectoResumenDS----->2--->"+valor1.getRecordCount());
-           Collection col = valor1.getData();
-           Iterator it = col.iterator();
-           while(it.hasNext()){
-             ProyectoReporteDetVo obj = (ProyectoReporteDetVo)it.next();
-             System.out.println(obj.getRazonSocial()+"-"+obj.getContador());
-           }
-           System.out.println("Danny-----------------ProyectoResumenDS----->3--->"+valor1.getRecordCount());
         }
         System.out.println("----->campo a analizar-->FIN-->"+campo.getName());
         return valor;
