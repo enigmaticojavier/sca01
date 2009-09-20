@@ -597,8 +597,6 @@ public class RankingAction extends AccionSoporte implements Preparable {
             System.out.println("mostrarReporte.anoPeriodo-->"+this.anoPeriodo);
             System.out.println("--------------------------------------------------------------->");
             
-            this.codDepartamento=this.codDepartamento==null||this.codDepartamento.equals("")?null:this.codDepartamento.substring(0,2);
-            System.out.println("mostrarReporte.codDepartamento-->1-->"+this.codDepartamento);
             String ano = this.anoPeriodo.equals(COMBO_TXT_ALL) ? "0" : this.anoPeriodo;
             this.proyectosResumen = Proyecto.buscarRanking(this.clsTipificacion, 
                                                            this.estadoTramite, 

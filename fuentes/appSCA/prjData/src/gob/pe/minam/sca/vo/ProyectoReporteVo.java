@@ -17,6 +17,8 @@ public class ProyectoReporteVo implements Serializable {
     private String codProvincia;
     private String codDistrito;
     private String tipoDoc;
+    private String anoPeriodo;
+    
     
     private List lstResumen;
     
@@ -117,5 +119,14 @@ public class ProyectoReporteVo implements Serializable {
 
     public String getTipoDoc() {
         return tipoDoc;
+    }
+
+
+    public void setAnoPeriodo(String anoPeriodo) {
+        this.anoPeriodo = anoPeriodo;
+    }
+
+    public String getAnoPeriodo() {
+        return anoPeriodo;
     }
 }

@@ -80,6 +80,8 @@ public class ReportServlet extends HttpServlet {
             String codProvincia = request.getParameter("codProvincia");
             String codDistrito = request.getParameter("codDistrito");
             String tipoDoc = request.getParameter("tipoDoc");
+            String ano = request.getParameter("anoPeriodo");
+            
             System.out.println("--------------------------------------------------------------->");
             System.out.println("ReportServlet.clsTipificacion-->"+clsTipificacion);
             System.out.println("ReportServlet.estadoTramite-->"+estadoTramite);
@@ -92,9 +94,9 @@ public class ReportServlet extends HttpServlet {
             System.out.println("ReportServlet.codProvincia-->"+codProvincia);
             System.out.println("ReportServlet.codDistrito-->"+codDistrito);
             System.out.println("ReportServlet.tipoDoc-->"+tipoDoc);
+            System.out.println("ReportServlet.anoPeriodo-->"+ano);
             System.out.println("--------------------------------------------------------------->");
             
-            String ano = request.getParameter("anoPeriodo");
             ano=ano.equals("TODOS") ? "0" : ano;
             List lstProyectoResumen = Proyecto.buscarRankingReporte(clsTipificacion,
                                                                     estadoTramite, 
@@ -105,8 +107,6 @@ public class ReportServlet extends HttpServlet {
                                                                     codProvincia, codDistrito, 
                                                                     ano, tipoDoc);
             
-            codDepartamento = (codDepartamento!=null && !codDepartamento.equals("0"))?codDepartamento.substring(0,2):null;
-            codProvincia = (codProvincia!=null&&!codProvincia.equals("0"))?codProvincia.substring(3,2):null;
             
             Class.forName("oracle.jdbc.driver.OracleDriver");
             String url = "jdbc:oracle:thin:@localhost:1521:BDRIMAC";
@@ -123,6 +123,8 @@ public class ReportServlet extends HttpServlet {
             proyectoReporteVo.setCodProvincia((codProvincia==null || codProvincia.equals("0"))?null:codProvincia);
             proyectoReporteVo.setCodDistrito((codDistrito==null || codDistrito.equals("0"))?null:codDistrito);
             proyectoReporteVo.setTipoDoc((tipoDoc==null || tipoDoc.equals("0"))?null:tipoDoc);
+            proyectoReporteVo.setAnoPeriodo(ano==null||ano.equals("0")?null:ano);
+            
             System.out.println("seteando fuente lstProyectoResumen-->"+lstProyectoResumen);
             proyectoReporteVo.setLstResumen(lstProyectoResumen);
             reportStream = this.servletConfig.getServletContext().getResourceAsStream(rutaRpteProyectoResumen);

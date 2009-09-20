@@ -207,7 +207,13 @@ public class ProyectoSqlMapDao extends BaseSqlMapDao implements ProyectoDao {
                                           String codDepartamento, String codProvincia, String codDistrito, 
                                           String anoPresentacion, String tipDocTramite) throws DAOException{
             try{
+                String codDpto="";
+                String codProv="";
+                String codDist="";
                 Map map = new HashMap(); 
+                codDpto=codDepartamento==null || codDepartamento.equals("0")?"0":codDepartamento.substring(0,2);
+                codProv=codProvincia==null || codProvincia.equals("0")?"0":codProvincia.substring(2,4);
+                codDist=codDistrito==null || codDistrito.equals("0")?"0":codDistrito.substring(4,6);
                 map.put("p_cClsTipificacion",clsTipificacion);
                 map.put("p_cEstadoTramite",estadoTramite);
                 map.put("p_cTipoPersoneria",tipoPersoneria);
@@ -215,9 +221,9 @@ public class ProyectoSqlMapDao extends BaseSqlMapDao implements ProyectoDao {
                 map.put("p_cTipoAcae",tipoAcae);
                 map.put("p_cClsSector",clsSector);
                 map.put("p_cClsSubSector",Integer.parseInt(clsSubSector));
-                map.put("p_cCodDepartamento",codDepartamento);
-                map.put("p_cCodProvincia",codProvincia);
-                map.put("p_cCodDistrito",codDistrito);
+                map.put("p_cCodDepartamento",codDpto);
+                map.put("p_cCodProvincia",codProv);
+                map.put("p_cCodDistrito",codDist);
                 map.put("p_cAnoPresentacion",anoPresentacion);
                 map.put("p_cTipDocTramite",tipDocTramite);
                 System.out.println("clsTipificacion"+clsTipificacion);
@@ -260,16 +266,22 @@ public class ProyectoSqlMapDao extends BaseSqlMapDao implements ProyectoDao {
                                          String codDepartamento, String codProvincia, String codDistrito, 
                                          String anoPresentacion, String tipDocTramite) throws DAOException{
             try{
+                String codDpto="";
+                String codProv="";
+                String codDist="";
                 Map map = new HashMap(); 
+                codDpto=codDepartamento==null || codDepartamento.equals("0")?"0":codDepartamento.substring(0,2);
+                codProv=codProvincia==null || codProvincia.equals("0")?"0":codProvincia.substring(2,4);
+                codDist=codDistrito==null || codDistrito.equals("0")?"0":codDistrito.substring(4,6);
                 map.put("p_cClsTipificacion",clsTipificacion);
                 map.put("p_cEstadoTramite",estadoTramite);
                 map.put("p_cProponente",proponente);
                 map.put("p_cTipoAcae",tipoAcae);
                 map.put("p_cClsSector",clsSector);
                 map.put("p_cClsSubSector",Integer.parseInt(clsSubSector));
-                map.put("p_cCodDepartamento",codDepartamento);
-                map.put("p_cCodProvincia",codProvincia);
-                map.put("p_cCodDistrito",codDistrito);
+                map.put("p_cCodDepartamento",codDpto);
+                map.put("p_cCodProvincia",codProv);
+                map.put("p_cCodDistrito",codDist);
                 map.put("p_cAnoPresentacion",anoPresentacion);
                 map.put("p_cTipDocTramite",tipDocTramite);
                 System.out.println("clsTipificacion"+clsTipificacion);
