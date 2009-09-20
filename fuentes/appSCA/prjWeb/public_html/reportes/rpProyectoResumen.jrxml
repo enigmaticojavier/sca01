@@ -70,7 +70,9 @@
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{tipoPersoneria}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="77" y="92" width="130" height="20" isRemoveLineWhenBlank="true"/>
+				<reportElement x="77" y="92" width="130" height="20" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{proponente}!=null]]></printWhenExpression>
+				</reportElement>
 				<textElement/>
 				<text><![CDATA[Proponente]]></text>
 			</staticText>
@@ -131,7 +133,9 @@
 				<text><![CDATA[Tipo de Documento trámite]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="false">
-				<reportElement x="219" y="92" width="213" height="20" isRemoveLineWhenBlank="true"/>
+				<reportElement x="219" y="92" width="213" height="20" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{proponente}!=null]]></printWhenExpression>
+				</reportElement>
 				<textElement>
 					<font isStrikeThrough="false"/>
 				</textElement>
