@@ -325,6 +325,7 @@ public class ProyectoSqlMapDao extends BaseSqlMapDao implements ProyectoDao {
                     pr.setClsTipificacion((String)bean.get("CLSTIPIFICACION"));
                     pr.setDscClsTipificacion((String)bean.get("DSCTIPIFICACION"));
                     pr.setEstadoTramite((String)bean.get("ESTTRAM"));
+                    pr.setActividad((String)bean.get("ACTIVIDAD"));
                     lstProyecto.add(pr);
                 }
                 return lstProyecto;    

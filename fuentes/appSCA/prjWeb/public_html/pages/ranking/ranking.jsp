@@ -384,7 +384,7 @@
                         No existen proyectos que cumplan el criterio de búsqueda
                     </s:if>
                     <s:else>
-                        <display:table name="proyectosResumen" requestURI="ranking!buscarRanking?clsTipificacion=${clsTipificacion}&estadoTramite=${estadoTramite}&tipoPersoneria=${tipoPersoneria}&proponente=${proponente}&tipoAcae=${tipoAcae}&clsSector=${clsSector}&clsSubSector=${clsSubSector}&codDepartamento=${codDepartamento}&codProvincia=${codProvincia}&codDistrito=${codDistrito}&anoPeriodo=${anoPeriodo}&tipoDoc=${tipoDoc}" excludedParams="*" class="dataTable" id="proyecto" pagesize="10" style="width:800" export="true">
+                        <display:table name="proyectosResumen" requestURI="ranking!buscarRanking?clsTipificacion=${clsTipificacion}&estadoTramite=${estadoTramite}&tipoPersoneria=${tipoPersoneria}&proponente=${proponente}&tipoAcae=${tipoAcae}&clsSector=${clsSector}&clsSubSector=${clsSubSector}&codDepartamento=${codDepartamento}&codProvincia=${codProvincia}&codDistrito=${codDistrito}&anoPeriodo=${anoPeriodo}&tipoDoc=${tipoDoc}" excludedParams="*" class="dataTable" id="proyecto" pagesize="10" style="width:800" export="false">
                             <display:setProperty name="export.csv" value="false" /> 
                             <display:setProperty name="export.xls" value="true" />
                             <display:setProperty name="export.xml" value="false" />
@@ -392,7 +392,7 @@
                             <display:column property="proponente.persona.txtRazonSocial" title="Proponente" style="width:70" media="html excel csv"/>
                             <display:column property="contador" title="contador" style="width:10" media="html excel csv"/>
                             <display:column paramId="personaId" paramProperty="proponente.persona.personaId" title="Detalle" style="width:5%" media="html">
-                                <a target="_blank" href="rankingForm!input?clsTipificacion=${clsTipificacion}&estadoTramite=${estadoTramite}&proponente=${proyecto.proponente.persona.personaId}&dscProponente=${proyecto.proponente.persona.txtRazonSocial}&tipoAcae=${tipoAcae}&clsSector=${clsSector}&clsSubSector=${clsSubSector}&codDepartamento=${codDepartamento}&codProvincia=${codProvincia}&codDistrito=${codDistrito}&anoPeriodo=${anoPeriodo}&tipoDoc=${tipoDoc}">
+                                <a target="_blank" href="rankingForm!input?clsTipificacion=${clsTipificacion}&estadoTramite=${estadoTramite}&proponente=${proyecto.proponente.persona.personaId}&dscProponente=${proyecto.proponente.persona.txtRazonSocial}&tipoAcae=${tipoAcae}&clsSector=${clsSector}&clsSubSector=${clsSubSector}&codDepartamento=${codDepartamento}&codProvincia=${codProvincia}&codDistrito=${codDistrito}&anoPeriodo=${anoPeriodo}&tipoDoc=${tipoDoc}&ordenRanking=${ordenRanking}">
                                     Detalle
                                 </a>
                             </display:column>

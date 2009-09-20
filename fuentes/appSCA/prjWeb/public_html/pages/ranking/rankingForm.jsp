@@ -80,7 +80,7 @@
                       <tr>
                         <td >
                             <s:label value="Proponente"/>
-                            <s:label value="%{proponente}"/>
+                            <!--s:label value="%{proponente}"/-->
                         </td>    
                         <td>
                             <s:textarea rows="3" cols="60" name="dscProponente" value="%{dscProponente}" readonly="true" width="100" />
@@ -94,13 +94,14 @@
                     </td>
                 </tr>
                 <tr><td>
-                    <!--display:table name="proyectos" requestURI="rankingForm!input?clsTipificacion=${clsTipificacion}&estadoTramite=${estadoTramite}&proponente=${proponente}&tipoAcae=${tipoAcae}&clsSector=${clsSector}&clsSubSector=${clsSubSector}&codDepartamento=${codDepartamento}&codProvincia=${codProvincia}&codDistrito=${codDistrito}&anoPeriodo=${anoPeriodo}&tipoDoc=${tipoDoc}" excludedParams="*" class="dataTable" id="proyecto" pagesize="10" style="width:800" export="true"-->
-                    <display:table name="proyectos" requestURI="ReportServlet?clsTipificacion=${clsTipificacion}&estadoTramite=${estadoTramite}&proponente=${proponente}&tipoAcae=${tipoAcae}&clsSector=${clsSector}&clsSubSector=${clsSubSector}&codDepartamento=${codDepartamento}&codProvincia=${codProvincia}&codDistrito=${codDistrito}&anoPeriodo=${anoPeriodo}&tipoDoc=${tipoDoc}" excludedParams="*" class="dataTable" id="proyecto" pagesize="10" style="width:800" export="true">
+                    <display:table name="proyectos" requestURI="rankingForm!input?clsTipificacion=${clsTipificacion}&estadoTramite=${estadoTramite}&proponente=${proponente}&tipoAcae=${tipoAcae}&clsSector=${clsSector}&clsSubSector=${clsSubSector}&codDepartamento=${codDepartamento}&codProvincia=${codProvincia}&codDistrito=${codDistrito}&anoPeriodo=${anoPeriodo}&tipoDoc=${tipoDoc}&ordenRanking=${ordenRanking}" excludedParams="*" class="dataTable" id="proyecto" pagesize="10" style="width:800" export="true">
+                    <!--display:table name="proyectos" requestURI="ReportServlet?clsTipificacion=${clsTipificacion}&estadoTramite=${estadoTramite}&proponente=${proponente}&tipoAcae=${tipoAcae}&clsSector=${clsSector}&clsSubSector=${clsSubSector}&codDepartamento=${codDepartamento}&codProvincia=${codProvincia}&codDistrito=${codDistrito}&anoPeriodo=${anoPeriodo}&tipoDoc=${tipoDoc}" excludedParams="*" class="dataTable" id="proyecto" pagesize="10" style="width:800" export="true"-->
                            <display:setProperty name="export.csv" value="false" /> 
                             <display:setProperty name="export.xls" value="true" />
                             <display:setProperty name="export.xml" value="false" />
                             <display:setProperty name="export.xls.filename" value="proyecto.xls"/> 
                             <display:column property="pryId" title="" style="width:1"  media="csv" />
+                            <display:column property="actividad" title="Actividad" style="width:100" media="html excel csv" />
                             <display:column property="txtDescripcion" title="Nombre del Proyecto" style="width:600" media="html excel csv" />
                             <display:column property="dscClsTipificacion" title="Clasi<br>fica" style="width:50" media="html excel csv"/>
                             <display:column property="proponente.persona.txtRazonSocial" title="Proponente" style="width:70" media="html excel csv"/>

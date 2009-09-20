@@ -264,7 +264,7 @@ public class Proyecto implements Serializable{
                                              String proponente,
                                              String tipoAcae, String clsSector, /*Institución*/ String clsSubSector, /*Dependencia*/
                                              String codDepartamento, String codProvincia, String codDistrito, 
-                                             String anoPresentacion, String tipDocTramite
+                                             String anoPresentacion, String tipDocTramite, String ordenRanking
                                            ) throws NegocioException{
       try{  
         ProyectoDao proyectoDao = ProyectoService.getInstance().getProyectoDao();
@@ -272,7 +272,7 @@ public class Proyecto implements Serializable{
                                                  proponente,
                                                  tipoAcae, clsSector, clsSubSector,
                                                  codDepartamento, codProvincia, codDistrito, 
-                                                 anoPresentacion, tipDocTramite);
+                                                 anoPresentacion, tipDocTramite, ordenRanking);
       }catch(DAOException ex){
         throw new NegocioException(ex.toString(),ex.getCodigoMensajeUsuario());
       }catch(Exception ex){

@@ -105,6 +105,15 @@ public class RankingAction extends AccionSoporte implements Preparable {
             String tmpTipParametro = this.getParameterValue("tipParametro");
             String ano = 
                 this.anoPeriodo.equals(COMBO_TXT_ALL) ? "0" : this.anoPeriodo;
+            String orden = "1";
+            if (this.ordenRanking.equals(ConstantesSistema.ORD_CAT_PROY)){
+                orden="5";
+            }else if (this.ordenRanking.equals(ConstantesSistema.ORD_CAT_PROY)){
+                orden="10";
+            }else if (this.ordenRanking.equals(ConstantesSistema.ORD_EMP_PROP)){
+                orden="7";
+            }
+            
             this.proyectos = 
                     Proyecto.buscarRankingDetalle(this.clsTipificacion, 
                                                   this.estadoTramite, 
@@ -115,7 +124,8 @@ public class RankingAction extends AccionSoporte implements Preparable {
                                                   this.codDepartamento, 
                                                   this.codProvincia, 
                                                   this.codDistrito, ano, 
-                                                  this.tipoDoc);
+                                                  this.tipoDoc,
+                                                  orden);
             System.out.println("this.proponente-->" + this.proponente + 
                                "-->this.dscProponente" + this.dscProponente);
             System.out.println(this.proyectos.size());
