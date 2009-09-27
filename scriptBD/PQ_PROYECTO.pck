@@ -22,10 +22,12 @@ create or replace package PQ_PROYECTO is
                     p_cCodProvincia    VARCHAR2,
                     p_cCodDistrito     VARCHAR2,
                     p_cAnoPresentacion VARCHAR2,
-                    p_cTipDocTramite   VARCHAR2);
+                    p_cTipDocTramite   VARCHAR2,
+                    p_nOrdenRanking    NUMBER);
   PROCEDURE RANKING_DETALLE(p_rsProyecto       OUT curType,
                             p_cClsTipificacion VARCHAR2, -- categoria proyecto
                             p_cEstadoTramite   VARCHAR2,
+                            p_cTipoPersoneria  VARCHAR2,
                             p_cProponente      VARCHAR2,
                             p_cTipoAcae        VARCHAR2,
                             p_cClsSector       VARCHAR2,
@@ -35,12 +37,14 @@ create or replace package PQ_PROYECTO is
                             p_cCodDistrito     VARCHAR2,
                             p_cAnoPresentacion VARCHAR2,
                             p_cTipDocTramite   VARCHAR2,
-                            p_cOrdenRanking    VARCHAR2);
+                            p_nOrdenRanking    NUMBER,
+                            p_cIdAgrupacion    VARCHAR2);
   FUNCTION PARAMETRO_BUSCAR(p_cTipParametro VARCHAR2,
                             p_cCodParametro VARCHAR2) RETURN VARCHAR2;
   FUNCTION GETESTADOTRAMITE(p_cPryId VARCHAR2) RETURN VARCHAR2;
   FUNCTION GETESTADOTRAMITETXT(p_cPryId VARCHAR2) RETURN VARCHAR2;
   FUNCTION GETDEPARTAMENTO(p_cUbigeoid VARCHAR2) RETURN VARCHAR2;
+  FUNCTION GETDEPENDENCIA(p_cTipoAcae VARCHAR2, p_cClsSector VARCHAR2) RETURN VARCHAR2;
 
 end PQ_PROYECTO;
 /
@@ -310,7 +314,26 @@ create or replace package body PQ_PROYECTO is
     END;
     RETURN c_TxtDescripcion;
   END;
-    PROCEDURE RANKING(p_rsProyecto       OUT curType,
+  
+  FUNCTION GETDEPENDENCIA(p_cTipoAcae VARCHAR2, p_cClsSector VARCHAR2) RETURN VARCHAR2 IS
+    c_TxtRazonSocial PERSONA.TXTRAZONSOCIAL%TYPE;
+  BEGIN
+    BEGIN
+        SELECT PERSONA.TXTRAZONSOCIAL
+        INTO c_TxtRazonSocial
+        FROM ACAE, PERSONA
+        WHERE ACAE.PERSONAID = PERSONA.PERSONAID
+        AND TIPACAE = p_cTipoAcae
+        AND CLSSECTOR = p_cClsSector;
+    EXCEPTION
+      WHEN OTHERS THEN
+        c_TxtRazonSocial:= '';
+    END;
+    RETURN c_TxtRazonSocial;
+  END;
+
+
+  PROCEDURE RANKING(p_rsProyecto       OUT curType,
                     p_cClsTipificacion VARCHAR2, -- categoria proyecto
                     p_cEstadoTramite   VARCHAR2,
                     p_cTipoPersoneria  VARCHAR2,
@@ -322,7 +345,8 @@ create or replace package body PQ_PROYECTO is
                     p_cCodProvincia    VARCHAR2,
                     p_cCodDistrito     VARCHAR2,
                     p_cAnoPresentacion VARCHAR2,
-                    p_cTipDocTramite   VARCHAR2) IS
+                    p_cTipDocTramite   VARCHAR2,
+                    p_nOrdenRanking    NUMBER) IS
     nClsTipificacion NUMBER(1);
     nEstadoTramite   NUMBER(1);
     nTipoPersoneria  NUMBER(1);
@@ -437,7 +461,32 @@ create or replace package body PQ_PROYECTO is
       -- PJ
       IF nTipoPersoneria = 1 AND nProponente = 0 THEN
         open p_rsProyecto for
-          select pr.personaid, pe.txtrazonsocial, count(*) cnt
+          
+          select --pr.personaid, 
+                 --pe.txtrazonsocial, 
+                 decode(
+                        p_nOrdenRanking,1,clstipificacion,
+                        decode(
+                               p_nOrdenRanking,2,GETESTADOTRAMITETXT(pryid),
+                               decode(
+                                   p_nOrdenRanking,3,''||pr.personaid,
+                                   decode(
+                                        p_nOrdenRanking,4,p_cTipoAcae, 
+                                        decode(p_nOrdenRanking,5,pr.clssector,
+                                             decode(p_nOrdenRanking,6,pr.clssector,''
+                             )))))) ID,
+                 decode(
+                        p_nOrdenRanking,1,PARAMETRO_BUSCAR('IGA', clstipificacion),
+                        decode(
+                               p_nOrdenRanking,2,GETESTADOTRAMITETXT(pryid),
+                               decode(
+                                   p_nOrdenRanking,3,pe.txtrazonsocial,
+                                   decode(
+                                        p_nOrdenRanking,4,PARAMETRO_BUSCAR('TAC',p_cTipoAcae), 
+                                        decode(p_nOrdenRanking,5,PARAMETRO_BUSCAR(p_cTipoAcae,pr.clssector),
+                                             decode(p_nOrdenRanking,6,GETDEPENDENCIA(p_cTipoAcae,pr.clssector),''                                     
+                             )))))) TXT,
+                 count(*) cnt
             from proyecto pr, persona pe, ubigeo u
            where pr.personaid = pe.personaid(+)
              and pr.ubigeoid = u.ubigeoid(+)
@@ -471,12 +520,55 @@ create or replace package body PQ_PROYECTO is
                     where expediente.expid = expedientedocumento.expid
                       and expedientedocumento.docid = documento.docid
                       and documento.tipodocumento = p_cTipDocTramite))
-           group by pr.personaid, pe.txtrazonsocial;
-        --and p_cTipDocTramite = p_cTipDocTramite;
+           --group by pr.personaid, pe.txtrazonsocial;
+           group by decode(
+                        p_nOrdenRanking,1,clstipificacion,
+                        decode(
+                               p_nOrdenRanking,2,GETESTADOTRAMITETXT(pryid),
+                               decode(
+                                   p_nOrdenRanking,3,''||pr.personaid,
+                                   decode(
+                                        p_nOrdenRanking,4,p_cTipoAcae, 
+                                        decode(p_nOrdenRanking,5,pr.clssector,
+                                             decode(p_nOrdenRanking,6,pr.clssector,''
+                             )))))),
+                 decode(
+                        p_nOrdenRanking,1,PARAMETRO_BUSCAR('IGA', clstipificacion),
+                        decode(
+                               p_nOrdenRanking,2,GETESTADOTRAMITETXT(pryid),
+                               decode(
+                                   p_nOrdenRanking,3,pe.txtrazonsocial,
+                                   decode(
+                                        p_nOrdenRanking,4,PARAMETRO_BUSCAR('TAC',p_cTipoAcae), 
+                                        decode(p_nOrdenRanking,5,PARAMETRO_BUSCAR(p_cTipoAcae,pr.clssector),
+                                             decode(p_nOrdenRanking,6,GETDEPENDENCIA(p_cTipoAcae,pr.clssector),''                                     
+                             ))))));
         -- PN
       ELSIF nTipoPersoneria = 2 AND nProponente = 0 THEN
         open p_rsProyecto for
-          select pr.personaid, pe.txtrazonsocial, count(*) cnt
+          select decode(
+                        p_nOrdenRanking,1,clstipificacion,
+                        decode(
+                               p_nOrdenRanking,2,GETESTADOTRAMITETXT(pryid),
+                               decode(
+                                   p_nOrdenRanking,3,''||pr.personaid,
+                                   decode(
+                                        p_nOrdenRanking,4,p_cTipoAcae, 
+                                        decode(p_nOrdenRanking,5,pr.clssector,
+                                             decode(p_nOrdenRanking,6,pr.clssector,''
+                             )))))) ID,
+                 decode(
+                        p_nOrdenRanking,1,PARAMETRO_BUSCAR('IGA', clstipificacion),
+                        decode(
+                               p_nOrdenRanking,2,GETESTADOTRAMITETXT(pryid),
+                               decode(
+                                   p_nOrdenRanking,3,pe.txtrazonsocial,
+                                   decode(
+                                        p_nOrdenRanking,4,PARAMETRO_BUSCAR('TAC',p_cTipoAcae), 
+                                        decode(p_nOrdenRanking,5,PARAMETRO_BUSCAR(p_cTipoAcae,pr.clssector),
+                                             decode(p_nOrdenRanking,6,GETDEPENDENCIA(p_cTipoAcae,pr.clssector),''                                     
+                             )))))) TXT,
+                 count(*) cnt
             from proyecto pr, persona pe, ubigeo u
            where pr.personaid = pe.personaid(+)
              and pr.ubigeoid = u.ubigeoid(+)
@@ -510,11 +602,54 @@ create or replace package body PQ_PROYECTO is
                     where expediente.expid = expedientedocumento.expid
                       and expedientedocumento.docid = documento.docid
                       and documento.tipodocumento = p_cTipDocTramite))
-           group by pr.personaid, pe.txtrazonsocial;
+           group by decode(
+                        p_nOrdenRanking,1,clstipificacion,
+                        decode(
+                               p_nOrdenRanking,2,GETESTADOTRAMITETXT(pryid),
+                               decode(
+                                   p_nOrdenRanking,3,''||pr.personaid,
+                                   decode(
+                                        p_nOrdenRanking,4,p_cTipoAcae, 
+                                        decode(p_nOrdenRanking,5,pr.clssector,
+                                             decode(p_nOrdenRanking,6,pr.clssector,''
+                             )))))),
+                 decode(
+                        p_nOrdenRanking,1,PARAMETRO_BUSCAR('IGA', clstipificacion),
+                        decode(
+                               p_nOrdenRanking,2,GETESTADOTRAMITETXT(pryid),
+                               decode(
+                                   p_nOrdenRanking,3,pe.txtrazonsocial,
+                                   decode(
+                                        p_nOrdenRanking,4,PARAMETRO_BUSCAR('TAC',p_cTipoAcae), 
+                                        decode(p_nOrdenRanking,5,PARAMETRO_BUSCAR(p_cTipoAcae,pr.clssector),
+                                             decode(p_nOrdenRanking,6,GETDEPENDENCIA(p_cTipoAcae,pr.clssector),''                                     
+                             ))))));
         -- TODOS
       ELSIF nTipoPersoneria = 0 AND nProponente = 0 THEN
         open p_rsProyecto for
-          select pr.personaid, pe.txtrazonsocial, count(*) cnt
+          select decode(
+                        p_nOrdenRanking,1,clstipificacion,
+                        decode(
+                               p_nOrdenRanking,2,GETESTADOTRAMITETXT(pryid),
+                               decode(
+                                   p_nOrdenRanking,3,''||pr.personaid,
+                                   decode(
+                                        p_nOrdenRanking,4,p_cTipoAcae, 
+                                        decode(p_nOrdenRanking,5,pr.clssector,
+                                             decode(p_nOrdenRanking,6,pr.clssector,''
+                             )))))) ID,
+                 decode(
+                        p_nOrdenRanking,1,PARAMETRO_BUSCAR('IGA', clstipificacion),
+                        decode(
+                               p_nOrdenRanking,2,GETESTADOTRAMITETXT(pryid),
+                               decode(
+                                   p_nOrdenRanking,3,pe.txtrazonsocial,
+                                   decode(
+                                        p_nOrdenRanking,4,PARAMETRO_BUSCAR('TAC',p_cTipoAcae), 
+                                        decode(p_nOrdenRanking,5,PARAMETRO_BUSCAR(p_cTipoAcae,pr.clssector),
+                                             decode(p_nOrdenRanking,6,GETDEPENDENCIA(p_cTipoAcae,pr.clssector),''                                     
+                             )))))) TXT,
+                 count(*) cnt
             from proyecto pr, persona pe, ubigeo u
            where pr.personaid = pe.personaid(+)
              and pr.ubigeoid = u.ubigeoid(+)
@@ -543,11 +678,54 @@ create or replace package body PQ_PROYECTO is
                     where expediente.expid = expedientedocumento.expid
                       and expedientedocumento.docid = documento.docid
                       and documento.tipodocumento = p_cTipDocTramite))
-           group by pr.personaid, pe.txtrazonsocial;
+          group by decode(
+                        p_nOrdenRanking,1,clstipificacion,
+                        decode(
+                               p_nOrdenRanking,2,GETESTADOTRAMITETXT(pryid),
+                               decode(
+                                   p_nOrdenRanking,3,''||pr.personaid,
+                                   decode(
+                                        p_nOrdenRanking,4,p_cTipoAcae, 
+                                        decode(p_nOrdenRanking,5,pr.clssector,
+                                             decode(p_nOrdenRanking,6,pr.clssector,''
+                             )))))),
+                 decode(
+                        p_nOrdenRanking,1,PARAMETRO_BUSCAR('IGA', clstipificacion),
+                        decode(
+                               p_nOrdenRanking,2,GETESTADOTRAMITETXT(pryid),
+                               decode(
+                                   p_nOrdenRanking,3,pe.txtrazonsocial,
+                                   decode(
+                                        p_nOrdenRanking,4,PARAMETRO_BUSCAR('TAC',p_cTipoAcae), 
+                                        decode(p_nOrdenRanking,5,PARAMETRO_BUSCAR(p_cTipoAcae,pr.clssector),
+                                             decode(p_nOrdenRanking,6,GETDEPENDENCIA(p_cTipoAcae,pr.clssector),''                                     
+                             ))))));
         -- PROPONENTE ESPECIFICO
       ELSIF nProponente = 1 THEN
         open p_rsProyecto for
-          select pr.personaid, pe.txtrazonsocial, count(*) cnt
+          select decode(
+                        p_nOrdenRanking,1,clstipificacion,
+                        decode(
+                               p_nOrdenRanking,2,GETESTADOTRAMITETXT(pryid),
+                               decode(
+                                   p_nOrdenRanking,3,''||pr.personaid,
+                                   decode(
+                                        p_nOrdenRanking,4,p_cTipoAcae, 
+                                        decode(p_nOrdenRanking,5,pr.clssector,
+                                             decode(p_nOrdenRanking,6,pr.clssector,''
+                             )))))) ID,
+                 decode(
+                        p_nOrdenRanking,1,PARAMETRO_BUSCAR('IGA', clstipificacion),
+                        decode(
+                               p_nOrdenRanking,2,GETESTADOTRAMITETXT(pryid),
+                               decode(
+                                   p_nOrdenRanking,3,pe.txtrazonsocial,
+                                   decode(
+                                        p_nOrdenRanking,4,PARAMETRO_BUSCAR('TAC',p_cTipoAcae), 
+                                        decode(p_nOrdenRanking,5,PARAMETRO_BUSCAR(p_cTipoAcae,pr.clssector),
+                                             decode(p_nOrdenRanking,6,GETDEPENDENCIA(p_cTipoAcae,pr.clssector),''                                     
+                             )))))) TXT,
+                 count(*) cnt
             from proyecto pr, persona pe, ubigeo u
            where pr.personaid = pe.personaid(+)
              and pr.ubigeoid = u.ubigeoid(+)
@@ -577,12 +755,55 @@ create or replace package body PQ_PROYECTO is
                     where expediente.expid = expedientedocumento.expid
                       and expedientedocumento.docid = documento.docid
                       and documento.tipodocumento = p_cTipDocTramite))
-           group by pr.personaid, pe.txtrazonsocial;
+          group by decode(
+                        p_nOrdenRanking,1,clstipificacion,
+                        decode(
+                               p_nOrdenRanking,2,GETESTADOTRAMITETXT(pryid),
+                               decode(
+                                   p_nOrdenRanking,3,''||pr.personaid,
+                                   decode(
+                                        p_nOrdenRanking,4,p_cTipoAcae, 
+                                        decode(p_nOrdenRanking,5,pr.clssector,
+                                             decode(p_nOrdenRanking,6,pr.clssector,''
+                             )))))),
+                 decode(
+                        p_nOrdenRanking,1,PARAMETRO_BUSCAR('IGA', clstipificacion),
+                        decode(
+                               p_nOrdenRanking,2,GETESTADOTRAMITETXT(pryid),
+                               decode(
+                                   p_nOrdenRanking,3,pe.txtrazonsocial,
+                                   decode(
+                                        p_nOrdenRanking,4,PARAMETRO_BUSCAR('TAC',p_cTipoAcae), 
+                                        decode(p_nOrdenRanking,5,PARAMETRO_BUSCAR(p_cTipoAcae,pr.clssector),
+                                             decode(p_nOrdenRanking,6,GETDEPENDENCIA(p_cTipoAcae,pr.clssector),''                                     
+                             ))))));
       END IF;
     ELSE
       IF nTipoPersoneria = 1 AND nProponente = 0 THEN
         open p_rsProyecto for
-          select pr.personaid, pe.txtrazonsocial, count(*) cnt
+          select decode(
+                        p_nOrdenRanking,1,clstipificacion,
+                        decode(
+                               p_nOrdenRanking,2,GETESTADOTRAMITETXT(pryid),
+                               decode(
+                                   p_nOrdenRanking,3,''||pr.personaid,
+                                   decode(
+                                        p_nOrdenRanking,4,p_cTipoAcae, 
+                                        decode(p_nOrdenRanking,5,pr.clssector,
+                                             decode(p_nOrdenRanking,6,pr.clssector,''
+                             )))))) ID,
+                 decode(
+                        p_nOrdenRanking,1,PARAMETRO_BUSCAR('IGA', clstipificacion),
+                        decode(
+                               p_nOrdenRanking,2,GETESTADOTRAMITETXT(pryid),
+                               decode(
+                                   p_nOrdenRanking,3,pe.txtrazonsocial,
+                                   decode(
+                                        p_nOrdenRanking,4,PARAMETRO_BUSCAR('TAC',p_cTipoAcae), 
+                                        decode(p_nOrdenRanking,5,PARAMETRO_BUSCAR(p_cTipoAcae,pr.clssector),
+                                             decode(p_nOrdenRanking,6,GETDEPENDENCIA(p_cTipoAcae,pr.clssector),''                                     
+                             )))))) TXT,
+                 count(*) cnt
             from proyecto pr, persona pe, ubigeo u
            where pr.personaid = pe.personaid(+)
              and pr.ubigeoid = u.ubigeoid(+)
@@ -615,10 +836,53 @@ create or replace package body PQ_PROYECTO is
                     where expediente.expid = expedientedocumento.expid
                       and expedientedocumento.docid = documento.docid
                       and documento.tipodocumento = p_cTipDocTramite))
-           group by pr.personaid, pe.txtrazonsocial;
+           group by decode(
+                        p_nOrdenRanking,1,clstipificacion,
+                        decode(
+                               p_nOrdenRanking,2,GETESTADOTRAMITETXT(pryid),
+                               decode(
+                                   p_nOrdenRanking,3,''||pr.personaid,
+                                   decode(
+                                        p_nOrdenRanking,4,p_cTipoAcae, 
+                                        decode(p_nOrdenRanking,5,pr.clssector,
+                                             decode(p_nOrdenRanking,6,pr.clssector,''
+                             )))))),
+                 decode(
+                        p_nOrdenRanking,1,PARAMETRO_BUSCAR('IGA', clstipificacion),
+                        decode(
+                               p_nOrdenRanking,2,GETESTADOTRAMITETXT(pryid),
+                               decode(
+                                   p_nOrdenRanking,3,pe.txtrazonsocial,
+                                   decode(
+                                        p_nOrdenRanking,4,PARAMETRO_BUSCAR('TAC',p_cTipoAcae), 
+                                        decode(p_nOrdenRanking,5,PARAMETRO_BUSCAR(p_cTipoAcae,pr.clssector),
+                                             decode(p_nOrdenRanking,6,GETDEPENDENCIA(p_cTipoAcae,pr.clssector),''                                     
+                             ))))));
       ELSIF nTipoPersoneria = 2 AND nProponente = 0 THEN
         open p_rsProyecto for
-          select pr.personaid, pe.txtrazonsocial, count(*) cnt
+          select decode(
+                        p_nOrdenRanking,1,clstipificacion,
+                        decode(
+                               p_nOrdenRanking,2,GETESTADOTRAMITETXT(pryid),
+                               decode(
+                                   p_nOrdenRanking,3,''||pr.personaid,
+                                   decode(
+                                        p_nOrdenRanking,4,p_cTipoAcae, 
+                                        decode(p_nOrdenRanking,5,pr.clssector,
+                                             decode(p_nOrdenRanking,6,pr.clssector,''
+                             )))))) ID,
+                 decode(
+                        p_nOrdenRanking,1,PARAMETRO_BUSCAR('IGA', clstipificacion),
+                        decode(
+                               p_nOrdenRanking,2,GETESTADOTRAMITETXT(pryid),
+                               decode(
+                                   p_nOrdenRanking,3,pe.txtrazonsocial,
+                                   decode(
+                                        p_nOrdenRanking,4,PARAMETRO_BUSCAR('TAC',p_cTipoAcae), 
+                                        decode(p_nOrdenRanking,5,PARAMETRO_BUSCAR(p_cTipoAcae,pr.clssector),
+                                             decode(p_nOrdenRanking,6,GETDEPENDENCIA(p_cTipoAcae,pr.clssector),''                                     
+                             )))))) TXT,
+                 count(*) cnt
             from proyecto pr, persona pe, ubigeo u
            where pr.personaid = pe.personaid(+)
              and pr.ubigeoid = u.ubigeoid(+)
@@ -651,10 +915,53 @@ create or replace package body PQ_PROYECTO is
                     where expediente.expid = expedientedocumento.expid
                       and expedientedocumento.docid = documento.docid
                       and documento.tipodocumento = p_cTipDocTramite))
-           group by pr.personaid, pe.txtrazonsocial;
+           group by decode(
+                        p_nOrdenRanking,1,clstipificacion,
+                        decode(
+                               p_nOrdenRanking,2,GETESTADOTRAMITETXT(pryid),
+                               decode(
+                                   p_nOrdenRanking,3,''||pr.personaid,
+                                   decode(
+                                        p_nOrdenRanking,4,p_cTipoAcae, 
+                                        decode(p_nOrdenRanking,5,pr.clssector,
+                                             decode(p_nOrdenRanking,6,pr.clssector,''
+                             )))))),
+                 decode(
+                        p_nOrdenRanking,1,PARAMETRO_BUSCAR('IGA', clstipificacion),
+                        decode(
+                               p_nOrdenRanking,2,GETESTADOTRAMITETXT(pryid),
+                               decode(
+                                   p_nOrdenRanking,3,pe.txtrazonsocial,
+                                   decode(
+                                        p_nOrdenRanking,4,PARAMETRO_BUSCAR('TAC',p_cTipoAcae), 
+                                        decode(p_nOrdenRanking,5,PARAMETRO_BUSCAR(p_cTipoAcae,pr.clssector),
+                                             decode(p_nOrdenRanking,6,GETDEPENDENCIA(p_cTipoAcae,pr.clssector),''                                     
+                             ))))));
       ELSIF nTipoPersoneria = 0 AND nProponente = 0 THEN
         open p_rsProyecto for
-          select pr.personaid, pe.txtrazonsocial, count(*) cnt
+          select decode(
+                        p_nOrdenRanking,1,clstipificacion,
+                        decode(
+                               p_nOrdenRanking,2,GETESTADOTRAMITETXT(pryid),
+                               decode(
+                                   p_nOrdenRanking,3,''||pr.personaid,
+                                   decode(
+                                        p_nOrdenRanking,4,p_cTipoAcae, 
+                                        decode(p_nOrdenRanking,5,pr.clssector,
+                                             decode(p_nOrdenRanking,6,pr.clssector,''
+                             )))))) ID,
+                 decode(
+                        p_nOrdenRanking,1,PARAMETRO_BUSCAR('IGA', clstipificacion),
+                        decode(
+                               p_nOrdenRanking,2,GETESTADOTRAMITETXT(pryid),
+                               decode(
+                                   p_nOrdenRanking,3,pe.txtrazonsocial,
+                                   decode(
+                                        p_nOrdenRanking,4,PARAMETRO_BUSCAR('TAC',p_cTipoAcae), 
+                                        decode(p_nOrdenRanking,5,PARAMETRO_BUSCAR(p_cTipoAcae,pr.clssector),
+                                             decode(p_nOrdenRanking,6,GETDEPENDENCIA(p_cTipoAcae,pr.clssector),''                                     
+                             )))))) TXT,
+                 count(*) cnt
             from proyecto pr, persona pe, ubigeo u
            where pr.personaid = pe.personaid(+)
              and pr.ubigeoid = u.ubigeoid(+)
@@ -682,10 +989,53 @@ create or replace package body PQ_PROYECTO is
                     where expediente.expid = expedientedocumento.expid
                       and expedientedocumento.docid = documento.docid
                       and documento.tipodocumento = p_cTipDocTramite))
-           group by pr.personaid, pe.txtrazonsocial;
+           group by decode(
+                        p_nOrdenRanking,1,clstipificacion,
+                        decode(
+                               p_nOrdenRanking,2,GETESTADOTRAMITETXT(pryid),
+                               decode(
+                                   p_nOrdenRanking,3,''||pr.personaid,
+                                   decode(
+                                        p_nOrdenRanking,4,p_cTipoAcae, 
+                                        decode(p_nOrdenRanking,5,pr.clssector,
+                                             decode(p_nOrdenRanking,6,pr.clssector,''
+                             )))))),
+                 decode(
+                        p_nOrdenRanking,1,PARAMETRO_BUSCAR('IGA', clstipificacion),
+                        decode(
+                               p_nOrdenRanking,2,GETESTADOTRAMITETXT(pryid),
+                               decode(
+                                   p_nOrdenRanking,3,pe.txtrazonsocial,
+                                   decode(
+                                        p_nOrdenRanking,4,PARAMETRO_BUSCAR('TAC',p_cTipoAcae), 
+                                        decode(p_nOrdenRanking,5,PARAMETRO_BUSCAR(p_cTipoAcae,pr.clssector),
+                                             decode(p_nOrdenRanking,6,GETDEPENDENCIA(p_cTipoAcae,pr.clssector),''                                     
+                             ))))));
       ELSIF nProponente = 1 THEN
         open p_rsProyecto for
-          select pr.personaid, pe.txtrazonsocial, count(*) cnt
+          select decode(
+                        p_nOrdenRanking,1,clstipificacion,
+                        decode(
+                               p_nOrdenRanking,2,GETESTADOTRAMITETXT(pryid),
+                               decode(
+                                   p_nOrdenRanking,3,''||pr.personaid,
+                                   decode(
+                                        p_nOrdenRanking,4,p_cTipoAcae, 
+                                        decode(p_nOrdenRanking,5,pr.clssector,
+                                             decode(p_nOrdenRanking,6,pr.clssector,''
+                             )))))) ID,
+                 decode(
+                        p_nOrdenRanking,1,PARAMETRO_BUSCAR('IGA', clstipificacion),
+                        decode(
+                               p_nOrdenRanking,2,GETESTADOTRAMITETXT(pryid),
+                               decode(
+                                   p_nOrdenRanking,3,pe.txtrazonsocial,
+                                   decode(
+                                        p_nOrdenRanking,4,PARAMETRO_BUSCAR('TAC',p_cTipoAcae), 
+                                        decode(p_nOrdenRanking,5,PARAMETRO_BUSCAR(p_cTipoAcae,pr.clssector),
+                                             decode(p_nOrdenRanking,6,GETDEPENDENCIA(p_cTipoAcae,pr.clssector),''                                     
+                             )))))) TXT,
+                 count(*) cnt
             from proyecto pr, persona pe, ubigeo u
            where pr.personaid = pe.personaid(+)
              and pr.ubigeoid = u.ubigeoid(+)
@@ -714,7 +1064,28 @@ create or replace package body PQ_PROYECTO is
                     where expediente.expid = expedientedocumento.expid
                       and expedientedocumento.docid = documento.docid
                       and documento.tipodocumento = p_cTipDocTramite))
-           group by pr.personaid, pe.txtrazonsocial;
+           group by decode(
+                        p_nOrdenRanking,1,clstipificacion,
+                        decode(
+                               p_nOrdenRanking,2,GETESTADOTRAMITETXT(pryid),
+                               decode(
+                                   p_nOrdenRanking,3,''||pr.personaid,
+                                   decode(
+                                        p_nOrdenRanking,4,p_cTipoAcae, 
+                                        decode(p_nOrdenRanking,5,pr.clssector,
+                                             decode(p_nOrdenRanking,6,pr.clssector,''
+                             )))))),
+                 decode(
+                        p_nOrdenRanking,1,PARAMETRO_BUSCAR('IGA', clstipificacion),
+                        decode(
+                               p_nOrdenRanking,2,GETESTADOTRAMITETXT(pryid),
+                               decode(
+                                   p_nOrdenRanking,3,pe.txtrazonsocial,
+                                   decode(
+                                        p_nOrdenRanking,4,PARAMETRO_BUSCAR('TAC',p_cTipoAcae), 
+                                        decode(p_nOrdenRanking,5,PARAMETRO_BUSCAR(p_cTipoAcae,pr.clssector),
+                                             decode(p_nOrdenRanking,6,GETDEPENDENCIA(p_cTipoAcae,pr.clssector),''                                     
+                             ))))));
       END IF;
     END IF;
   END RANKING;
@@ -722,6 +1093,7 @@ create or replace package body PQ_PROYECTO is
   PROCEDURE RANKING_DETALLE(p_rsProyecto       OUT curType,
                             p_cClsTipificacion VARCHAR2, -- categoria proyecto
                             p_cEstadoTramite   VARCHAR2,
+                            p_cTipoPersoneria  VARCHAR2,
                             p_cProponente      VARCHAR2,
                             p_cTipoAcae        VARCHAR2,
                             p_cClsSector       VARCHAR2,
@@ -731,9 +1103,12 @@ create or replace package body PQ_PROYECTO is
                             p_cCodDistrito     VARCHAR2,
                             p_cAnoPresentacion VARCHAR2,
                             p_cTipDocTramite   VARCHAR2,
-                            p_cOrdenRanking    VARCHAR2) IS
+                            p_nOrdenRanking    NUMBER,
+                            p_cIdAgrupacion    VARCHAR2) IS
     nClsTipificacion NUMBER(1);
     nEstadoTramite   NUMBER(1);
+    nTipoPersoneria  NUMBER(1);
+    nProponente      NUMBER(1);
     nTipoAcae        NUMBER(1);
     nClsSector       NUMBER(1);
     nClsSubSector    NUMBER(1);
@@ -758,6 +1133,19 @@ create or replace package body PQ_PROYECTO is
       nEstadoTramite := 0;
     ELSE
       nEstadoTramite := 1;
+    END IF;
+    /* nTipoPersoneria 0 TODO 1 PJ 2 PN */
+    IF p_cTipoPersoneria IS NULL OR p_cTipoPersoneria = '0' THEN
+      nTipoPersoneria := 0;
+    ELSIF p_cTipoPersoneria = 'PJ' THEN
+      nTipoPersoneria := 1;
+    ELSIF p_cTipoPersoneria = 'PN' THEN
+      nTipoPersoneria := 2;
+    END IF;
+    IF p_cProponente IS NULL OR p_cProponente = '0' THEN
+      nProponente := 0;
+    ELSE
+      nProponente := 1;
     END IF;
     IF p_cTipoAcae IS NULL OR p_cTipoAcae = '0' THEN
       nTipoAcae := 0;
@@ -837,7 +1225,7 @@ create or replace package body PQ_PROYECTO is
                  clstipificacion = p_cClsTipificacion))
              and (nEstadoTramite = 0 or
                  GETESTADOTRAMITE(pryid) = p_cEstadoTramite)
-             and pr.personaid = p_cProponente    
+             and (nProponente=0 or pr.personaid = p_cProponente)    
              and clssector in
                  (select ins.codparametro
                     from parametro ins
@@ -856,7 +1244,18 @@ create or replace package body PQ_PROYECTO is
                     where expediente.expid = expedientedocumento.expid
                       and expedientedocumento.docid = documento.docid
                       and documento.tipodocumento = p_cTipDocTramite))
-           order by p_cOrdenRanking;
+             and decode(
+                        p_nOrdenRanking,1,clstipificacion,
+                        decode(
+                               p_nOrdenRanking,2,GETESTADOTRAMITETXT(pryid),
+                               decode(
+                                   p_nOrdenRanking,3,''||pr.personaid,
+                                   decode(
+                                        p_nOrdenRanking,4,p_cTipoAcae, 
+                                        decode(p_nOrdenRanking,5,pr.clssector,
+                                             decode(p_nOrdenRanking,6,pr.clssector,''
+                             )))))) = p_cIdAgrupacion
+           order by p_nOrdenRanking;
     ELSE
         open p_rsProyecto for
           select pryid,
@@ -880,7 +1279,7 @@ create or replace package body PQ_PROYECTO is
                  clstipificacion = p_cClsTipificacion))
              and (nEstadoTramite = 0 or
                  GETESTADOTRAMITE(pryid) = p_cEstadoTramite)
-             and pr.personaid = p_cProponente
+             and (nProponente=0 or pr.personaid = p_cProponente)    
              and (nClsSector = 0 or clssector = p_cClsSector)
              and (nClsSubSector = 0 or
                  pr.pryid in
@@ -897,7 +1296,18 @@ create or replace package body PQ_PROYECTO is
                      from expediente, expedientedocumento, documento
                     where expediente.expid = expedientedocumento.expid
                       and expedientedocumento.docid = documento.docid
-                      and documento.tipodocumento = p_cTipDocTramite));
+                      and documento.tipodocumento = p_cTipDocTramite))
+               and decode(
+                        p_nOrdenRanking,1,clstipificacion,
+                        decode(
+                               p_nOrdenRanking,2,GETESTADOTRAMITETXT(pryid),
+                               decode(
+                                   p_nOrdenRanking,3,''||pr.personaid,
+                                   decode(
+                                        p_nOrdenRanking,4,p_cTipoAcae, 
+                                        decode(p_nOrdenRanking,5,pr.clssector,
+                                             decode(p_nOrdenRanking,6,pr.clssector,''
+                             )))))) = p_cIdAgrupacion;
     END IF;
   END RANKING_DETALLE;
 END;
