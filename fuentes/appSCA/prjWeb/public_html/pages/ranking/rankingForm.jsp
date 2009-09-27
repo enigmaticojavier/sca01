@@ -83,7 +83,7 @@
                             <!--s:label value="%{proponente}"/-->
                         </td>    
                         <td>
-                            <s:textarea rows="3" cols="60" name="dscProponente" value="%{dscProponente}" readonly="true" width="100" />
+                            <s:textarea rows="3" cols="60" name="dscProponente" value="%{txtAgrupacion}" readonly="true" width="100" />
                         </td>
                       </tr>   
                     </table>   
@@ -94,7 +94,7 @@
                     </td>
                 </tr>
                 <tr><td>
-                    <display:table name="proyectos" requestURI="rankingForm!input?clsTipificacion=${clsTipificacion}&estadoTramite=${estadoTramite}&proponente=${proponente}&tipoAcae=${tipoAcae}&clsSector=${clsSector}&clsSubSector=${clsSubSector}&codDepartamento=${codDepartamento}&codProvincia=${codProvincia}&codDistrito=${codDistrito}&anoPeriodo=${anoPeriodo}&tipoDoc=${tipoDoc}&ordenRanking=${ordenRanking}" excludedParams="*" class="dataTable" id="proyecto" pagesize="10" style="width:800" export="true">
+                    <display:table name="proyectos" requestURI="rankingForm!input?clsTipificacion=${clsTipificacion}&estadoTramite=${estadoTramite}&tipoPersoneria=${tipoPersoneria}&proponente=${proponente}&tipoAcae=${tipoAcae}&clsSector=${clsSector}&clsSubSector=${clsSubSector}&codDepartamento=${codDepartamento}&codProvincia=${codProvincia}&codDistrito=${codDistrito}&anoPeriodo=${anoPeriodo}&tipoDoc=${tipoDoc}&ordenRanking=${ordenRanking}&idAgrupacion=${idAgrupacion}&txtAgrupacion=${txtAgrupacion}" excludedParams="*" class="dataTable" id="proyecto" pagesize="10" style="width:800" export="true">
                     <!--display:table name="proyectos" requestURI="ReportServlet?clsTipificacion=${clsTipificacion}&estadoTramite=${estadoTramite}&proponente=${proponente}&tipoAcae=${tipoAcae}&clsSector=${clsSector}&clsSubSector=${clsSubSector}&codDepartamento=${codDepartamento}&codProvincia=${codProvincia}&codDistrito=${codDistrito}&anoPeriodo=${anoPeriodo}&tipoDoc=${tipoDoc}" excludedParams="*" class="dataTable" id="proyecto" pagesize="10" style="width:800" export="true"-->
                            <display:setProperty name="export.csv" value="false" /> 
                             <display:setProperty name="export.xls" value="true" />

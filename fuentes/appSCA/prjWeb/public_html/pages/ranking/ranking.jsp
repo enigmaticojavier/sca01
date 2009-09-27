@@ -153,7 +153,7 @@
             } 
         }
         
-        function mostrarReporte(clsTipificacion,estadoTramite,tipoPersoneria,proponente,tipoAcae,clsSector,clsSubSector,codDepartamento,codProvincia,codDistrito,anoPeriodo,tipoDoc){
+        function mostrarReporte(clsTipificacion,estadoTramite,tipoPersoneria,proponente,tipoAcae,clsSector,clsSubSector,codDepartamento,codProvincia,codDistrito,anoPeriodo,tipoDoc,ordenRanking){
             var frm = document.frmProyecto;
             var txtClsTipificacion = frm.clsTipificacion.options[frm.clsTipificacion.selectedIndex].text;
             var txtEstadoTramite = frm.estadoTramite.options[frm.estadoTramite.selectedIndex].text;
@@ -167,7 +167,7 @@
             var txtCodDistrito = frm.codDistrito.options[frm.codDistrito.selectedIndex].text;
             var txtAnoPeriodo = frm.anoPeriodo.options[frm.anoPeriodo.selectedIndex].text;
             var txtTipoDoc = frm.tipoDoc.options[frm.tipoDoc.selectedIndex].text;
-            frm.action="rankingForm!mostrarReporte?clsTipificacion="+clsTipificacion+"&estadoTramite="+estadoTramite+"&proponente="+proponente+"&tipoAcae="+tipoAcae+"&clsSector="+clsSector+"&clsSubSector="+clsSubSector+"&codDepartamento="+codDepartamento+"&codProvincia="+codProvincia+"&codDistrito="+codDistrito+"&anoPeriodo="+anoPeriodo+"&tipoDoc="+tipoDoc;
+            frm.action="rankingForm!mostrarReporte?clsTipificacion="+clsTipificacion+"&estadoTramite="+estadoTramite+"&tipoPersoneria="+tipoPersoneria+"&proponente="+proponente+"&tipoAcae="+tipoAcae+"&clsSector="+clsSector+"&clsSubSector="+clsSubSector+"&codDepartamento="+codDepartamento+"&codProvincia="+codProvincia+"&codDistrito="+codDistrito+"&anoPeriodo="+anoPeriodo+"&tipoDoc="+tipoDoc+"&ordenRanking="+ordenRanking;
             frm.action=frm.action+"&txtClsTipificacion="+txtClsTipificacion+"&txtEstadoTramite="+txtEstadoTramite+"&txtTipoPersoneria="+txtTipoPersoneria+"&txtProponente="+txtProponente+"&txtTipoAcae="+txtTipoAcae+"&txtClsSector="+txtClsSector+"&txtClsSubSector="+txtClsSubSector+"&txtCodDepartamento="+txtCodDepartamento+"&txtCodProvincia="+txtCodProvincia+"&txtCodDistrito="+txtCodDistrito+"&txtAnoPeriodo="+txtAnoPeriodo+"&txtTipoDoc="+txtTipoDoc;
             window.open (frm.action,"Ranking","menubar=0,resizable=1,scrollbars=1,status=0,toolbar=0"); 
         }
@@ -389,10 +389,11 @@
                             <display:setProperty name="export.xls" value="true" />
                             <display:setProperty name="export.xml" value="false" />
                             <display:setProperty name="export.xls.filename" value="proyecto.xls"/> 
-                            <display:column property="proponente.persona.txtRazonSocial" title="Proponente" style="width:70" media="html excel csv"/>
+                            <display:column property="fila" title="Fila" style="width:70" media="html excel csv"/>
+                            <display:column property="txt" title="Agrupacion" style="width:70" media="html excel csv"/>
                             <display:column property="contador" title="contador" style="width:10" media="html excel csv"/>
-                            <display:column paramId="personaId" paramProperty="proponente.persona.personaId" title="Detalle" style="width:5%" media="html">
-                                <a target="_blank" href="rankingForm!input?clsTipificacion=${clsTipificacion}&estadoTramite=${estadoTramite}&proponente=${proyecto.proponente.persona.personaId}&dscProponente=${proyecto.proponente.persona.txtRazonSocial}&tipoAcae=${tipoAcae}&clsSector=${clsSector}&clsSubSector=${clsSubSector}&codDepartamento=${codDepartamento}&codProvincia=${codProvincia}&codDistrito=${codDistrito}&anoPeriodo=${anoPeriodo}&tipoDoc=${tipoDoc}&ordenRanking=${ordenRanking}">
+                            <display:column paramId="personaId" paramProperty="id" title="Detalle" style="width:5%" media="html">
+                                <a target="_blank" href="rankingForm!input?clsTipificacion=${clsTipificacion}&estadoTramite=${estadoTramite}&tipoPersoneria=${tipoPersoneria}&proponente=${proponente}&tipoAcae=${tipoAcae}&clsSector=${clsSector}&clsSubSector=${clsSubSector}&codDepartamento=${codDepartamento}&codProvincia=${codProvincia}&codDistrito=${codDistrito}&anoPeriodo=${anoPeriodo}&tipoDoc=${tipoDoc}&ordenRanking=${ordenRanking}&idAgrupacion=${proyecto.id}&txtAgrupacion=${proyecto.txt}">
                                     Detalle
                                 </a>
                             </display:column>
@@ -405,7 +406,7 @@
                     </s:if>
                     <s:else>                        
                     <!--a target="_blank" href="rankingForm!mostrarReporte?clsTipificacion=${clsTipificacion}&estadoTramite=${estadoTramite}&tipoPersoneria=${tipoPersoneria}&proponente=${proponente}&tipoAcae=${tipoAcae}&clsSector=${clsSector}&clsSubSector=${clsSubSector}&codDepartamento=${codDepartamento}&codProvincia=${codProvincia}&codDistrito=${codDistrito}&anoPeriodo=${anoPeriodo}&tipoDoc=${tipoDoc}"-->
-                    <a href="#" onclick="javascript:mostrarReporte('${clsTipificacion}','${estadoTramite}','${tipoPersoneria}','${proponente}','${tipoAcae}','${clsSector}','${clsSubSector}','${codDepartamento}','${codProvincia}','${codDistrito}','${anoPeriodo}','${tipoDoc}')">
+                    <a href="#" onclick="javascript:mostrarReporte('${clsTipificacion}','${estadoTramite}','${tipoPersoneria}','${proponente}','${tipoAcae}','${clsSector}','${clsSubSector}','${codDepartamento}','${codProvincia}','${codDistrito}','${anoPeriodo}','${tipoDoc}','${ordenRanking}')">
                         Reporte
                     </a>
                     </s:else>
