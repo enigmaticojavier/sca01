@@ -3,7 +3,16 @@
     <jazn-realm>
         <realm>
             <name>jazn.com</name>
-            <users/>
+            <users>
+                <user>
+                    <name>DataBase_User_wL8S-sXM6sAqoMzJO34WSS3dDphF4WSd</name>
+                    <credentials>{903}wL8S+sXM6sAqoMzJO34WSS3dDphF4WSd</credentials>
+                </user>
+                <user>
+                    <name>DataBase_User_CLDY0kkK2Oo4WmwBFS6naATqm0OeZarc</name>
+                    <credentials>{903}CLDY0kkK2Oo4WmwBFS6naATqm0OeZarc</credentials>
+                </user>
+            </users>
             <roles/>
         </realm>
     </jazn-realm>

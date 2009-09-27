@@ -10005,3 +10005,43 @@ Caused by: com.ibatis.sqlmap.client.SqlMapException: There is no result map name
 09/09/20 18:12:47.265 prjWeb: 10.1.3.3.0 Stopped
 09/09/20 18:12:47.827 10.1.3.3.0 Started
 09/09/20 18:12:51.415 prjWeb: 10.1.3.3.0 Started
+09/09/20 18:20:29.310 10.1.3.3.0 Started
+09/09/20 18:20:33.912 prjWeb: 10.1.3.3.0 Started
+09/09/27 00:02:45.779 10.1.3.3.0 Started
+09/09/27 00:02:52.643 prjWeb: 10.1.3.3.0 Started
+09/09/27 16:44:03.650 10.1.3.3.0 Started
+09/09/27 16:44:09.258 prjWeb: 10.1.3.3.0 Started
+09/09/27 18:07:30.334 10.1.3.3.0 Started
+09/09/27 18:07:35.106 prjWeb: 10.1.3.3.0 Started
+09/09/27 18:08:02.908 10.1.3.3.0 Started
+09/09/27 18:08:07.381 prjWeb: 10.1.3.3.0 Started
+09/09/27 18:21:23.861 10.1.3.3.0 Started
+09/09/27 18:21:28.640 prjWeb: 10.1.3.3.0 Started
+09/09/27 18:21:43.577 prjWeb: Se ha anulado una conexión establecida por el software en su equipo host.
+09/09/27 18:21:43.577 prjWeb: Se ha anulado una conexión establecida por el software en su equipo host.
+09/09/27 18:33:21.326 10.1.3.3.0 Started
+09/09/27 18:33:25.788 prjWeb: 10.1.3.3.0 Started
+09/09/27 18:36:39.407 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/09/27 18:53:06.213 10.1.3.3.0 Started
+09/09/27 18:53:10.674 prjWeb: 10.1.3.3.0 Started
+09/09/27 19:04:25.553 prjWeb: 10.1.3.3.0 Stopped
+09/09/27 19:04:26.130 10.1.3.3.0 Started
+09/09/27 19:04:30.358 prjWeb: 10.1.3.3.0 Started
+09/09/27 19:09:40.195 10.1.3.3.0 Started
+09/09/27 19:09:45.234 prjWeb: 10.1.3.3.0 Started
+09/09/27 19:09:48.135 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/09/27 19:09:48.135 prjWeb: Se ha forzado la interrupción de una conexión existente por el host remoto
+09/09/27 19:13:31.202 10.1.3.3.0 Started
+09/09/27 19:13:35.539 prjWeb: 10.1.3.3.0 Started
+09/09/27 19:15:46.317 10.1.3.3.0 Started
+09/09/27 19:15:50.903 prjWeb: 10.1.3.3.0 Started
+09/09/27 20:20:13.785 10.1.3.3.0 Started
+09/09/27 20:20:18.28 prjWeb: 10.1.3.3.0 Started
+09/09/27 20:34:18.913 10.1.3.3.0 Started
+09/09/27 20:34:22.813 prjWeb: 10.1.3.3.0 Started
+09/09/27 21:02:51.995 10.1.3.3.0 Started
+09/09/27 21:02:56.503 prjWeb: 10.1.3.3.0 Started
+09/09/27 21:08:26.505 10.1.3.3.0 Started
+09/09/27 21:08:31.638 prjWeb: 10.1.3.3.0 Started
+09/09/27 21:16:24.447 10.1.3.3.0 Started
+09/09/27 21:16:28.550 prjWeb: 10.1.3.3.0 Started
