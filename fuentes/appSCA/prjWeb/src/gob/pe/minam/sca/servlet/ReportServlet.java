@@ -2,6 +2,7 @@ package gob.pe.minam.sca.servlet;
 
 import gob.pe.minam.sca.ds.ProyectoResumenDS;
 
+import gob.pe.minam.sca.framework.ConstantesSistema;
 import gob.pe.minam.sca.pojo.Proyecto;
 import gob.pe.minam.sca.vo.ProyectoReporteVo;
 
@@ -92,6 +93,21 @@ public class ReportServlet extends HttpServlet {
             String txtCodDistrito = request.getParameter("txtCodDistrito");
             String txtAnoPeriodo = request.getParameter("txtAnoPeriodo");
             String txtTipoDoc = request.getParameter("txtTipoDoc");
+            String strOrdenRanking = request.getParameter("ordenRanking");
+            int orden = 0;
+            if (strOrdenRanking.equals(ConstantesSistema.ORD_CAT_PROY)){
+                orden=1;
+            }else if (strOrdenRanking.equals(ConstantesSistema.ORD_EST_TRAM)){
+                orden=2;
+            }else if (strOrdenRanking.equals(ConstantesSistema.ORD_EMP_PROP)){
+                orden=3;
+            }else if (strOrdenRanking.equals(ConstantesSistema.ORD_TIP_ACAE)){
+                orden=4;
+            }else if (strOrdenRanking.equals(ConstantesSistema.ORD_ACAE)){
+                orden=5;
+            }else if (strOrdenRanking.equals(ConstantesSistema.ORD_DEPEN)){
+                orden=6;
+            }
             
             
             //txtClsTipificacion="+txtClsTipificacion+"&txtEstadoTramite="+txtEstadoTramite+"&txtProponente="+txtProponente+"&txtTipoAcae="+txtTipoAcae+"&txtClsSector="+txtClsSector+"&txtClsSubSector="+txtClsSubSector+"&txtCodDepartamento="+txtCodDepartamento+"&txtCodProvincia="+txtCodProvincia+"&txtCodDistrito="+txtCodDistrito+"&txtAnoPeriodo="+txtAnoPeriodo+"&txtTipoDoc
@@ -110,6 +126,7 @@ public class ReportServlet extends HttpServlet {
             System.out.println("ReportServlet.codDistrito-->"+codDistrito);
             System.out.println("ReportServlet.tipoDoc-->"+tipoDoc);
             System.out.println("ReportServlet.anoPeriodo-->"+ano);
+            System.out.println("ReportServlet.anoPeriodo-->"+orden);
             System.out.println("--------------------------------------------------------------->");
             
             ano=ano.equals("TODOS") ? "0" : ano;
@@ -120,7 +137,7 @@ public class ReportServlet extends HttpServlet {
                                                                     clsSector, clsSubSector, 
                                                                     codDepartamento, 
                                                                     codProvincia, codDistrito, 
-                                                                    ano, tipoDoc);
+                                                                    ano, tipoDoc, orden);
             
             
             ProyectoReporteVo proyectoReporteVo = new ProyectoReporteVo();

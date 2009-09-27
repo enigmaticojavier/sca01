@@ -2,7 +2,6 @@ package gob.pe.minam.sca.action;
 
 import com.opensymphony.xwork2.Preparable;
 
-import gob.pe.minam.sca.ds.ProyectoResumenDS;
 import gob.pe.minam.sca.framework.AccionSoporte;
 
 import gob.pe.minam.sca.framework.ConstantesSistema;
@@ -13,26 +12,10 @@ import gob.pe.minam.sca.pojo.Persona;
 import gob.pe.minam.sca.pojo.Proyecto;
 import gob.pe.minam.sca.pojo.Ubigeo;
 
-import java.io.InputStream;
-
-import java.io.OutputStream;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
-import java.util.Map;
-
-import net.sf.jasperreports.engine.JasperFillManager;
-
-import net.sf.jasperreports.engine.JasperManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-
-import net.sf.jasperreports.engine.util.JRLoader;
-
 import org.apache.log4j.Logger;
-import org.apache.struts2.ServletActionContext;
 
 public class RankingAction extends AccionSoporte implements Preparable {
     static Logger log = Logger.getLogger("RankingAction.class");
@@ -43,7 +26,10 @@ public class RankingAction extends AccionSoporte implements Preparable {
 
     private String panel;
     private String ordenRanking;
-
+    
+    private String idAgrupacion;
+    private String txtAgrupacion;
+    
     private String clsTipificacion; /*categoria*/
     private String estadoTramite; /*Estado Tramite*/
     private String tipoPersoneria;
@@ -92,7 +78,6 @@ public class RankingAction extends AccionSoporte implements Preparable {
     public void prepare() throws Exception {
         try {
             log.info("[" + this.getClass().getName() + ".prepare][Ini]");
-
             log.info("[" + this.getClass().getName() + ".prepare][Fin]");
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -102,21 +87,26 @@ public class RankingAction extends AccionSoporte implements Preparable {
     public String input() {
         try {
             log.info("[RankingAction.input][Ini]");
-            String tmpTipParametro = this.getParameterValue("tipParametro");
             String ano = 
                 this.anoPeriodo.equals(COMBO_TXT_ALL) ? "0" : this.anoPeriodo;
-            String orden = "1";
+            int orden = 0;
             if (this.ordenRanking.equals(ConstantesSistema.ORD_CAT_PROY)){
-                orden="5";
-            }else if (this.ordenRanking.equals(ConstantesSistema.ORD_CAT_PROY)){
-                orden="10";
+                orden=1;
+            }else if (this.ordenRanking.equals(ConstantesSistema.ORD_EST_TRAM)){
+                orden=2;
             }else if (this.ordenRanking.equals(ConstantesSistema.ORD_EMP_PROP)){
-                orden="7";
+                orden=3;
+            }else if (this.ordenRanking.equals(ConstantesSistema.ORD_TIP_ACAE)){
+                orden=4;
+            }else if (this.ordenRanking.equals(ConstantesSistema.ORD_ACAE)){
+                orden=5;
+            }else if (this.ordenRanking.equals(ConstantesSistema.ORD_DEPEN)){
+                orden=6;
             }
-            
             this.proyectos = 
                     Proyecto.buscarRankingDetalle(this.clsTipificacion, 
                                                   this.estadoTramite, 
+                                                  this.tipoPersoneria, 
                                                   this.proponente, 
                                                   this.tipoAcae, 
                                                   this.clsSector, 
@@ -125,9 +115,10 @@ public class RankingAction extends AccionSoporte implements Preparable {
                                                   this.codProvincia, 
                                                   this.codDistrito, ano, 
                                                   this.tipoDoc,
-                                                  orden);
-            System.out.println("this.proponente-->" + this.proponente + 
-                               "-->this.dscProponente" + this.dscProponente);
+                                                  orden,
+                                                  this.idAgrupacion
+                                                  );
+            System.out.println("this.idAgrupacion-->" + this.idAgrupacion + "-->orden" + orden);
             System.out.println(this.proyectos.size());
             log.info("[RankingAction.input][Fin]");
         } catch (Exception ex) {
@@ -556,6 +547,21 @@ public class RankingAction extends AccionSoporte implements Preparable {
                      this.clsSubSector);
             String ano = 
                 this.anoPeriodo.equals(COMBO_TXT_ALL) ? "0" : this.anoPeriodo;
+            int orden = 0;
+            if (this.ordenRanking.equals(ConstantesSistema.ORD_CAT_PROY)){
+                orden=1;
+            }else if (this.ordenRanking.equals(ConstantesSistema.ORD_EST_TRAM)){
+                orden=2;
+            }else if (this.ordenRanking.equals(ConstantesSistema.ORD_EMP_PROP)){
+                orden=3;
+            }else if (this.ordenRanking.equals(ConstantesSistema.ORD_TIP_ACAE)){
+                orden=4;
+            }else if (this.ordenRanking.equals(ConstantesSistema.ORD_ACAE)){
+                orden=5;
+            }else if (this.ordenRanking.equals(ConstantesSistema.ORD_DEPEN)){
+                orden=6;    
+            }
+            
             this.proyectosResumen = 
                     Proyecto.buscarRanking(this.clsTipificacion, 
                                            this.estadoTramite, 
@@ -564,7 +570,7 @@ public class RankingAction extends AccionSoporte implements Preparable {
                                            this.clsSector, this.clsSubSector, 
                                            this.codDepartamento, 
                                            this.codProvincia, this.codDistrito, 
-                                           ano, this.tipoDoc);
+                                           ano, this.tipoDoc,orden);
             this.hidClsTipificacion = this.clsTipificacion;
             this.hidEstadoTramite = this.estadoTramite;
             this.hidProponente = this.proponente;
@@ -935,5 +941,29 @@ public class RankingAction extends AccionSoporte implements Preparable {
 
     public boolean isShowMsgFind() {
         return showMsgFind;
+    }
+
+    public void setTxtAgrupacion(String txtAgrupacion) {
+        this.txtAgrupacion = txtAgrupacion;
+    }
+
+    public String getTxtAgrupacion() {
+        return txtAgrupacion;
+    }
+
+    public void setLog(Logger log) {
+        this.log = log;
+    }
+
+    public Logger getLog() {
+        return log;
+    }
+
+    public void setIdAgrupacion(String idAgrupacion) {
+        this.idAgrupacion = idAgrupacion;
+    }
+
+    public String getIdAgrupacion() {
+        return idAgrupacion;
     }
 }
