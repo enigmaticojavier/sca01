@@ -31,17 +31,17 @@ public interface ProyectoDao {
                                String tipoPersoneria, String proponente,
                                String tipoAcae, String clsSector, /*Institución*/ String clsSubSector, /*Dependencia*/
                                String codDepartamento, String codProvincia, String codDistrito, 
-                               String anoPresentacion, String tipDocTramite) throws DAOException;
+                               String anoPresentacion, String tipDocTramite, int orden) throws DAOException;
                                
   public List buscarRankingDetalle(String clsTipificacion,/*categoria*/ String estadoTramite, /*Estado Tramite*/
-                                  String proponente, String tipoAcae, String clsSector, /*Institución*/ String clsSubSector, /*Dependencia*/
+                                  String tipoPersoneria, String proponente, String tipoAcae, String clsSector, /*Institución*/ String clsSubSector, /*Dependencia*/
                                   String codDepartamento, String codProvincia, String codDistrito, 
-                                  String anoPresentacion, String tipDocTramite, String ordenRanking) throws DAOException;
+                                  String anoPresentacion, String tipDocTramite, int ordenRanking, String valorOrdenRanking) throws DAOException;
                                       
   public List buscarRankingReporte( String clsTipificacion,/*categoria*/ String estadoTramite, /*Estado Tramite*/
                                     String tipoPersoneria, String proponente,
                                     String tipoAcae, String clsSector, /*Institución*/ String clsSubSector, /*Dependencia*/
                                     String codDepartamento, String codProvincia, String codDistrito, 
-                                    String anoPresentacion, String tipDocTramite) throws DAOException;
+                                    String anoPresentacion, String tipDocTramite, int orden) throws DAOException;
   
 }

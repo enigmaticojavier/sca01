@@ -27,6 +27,8 @@ import gob.pe.minam.sca.util.Utilitarios;
 
 import gob.pe.minam.sca.vo.ProyectoReporteDetVo;
 
+import gob.pe.minam.sca.vo.RankingVo;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
@@ -137,10 +139,10 @@ public class ProyectoSqlMapDao extends BaseSqlMapDao implements ProyectoDao {
     }
     
     public List buscarRanking(String clsTipificacion,/*categoria*/ String estadoTramite, /*Estado Tramite*/
-                                  String tipoPersoneria, String proponente,
-                                  String tipoAcae, String clsSector, /*Institución*/ String clsSubSector, /*Dependencia*/
-                                  String codDepartamento, String codProvincia, String codDistrito, 
-                                  String anoPresentacion, String tipDocTramite) throws DAOException{
+                              String tipoPersoneria, String proponente,
+                              String tipoAcae, String clsSector, /*Institución*/ String clsSubSector, /*Dependencia*/
+                              String codDepartamento, String codProvincia, String codDistrito, 
+                              String anoPresentacion, String tipDocTramite, int orden) throws DAOException{
             try{
                 String codDpto="";
                 String codProv="";
@@ -161,6 +163,7 @@ public class ProyectoSqlMapDao extends BaseSqlMapDao implements ProyectoDao {
                 map.put("p_cCodDistrito",codDist);
                 map.put("p_cAnoPresentacion",anoPresentacion);
                 map.put("p_cTipDocTramite",tipDocTramite);
+                map.put("p_nOrdenRanking",orden);
                 System.out.println("clsTipificacion"+clsTipificacion);
                 System.out.println("estadoTramite"+estadoTramite);
                 System.out.println("tipoPersoneria"+tipoPersoneria);
@@ -173,22 +176,23 @@ public class ProyectoSqlMapDao extends BaseSqlMapDao implements ProyectoDao {
                 System.out.println("codDistrito"+codDistrito+"-->codDist"+codDist);
                 System.out.println("anoPresentacion"+anoPresentacion);
                 System.out.println("tipDocTramite"+tipDocTramite);
+                System.out.println("orden"+orden);
                 queryForObject("PQ_PROYECTO.RANKING", map);
                 List rsProyecto=(List)map.get("p_rsProyecto");
                 Iterator itProyecto = rsProyecto.iterator();
                 List lstProyecto = new ArrayList();
                 DateFormat df= new SimpleDateFormat("dd/MM/yyyy");
+                int fila=0;
                 while (itProyecto.hasNext()){
+                    fila++;
                     DynaBean bean = (DynaBean)itProyecto.next();
                     Proyecto pr = new Proyecto();
-                    Proponente propo = new Proponente();
-                    Persona per = new Persona();
-                    per.setPersonaId(Integer.parseInt((String)bean.get("PERSONAID")));
-                    per.setTxtRazonSocial((String)bean.get("TXTRAZONSOCIAL"));
-                    propo.setPersona(per);
-                    pr.setProponente(propo);
-                    pr.setContador(Integer.parseInt((String)bean.get("CNT")));
-                    lstProyecto.add(pr);    
+                    RankingVo rankingVo = new RankingVo();
+                    rankingVo.setFila(fila);
+                    rankingVo.setId((String)bean.get("ID"));
+                    rankingVo.setTxt((String)bean.get("TXT"));
+                    rankingVo.setContador(Integer.parseInt((String)bean.get("CNT")));
+                    lstProyecto.add(rankingVo);    
                 }
                 return lstProyecto;
             }catch(SqlMapException ex){
@@ -205,7 +209,7 @@ public class ProyectoSqlMapDao extends BaseSqlMapDao implements ProyectoDao {
                                           String tipoPersoneria, String proponente,
                                           String tipoAcae, String clsSector, /*Institución*/ String clsSubSector, /*Dependencia*/
                                           String codDepartamento, String codProvincia, String codDistrito, 
-                                          String anoPresentacion, String tipDocTramite) throws DAOException{
+                                          String anoPresentacion, String tipDocTramite, int orden) throws DAOException{
             try{
                 String codDpto="";
                 String codProv="";
@@ -220,12 +224,13 @@ public class ProyectoSqlMapDao extends BaseSqlMapDao implements ProyectoDao {
                 map.put("p_cProponente",proponente);
                 map.put("p_cTipoAcae",tipoAcae);
                 map.put("p_cClsSector",clsSector);
-                map.put("p_cClsSubSector",Integer.parseInt(clsSubSector!=null?clsSubSector:"0"));
+                map.put("p_cClsSubSector",Integer.parseInt(clsSubSector));
                 map.put("p_cCodDepartamento",codDpto);
                 map.put("p_cCodProvincia",codProv);
                 map.put("p_cCodDistrito",codDist);
                 map.put("p_cAnoPresentacion",anoPresentacion);
                 map.put("p_cTipDocTramite",tipDocTramite);
+                map.put("p_nOrdenRanking",orden);
                 System.out.println("clsTipificacion"+clsTipificacion);
                 System.out.println("estadoTramite"+estadoTramite);
                 System.out.println("tipoPersoneria"+tipoPersoneria);
@@ -233,12 +238,15 @@ public class ProyectoSqlMapDao extends BaseSqlMapDao implements ProyectoDao {
                 System.out.println("tipoAcae"+tipoAcae);
                 System.out.println("clsSector"+clsSector);
                 System.out.println("clsSubSector"+clsSubSector);
-                System.out.println("codDepartamento"+codDepartamento);
-                System.out.println("codProvincia"+codProvincia);
-                System.out.println("codDistrito"+codDistrito);
+                System.out.println("codDepartamento"+codDepartamento+"-->codDpto"+codDpto);
+                System.out.println("codProvincia"+codProvincia+"-->codProv"+codProv);
+                System.out.println("codDistrito"+codDistrito+"-->codDist"+codDist);
                 System.out.println("anoPresentacion"+anoPresentacion);
                 System.out.println("tipDocTramite"+tipDocTramite);
+                System.out.println("orden"+orden);
                 queryForObject("PQ_PROYECTO.RANKING", map);
+                
+                
                 List rsProyecto=(List)map.get("p_rsProyecto");
                 Iterator itProyecto = rsProyecto.iterator();
                 List lstProyecto = new ArrayList();
@@ -247,7 +255,7 @@ public class ProyectoSqlMapDao extends BaseSqlMapDao implements ProyectoDao {
                     DynaBean bean = (DynaBean)itProyecto.next();
                     ProyectoReporteDetVo proyectoReporteDetVo = new ProyectoReporteDetVo();
                     proyectoReporteDetVo.setContador(Integer.parseInt((String)bean.get("CNT")));
-                    proyectoReporteDetVo.setRazonSocial((String)bean.get("TXTRAZONSOCIAL"));
+                    proyectoReporteDetVo.setRazonSocial((String)bean.get("TXT"));
                     lstProyecto.add(proyectoReporteDetVo);    
                 }
                 return lstProyecto;
@@ -262,9 +270,9 @@ public class ProyectoSqlMapDao extends BaseSqlMapDao implements ProyectoDao {
         }
         
         public List buscarRankingDetalle(String clsTipificacion,/*categoria*/ String estadoTramite, /*Estado Tramite*/
-                                         String proponente, String tipoAcae, String clsSector, /*Institución*/ String clsSubSector, /*Dependencia*/
+                                         String tipoPersoneria, String proponente, String tipoAcae, String clsSector, /*Institución*/ String clsSubSector, /*Dependencia*/
                                          String codDepartamento, String codProvincia, String codDistrito, 
-                                         String anoPresentacion, String tipDocTramite,String ordenRanking) throws DAOException{
+                                         String anoPresentacion, String tipDocTramite, int ordenRanking, String idAgrupacion) throws DAOException{
             try{
                 String codDpto="";
                 String codProv="";
@@ -275,6 +283,7 @@ public class ProyectoSqlMapDao extends BaseSqlMapDao implements ProyectoDao {
                 codDist=codDistrito==null || codDistrito.equals("0")?"0":codDistrito.substring(4,6);
                 map.put("p_cClsTipificacion",clsTipificacion);
                 map.put("p_cEstadoTramite",estadoTramite);
+                map.put("p_cTipoPersoneria",tipoPersoneria);
                 map.put("p_cProponente",proponente);
                 map.put("p_cTipoAcae",tipoAcae);
                 map.put("p_cClsSector",clsSector);
@@ -284,9 +293,11 @@ public class ProyectoSqlMapDao extends BaseSqlMapDao implements ProyectoDao {
                 map.put("p_cCodDistrito",codDist);
                 map.put("p_cAnoPresentacion",anoPresentacion);
                 map.put("p_cTipDocTramite",tipDocTramite);
-                map.put("p_cOrdenRanking",ordenRanking);
+                map.put("p_nOrdenRanking",ordenRanking);
+                map.put("p_cIdAgrupacion",idAgrupacion);
                 System.out.println("clsTipificacion"+clsTipificacion);
                 System.out.println("estadoTramite"+estadoTramite);
+                System.out.println("tipoPersoneria"+tipoPersoneria);
                 System.out.println("proponente"+proponente);
                 System.out.println("tipoAcae"+tipoAcae);
                 System.out.println("clsSector"+clsSector);
@@ -297,6 +308,7 @@ public class ProyectoSqlMapDao extends BaseSqlMapDao implements ProyectoDao {
                 System.out.println("anoPresentacion"+anoPresentacion);
                 System.out.println("tipDocTramite"+tipDocTramite);
                 System.out.println("ordenRanking"+ordenRanking);
+                System.out.println("idAgrupacion"+idAgrupacion);
                 queryForObject("PQ_PROYECTO.RANKING_DETALLE", map);
                 List rsProyecto=(List)map.get("p_rsProyecto");
                 Iterator itProyecto = rsProyecto.iterator();

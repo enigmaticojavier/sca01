@@ -244,7 +244,7 @@ public class Proyecto implements Serializable{
                                      String tipoPersoneria, String proponente,
                                      String tipoAcae, String clsSector, /*Institución*/ String clsSubSector, /*Dependencia*/
                                      String codDepartamento, String codProvincia, String codDistrito, 
-                                     String anoPresentacion, String tipDocTramite
+                                     String anoPresentacion, String tipDocTramite, int orden
                                    ) throws NegocioException{
       try{  
         ProyectoDao proyectoDao = ProyectoService.getInstance().getProyectoDao();
@@ -252,7 +252,7 @@ public class Proyecto implements Serializable{
                                           tipoPersoneria, proponente,
                                           tipoAcae, clsSector, clsSubSector,
                                           codDepartamento, codProvincia, codDistrito, 
-                                          anoPresentacion, tipDocTramite);
+                                          anoPresentacion, tipDocTramite,orden);
       }catch(DAOException ex){
         throw new NegocioException(ex.toString(),ex.getCodigoMensajeUsuario());
       }catch(Exception ex){
@@ -261,18 +261,20 @@ public class Proyecto implements Serializable{
    }
    
    public static List buscarRankingDetalle(  String clsTipificacion,/*categoria*/ String estadoTramite, /*Estado Tramite*/
+                                             String tipoPersoneria, 
                                              String proponente,
                                              String tipoAcae, String clsSector, /*Institución*/ String clsSubSector, /*Dependencia*/
                                              String codDepartamento, String codProvincia, String codDistrito, 
-                                             String anoPresentacion, String tipDocTramite, String ordenRanking
+                                             String anoPresentacion, String tipDocTramite, int ordenRanking, String idAgrupacion
                                            ) throws NegocioException{
       try{  
         ProyectoDao proyectoDao = ProyectoService.getInstance().getProyectoDao();
         return proyectoDao.buscarRankingDetalle( clsTipificacion, estadoTramite, 
+                                                 tipoPersoneria, 
                                                  proponente,
                                                  tipoAcae, clsSector, clsSubSector,
                                                  codDepartamento, codProvincia, codDistrito, 
-                                                 anoPresentacion, tipDocTramite, ordenRanking);
+                                                 anoPresentacion, tipDocTramite, ordenRanking, idAgrupacion);
       }catch(DAOException ex){
         throw new NegocioException(ex.toString(),ex.getCodigoMensajeUsuario());
       }catch(Exception ex){
@@ -284,7 +286,7 @@ public class Proyecto implements Serializable{
                                              String tipoPersoneria, String proponente,
                                              String tipoAcae, String clsSector, /*Institución*/ String clsSubSector, /*Dependencia*/
                                              String codDepartamento, String codProvincia, String codDistrito, 
-                                             String anoPresentacion, String tipDocTramite
+                                             String anoPresentacion, String tipDocTramite, int orden
                                    ) throws NegocioException{
       try{  
         ProyectoDao proyectoDao = ProyectoService.getInstance().getProyectoDao();
@@ -292,7 +294,7 @@ public class Proyecto implements Serializable{
                                                  tipoPersoneria, proponente,
                                                  tipoAcae, clsSector, clsSubSector,
                                                  codDepartamento, codProvincia, codDistrito, 
-                                                 anoPresentacion, tipDocTramite);
+                                                 anoPresentacion, tipDocTramite, orden);
       }catch(DAOException ex){
         throw new NegocioException(ex.toString(),ex.getCodigoMensajeUsuario());
       }catch(Exception ex){
