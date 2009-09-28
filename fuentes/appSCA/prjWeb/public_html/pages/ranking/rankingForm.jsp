@@ -79,7 +79,7 @@
                     <table>
                       <tr>
                         <td >
-                            <s:label value="Proponente"/>
+                            <s:label value="%{txtOrdenRanking}"/>
                             <!--s:label value="%{proponente}"/-->
                         </td>    
                         <td>

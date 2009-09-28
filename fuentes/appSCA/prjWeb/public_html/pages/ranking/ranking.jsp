@@ -390,7 +390,7 @@
                             <display:setProperty name="export.xml" value="false" />
                             <display:setProperty name="export.xls.filename" value="proyecto.xls"/> 
                             <display:column property="fila" title="Fila" style="width:70" media="html excel csv"/>
-                            <display:column property="txt" title="${txtAgrupacion}" style="width:70" media="html excel csv"></display:column>
+                            <display:column property="txt" title="${txtOrdenRanking}" style="width:70" media="html excel csv"/>
                             <display:column property="contador" title="contador" style="width:10" media="html excel csv"/>
                             <display:column paramId="personaId" paramProperty="id" title="Detalle" style="width:5%" media="html">
                                 <a target="_blank" href="rankingForm!input?clsTipificacion=${clsTipificacion}&estadoTramite=${estadoTramite}&tipoPersoneria=${tipoPersoneria}&proponente=${proponente}&tipoAcae=${tipoAcae}&clsSector=${clsSector}&clsSubSector=${clsSubSector}&codDepartamento=${codDepartamento}&codProvincia=${codProvincia}&codDistrito=${codDistrito}&anoPeriodo=${anoPeriodo}&tipoDoc=${tipoDoc}&ordenRanking=${ordenRanking}&idAgrupacion=${proyecto.id}&txtAgrupacion=${proyecto.txt}">
