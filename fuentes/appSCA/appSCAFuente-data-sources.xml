@@ -1,8 +1,8 @@
 <?xml version = '1.0' encoding = 'windows-1252'?>
 <data-sources xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://xmlns.oracle.com/oracleas/schema/data-sources-10_1.xsd" xmlns="http://xmlns.oracle.com/oracleas/schema">
     <connection-pool name="jdev-connection-pool-DBConnection1">
-        <connection-factory factory-class="oracle.jdbc.pool.OracleDataSource" user="spring" password="->DataBase_User_ULnlR-SjtbV4YQ1pjirnJU-ZAqB4wmCE" url="jdbc:oracle:thin:@localhost:1521:bdrimac"/>
+        <connection-factory factory-class="oracle.jdbc.pool.OracleDataSource" user="spring" password="->DataBase_User_ORKJNcD_gdeA6K21GOi2lgbrY0f6raKk" url="jdbc:oracle:thin:@localhost:1521:bdrimac"/>
     </connection-pool>
     <managed-data-source name="jdev-connection-managed-DBConnection1" jndi-name="jdbc/DBConnection1DS" connection-pool-name="jdev-connection-pool-DBConnection1"/>
-    <native-data-source name="jdev-connection-native-DBConnection1" jndi-name="jdbc/DBConnection1CoreDS" url="jdbc:oracle:thin:@localhost:1521:bdrimac" user="spring" password="->DataBase_User_kzhORkRvlyyn82SEcXYdTHif7SahpM8s" data-source-class="oracle.jdbc.pool.OracleDataSource"/>
+    <native-data-source name="jdev-connection-native-DBConnection1" jndi-name="jdbc/DBConnection1CoreDS" url="jdbc:oracle:thin:@localhost:1521:bdrimac" user="spring" password="->DataBase_User_Vjce5IMvgXcSb4tEsXWoUG3zkDdgmF9-" data-source-class="oracle.jdbc.pool.OracleDataSource"/>
 </data-sources>
