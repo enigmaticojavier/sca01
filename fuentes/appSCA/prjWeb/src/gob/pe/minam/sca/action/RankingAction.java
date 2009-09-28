@@ -550,16 +550,22 @@ public class RankingAction extends AccionSoporte implements Preparable {
             int orden = 0;
             if (this.ordenRanking.equals(ConstantesSistema.ORD_CAT_PROY)){
                 orden=1;
+                this.txtAgrupacion="Categoría del Proyecto";
             }else if (this.ordenRanking.equals(ConstantesSistema.ORD_EST_TRAM)){
                 orden=2;
+                this.txtAgrupacion="Estado del Trámite";
             }else if (this.ordenRanking.equals(ConstantesSistema.ORD_EMP_PROP)){
                 orden=3;
+                this.txtAgrupacion="Empresa Proponente";
             }else if (this.ordenRanking.equals(ConstantesSistema.ORD_TIP_ACAE)){
                 orden=4;
+                this.txtAgrupacion="Tipo Acae";
             }else if (this.ordenRanking.equals(ConstantesSistema.ORD_ACAE)){
                 orden=5;
+                this.txtAgrupacion="ACAE";
             }else if (this.ordenRanking.equals(ConstantesSistema.ORD_DEPEN)){
                 orden=6;    
+                this.txtAgrupacion="Dependencia";
             }
             
             this.proyectosResumen = 
