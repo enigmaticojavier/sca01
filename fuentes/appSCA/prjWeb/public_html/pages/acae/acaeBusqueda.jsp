@@ -58,7 +58,7 @@ response.setDateHeader("Expires",-1);
                 <br/>
                 <s:form action="acaeModifica!doBuscarAcae" method="POST">
                     <s:actionerror />
-                    <s:textfield label="Nombre de la ACAE a consultar" name="acae.txtRazonSocial" value="%{persona.txtRazonSocial}" size="50" maxlength="255"/>
+                    <s:textfield label="Nombre de la ACAE a consultar" name="txtRazonSocial" value="%{txtRazonSocial}" size="50" maxlength="255"/>
                     <s:submit value="Consultar" align="center"/>                   
                 </s:form>
                 <s:set name="acaes" value="acaes" scope="request" />
@@ -67,7 +67,7 @@ response.setDateHeader("Expires",-1);
                         No existen ACAEs que cumplan el criterio de búsqueda
                     </s:if>
                     <s:else>
-                        <display:table name="acaes" requestURI="acaeModifica!doBuscarAcae" excludedParams="*" class="dataTable" id="acae" pagesize="10" style="width:600" export="false">
+                        <display:table name="acaes" requestURI="acaeModifica!doBuscarAcae?txtRazonSocial=${txtRazonSocial}" excludedParams="*" class="dataTable" id="acae" pagesize="10" style="width:600" export="false">
                                                         
                             <display:column property="personaId" title="Id" style="width:5"  media="html" />
                             <display:column property="txtRazonSocial" title="Razón Social" style="width:495" media="html" />
