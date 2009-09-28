@@ -44,9 +44,8 @@ create or replace package PQ_PROYECTO is
   FUNCTION GETESTADOTRAMITE(p_cPryId VARCHAR2) RETURN VARCHAR2;
   FUNCTION GETESTADOTRAMITETXT(p_cPryId VARCHAR2) RETURN VARCHAR2;
   FUNCTION GETDEPARTAMENTO(p_cUbigeoid VARCHAR2) RETURN VARCHAR2;
-  FUNCTION GETDEPENDENCIA(p_cTipoAcae  VARCHAR2,
-                          p_cClsSector VARCHAR2,
-                          p_nPersonaid NUMBER) RETURN VARCHAR2;
+  FUNCTION GETDEPENDENCIA(p_cProyectoId NUMBER) RETURN VARCHAR2;
+  FUNCTION GETTXTDEPENDENCIA(p_cProyectoId NUMBER) RETURN VARCHAR2;
   FUNCTION GETTIPOACAE(p_cCodParametro VARCHAR2) RETURN VARCHAR2;
 
 end PQ_PROYECTO;
@@ -319,12 +318,28 @@ create or replace package body PQ_PROYECTO is
     RETURN c_TxtDescripcion;
   END;
 
-  FUNCTION GETDEPENDENCIA(p_cTipoAcae  VARCHAR2,
-                          p_cClsSector VARCHAR2,
-                          p_nPersonaid NUMBER) RETURN VARCHAR2 IS
-    c_TxtRazonSocial PERSONA.TXTRAZONSOCIAL%TYPE;
+  FUNCTION GETTXTDEPENDENCIA(p_cProyectoId NUMBER) RETURN VARCHAR2 IS
+    cTxtRazonSocial PERSONA.TXTRAZONSOCIAL%TYPE;
   BEGIN
     BEGIN
+      SELECT PERSONA.TXTRAZONSOCIAL
+        INTO cTxtRazonSocial
+        from expediente, proyecto, PERSONA
+       where expediente.pryid = proyecto.pryid
+         AND expediente.personaid = PERSONA.PERSONAID
+         and proyecto.pryid = p_cProyectoId;
+    EXCEPTION
+      WHEN OTHERS THEN
+        cTxtRazonSocial := '';
+    END;
+    RETURN cTxtRazonSocial;
+  END;
+
+  FUNCTION GETDEPENDENCIA(p_cProyectoId NUMBER) RETURN VARCHAR2 IS
+    c_PersonaId PERSONA.PERSONAID%TYPE;
+  BEGIN
+    BEGIN
+      /*
       SELECT PERSONA.TXTRAZONSOCIAL
         INTO c_TxtRazonSocial
         FROM ACAE, PERSONA
@@ -332,11 +347,17 @@ create or replace package body PQ_PROYECTO is
          AND TIPACAE = p_cTipoAcae
          AND CLSSECTOR = p_cClsSector
          AND PERSONA.PERSONAID = p_nPersonaid;
+      */
+      select expediente.personaid
+        into c_PersonaId
+        from expediente, proyecto
+       where expediente.pryid = proyecto.pryid
+         and proyecto.pryid = p_cProyectoId;
     EXCEPTION
       WHEN OTHERS THEN
-        c_TxtRazonSocial := '';
+        c_PersonaId := '';
     END;
-    RETURN c_TxtRazonSocial;
+    RETURN c_PersonaId;
   END;
 
   FUNCTION GETTIPOACAE(p_cCodParametro VARCHAR2) RETURN VARCHAR2 IS
@@ -504,7 +525,7 @@ create or replace package body PQ_PROYECTO is
                                               pr.clssector,
                                               decode(p_nOrdenRanking,
                                                      6,
-                                                     pr.clssector,
+                                                     GETDEPENDENCIA(pr.pryid),
                                                      '')))))) ID,
            decode(p_nOrdenRanking,
                   1,
@@ -525,9 +546,7 @@ create or replace package body PQ_PROYECTO is
                                                                pr.clssector),
                                               decode(p_nOrdenRanking,
                                                      6,
-                                                     GETDEPENDENCIA(p_cTipoAcae,
-                                                                    pr.clssector,
-                                                                    p_cClsSubSector),
+                                                     GETTXTDEPENDENCIA(pr.pryid),
                                                      '')))))) TXT,
            count(*) cnt
             from proyecto pr, persona pe, ubigeo u
@@ -581,7 +600,7 @@ create or replace package body PQ_PROYECTO is
                                                        pr.clssector,
                                                        decode(p_nOrdenRanking,
                                                               6,
-                                                              pr.clssector,
+                                                              GETDEPENDENCIA(PR.PRYID),
                                                               '')))))),
                     decode(p_nOrdenRanking,
                            1,
@@ -602,9 +621,7 @@ create or replace package body PQ_PROYECTO is
                                                                         pr.clssector),
                                                        decode(p_nOrdenRanking,
                                                               6,
-                                                              GETDEPENDENCIA(p_cTipoAcae,
-                                                                             pr.clssector,
-                                                                             p_cClsSubSector),
+                                                              GETTXTDEPENDENCIA(PR.PRYID),
                                                               ''))))));
         -- PN
       ELSIF nTipoPersoneria = 2 AND nProponente = 0 THEN
@@ -626,7 +643,7 @@ create or replace package body PQ_PROYECTO is
                                                     pr.clssector,
                                                     decode(p_nOrdenRanking,
                                                            6,
-                                                           pr.clssector,
+                                                           GETDEPENDENCIA(pr.pryid),
                                                            '')))))) ID,
                  decode(p_nOrdenRanking,
                         1,
@@ -647,9 +664,7 @@ create or replace package body PQ_PROYECTO is
                                                                      pr.clssector),
                                                     decode(p_nOrdenRanking,
                                                            6,
-                                                           GETDEPENDENCIA(p_cTipoAcae,
-                                                                          pr.clssector,
-                                                                          p_cClsSubSector),
+                                                           GETTXTDEPENDENCIA(pr.pryid),
                                                            '')))))) TXT,
                  count(*) cnt
             from proyecto pr, persona pe, ubigeo u
@@ -702,7 +717,7 @@ create or replace package body PQ_PROYECTO is
                                                        pr.clssector,
                                                        decode(p_nOrdenRanking,
                                                               6,
-                                                              pr.clssector,
+                                                              GETDEPENDENCIA(pr.pryid),
                                                               '')))))),
                     decode(p_nOrdenRanking,
                            1,
@@ -723,9 +738,7 @@ create or replace package body PQ_PROYECTO is
                                                                         pr.clssector),
                                                        decode(p_nOrdenRanking,
                                                               6,
-                                                              GETDEPENDENCIA(p_cTipoAcae,
-                                                                             pr.clssector,
-                                                                             p_cClsSubSector),
+                                                              GETTXTDEPENDENCIA(pr.pryid),
                                                               ''))))));
         -- TODOS
       ELSIF nTipoPersoneria = 0 AND nProponente = 0 THEN
@@ -747,7 +760,7 @@ create or replace package body PQ_PROYECTO is
                                                     pr.clssector,
                                                     decode(p_nOrdenRanking,
                                                            6,
-                                                           pr.clssector,
+                                                           GETDEPENDENCIA(pr.pryid),
                                                            '')))))) ID,
                  decode(p_nOrdenRanking,
                         1,
@@ -768,9 +781,7 @@ create or replace package body PQ_PROYECTO is
                                                                      pr.clssector),
                                                     decode(p_nOrdenRanking,
                                                            6,
-                                                           GETDEPENDENCIA(p_cTipoAcae,
-                                                                          pr.clssector,
-                                                                          p_cClsSubSector),
+                                                           GETTXTDEPENDENCIA(pr.pryid),
                                                            '')))))) TXT,
                  count(*) cnt
             from proyecto pr, persona pe, ubigeo u
@@ -818,7 +829,7 @@ create or replace package body PQ_PROYECTO is
                                                        pr.clssector,
                                                        decode(p_nOrdenRanking,
                                                               6,
-                                                              pr.clssector,
+                                                              GETDEPENDENCIA(pr.pryid),
                                                               '')))))),
                     decode(p_nOrdenRanking,
                            1,
@@ -839,9 +850,7 @@ create or replace package body PQ_PROYECTO is
                                                                         pr.clssector),
                                                        decode(p_nOrdenRanking,
                                                               6,
-                                                              GETDEPENDENCIA(p_cTipoAcae,
-                                                                             pr.clssector,
-                                                                             p_cClsSubSector),
+                                                              GETTXTDEPENDENCIA(pr.pryid),
                                                               ''))))));
         -- PROPONENTE ESPECIFICO
       ELSIF nProponente = 1 THEN
@@ -863,7 +872,7 @@ create or replace package body PQ_PROYECTO is
                                                     pr.clssector,
                                                     decode(p_nOrdenRanking,
                                                            6,
-                                                           pr.clssector,
+                                                           GETDEPENDENCIA(pr.pryid),
                                                            '')))))) ID,
                  decode(p_nOrdenRanking,
                         1,
@@ -884,9 +893,7 @@ create or replace package body PQ_PROYECTO is
                                                                      pr.clssector),
                                                     decode(p_nOrdenRanking,
                                                            6,
-                                                           GETDEPENDENCIA(p_cTipoAcae,
-                                                                          pr.clssector,
-                                                                          p_cClsSubSector),
+                                                           GETTXTDEPENDENCIA(pr.pryid),
                                                            '')))))) TXT,
                  count(*) cnt
             from proyecto pr, persona pe, ubigeo u
@@ -935,7 +942,7 @@ create or replace package body PQ_PROYECTO is
                                                        pr.clssector,
                                                        decode(p_nOrdenRanking,
                                                               6,
-                                                              pr.clssector,
+                                                              GETDEPENDENCIA(pr.pryid),
                                                               '')))))),
                     decode(p_nOrdenRanking,
                            1,
@@ -956,9 +963,7 @@ create or replace package body PQ_PROYECTO is
                                                                         pr.clssector),
                                                        decode(p_nOrdenRanking,
                                                               6,
-                                                              GETDEPENDENCIA(p_cTipoAcae,
-                                                                             pr.clssector,
-                                                                             p_cClsSubSector),
+                                                              GETTXTDEPENDENCIA(pr.pryid),
                                                               ''))))));
       END IF;
     ELSE
@@ -981,7 +986,7 @@ create or replace package body PQ_PROYECTO is
                                                     pr.clssector,
                                                     decode(p_nOrdenRanking,
                                                            6,
-                                                           pr.clssector,
+                                                           GETDEPENDENCIA(pr.pryid),
                                                            '')))))) ID,
                  decode(p_nOrdenRanking,
                         1,
@@ -1002,9 +1007,7 @@ create or replace package body PQ_PROYECTO is
                                                                      pr.clssector),
                                                     decode(p_nOrdenRanking,
                                                            6,
-                                                           GETDEPENDENCIA(p_cTipoAcae,
-                                                                          pr.clssector,
-                                                                          p_cClsSubSector),
+                                                           GETTXTDEPENDENCIA(pr.pryid),
                                                            '')))))) TXT,
                  count(*) cnt
             from proyecto pr, persona pe, ubigeo u
@@ -1056,7 +1059,7 @@ create or replace package body PQ_PROYECTO is
                                                        pr.clssector,
                                                        decode(p_nOrdenRanking,
                                                               6,
-                                                              pr.clssector,
+                                                              GETDEPENDENCIA(pr.pryid),
                                                               '')))))),
                     decode(p_nOrdenRanking,
                            1,
@@ -1077,9 +1080,7 @@ create or replace package body PQ_PROYECTO is
                                                                         pr.clssector),
                                                        decode(p_nOrdenRanking,
                                                               6,
-                                                              GETDEPENDENCIA(p_cTipoAcae,
-                                                                             pr.clssector,
-                                                                             p_cClsSubSector),
+                                                              GETTXTDEPENDENCIA(pr.pryid),
                                                               ''))))));
       ELSIF nTipoPersoneria = 2 AND nProponente = 0 THEN
         open p_rsProyecto for
@@ -1100,7 +1101,7 @@ create or replace package body PQ_PROYECTO is
                                                     pr.clssector,
                                                     decode(p_nOrdenRanking,
                                                            6,
-                                                           pr.clssector,
+                                                           GETDEPENDENCIA(pr.pryid),
                                                            '')))))) ID,
                  decode(p_nOrdenRanking,
                         1,
@@ -1121,9 +1122,7 @@ create or replace package body PQ_PROYECTO is
                                                                      pr.clssector),
                                                     decode(p_nOrdenRanking,
                                                            6,
-                                                           GETDEPENDENCIA(p_cTipoAcae,
-                                                                          pr.clssector,
-                                                                          p_cClsSubSector),
+                                                           GETTXTDEPENDENCIA(pr.pryid),
                                                            '')))))) TXT,
                  count(*) cnt
             from proyecto pr, persona pe, ubigeo u
@@ -1175,7 +1174,7 @@ create or replace package body PQ_PROYECTO is
                                                        pr.clssector,
                                                        decode(p_nOrdenRanking,
                                                               6,
-                                                              pr.clssector,
+                                                              GETDEPENDENCIA(pr.pryid),
                                                               '')))))),
                     decode(p_nOrdenRanking,
                            1,
@@ -1196,9 +1195,7 @@ create or replace package body PQ_PROYECTO is
                                                                         pr.clssector),
                                                        decode(p_nOrdenRanking,
                                                               6,
-                                                              GETDEPENDENCIA(p_cTipoAcae,
-                                                                             pr.clssector,
-                                                                             p_cClsSubSector),
+                                                              GETTXTDEPENDENCIA(pr.pryid),
                                                               ''))))));
       ELSIF nTipoPersoneria = 0 AND nProponente = 0 THEN
         open p_rsProyecto for
@@ -1219,7 +1216,7 @@ create or replace package body PQ_PROYECTO is
                                                     pr.clssector,
                                                     decode(p_nOrdenRanking,
                                                            6,
-                                                           pr.clssector,
+                                                           GETDEPENDENCIA(pr.pryid),
                                                            '')))))) ID,
                  decode(p_nOrdenRanking,
                         1,
@@ -1240,9 +1237,7 @@ create or replace package body PQ_PROYECTO is
                                                                      pr.clssector),
                                                     decode(p_nOrdenRanking,
                                                            6,
-                                                           GETDEPENDENCIA(p_cTipoAcae,
-                                                                          pr.clssector,
-                                                                          p_cClsSubSector),
+                                                           GETTXTDEPENDENCIA(pr.pryid),
                                                            '')))))) TXT,
                  count(*) cnt
             from proyecto pr, persona pe, ubigeo u
@@ -1289,7 +1284,7 @@ create or replace package body PQ_PROYECTO is
                                                        pr.clssector,
                                                        decode(p_nOrdenRanking,
                                                               6,
-                                                              pr.clssector,
+                                                              GETDEPENDENCIA(pr.pryid),
                                                               '')))))),
                     decode(p_nOrdenRanking,
                            1,
@@ -1310,9 +1305,7 @@ create or replace package body PQ_PROYECTO is
                                                                         pr.clssector),
                                                        decode(p_nOrdenRanking,
                                                               6,
-                                                              GETDEPENDENCIA(p_cTipoAcae,
-                                                                             pr.clssector,
-                                                                             p_cClsSubSector),
+                                                              GETTXTDEPENDENCIA(pr.pryid),
                                                               ''))))));
       ELSIF nProponente = 1 THEN
         open p_rsProyecto for
@@ -1333,7 +1326,7 @@ create or replace package body PQ_PROYECTO is
                                                     pr.clssector,
                                                     decode(p_nOrdenRanking,
                                                            6,
-                                                           pr.clssector,
+                                                           GETDEPENDENCIA(pr.pryid),
                                                            '')))))) ID,
                  decode(p_nOrdenRanking,
                         1,
@@ -1354,9 +1347,7 @@ create or replace package body PQ_PROYECTO is
                                                                      pr.clssector),
                                                     decode(p_nOrdenRanking,
                                                            6,
-                                                           GETDEPENDENCIA(p_cTipoAcae,
-                                                                          pr.clssector,
-                                                                          p_cClsSubSector),
+                                                           GETTXTDEPENDENCIA(pr.pryid),
                                                            '')))))) TXT,
                  count(*) cnt
             from proyecto pr, persona pe, ubigeo u
@@ -1404,7 +1395,7 @@ create or replace package body PQ_PROYECTO is
                                                        pr.clssector,
                                                        decode(p_nOrdenRanking,
                                                               6,
-                                                              pr.clssector,
+                                                              GETDEPENDENCIA(pr.pryid),
                                                               '')))))),
                     decode(p_nOrdenRanking,
                            1,
@@ -1425,9 +1416,7 @@ create or replace package body PQ_PROYECTO is
                                                                         pr.clssector),
                                                        decode(p_nOrdenRanking,
                                                               6,
-                                                              GETDEPENDENCIA(p_cTipoAcae,
-                                                                             pr.clssector,
-                                                                             p_cClsSubSector),
+                                                              GETTXTDEPENDENCIA(pr.pryid),
                                                               ''))))));
       END IF;
     END IF;
@@ -1587,6 +1576,7 @@ create or replace package body PQ_PROYECTO is
                   where expediente.expid = expedientedocumento.expid
                     and expedientedocumento.docid = documento.docid
                     and documento.tipodocumento = p_cTipDocTramite))
+              
            and decode(p_nOrdenRanking,
                       1,
                       clstipificacion,
@@ -1604,7 +1594,7 @@ create or replace package body PQ_PROYECTO is
                                                   pr.clssector,
                                                   decode(p_nOrdenRanking,
                                                          6,
-                                                         pr.clssector,
+                                                         GETDEPENDENCIA(pr.pryid),
                                                          '')))))) =
                p_cIdAgrupacion
          order by p_nOrdenRanking;
@@ -1666,7 +1656,7 @@ create or replace package body PQ_PROYECTO is
                                                   pr.clssector,
                                                   decode(p_nOrdenRanking,
                                                          6,
-                                                         pr.clssector,
+                                                         GETDEPENDENCIA(pr.pryid),
                                                          '')))))) =
                p_cIdAgrupacion;
     END IF;
