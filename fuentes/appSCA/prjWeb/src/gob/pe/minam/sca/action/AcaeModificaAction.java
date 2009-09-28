@@ -18,15 +18,16 @@ public class AcaeModificaAction extends AcaeAction {
     static Logger log = Logger.getLogger("AcaeAction.class");
     private List acaes;
     private boolean buscar=false;
+    private String txtRazonSocial;
     
     public String doMuestra(){
         return "busqueda";
     }
     public String doBuscarAcae() throws DAOException {       
-        
-        if (this.acae.getTxtRazonSocial()!=null ) {
-            log.info("acae="+this.acae.getTxtRazonSocial());
-            acae.setTxtRazonSocial(this.acae.getTxtRazonSocial().trim().toUpperCase());
+        log.info("acae="+this.getTxtRazonSocial());
+        acae = new Acae();       
+        if (this.getTxtRazonSocial()!=null ) {            
+            acae.setTxtRazonSocial(this.getTxtRazonSocial().trim().toUpperCase());
             acaes = acae.getAcaeByNombre(acae);
             this.buscar=true;
         } else {
@@ -121,5 +122,13 @@ public class AcaeModificaAction extends AcaeAction {
 
     public boolean isBuscar() {
         return buscar;
+    }
+
+    public void setTxtRazonSocial(String txtRazonSocial) {
+        this.txtRazonSocial = txtRazonSocial;
+    }
+
+    public String getTxtRazonSocial() {
+        return txtRazonSocial;
     }
 }
