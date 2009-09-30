@@ -83,6 +83,7 @@ public class ProyectoSqlMapDao extends BaseSqlMapDao implements ProyectoDao {
           Iterator itProyecto = rsProyecto.iterator();
           List lstProyecto = new ArrayList();
           DateFormat df= new SimpleDateFormat("dd/MM/yyyy");
+          DateFormat df1= new SimpleDateFormat("dd/MM/yyyy");
           while (itProyecto.hasNext()){
                 DynaBean bean = (DynaBean)itProyecto.next();
                 Proyecto pr = new Proyecto();
@@ -112,6 +113,9 @@ public class ProyectoSqlMapDao extends BaseSqlMapDao implements ProyectoDao {
                 pr.setTipoAcae((String)bean.get("TIPOACAE"));
                 pr.setInstitucion((String)bean.get("INSTITUCION"));
                 pr.setActividad((String)bean.get("ACTIVIDAD"));
+                if (bean.get("FCHAPROBACION")!=null){
+                    pr.setFchAprobacion(df1.parse((String)bean.get("FCHAPROBACION")));
+                } 
                 lstProyecto.add(pr);
           }
           return lstProyecto;

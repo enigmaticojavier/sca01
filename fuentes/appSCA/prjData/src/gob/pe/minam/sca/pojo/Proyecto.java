@@ -44,7 +44,8 @@ public class Proyecto implements Serializable{
    private String tipoAcae;
    private String institucion;
    private String actividad;
-
+   private Date fchAprobacion;
+    
    void Proyecto(){
    } 
 
@@ -207,6 +208,15 @@ public class Proyecto implements Serializable{
     public int getContador() {
         return contador;
     }
+    
+    public void setFchAprobacion(Date fchAprobacion) {
+        this.fchAprobacion = fchAprobacion;
+    }
+
+    public Date getFchAprobacion() {
+        return fchAprobacion;
+    }
+    
     
     public static List buscarProyecto(String txtDescripcion,/*nombreProyecto*/ String ubigeoId, /*departamento*/
                                       String clsTipificacion,/*categoria*/ String fchExpedienteDesde, /*Fecha de Presentación Desde*/

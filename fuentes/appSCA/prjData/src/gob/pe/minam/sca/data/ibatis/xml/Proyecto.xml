@@ -19,6 +19,7 @@
     <result property="clsSector" column="CLSSECTOR"/>
     <result property="clsSubSector" column="CLSSUBSECTOR"/>
     <result property="fchExpediente" column="FCHEXPEDIENTE"/>
+    <result property="fchAprobacion" column="FCHAPROBACION"/>
   </resultMap>
 
   <select id="SelectAllProyectos" resultMap="ProyectoResult">
