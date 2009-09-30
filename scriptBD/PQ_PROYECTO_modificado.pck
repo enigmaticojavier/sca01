@@ -129,8 +129,7 @@ create or replace package body PQ_PROYECTO is
                pr.clssector,
                p1.txtvalor tipoacae,
                PARAMETRO_BUSCAR(p1.codparametro, pr.clssector) institucion,
-               PARAMETRO_BUSCAR('ACT', substr(pr.codproyecto, 0, 3)) actividad,
-               TO_CHAR(UF_GET_FECHAAPROBACION(pr.pryid), 'dd/mm/yyyy') fchaprobacion
+               PARAMETRO_BUSCAR('ACT', substr(pr.codproyecto, 0, 3)) actividad
           from persona pe, ubigeo u, proyecto pr
          inner join parametro p1 on p1.tipparametro = 'TAC'
                                 and p1.codparametro = p_cTipoAcae --TIPO ACAE SELECIONADA
@@ -169,8 +168,7 @@ create or replace package body PQ_PROYECTO is
                  pr.clssector,
                  p1.txtvalor tipoacae,
                  PARAMETRO_BUSCAR(p1.codparametro, pr.clssector) institucion,
-                 PARAMETRO_BUSCAR('ACT', substr(pr.codproyecto, 0, 3)) actividad,
-	               TO_CHAR(UF_GET_FECHAAPROBACION(pr.pryid), 'dd/mm/yyyy') fchaprobacion
+                 PARAMETRO_BUSCAR('ACT', substr(pr.codproyecto, 0, 3)) actividad
             from persona pe, ubigeo u, proyecto pr
            inner join parametro p1 on p1.tipparametro = 'TAC'
                                   and p1.codparametro = p_cTipoAcae --TIPO ACAE SELECIONADA
@@ -213,8 +211,7 @@ create or replace package body PQ_PROYECTO is
                  pr.clssector,
                  p1.txtvalor tipoacae,
                  PARAMETRO_BUSCAR(p1.codparametro, pr.clssector) institucion,
-                 PARAMETRO_BUSCAR('ACT', substr(pr.codproyecto, 0, 3)) actividad,
-	               TO_CHAR(UF_GET_FECHAAPROBACION(pr.pryid), 'dd/mm/yyyy') fchaprobacion
+                 PARAMETRO_BUSCAR('ACT', substr(pr.codproyecto, 0, 3)) actividad
             from persona pe, ubigeo u, proyecto pr
            inner join parametro p1 on p1.tipparametro = 'TAC'
            inner join parametro p2 on p1.codparametro = p2.tipparametro
@@ -625,7 +622,7 @@ create or replace package body PQ_PROYECTO is
                                                        decode(p_nOrdenRanking,
                                                               6,
                                                               GETTXTDEPENDENCIA(PR.PRYID),
-                                                              '')))))) ORDER BY 3 DESC;
+                                                              ''))))));
         -- PN
       ELSIF nTipoPersoneria = 2 AND nProponente = 0 THEN
         open p_rsProyecto for
@@ -742,7 +739,7 @@ create or replace package body PQ_PROYECTO is
                                                        decode(p_nOrdenRanking,
                                                               6,
                                                               GETTXTDEPENDENCIA(pr.pryid),
-                                                              ''))))))  ORDER BY 3 DESC;
+                                                              ''))))));
         -- TODOS
       ELSIF nTipoPersoneria = 0 AND nProponente = 0 THEN
         open p_rsProyecto for
@@ -854,7 +851,7 @@ create or replace package body PQ_PROYECTO is
                                                        decode(p_nOrdenRanking,
                                                               6,
                                                               GETTXTDEPENDENCIA(pr.pryid),
-                                                              '')))))) ORDER BY 3 DESC;
+                                                              ''))))));
         -- PROPONENTE ESPECIFICO
       ELSIF nProponente = 1 THEN
         open p_rsProyecto for
@@ -967,7 +964,7 @@ create or replace package body PQ_PROYECTO is
                                                        decode(p_nOrdenRanking,
                                                               6,
                                                               GETTXTDEPENDENCIA(pr.pryid),
-                                                              '')))))) ORDER BY 3 DESC;
+                                                              ''))))));
       END IF;
     ELSE
       IF nTipoPersoneria = 1 AND nProponente = 0 THEN
@@ -1084,7 +1081,7 @@ create or replace package body PQ_PROYECTO is
                                                        decode(p_nOrdenRanking,
                                                               6,
                                                               GETTXTDEPENDENCIA(pr.pryid),
-                                                              '')))))) ORDER BY 3 DESC;
+                                                              ''))))));
       ELSIF nTipoPersoneria = 2 AND nProponente = 0 THEN
         open p_rsProyecto for
           select decode(p_nOrdenRanking,
@@ -1199,7 +1196,7 @@ create or replace package body PQ_PROYECTO is
                                                        decode(p_nOrdenRanking,
                                                               6,
                                                               GETTXTDEPENDENCIA(pr.pryid),
-                                                              '')))))) ORDER BY 3 DESC;
+                                                              ''))))));
       ELSIF nTipoPersoneria = 0 AND nProponente = 0 THEN
         open p_rsProyecto for
           select decode(p_nOrdenRanking,
@@ -1309,7 +1306,7 @@ create or replace package body PQ_PROYECTO is
                                                        decode(p_nOrdenRanking,
                                                               6,
                                                               GETTXTDEPENDENCIA(pr.pryid),
-                                                              '')))))) ORDER BY 3 DESC;
+                                                              ''))))));
       ELSIF nProponente = 1 THEN
         open p_rsProyecto for
           select decode(p_nOrdenRanking,
@@ -1420,7 +1417,7 @@ create or replace package body PQ_PROYECTO is
                                                        decode(p_nOrdenRanking,
                                                               6,
                                                               GETTXTDEPENDENCIA(pr.pryid),
-                                                              '')))))) ORDER BY 3 DESC;
+                                                              ''))))));
       END IF;
     END IF;
   END RANKING;
