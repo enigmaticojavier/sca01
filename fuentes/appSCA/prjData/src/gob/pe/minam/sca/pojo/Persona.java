@@ -38,6 +38,7 @@ public class Persona {
    private String ubigeoId;
    private Usuario usuario;
    private Ubigeo ubigeo;
+   private String txtWeb;
    
    /** @pdOid 90e22fa9-7b4c-4542-8c93-53056e5bd89d
        @pdRoleInfo migr=yes name=DocumentoPersona assc=Association14 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Composition */
@@ -103,6 +104,13 @@ public class Persona {
     }
     public void setFax(String fax) {
             this.fax = fax;
+    }
+    public java.lang.String getTxtWeb() {
+            return txtWeb;
+    }
+
+    public void setTxtWeb(java.lang.String txtWeb) {
+            this.txtWeb = txtWeb;
     }
     public List<DocumentoPersona> getDocumentoPersona() {
             return documentoPersona;
