@@ -19,16 +19,17 @@
     <result property="telefono" column="TELEFONO"/>
     <result property="txtEmail" column="TXTEMAIL"/>
     <result property="fax" column="FAX"/>    
+    <result property="txtWeb" column="TXTWEB"/>
   </resultMap>  
      
    <select id="getPersonaByKey" resultClass="Persona" parameterClass="Persona">
     SELECT PERSONAID, UBIGEOID, TIPDOCUMENTOPER, NUMDOCUMENTOPER, TIPPERSONA,
-    TXTRAZONSOCIAL, TXTDOMICILIO, TELEFONO, TXTEMAIL, FAX 
+    TXTRAZONSOCIAL, TXTDOMICILIO, TELEFONO, TXTEMAIL, FAX, TXTWEB 
     FROM PERSONA WHERE PERSONAID = #personaId#
    </select>
    <update id="updatePersona" parameterClass="Persona">
     UPDATE PERSONA SET UBIGEOID=#ubigeoId#, TXTRAZONSOCIAL=#txtRazonSocial#, 
-    TXTDOMICILIO=#txtDomicilio#, TELEFONO=#telefono#, TXTEMAIL=#txtEmail#, FAX=#fax#
+    TXTDOMICILIO=#txtDomicilio#, TELEFONO=#telefono#, TXTEMAIL=#txtEmail#, FAX=#fax#, TXTWEB=#txtWeb#
     WHERE PERSONAID = #personaId#
    </update>
 
@@ -40,7 +41,8 @@
     TXTDOMICILIO, 
     TELEFONO, 
     TXTEMAIL, 
-    FAX)
+    FAX,
+    TXTWEB)
     VALUES (#personaId#, 
     #ubigeoId#,
     'ACA',
@@ -48,7 +50,8 @@
     #txtDomicilio#, 
     #telefono#, 
     #txtEmail#, 
-    #fax#)
+    #fax#,
+    #txtWeb#)
    </insert>
 
   <select id="getNextItem" resultClass="java.lang.Integer" parameterClass="int">
