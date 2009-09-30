@@ -43,20 +43,100 @@ response.setDateHeader("Expires", 0); //prevents caching at the proxy server
           <font color="Green">Normas legales</font>
           <br/>
             <div>
-            <font color="Green">Sistema Nacional de Evaluación de Impacto Ambiental</font>
+            <font color="Green">Sistema Nacional de Gesti&oacute;n Ambiental</font>
             <br/>
+            
             <ul>
-                <li>Ley del Sistema de Evaluación de Impacto Ambiental, Ley Nº 27446 del 23/04/2001. Modificado por:</li>
-                <li>Decreto Legislativo que modifica la Ley Nº 27446, Ley del Sistema Nacional de Evaluación de Impacto Ambiental, Decreto Legislativo Nº1078 del 28/06/2008.</li>
+              <li>
+                <blockquote>
+                  <p>
+                    Decreto Legislativo N&ordm; 1013, Ley de Creaci&oacute;n
+                    Organizaci&oacute;n y Funciones del Ministerio del Ambiente.
+                  </p>
+                </blockquote>
+              </li>
+              <li>
+                <blockquote>
+                  <p>
+                    Decreto Legislativo N&ordm; 1039, Decreto Legislativo que
+                    modifica disposiciones del Decreto Legislativo N&ordm; 1013.
+                  </p>
+                </blockquote>
+              </li>
+              <li>
+                <blockquote>
+                  <p>
+                    Decreto Supremo N&ordm; 012-2009-MINAM, Pol&iacute;tica
+                    Nacional del Ambiente. 
+                  </p>
+                </blockquote>
+              </li>
+              <li>
+                <blockquote>
+                  <p>
+                    Ley N&ordm; 28611, Ley General del Ambiente. 
+                  </p>
+                </blockquote>
+              </li>
+              <li>
+                <blockquote>
+                  <p>
+                    Decreto Legislativo N&ordm; 1055, Decreto Legislativo que
+                    modifica la Ley N&ordm; 28611.
+                  </p>
+                </blockquote>
+              </li>
+              <li>
+                <blockquote>
+                  <p>
+                    Ley N&ordm; 28245, Ley Marco del Sistema Nacional de
+                    Gesti&oacute;n Ambiental. 
+                  </p>
+                </blockquote>
+              </li>
+              <li>
+                <blockquote>
+                  <p>
+                    Decreto Supremo N&ordm; 008-2005-PCM, Reglamento de la Ley
+                    Marco del Sistema Nacional de Gesti&oacute;n Ambiental. &nbsp;
+                  </p>
+                </blockquote>
+              </li>
             </ul>
-            <p/>
-            <font color="Green">Gestión Ambiental</font>
+            <p>
+              &nbsp;
+            </p>
+            <font color="Green">
+              Sistema Nacional de Evaluaci&oacute;n de Impacto Ambiental
+            </font>
+            
             <ul>
-                <li>Ley de Creación Organización y Funciones del Ministerio del Ambiente, Decreto Legislativo Nº 1013 del  14/05/2008. Modificado por:</li>
-                <li>Decreto Legislativo que modifica disposiciones del Decreto Legislativo Nº 1013, Decreto Legislativo Nº1039 del 26/06/2008.</li>
-                <li>Ley General del Ambiente, Ley Nº 28611 del  15/10/2005. Modificado por: </li>
-                <li>Decreto Legislativo que modifica la Ley Nº 28611 Ley General del Ambiente, Decreto Legislativo Nº 1055 del 27/06/2008.</li>
-                <li>Ley Marco de la Gestión Ambiental, Ley Nº 28245 del 08/06/2004.</li>           </div>
+              <li>
+                <blockquote>
+                  <p>
+                    Ley N&ordm; 27446, Ley del Sistema Nacional de
+                    Evaluaci&oacute;n de Impacto Ambiental. 
+                  </p>
+                </blockquote>
+              </li>
+              <li>
+                <blockquote>
+                  <p>
+                    Decreto Legislativo N&ordm; 1078, Decreto Legislativo que
+                    modifica la Ley N&ordm; 27446. 
+                  </p>
+                </blockquote>
+              </li>
+              <li>
+                <blockquote>
+                  <p>
+                    Decreto Supremo N&ordm; 019-2009-MINAM, Reglamento de la Ley
+                    del Sistema Nacional de Evaluaci&oacute;n de Impacto
+                    Ambiental. 
+                  </p>
+                </blockquote>
+              </li>
+            </ul></div>
         </td>
       </tr>
       <tr>

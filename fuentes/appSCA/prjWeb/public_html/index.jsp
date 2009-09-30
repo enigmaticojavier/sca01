@@ -36,44 +36,55 @@ response.setDateHeader("Expires", 0); //prevents caching at the proxy server
         <td width="240" align="left" valign="top">
           <%@ include file="pages/tiles/menu.jsp" %>
         </td>
-        <td width="800" valign="top">
+        <td width="800" valign="top" colspan="">
         <table width="90%" class="titulo" align="center" cellspacing="0" cellpadding="0" height="36">
         <tr>
             <td align="center" bgcolor="#F2FEE6" class="titulo">Bienvenidos al Registro de Certificaciones Ambientales - RCA </td>
         </tr>
         </table>
-        <br />
-        
-        <img src="<%= request.getContextPath() %>/public/img/web/Foto_CA.jpg" align="right" border="2">
-          <font color="Green">¿Qué son Certificaciones Ambientales?</font>
+            <table width="90%" height= "36">
+                <tr>
+                    <td>
+                        <span style="color: #008000">¿Qué son Certificaciones Ambientales?</span>
           <br/>
             <div>
-                Las Certificaciones Ambientales son las resoluciones que aprueban el instrumento de gestión ambiental emitida 
-                por la Autoridad Competente de Administración y Ejecución -ACAE, mediante la cual se aprueba la DIA o el EIA 
-                respectivos, al haber cumplido el proyecto o la actividad con los requisitos de forma y fondo establecidos en 
-                el SEIA, y en el que se establecen los compromisos que debe cumplir el proponente para prevenir, mitigar, corregir, 
-                compensar y manejar los impactos ambientales negativos del proyecto o actividad.
+		La Certificación Ambiental es el título habilitante extendido por la Autoridad 
+		Competente que implica la aprobación del instrumento de gestión ambiental 
+		(DÍA, EIA-sd, EIA-d) así como la determinación de la viabilidad ambiental de un 
+		proyecto de inversión en aquellos aspectos vinculados a la prevención, mitigación,
+		corrección, compensación y manejo de los impactos ambientales negativos 
+		significativos derivados de los mismos.
             </div>
             <p/>
-            <font color="Green">¿Para qué tipo de actividades o proyectos se deben gestionar las Certificaciones Ambientales?</font>
+            <font color="Green">¿Para qué tipo de proyectos se deben gestionar las Certificaciones Ambientales?</font>
             <br/>
             <div>
-                Todos aquellos relacionados a las políticas, planes y programas de nivel nacional, regional y local que puedan 
-                originar implicaciones ambientales significativas, así como los proyectos de inversión pública, privada o de capital 
-                mixto, que impliquen actividades, construcciones, obras, y otras actividades comerciales y de servicios que puedan 
-                causar impactos ambientales negativos significativos. (Artículo 2º del D.L. 1078).
+ 		Para todos aquellos proyectos de inversión pública, privada o de capital mixto,
+		que por su naturaleza pudieran generar impactos ambientales negativos de carácter 
+		significativo y que estén relacionados con los criterios de protección ambiental 
+		establecidos.
             </div>
             <p/>
-            <font color="Green">¿Es obligatoria la Certificación Ambiental?</font>
+            <font color="Green">Obligatoriedad de la Certificación Ambiental</font>
             <br/>
             <div>
-            No podrá iniciarse la ejecución de proyectos ni actividades de servicios y comercio referidos en el punto anterior y 
-            ninguna autoridad nacional, sectorial, regional o local, podrán aprobarlas, autorizarlas, permitirlas, concederlas o 
-            habilitarlas si no cuentan previamente con la Certificación Ambiental contenida en la resolución expedida por la respectiva 
-            autoridad competente. (Artículo 3º del D.L. 1078).
+		Toda personal natural o jurídica, de derecho público o privado, nacional o extranjera, 
+                que pretenda desarrollar un proyecto de inversión susceptible de generar impactos 
+                ambientales negativos de carácter significativo, debe gestionar una 
+		Certificación Ambiental ante la Autoridad Competente que corresponda.
             </div>
-        </td>
-      </tr>
+                    </td>
+            <td width="33%" valign="top" align="right">
+            <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0" width="209" height="317" title="banner2" align="right">
+              <param name="movie" value="public/swf/web/banner2.swf" />
+              <param name="quality" value="high" />
+              <embed src="public/swf/web/banner2.swf" quality="high" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="209" height="317"></embed>
+            </object>
+            </td>
+                </tr>
+            </table>
+        <br />
+        </td>      </tr>
       <tr>
         <td colspan="2" align="left" background="public/img/web/cool-blue_r9_c8.jpg" valign="top">        
           <%@ include file="pages/tiles/pie.jsp" %>

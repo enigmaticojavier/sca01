@@ -243,6 +243,9 @@ response.setDateHeader("Expires", 0); //prevents caching at the proxy server
                             </display:column> 
                             <display:column property="ubigeo.txtDescripcion" title="Departamento" style="width:15" media="html excel csv"/>
                             <display:column property="estadoTramite" title="Est. Act.<br>Trámite" style="width:10" media="html excel csv"/>
+                            <display:column title="Fec.<br>Aprob" style="width:10" media="html excel csv">
+                                <fmt:formatDate value="${proyecto.fchAprobacion}" pattern="dd/MM/yyyy"/> 
+                            </display:column>
                             <display:column href="proyectoForm!input" paramId="pryId" paramProperty="pryId" title="Detalle" style="width:5%" media="html">
                                 Detalle
                             </display:column>

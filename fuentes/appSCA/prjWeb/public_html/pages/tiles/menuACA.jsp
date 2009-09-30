@@ -58,7 +58,7 @@
                         <s:url action="ranking" id="urlRanking">
                             <s:param name="parametro.idParametro" value="idRanking"/>
                         </s:url>
-                      <td width="96%"><a href="<s:property value="#urlRanking"/>">Ranking</a></td>
+                      <td width="96%"><a href="<s:property value="#urlRanking"/>">Reportes</a></td>
                     </tr>
                     <tr>
                       <td colspan="2"><img src="public/img/web/fondo_menu.jpg" width="220" height="1" /></td>
