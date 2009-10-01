@@ -61,6 +61,7 @@ public class AcaeModificaAction extends AcaeAction {
                 this.persona.setTelefono(acae.getTelefono());
                 this.persona.setFax(acae.getFax());                
                 this.persona.setTxtEmail(acae.getTxtEmail());
+                this.persona.setTxtWeb(acae.getTxtWeb());
                 this.usuario.setUsuario(acae.getUsuario().getUsuario());
                 this.usuario.setCodClave(acae.getUsuario().getCodClave());
                 this.buscarInstitucionXTipoAcae();

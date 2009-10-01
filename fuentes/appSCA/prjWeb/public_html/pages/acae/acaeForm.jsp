@@ -102,6 +102,7 @@ response.setHeader("Expires","0");
                 <s:select label="Distrito" name="codDistrito" value="codDistrito" list="ubiDistrito" listKey="codDistrito" listValue="txtDescripcion" emptyOption="SELECCCIONAR" />
                 <s:textfield label="Teléfono" name="persona.telefono" value="%{persona.telefono}" size="15" maxlength="15"/>
                 <s:textfield label="Fax" name="persona.fax" value="%{persona.fax}" size="15" maxlength="15"/>
+                <s:textfield label="Web" name="persona.txtWeb" value="%{persona.txtWeb}" size="50" maxlength="255"/>
                 <tr>
                 <td colspan="2" bgcolor="Green"><font color="White">2. Datos del personal responsable</font></td>                
                 </tr>
