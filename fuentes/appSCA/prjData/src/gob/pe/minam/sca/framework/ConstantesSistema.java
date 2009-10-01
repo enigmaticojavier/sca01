@@ -27,8 +27,8 @@ public class ConstantesSistema {
     public final static String CARPETA_IMAGENES="DIR";
     
     public final static int TAMANO_MENSAJE_ERROR = 60;
-    public final static int COLUMNA_PROCESO_PROPONENTE = 12;
-    public final static int COLUMNA_PROCESO_PROYECTO = 12;
+    public final static int COLUMNA_PROCESO_PROPONENTE = 11;
+    public final static int COLUMNA_PROCESO_PROYECTO = 10;
     public final static int COLUMNA_PROCESO_EXPEDIENTE = 11;
     public final static String PROC_CARGA_PROPONENTE = "USP_001_CARGA_PROPONENTE";
     public final static String PROC_CARGA_PROYECTO = "USP_002_CARGA_PROYECTO";
