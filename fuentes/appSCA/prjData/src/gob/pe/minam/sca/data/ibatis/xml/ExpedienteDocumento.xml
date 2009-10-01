@@ -44,7 +44,7 @@
         and ep.expid = ed.expid(+) and ep.nsecuencia = ed.nsecuencia(+)
         and ed.docid = doc.docid(+) and doc.tipodocumento = tdo.codparametro(+) and  tdo.tipparametro(+) = 'DOC'
         and ex.pryId=#param#
-        order by ep.nsecuencia
+        order by ex.expid, ep.nsecuencia, tdo.txtvalor
   </select>
   
   <select id="BuscarExpDocXPryLogout" resultMap="ExpedienteDocumentoXProyectoResult" parameterClass="int">
@@ -57,7 +57,7 @@
         and ed.docid = doc.docid(+) and doc.tipodocumento = tdo.codparametro(+) and  tdo.tipparametro(+) = 'DOC'
         and tippas.codparametro in (select codparametro from parametro tippas where tippas.tipparametro='TXU')
         and ex.pryId=#param#
-        order by ep.nsecuencia
+        order by ex.expid, ep.nsecuencia, tdo.txtvalor
   </select>
   
   
@@ -76,6 +76,7 @@
            and ex.pryid = pry.pryid
            and ex.personaid = #expedientePaso.expediente.personaId# 
            and ep.periodo = #expedientePaso.periodo# 
+        order by ex.expid, ep.nsecuencia, tdo.txtvalor   
   </select>
   
 </sqlMap>
