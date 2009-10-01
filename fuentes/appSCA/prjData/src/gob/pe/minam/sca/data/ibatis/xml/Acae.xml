@@ -47,6 +47,7 @@
     <result property="txtCargo" column="TXTCARGO"/>
     <result property="usuario.usuario" column="USUARIO"/>
     <result property="usuario.codClave" column="CODCLAVE"/>
+    <result property="txtWeb" column="TXTWEB"/>
   </resultMap>
   <select id="getAcae" resultClass="Acae" parameterClass="Acae" resultMap="AcaeRSMap">
     select 
@@ -95,7 +96,7 @@
     P.UBIGEOID as codDistrito,
     P.TXTRAZONSOCIAL, P.TXTDOMICILIO, P.TELEFONO, P.TXTEMAIL, 
     P.FAX, A.TIPACAE, A.CLSSECTOR, A.TELEFONOGER, A.ANEXOGER, A.TXTAPELLIDOSNOMBRES, A.TXTCARGO, 
-    U.USUARIO, U.CODCLAVE
+    U.USUARIO, U.CODCLAVE, P.TXTWEB
     FROM PERSONA P, ACAE A, USUARIO U
     WHERE P.PERSONAID = A.PERSONAID
     AND P.PERSONAID = U.PERSONAID
