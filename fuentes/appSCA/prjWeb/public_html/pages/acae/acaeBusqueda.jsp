@@ -71,7 +71,7 @@ response.setDateHeader("Expires",-1);
                                                         
                             <display:column property="personaId" title="Id" style="width:5"  media="html" />
                             <display:column property="txtRazonSocial" title="Razón Social" style="width:495" media="html" />
-                            <display:column property="txtValor" title="Institución" style="width:100" media="html"/>
+                            <display:column property="txtValor" title="ACAE" style="width:100" media="html"/>
                             <display:column href="acaeModifica!doBuscarDatos" paramId="personaId" paramProperty="personaId" title="Modificar" style="width:5%" media="html">
                                 Modificar
                             </display:column>
