@@ -188,7 +188,7 @@ response.setDateHeader("Expires", 0); //prevents caching at the proxy server
                       </tr>   
                       <tr>
                         <td align="left">
-                            <s:label value="Institución" />
+                            <s:label value="ACAE" />
                         </td>    
                         <td align="left">
                             <s:select name="clsSector" value="clsSector" list="parInstitucion" listKey="codParametro" listValue="txtValor" onchange="javascript:cambiarInstitucion()"/>        
@@ -230,7 +230,7 @@ response.setDateHeader("Expires", 0); //prevents caching at the proxy server
                                 <display:column property="tipoAcae" title="Tipo ACAE" style="width:50" media="html excel csv" />
                             </s:if>
                             <s:if test="%{clsSector==null || clsSector==0}">
-                                <display:column property="institucion" title="Institución" style="width:150" media="html excel csv" />
+                                <display:column property="institucion" title="ACAE" style="width:150" media="html excel csv" />
                             </s:if>
                             <s:if test="%{clsSubSector==null || clsSubSector==0}">
                                 <display:column property="actividad" title="Actividad" style="width:150" media="html excel csv" />
