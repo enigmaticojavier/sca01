@@ -3,12 +3,6 @@
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 <jsp:useBean id="date" class="java.util.Date"/>
 <%@page import="gob.pe.minam.sca.pojo.Usuario"%>
-<%
-response.setHeader("Cache-Control", "no-cache"); //HTTP 1.1
-response.setHeader("Pragma", "no-cache"); //HTTP 1.0
-response.setDateHeader("Expires", 0); //prevents caching at the proxy server
-%>
-
 <html>
 <head>
     <link href="<%= request.getContextPath() %>/public/css/web/template_css.css" rel="stylesheet" type="text/css">
